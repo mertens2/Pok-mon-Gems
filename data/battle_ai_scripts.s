@@ -3041,6 +3041,7 @@ AI_CV_ChangeSelfAbility_AbilitiesToEncourage:
     .byte ABILITY_PURE_POWER
     .byte ABILITY_CHLOROPHYLL
     .byte ABILITY_SHIELD_DUST
+	.byte ABILITY_TRUANT
     .byte -1
 
 AI_CV_Superpower:
@@ -3406,6 +3407,7 @@ AI_SetupFirstTurn_SetupEffectsToEncourage:
     .2byte EFFECT_TAILWIND
     .2byte EFFECT_DRAGON_DANCE
     .2byte EFFECT_STICKY_WEB
+	.2byte EFFECT_FLASH 
     .2byte -1
 
 AI_PreferStrongestMove:
@@ -3755,6 +3757,7 @@ AI_HPAware_DiscouragedEffectsWhenHighHP: @ 82DE21F
     .byte EFFECT_MEMENTO
     .byte EFFECT_GRUDGE
     .byte EFFECT_OVERHEAT
+	.byte EFFECT_FLASH 
     .byte -1
 
 AI_HPAware_DiscouragedEffectsWhenMediumHP: @ 82DE22D
@@ -3800,6 +3803,7 @@ AI_HPAware_DiscouragedEffectsWhenMediumHP: @ 82DE22D
     .byte EFFECT_BULK_UP
     .byte EFFECT_CALM_MIND
     .byte EFFECT_DRAGON_DANCE
+	.byte EFFECT_FLASH 
     .byte -1
 
 AI_HPAware_DiscouragedEffectsWhenLowHP: @ 82DE258
@@ -3850,6 +3854,7 @@ AI_HPAware_DiscouragedEffectsWhenLowHP: @ 82DE258
     .byte EFFECT_BULK_UP
     .byte EFFECT_CALM_MIND
     .byte EFFECT_DRAGON_DANCE
+	.byte EFFECT_FLASH 
     .byte -1
 
 AI_HPAware_DiscouragedEffectsWhenTargetHighHP: @ 82DE288

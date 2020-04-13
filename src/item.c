@@ -15,7 +15,13 @@
 #include "constants/items.h"
 #include "constants/hold_effects.h"
 #include "constants/tv.h"
-
+#include "item_icon.h"
+#include "pokemon_summary_screen.h"
+#include "menu.h"
+#include "party_menu.h"
+void ShowItemIconSprite(u16 item);
+void DestroyItemIconSprite(void);
+EWRAM_DATA static u8 sHeaderBoxWindowId = 0;
 extern u16 gUnknown_0203CF30[];
 
 // this file's functions
@@ -739,15 +745,33 @@ void CompactPCItems(void)
 
 void SwapRegisteredBike(void)
 {
-    switch (gSaveBlock1Ptr->registeredItem)
+    switch (gSaveBlock1Ptr->registeredItemSelect)
     {
     case ITEM_MACH_BIKE:
-        gSaveBlock1Ptr->registeredItem = ITEM_ACRO_BIKE;
+        gSaveBlock1Ptr->registeredItemSelect  = ITEM_ACRO_BIKE;
         break;
     case ITEM_ACRO_BIKE:
-        gSaveBlock1Ptr->registeredItem = ITEM_MACH_BIKE;
+        gSaveBlock1Ptr->registeredItemSelect  = ITEM_MACH_BIKE;
         break;
     }
+    switch (gSaveBlock1Ptr->registeredItemL)
+    {
+    case ITEM_MACH_BIKE:
+        gSaveBlock1Ptr->registeredItemL = ITEM_ACRO_BIKE;
+        break;
+    case ITEM_ACRO_BIKE:
+        gSaveBlock1Ptr->registeredItemL = ITEM_MACH_BIKE;
+        break;
+    }
+    switch (gSaveBlock1Ptr->registeredItemR)
+    {
+    case ITEM_MACH_BIKE:
+        gSaveBlock1Ptr->registeredItemR = ITEM_ACRO_BIKE;
+        break;
+    case ITEM_ACRO_BIKE:
+        gSaveBlock1Ptr->registeredItemR = ITEM_MACH_BIKE;
+		break;
+	}
 }
 
 u16 BagGetItemIdByPocketPosition(u8 pocketId, u16 pocketPos)
@@ -1108,4 +1132,146 @@ ItemUseFunc ItemId_GetBattleFunc(u16 itemId)
 u8 ItemId_GetSecondaryId(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].secondaryId;
+}
+// Item Description Header
+static bool8 GetSetItemObtained(u16 item, u8 caseId)
+{
+    u8 index;
+    u8 bit;
+    u8 mask;
+    
+    index = item / 8;
+    bit = item % 8;
+    mask = 1 << bit;
+    switch (caseId)
+    {
+    case FLAG_GET_OBTAINED:
+        return gSaveBlock2Ptr->itemFlags[index] & mask;
+    case FLAG_SET_OBTAINED:
+        gSaveBlock2Ptr->itemFlags[index] |= mask;
+        return TRUE;
+    }
+    
+    return FALSE;
+}
+
+static u8 ReformatItemDescription(u16 item, u8 *dest)
+{
+    u8 count = 0;
+    u8 numLines = 1;
+    u8 maxChars = 32;
+    u8 *desc;
+    
+    desc = (u8 *)gItems[item].description;
+    while (*desc != EOS)
+    {        
+        if (count >= maxChars)
+        {
+            while (*desc != CHAR_SPACE && *desc != CHAR_NEWLINE)
+            {
+                *dest = *desc;  //finish word
+                dest++;
+                desc++;
+            }
+            
+            *dest = CHAR_NEWLINE;
+            count = 0;
+            numLines++;
+            dest++;
+            desc++;
+            continue;
+        }
+        
+        *dest = *desc;
+        if (*desc == CHAR_NEWLINE)
+        {
+            *dest = CHAR_SPACE;
+        }
+        
+        dest++;
+        desc++;
+        count++;
+    }
+
+    // finish string
+    *dest = EOS;
+    return numLines;
+}
+
+#define ITEM_ICON_X 26
+#define ITEM_ICON_Y 24
+void DrawHeaderBox(void)
+{
+    struct WindowTemplate template;
+    u16 item = gSpecialVar_0x8006;
+    u8 textY;
+    
+    if (GetSetItemObtained(item, FLAG_GET_OBTAINED))
+    {
+        ShowItemIconSprite(item);
+        return; //no box if item obtained previously
+    }
+    
+    SetWindowTemplateFields(&template, 0, 1, 1, 28, 3, 15, 8);
+    sHeaderBoxWindowId = AddWindow(&template);
+    FillWindowPixelBuffer(sHeaderBoxWindowId, PIXEL_FILL(0));
+    PutWindowTilemap(sHeaderBoxWindowId);
+    CopyWindowToVram(sHeaderBoxWindowId, 3);
+    SetStandardWindowBorderStyle(sHeaderBoxWindowId, FALSE);
+    
+    if (ReformatItemDescription(item, gStringVar1) == 1)
+        textY = 4;
+    else
+        textY = 0;
+    
+    ShowItemIconSprite(item);
+    AddTextPrinterParameterized(sHeaderBoxWindowId, 0, gStringVar1, ITEM_ICON_X + 2, textY, 0, NULL);
+    GetSetItemObtained(item, FLAG_SET_OBTAINED);
+    return;
+}
+
+void HideHeaderBox(void)
+{
+    DestroyItemIconSprite();
+    ClearStdWindowAndFrameToTransparent(sHeaderBoxWindowId, FALSE);
+    CopyWindowToVram(sHeaderBoxWindowId, 2);
+    RemoveWindow(sHeaderBoxWindowId);
+}
+
+#define ITEM_TAG 0xFDF3
+void ShowItemIconSprite(u16 item)
+{
+	s16 x, y;
+	u8 iconSpriteId;
+
+    iconSpriteId = AddItemIconSprite(ITEM_TAG, ITEM_TAG, item);
+	if (iconSpriteId != MAX_SPRITES)
+	{        
+        if (GetSetItemObtained(item, FLAG_GET_OBTAINED))
+        {
+            //show in message box
+			x = 213;
+			y = 140;
+        }
+        else
+        {
+            // show in header box
+			x = ITEM_ICON_X;
+			y = ITEM_ICON_Y;
+        }
+
+		gSprites[iconSpriteId].pos2.x = x;
+		gSprites[iconSpriteId].pos2.y = y;
+		gSprites[iconSpriteId].oam.priority = 0;
+	}
+
+	gSpecialVar_0x8009 = iconSpriteId;
+}
+
+void DestroyItemIconSprite(void)
+{
+	FreeSpriteTilesByTag(ITEM_TAG);
+	FreeSpritePaletteByTag(ITEM_TAG);
+	FreeSpriteOamMatrix(&gSprites[gSpecialVar_0x8009]);
+	DestroySprite(&gSprites[gSpecialVar_0x8009]);
 }

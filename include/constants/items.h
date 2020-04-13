@@ -699,8 +699,9 @@
 // Emerald
 #define ITEM_MAGMA_EMBLEM 614
 #define ITEM_OLD_SEA_MAP 615
+#define ITEM_SHINY_CHARM 616 // Amount of re-rolls if has Shiny Charm.
 
-#define ITEMS_COUNT 616
+#define ITEMS_COUNT 617
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 #define FIRST_BERRY_INDEX             ITEM_CHERI_BERRY

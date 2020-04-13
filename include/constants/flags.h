@@ -41,19 +41,19 @@
 #define FLAG_TEMP_1F     (TEMP_FLAGS_START + 0x1F)
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 
-#define FLAG_UNUSED_0x020    0x20 // Unused Flag
-#define FLAG_UNUSED_0x021    0x21 // Unused Flag
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
-#define FLAG_UNUSED_0x02B    0x2B // Unused Flag
-#define FLAG_UNUSED_0x02C    0x2C // Unused Flag
+#define FLAG_ZAPATOS	          0x20
+#define FLAG_INVERTED_MOVEMENT    0x21
+#define FLAG_BLOCKED_DOWN         0x22
+#define FLAG_BLOCKED_UP           0x23
+#define FLAG_BLOCKED_LEFT         0x24
+#define FLAG_BLOCKED_RIGHT        0x25
+#define FLAG_POKEMONPCMENU        0x26
+#define FLAG_PSS_MENU_GET         0x27
+#define FLAG_BAG_DISABLED    0x28 
+#define FLAG_SHINY		     0x29
+#define FLAG_DEWFORDGRUNT    0x2A
+#define FLAG_DEWFORDWALLY    0x2B 
+#define FLAG_DEWFORDTEAMAQUADEFEATED    0x2C
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag
 #define FLAG_UNUSED_0x02F    0x2F // Unused Flag

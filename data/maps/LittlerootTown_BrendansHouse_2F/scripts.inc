@@ -93,11 +93,11 @@ LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendan:: @ 81F8497
 LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanNorth:: @ 81F8507
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_BrendanApproachPlayerNorth
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox RivalsHouse_2F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanNorth
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanNorth
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCNorth
 	waitmovement 0
 	return
@@ -105,11 +105,11 @@ LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanNorth:: @ 81F8507
 LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanSouth:: @ 81F8536
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_BrendanApproachPlayerSouth
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox RivalsHouse_2F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanSouth
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanSouth
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCSouth
 	waitmovement 0
 	return
@@ -117,11 +117,11 @@ LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanSouth:: @ 81F8536
 LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanWest:: @ 81F8565
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_BrendanApproachPlayerWest
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox RivalsHouse_2F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanWest
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanWest
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCWest
 	waitmovement 0
 	return
@@ -129,7 +129,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanWest:: @ 81F8565
 LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanEast:: @ 81F8594
 	applymovement 1, LittlerootTown_BrendansHouse_2F_Movement_BrendanApproachPlayerEast
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox RivalsHouse_2F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
 	closemessage
@@ -283,34 +283,52 @@ PlayersHouse_2F_EventScript_Notebook:: @ 81F8656
 PlayersHouse_2F_EventScript_GameCube:: @ 81F865F
 	msgbox PlayersHouse_2F_Text_ItsAGameCube, MSGBOX_SIGN
 	end
+PlayersHouse_2F_EventScript_Zapatillas::
+	lockall
+	msgbox PlayersHouse_2F_Text_Zapatos, MSGBOX_DEFAULT
+	removeobject 17
+	setflag FLAG_SYS_B_DASH
+	playfanfare MUS_FANFA4
+	waitfanfare
+	setflag FLAG_ZAPATOS
+	releaseall
+	end
+
+PlayersHouse_2F_Text_Zapatos:
+	.string "Son Zapatos… Debería calzarme.$"
+
 
 PlayersHouse_2F_Text_ClockIsStopped: @ 81F8668
-	.string "The clock is stopped…\p"
-	.string "Better set it and start it!$"
+	.string "Qué vago que es mi padre…\p"
+	.string "¡Supongo que me toca a mí\n"
+	.string "ponerlo en hora!$"
 
 PlayersHouse_2F_Text_HowDoYouLikeYourRoom: @ 81F869A
-	.string "MOM: {PLAYER}, how do you like your\n"
-	.string "new room?\p"
-	.string "Good! Everything's put away neatly!\p"
-	.string "They finished moving everything in\n"
-	.string "downstairs, too.\p"
-	.string "POKéMON movers are so convenient!\p"
-	.string "Oh, you should make sure that\n"
-	.string "everything's all there on your desk.$"
+	.string "Mamá: ¿{PLAYER}, te gusta tu nuevo\n"
+	.string "cuarto? Mantenlo limpio, que lo usaré\p"
+	.string "cuando te vayas para dormir bien.\p"
+	.string "Ya terminaron de mover todo en la\n"
+	.string "planta baja.\p"
+	.string "¡POKéMON MOVERS es tan eficiente!\p"
+	.string "¡Ah! Deberías quitar del PC los objetos\n"
+	.string "que te regaló tu padre.$"
 
 PlayersHouse_2F_Text_Notebook: @ 81F877F
-	.string "{PLAYER} flipped open the notebook.\p"
-	.string "ADVENTURE RULE NO. 1\n"
-	.string "Open the MENU with START.\p"
-	.string "ADVENTURE RULE NO. 2\n"
-	.string "Record your progress with SAVE.\p"
-	.string "The remaining pages are blank…$"
+	.string "{PLAYER} abrió el cuaderno.\p"
+	.string "REGLA AVENTURERA NO. 1\n"
+	.string "Atrapa siempre a los POKéMON\n"
+	.string "de otro color. Son especiales\p"
+	.string "REGLA AVENTURERA NO. 2\n"
+	.string "Siempre carga contigo Pokéball\p"
+	.string "de todo tipo. Nunca sabes si te\n"
+	.string "aparecerá un Pokémon capaz de escapar…\p"
+	.string "Las otras hojas dicen cosas obvias…$"
 
 Common_Text_LookCloserAtMap: @ 81F8820
-	.string "{PLAYER} took a closer look at the\n"
-	.string "HOENN region map.$"
+	.string "¡WOW! ¡Lo que dicen los memes es verdad!\n"
+	.string "En serio hay mucha agua.$"
 
 PlayersHouse_2F_Text_ItsAGameCube: @ 81F884F
-	.string "It's a Nintendo GameCube.\p"
-	.string "A Game Boy Advance is connected to\n"
-	.string "serve as the Controller.$"
+	.string "Es una Nintendo Switch.\p"
+	.string "Nah, para que mentir, es una GameCube\n"
+	.string "con un control de GBA.$"

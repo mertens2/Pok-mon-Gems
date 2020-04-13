@@ -4,7 +4,7 @@
 #include "task.h"
 #include "util.h"
 #include "constants/event_objects.h"
-#include "constants/event_object_movement_constants.h"
+#include "constants/event_object_movement.h"
 
 // static functions
 static void ScriptMovement_StartMoveObjects(u8 priority);
@@ -92,7 +92,7 @@ static bool8 ScriptMovement_TryAddNewMovement(u8 taskId, u8 eventObjId, const u8
             return FALSE;
         }
     }
-    moveScrId = GetMovementScriptIdFromEventObjectId(taskId, EVENT_OBJ_ID_PLAYER);
+    moveScrId = GetMovementScriptIdFromEventObjectId(taskId, OBJ_EVENT_ID_PLAYER);
     if (moveScrId == EVENT_OBJECTS_COUNT)
     {
         return TRUE;

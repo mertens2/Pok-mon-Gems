@@ -569,10 +569,16 @@ static const struct MenuAction MultichoiceList_FrontierGamblerBet[] =
     {gText_Exit},
 };
 
-static const struct MenuAction MultichoiceList_UnusedSSTidal1[] =
+static const struct MenuAction MultichoiceList_BadgesDebug[] =
 {
-    {gText_SouthernIsland},
-    {gText_BirthIsland},
+    {gText_Badge1},
+    {gText_Badge2},
+	{gText_Badge3},
+	{gText_Badge4},
+	{gText_Badge5},
+	{gText_Badge6},
+	{gText_Badge7},
+	{gText_Badge8},
     {gText_Exit},
 };
 
@@ -873,7 +879,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_FORCED_START_MENU]          = MULTICHOICE(MultichoiceList_ForcedStartMenu),
     [MULTI_FRONTIER_GAMBLER_BET]       = MULTICHOICE(MultichoiceList_FrontierGamblerBet),
     [MULTI_TENT]                       = MULTICHOICE(MultichoiceList_Tent),
-    [MULTI_UNUSED_SSTIDAL_1]           = MULTICHOICE(MultichoiceList_UnusedSSTidal1),
+    [MULTI_BADGESDEBUG]		           = MULTICHOICE(MultichoiceList_BadgesDebug),
     [MULTI_UNUSED_SSTIDAL_2]           = MULTICHOICE(MultichoiceList_UnusedSSTidal2),
     [MULTI_UNUSED_SSTIDAL_3]           = MULTICHOICE(MultichoiceList_UnusedSSTidal3),
     [MULTI_UNUSED_SSTIDAL_4]           = MULTICHOICE(MultichoiceList_UnusedSSTidal4),

@@ -93,11 +93,11 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMay:: @ 81F934A
 LittlerootTown_MaysHouse_2F_EventScript_MeetMayNorth:: @ 81F93BA
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerNorth
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox RivalsHouse_2F_Text_MayWhoAreYou, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayNorth
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayNorth
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCNorth
 	waitmovement 0
 	return
@@ -105,11 +105,11 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMayNorth:: @ 81F93BA
 LittlerootTown_MaysHouse_2F_EventScript_MeetMaySouth:: @ 81F93E9
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerSouth
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox RivalsHouse_2F_Text_MayWhoAreYou, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMaySouth
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMaySouth
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCSouth
 	waitmovement 0
 	return
@@ -117,7 +117,7 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMaySouth:: @ 81F93E9
 LittlerootTown_MaysHouse_2F_EventScript_MeetMayWest:: @ 81F9418
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerWest
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox RivalsHouse_2F_Text_MayWhoAreYou, MSGBOX_DEFAULT
 	closemessage
@@ -128,11 +128,11 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMayWest:: @ 81F9418
 LittlerootTown_MaysHouse_2F_EventScript_MeetMayEast:: @ 81F9440
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_MayApproachPlayerEast
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox RivalsHouse_2F_Text_MayWhoAreYou, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayEast
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayEast
 	applymovement 1, LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCEast
 	waitmovement 0
 	return
@@ -327,61 +327,76 @@ LittlerootTown_MaysHouse_2F_EventScript_TurnOffPlayerPC:: @ 81F958F
 	releaseall
 	end
 
+MaysHouse_2F_EventScript_Zapatillas::
+	lockall
+	msgbox MaysHouse_2F_Text_Zapatos, MSGBOX_DEFAULT
+	removeobject 17
+	setflag FLAG_SYS_B_DASH
+	playfanfare MUS_FANFA4
+	waitfanfare
+	setflag FLAG_ZAPATOS
+	releaseall
+	end
+
+MaysHouse_2F_Text_Zapatos:
+	.string "Son Zapatos... Debería calzarme.\n"
+	.string "{PLAYER} se calzó$"
+
 RivalsHouse_2F_Text_MayWhoAreYou: @ 81F959C
-	.string "Huh?\n"
-	.string "Who… Who are you?\p"
-	.string "… … … … … … … …\n"
-	.string "… … … … … … … …\p"
-	.string "Oh, you're {PLAYER}{KUN}.\n"
-	.string "So your move was today.\p"
-	.string "Um… I'm MAY.\n"
-	.string "Glad to meet you!\p"
-	.string "I…\n"
-	.string "I have this dream of becoming friends\l"
-	.string "with POKéMON all over the world.\p"
-	.string "I… I heard about you, {PLAYER}{KUN}, from\n"
-	.string "my dad, PROF. BIRCH.\p"
-	.string "I was hoping that you would be nice,\n"
-	.string "{PLAYER}{KUN}, and that we could be friends.\p"
-	.string "Oh, this is silly, isn't it?\n"
-	.string "I… I've just met you, {PLAYER}{KUN}.\p"
-	.string "Eheheh…\p"
-	.string "Oh, no! I forgot!\p"
-	.string "I was supposed to go help Dad catch\n"
-	.string "some wild POKéMON!\p"
-	.string "{PLAYER}{KUN}, I'll catch you later!$"
+	.string "¿Eh?\n"
+	.string "¡¿QUIÉN ERES Y QUÉ HACES EN\n"
+	.string "MI CUARTO?!\n"
+	.string "¡…! … … ¿…? … … … …\p"
+	.string "Oh, eres {PLAYER}{KUN}.\n"
+	.string "Eh... Perdón por el golpe...\p"
+	.string "Yo… Soy MAY. Te diré DESQUICIADO\n"
+	.string "Encantada de conocerte, supongo\p"
+	.string "Yo… Quiero ayudar a mi padre\n"
+	.string "con su investigación, para\l"
+	.string "que pase más tiempo en casa...\p"
+	.string "Me contó mucho sobre ti, también.\n"
+	.string "Acabas de mudarte desde Johto, ¿no?.\p"
+	.string "Me dijo que debíamos ser amigos,\n"
+	.string "{PLAYER}{KUN}, pero eso sería una\l"
+	.string "distracción en mi investigación.\p"
+	.string "Además, apenas te conozco.\p"
+	.string "Ah, si. Adiós. Debo irme.\p"
+	.string "Atraparé algunos POKéMON raros\n"
+	.string "para ayudar a papá. Si consigues\n"
+	.string "POKéMON, ¡Te destrozaré en combate!\p"
+	.string "¡Desquiciado, vete de mi cuarto!$"
 
 RivalsHouse_2F_Text_MayGettingReady: @ 81F978A
-	.string "POKéMON fully restored!\n"
-	.string "Items ready, and…$"
+	.string "¡POKéMON ya curados!\n"
+	.string "Objetos listos y…$"
 
 RivalsHouse_2F_Text_BrendanWhoAreYou: @ 81F97B4
-	.string "Hey!\n"
-	.string "You…\p"
-	.string "Who are you?\p"
-	.string "Oh, you're {PLAYER}, aren't you?\n"
-	.string "Moved in next door, right?\p"
-	.string "I didn't know that you're a girl.\p"
-	.string "Dad, PROF. BIRCH, said that our new\n"
-	.string "next-door neighbor is a GYM LEADER's\l"
-	.string "kid, so I assumed you'd be a guy.\p"
-	.string "My name's BRENDAN.\n"
-	.string "So, hi, neighbor!\p"
-	.string "Huh? Hey, {PLAYER}, don't you have\n"
-	.string "a POKéMON?\p"
-	.string "Do you want me to go catch you one?\p"
-	.string "Aw, darn, I forgot…\p"
-	.string "I'm supposed to go help my dad catch\n"
-	.string "some wild POKéMON.\p"
-	.string "Some other time, okay?$"
+	.string "¡Hey!\n"
+	.string "Tú…\p"
+	.string "¡¿QUÉ HACES EN MI CUARTO, LOCA?!\p"
+	.string "Ah, eres {PLAYER}... Igual, loca.\n"
+	.string "¿Te mudaste desde Johto, y lo\l"
+	.string "primero que se te ocurre es esto?\p"
+	.string "Seguro mamá te dejó entrar, es así\n"
+	.string "de tonta... Como sea, eres hija de\l"
+	.string "un Líder del Gimnasio, ¿No?\p"
+	.string "Soy BRENDAN, y mi padre tampco está\n"
+	.string "en casa mucho tiempo...\p"
+	.string "Por eso quiero ayudarlo a invesigar,\n"
+	.string "para que termine más rápido y pase\l"
+	.string "más tiempo con nosotros...\p"
+	.string "Hablando del tema…\p"
+	.string "Debo ir a recolectar información\n"
+	.string "sobre POKéMON salvajes.\p"
+	.string "¡Hasta luego, loca!$"
 
 RivalsHouse_2F_Text_BrendanGettingReady: @ 81F9962
-	.string "POKéMON fully restored…\n"
-	.string "Items all packed, and…$"
+	.string "POKéMON al fin curados…\n"
+	.string "Objetos guardados y…$"
 
 RivalsHouse_2F_Text_ItsRivalsPokeBall: @ 81F9991
-	.string "It's {RIVAL}'s POKé BALL!\p"
-	.string "Better leave it right where it is.$"
+	.string "¡Es la Ball de {RIVAL}! Tirada...\p"
+	.string "¿Qué no tienen estantes?.$"
 
 RivalsHouse_2F_Text_MayJustCheckingMyPokedex: @ 81F99C9
 	.string "MAY: {PLAYER}{KUN}!\p"

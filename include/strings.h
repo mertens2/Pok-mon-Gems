@@ -18,7 +18,14 @@ extern const u8 gText_ExpandedPlaceholder_Brendan[];
 extern const u8 gText_ExpandedPlaceholder_May[];
 
 extern const u8 gText_FromSpace[];
-
+extern const u8 gText_Badge1[];
+extern const u8 gText_Badge2[];
+extern const u8 gText_Badge3[];
+extern const u8 gText_Badge4[];
+extern const u8 gText_Badge5[];
+extern const u8 gText_Badge6[];
+extern const u8 gText_Badge7[];
+extern const u8 gText_Badge8[];
 extern const u8 gText_Lv50[];
 extern const u8 gText_OpenLevel[];
 
@@ -230,6 +237,7 @@ extern const u8 gText_SaveFailed[];
 extern const u8 gText_MenuPokedex[];
 extern const u8 gText_MenuPokemon[];
 extern const u8 gText_MenuBag[];
+extern const u8 gText_MenuPC[];
 extern const u8 gText_MenuPokenav[];
 extern const u8 gText_MenuPlayer[];
 extern const u8 gText_MenuSave[];
@@ -2945,5 +2953,13 @@ extern const u8 gText_Toughness[];
 extern const u8 gText_Smartness[];
 extern const u8 gText_Cuteness[];
 extern const u8 gText_Beauty3[];
+extern const u8 gText_EggHappiness[];
+extern const u8 gText_EggHatch[];
+extern const u8 gText_Nickname[];
+extern const u8 gMenuText_Move[];
+extern const u8 gText_MoveItemWhere[];
+extern const u8 gText_XsYAnd[];
+extern const u8 gText_XsYWereSwapped[];
+
 
 #endif // GUARD_STRINGS_H

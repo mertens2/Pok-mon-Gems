@@ -26,7 +26,9 @@ OldaleTown_EventScript_MoveMartEmployee:: @ 81E8EDE
 	return
 
 OldaleTown_EventScript_CitySign:: @ 81E8EEA
+	changeframe 17
 	msgbox OldaleTown_Text_CitySign, MSGBOX_SIGN
+	changeframe 1
 	end
 
 OldaleTown_EventScript_Girl:: @ 81E8EF3
@@ -50,20 +52,20 @@ OldaleTown_EventScript_MartEmployee:: @ 81E8EFC
 
 OldaleTown_EventScript_GoToMartSouth:: @ 81E8F47
 	applymovement 2, OldaleTown_Movement_EmployeeSouth
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_Movement_PlayerSouth
+	applymovement OBJ_EVENT_ID_PLAYER, OldaleTown_Movement_PlayerSouth
 	waitmovement 0
 	goto OldaleTown_EventScript_ExplainPokemonMart
 	end
 
 OldaleTown_EventScript_GoToMartNorth:: @ 81E8F5E
 	applymovement 2, OldaleTown_Movement_EmployeeNorth
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_Movement_PlayerNorth
+	applymovement OBJ_EVENT_ID_PLAYER, OldaleTown_Movement_PlayerNorth
 	waitmovement 0
 	goto OldaleTown_EventScript_ExplainPokemonMart
 	end
 
 OldaleTown_EventScript_GoToMartEast:: @ 81E8F75
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_Movement_PlayerEast
+	applymovement OBJ_EVENT_ID_PLAYER, OldaleTown_Movement_PlayerEast
 	applymovement 2, OldaleTown_Movement_EmployeeEast
 	waitmovement 0
 	goto OldaleTown_EventScript_ExplainPokemonMart
@@ -201,7 +203,7 @@ OldaleTown_EventScript_FootprintsMan:: @ 81E901F
 
 OldaleTown_EventScript_BlockedPath:: @ 81E903F
 	lockall
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_Movement_PlayerStepBack
+	applymovement OBJ_EVENT_ID_PLAYER, OldaleTown_Movement_PlayerStepBack
 	applymovement 3, OldaleTown_Movement_BackUp
 	waitmovement 0
 	msgbox OldaleTown_Text_WaitDontComeInHere, MSGBOX_DEFAULT
@@ -228,7 +230,7 @@ OldaleTown_EventScript_RivalTrigger1:: @ 81E9086
 	lockall
 	applymovement 4, OldaleTown_Movement_RivalApproachPlayer1
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	setvar VAR_0x8009, 1
 	goto OldaleTown_EventScript_ShowRivalMessage
@@ -238,7 +240,7 @@ OldaleTown_EventScript_RivalTrigger2:: @ 81E90A6
 	lockall
 	applymovement 4, OldaleTown_Movement_RivalApproachPlayer2
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	setvar VAR_0x8009, 1
 	goto OldaleTown_EventScript_ShowRivalMessage
@@ -248,7 +250,7 @@ OldaleTown_EventScript_RivalTrigger3:: @ 81E90C6
 	lockall
 	applymovement 4, OldaleTown_Movement_RivalApproachPlayer3
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	setvar VAR_0x8009, 1
 	goto OldaleTown_EventScript_ShowRivalMessage
@@ -294,7 +296,7 @@ OldaleTown_EventScript_DoExitMovement1:: @ 81E9148
 	return
 
 OldaleTown_EventScript_DoExitMovement2:: @ 81E915E
-	applymovement EVENT_OBJ_ID_PLAYER, OldaleTown_Movement_WatchRivalExit
+	applymovement OBJ_EVENT_ID_PLAYER, OldaleTown_Movement_WatchRivalExit
 	applymovement 4, OldaleTown_Movement_RivalExit
 	waitmovement 0
 	return
@@ -346,58 +348,50 @@ OldaleTown_Movement_ReturnToOriginalPosition: @ 81E918B
 	step_end
 
 OldaleTown_Text_SavingMyProgress: @ 81E918E
-	.string "I want to take a rest, so I'm saving my\n"
-	.string "progress.$"
+	.string "¿Sabías que puedes intercambiar\n"
+	.string "los Objetos entre dos Pokémon?$"
 
 OldaleTown_Text_IWorkAtPokemonMart: @ 81E91C0
-	.string "Hi!\n"
-	.string "I work at a POKéMON MART.\p"
-	.string "Can I get you to come with me?$"
+	.string "¡Hola!\n"
+	.string "Trabajo en la Tienda Pokémon.\p"
+	.string "¿Quieres venir?$"
 
 OldaleTown_Text_ThisIsAPokemonMart: @ 81E91FD
-	.string "This is a POKéMON MART.\n"
-	.string "Just look for our blue roof.\p"
-	.string "We sell a variety of goods including\n"
-	.string "POKé BALLS for catching POKéMON.\p"
-	.string "Here, I'd like you to have this as\n"
-	.string "a promotional item.$"
+	.string "Gracias por escucharme. Toma,\n"
+	.string "un regalo de mi parte.$"
 
 OldaleTown_Text_PotionExplanation: @ 81E92AF
-	.string "A POTION can be used anytime, so it's\n"
-	.string "even more useful than a POKéMON CENTER\l"
-	.string "in certain situations.$"
+	.string "Las Pociones pueden ser usadas\n"
+	.string "siempre. Pero no restauran los\l"
+	.string "PP ni curan problemas de estado…$"
 
 OldaleTown_Text_WaitDontComeInHere: @ 81E9313
-	.string "Aaaaah! Wait!\n"
-	.string "Please don't come in here.\p"
-	.string "I just discovered the footprints of\n"
-	.string "a rare POKéMON!\p"
-	.string "Wait until I finish sketching\n"
-	.string "them, okay?$"
+	.string "¡AAAAHHH! ¡ALTO!\n"
+	.string "Por favor, no pases.\p"
+	.string "¡Un compañero está estudiando\n"
+	.string "un Pokémon raro!\p"
+	.string "Arruinarías todo si pasas…\n"
+	.string "Quédate aquí…$"
 
 OldaleTown_Text_DiscoveredFootprints: @ 81E939A
-	.string "I just discovered the footprints of\n"
-	.string "a rare POKéMON!\p"
-	.string "Wait until I finish sketching\n"
-	.string "them, okay?$"
+	.string "Arruinarías todo si pasas.\n"
+	.string "Quédate aquí…$"
 
 OldaleTown_Text_FinishedSketchingFootprints: @ 81E93F8
-	.string "I finished sketching the footprints of\n"
-	.string "a rare POKéMON.\p"
-	.string "But it turns out they were only my\n"
-	.string "own footprints…$"
+	.string "¡Atrapamos al Ralts Variocolor!$"
 
 OldaleTown_Text_MayLetsGoBack: @ 81E9462
-	.string "MAY: {PLAYER}{KUN}!\n"
-	.string "Over here!\l"
-	.string "Let's hurry home!$"
+	.string "MAY: ¡{PLAYER}{KUN}!\p"
+	.string "¡Apúrate desquiciado, eres tan\n"
+	.string "lento que en lo que tardas en\l"
+	.string "llegar ya habré atrapado 6 Pokémon!$"
 
 OldaleTown_Text_BrendanLetsGoBack: @ 81E948A
-	.string "BRENDAN: I'm heading back to my dad's\n"
-	.string "LAB now.\l"
-	.string "{PLAYER}, you should hustle back, too.$"
+	.string "BRENDAN: Vamos, loca, volvamos\n"
+	.string "al Laboratorio.\l"
+	.string "{PLAYER}, ven si quieres.$"
 
 OldaleTown_Text_CitySign: @ 81E94DA
-	.string "OLDALE TOWN\n"
-	.string "“Where things start off scarce.”$"
+	.string "PUEBLO OLDALE\n"
+	.string "“Donde todo inicia bien.”$"
 

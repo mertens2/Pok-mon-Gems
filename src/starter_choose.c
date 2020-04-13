@@ -505,7 +505,7 @@ static void Task_StarterChoose2(u8 taskId)
         spriteId = CreateSprite(&gUnknown_085B1F40, sPokeballCoords[selection][0], sPokeballCoords[selection][1], 1);
         gTasks[taskId].tCircleSpriteId = spriteId;
 
-        // Create Pokemon sprite
+        // Create Pokemon sprite  
         spriteId = CreatePokemonFrontSprite(GetStarterPokemon(gTasks[taskId].tStarterSelection), sPokeballCoords[selection][0], sPokeballCoords[selection][1]);
         gSprites[spriteId].affineAnims = &gUnknown_085B1ED0;
         gSprites[spriteId].callback = StarterPokemonSpriteCallback;

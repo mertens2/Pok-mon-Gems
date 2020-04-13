@@ -459,6 +459,7 @@ const u8 gAbilityNames[ABILITIES_COUNT_GEN7][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SHADOW_SHIELD] = _("ShadowShield"),
     [ABILITY_PRISM_ARMOR] = _("Prism Armor"),
     [ABILITY_NEUROFORCE] = _("Neuroforce"),
+	[ABILITY_SLOW_FORCE] = _("Slow Force"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT_GEN7] =

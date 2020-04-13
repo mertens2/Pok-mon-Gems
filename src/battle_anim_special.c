@@ -5,6 +5,7 @@
 #include "battle_interface.h"
 #include "decompress.h"
 #include "dma3.h"
+#include "event_data.h"
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "m4a.h"
@@ -20,6 +21,7 @@
 #include "constants/moves.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
+#include "constants/flags.h"
 
 // iwram
 int gUnknown_030062DC;
@@ -2282,8 +2284,8 @@ void sub_8172EF0(u8 battler, struct Pokemon *mon)
 
     if (IsBattlerSpriteVisible(battler))
     {
-        shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
-        if (shinyValue < SHINY_ODDS)
+		shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
+        if (shinyValue < SHINY_ODDS) 
             isShiny = TRUE;
 
         if (isShiny)

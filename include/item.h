@@ -4,7 +4,13 @@
 #include "constants/item.h"
 
 typedef void (*ItemUseFunc)(u8);
-
+void DrawHeaderBox(void);
+void HideHeaderBox(void);
+enum ItemObtainFlags
+{
+    FLAG_GET_OBTAINED,
+    FLAG_SET_OBTAINED,
+};
 struct Item
 {
     u8 name[ITEM_NAME_LENGTH];

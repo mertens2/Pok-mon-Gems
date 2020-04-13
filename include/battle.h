@@ -269,6 +269,7 @@ struct BattleHistory
     u8 abilities[MAX_BATTLERS_COUNT];
     u8 itemEffects[MAX_BATTLERS_COUNT];
     u16 trainerItems[MAX_BATTLERS_COUNT];
+	u16 trainerItemCounts[MAX_BATTLERS_COUNT];
     u8 itemsNo;
 };
 

@@ -4,7 +4,7 @@
 #include "constants/moves.h"
 #include "constants/species.h"
 
-#define SPECIES_SHINY_TAG 500
+#define SPECIES_SHINY_TAG 5000
 
 struct MonCoords
 {
@@ -19,6 +19,7 @@ struct TrainerMonNoItemDefaultMoves
     u16 iv;
     u8 lvl;
     u16 species;
+	u8 abilityNums;
 };
 
 struct TrainerMonItemDefaultMoves
@@ -27,6 +28,7 @@ struct TrainerMonItemDefaultMoves
     u8 lvl;
     u16 species;
     u16 heldItem;
+	u8 abilityNums;
 };
 
 struct TrainerMonNoItemCustomMoves
@@ -34,6 +36,7 @@ struct TrainerMonNoItemCustomMoves
     u16 iv;
     u8 lvl;
     u16 species;
+	u8 abilityNums;
     u16 moves[MAX_MON_MOVES];
 };
 
@@ -43,6 +46,7 @@ struct TrainerMonItemCustomMoves
     u8 lvl;
     u16 species;
     u16 heldItem;
+	u8 abilityNums;
     u16 moves[MAX_MON_MOVES];
 };
 
@@ -66,6 +70,7 @@ struct Trainer
     /*0x1C*/ u32 aiFlags;
     /*0x20*/ u8 partySize;
     /*0x24*/ union TrainerMonPtr party;
+	/*0x28*/ u8 itemCounts[MAX_TRAINER_ITEMS];
 };
 
 #define TRAINER_ENCOUNTER_MUSIC(trainer)((gTrainers[trainer].encounterMusic_gender & 0x7F))
@@ -92,7 +97,6 @@ extern const union AffineAnimCmd *const gUnknown_082FF6C0[];
 
 extern const union AnimCmd *const gUnknown_082FF70C[];
 extern const struct MonCoords gMonFrontPicCoords[];
-extern const struct CompressedSpriteSheet gMonStillFrontPicTable[];
 extern const struct MonCoords gMonBackPicCoords[];
 extern const struct CompressedSpriteSheet gMonBackPicTable[];
 extern const struct CompressedSpritePalette gMonPaletteTable[];

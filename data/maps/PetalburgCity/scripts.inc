@@ -38,11 +38,10 @@ PetalburgCity_EventScript_WallyTutorial:: @ 81DC32E
 	special SavePlayerParty
 	special PutZigzagoonInPlayerParty
 	applymovement 2, PetalburgCity_Movement_WallyTutorialWally
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_WallyTutorialPlayer
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Movement_WallyTutorialPlayer
 	waitmovement 0
 	msgbox Route102_Text_WatchMeCatchPokemon, MSGBOX_DEFAULT
-	special StartWallyTutorialBattle
-	waitstate
+	delay 20
 	msgbox Route102_Text_WallyIDidIt, MSGBOX_DEFAULT
 	applymovement 2, Common_Movement_WalkInPlaceFastestLeft, MAP_PETALBURG_CITY
 	waitmovement 2, MAP_PETALBURG_CITY
@@ -63,17 +62,17 @@ PetalburgCity_EventScript_WalkToWallyHouse:: @ 81DC390
 	lockall
 	setflag FLAG_HIDE_MAP_NAME_POPUP
 	applymovement 5, PetalburgCity_Movement_WalkToWallyHouseUncle
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_WalkToWallyHousePlayer
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Movement_WalkToWallyHousePlayer
 	waitmovement 0
 	setvar VAR_0x8004, 7
 	setvar VAR_0x8005, 5
 	opendoor VAR_0x8004, VAR_0x8005
 	waitdooranim
 	applymovement 5, PetalburgCity_Movement_WalkInsideHouseUncle
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_WalkInsideHousePlayer
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Movement_WalkInsideHousePlayer
 	waitmovement 0
 	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_UNCLE
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_PETALBURG_CITY
+	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_PETALBURG_CITY
 	closedoor VAR_0x8004, VAR_0x8005
 	waitdooranim
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
@@ -291,7 +290,7 @@ PetalburgCity_EventScript_ShowGymToPlayer:: @ 81DC4CA
 	call_if_eq PetalburgCity_EventScript_LeadPlayerToGym3
 	msgbox PetalburgCity_Text_ThisIsPetalburgGym, MSGBOX_DEFAULT
 	applymovement 8, Common_Movement_WalkInPlaceFastestRight
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox PetalburgCity_Text_ThisIsGymSign, MSGBOX_DEFAULT
 	closemessage
@@ -304,7 +303,7 @@ PetalburgCity_EventScript_ShowGymToPlayer:: @ 81DC4CA
 PetalburgCity_EventScript_BoyApproachPlayer0:: @ 81DC57F
 	applymovement 8, PetalburgCity_Movement_BoyApproachPlayer0
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	return
 
@@ -316,38 +315,38 @@ PetalburgCity_EventScript_BoyApproachPlayer1:: @ 81DC594
 PetalburgCity_EventScript_BoyApproachPlayer2:: @ 81DC59F
 	applymovement 8, PetalburgCity_Movement_BoyApproachPlayer2
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	return
 
 PetalburgCity_EventScript_BoyApproachPlayer3:: @ 81DC5B4
 	applymovement 8, PetalburgCity_Movement_BoyApproachPlayer3
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	return
 
 PetalburgCity_EventScript_LeadPlayerToGym0:: @ 81DC5C9
 	applymovement 8, PetalburgCity_Movement_BoyWalkToGym0
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_PlayerWalkToGym0
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Movement_PlayerWalkToGym0
 	waitmovement 0
 	return
 
 PetalburgCity_EventScript_LeadPlayerToGym1:: @ 81DC5DB
 	applymovement 8, PetalburgCity_Movement_BoyWalkToGym1
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_PlayerWalkToGym1
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Movement_PlayerWalkToGym1
 	waitmovement 0
 	return
 
 PetalburgCity_EventScript_LeadPlayerToGym2:: @ 81DC5ED
 	applymovement 8, PetalburgCity_Movement_BoyWalkToGym2
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_PlayerWalkToGym2
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Movement_PlayerWalkToGym2
 	waitmovement 0
 	return
 
 PetalburgCity_EventScript_LeadPlayerToGym3:: @ 81DC5FF
 	applymovement 8, PetalburgCity_Movement_BoyWalkToGym3
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_PlayerWalkToGym3
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Movement_PlayerWalkToGym3
 	waitmovement 0
 	return
 
@@ -550,7 +549,7 @@ PetalburgCity_EventScript_Scott:: @ 81DC6E9
 	waitmovement 0
 	applymovement 9, PetalburgCity_Movement_ScottApproachPlayer
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	setvar VAR_SCOTT_STATE, 1
 	msgbox PetalburgCity_Text_AreYouATrainer, MSGBOX_DEFAULT
@@ -579,25 +578,25 @@ PetalburgCity_EventScript_Scott:: @ 81DC6E9
 	end
 
 PetalburgCity_EventScript_ScottExit0:: @ 81DC78E
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_PlayerWatchScottExit0
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Movement_PlayerWatchScottExit0
 	applymovement 9, PetalburgCity_Movement_ScottExit0
 	waitmovement 0
 	return
 
 PetalburgCity_EventScript_ScottExit1:: @ 81DC7A0
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_PlayerWatchScottExit1
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Movement_PlayerWatchScottExit1
 	applymovement 9, PetalburgCity_Movement_ScottExit1
 	waitmovement 0
 	return
 
 PetalburgCity_EventScript_ScottExit2:: @ 81DC7B2
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_PlayerWatchScottExit2
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Movement_PlayerWatchScottExit2
 	applymovement 9, PetalburgCity_Movement_ScottExit2
 	waitmovement 0
 	return
 
 PetalburgCity_EventScript_ScottExit3:: @ 81DC7C4
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Movement_PlayerWatchScottExit3
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Movement_PlayerWatchScottExit3
 	applymovement 9, PetalburgCity_Movement_ScottExit3
 	waitmovement 0
 	return
@@ -715,37 +714,44 @@ PetalburgCity_EventScript_Boy2:: @ 81DC82E
 	end
 
 PetalburgCity_Text_WhereIsWally: @ 81DC837
-	.string "Where has our WALLY gone?\p"
-	.string "We have to leave for VERDANTURF TOWN\n"
-	.string "very soon…$"
+	.string "¿Dónde ha ido nuestro Wally?\p"
+	.string "Tenemos que llevarlo a Verdantuf\n"
+	.string "pronto…$"
 
 PetalburgCity_Text_AreYouRookieTrainer: @ 81DC881
-	.string "Hiya! Are you maybe…\n"
-	.string "A rookie TRAINER?\p"
-	.string "Do you know what POKéMON TRAINERS\n"
-	.string "do when they reach a new town?\p"
-	.string "They first check what kind of GYM\n"
-	.string "is in the town.$"
+	.string "Espera…\n"
+	.string "¿Un Entrenador Novato?\p"
+	.string "¡Deberías visitar el Gimnasio!$"
 
 PetalburgCity_Text_ThisIsPetalburgGym: @ 81DC91B
-	.string "See? This is PETALBURG CITY's GYM.$"
+	.string "¡El Gimnasio de Ciudad Petalburg!$"
 
 PetalburgCity_Text_ThisIsGymSign: @ 81DC93E
-	.string "This is the GYM's sign. Look for it\n"
-	.string "whenever you're looking for a GYM.$"
+	.string "Todos los Gimnasios tienen\n"
+	.string "estos carteles.$"
 
 PetalburgCity_Text_WaterReflection: @ 81DC985
-	.string "My face is reflected in the water.\p"
-	.string "It's a shining grin full of hope…\p"
-	.string "Or it could be a look of somber silence\n"
-	.string "struggling with fear…\p"
-	.string "What do you see reflected in your face?$"
+	.string "Reflejada es.\p"
+	.string "¿Cara esperanzada,\p"
+	.string "O frío silencio?\n"
+	.string "Me gusta hacer Haikus… Pero esta vez\n"
+	.string "yo mismo me he cautivado, ¿Será que\l"
+	.string "mi cara refleja esperanza o miedo\p"
+	.string "de seguir con la hiriente vida?\p"
+	.string "¿Qué crees que refleja tu cara?$"
 
 PetalburgCity_Text_FullPartyExplanation: @ 81DCA30
-	.string "Let's say you have six POKéMON.\n"
-	.string "If you catch another one…\p"
-	.string "It is automatically sent to a STORAGE\n"
-	.string "BOX over a PC connection.$"
+	.string "Digamos que tienes 6 Pokémon.\n"
+	.string "Al atrapar otro, se irá directo al PC…\p"
+	.string "Más yo pregunto,\n"
+	.string "¿Es todo esto justo,\l"
+	.string "o es maltrato?\p"
+	.string "¡ARGH! ¡El chico de allá me pegó\n"
+	.string "los Haikus existenciales!\p"
+	.string "Como sea, los trabajadores de Devon\n"
+	.string "inventaron una forma de acceder\l"
+	.string "al PC desde cualquier sitio.\p"
+	.string "Pero no le dan el derecho a todos…$"
 
 PetalburgCity_Text_GymSign: @ 81DCAAA
 	.string "PETALBURG CITY POKéMON GYM\n"

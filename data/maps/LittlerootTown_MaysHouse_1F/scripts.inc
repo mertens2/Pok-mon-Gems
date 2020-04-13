@@ -62,7 +62,7 @@ LittlerootTown_MaysHouse_1F_EventScript_GoUpstairsToSetClock:: @ 81F8964
 	lockall
 	msgbox PlayersHouse_1F_Text_GoSetTheClock, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_MaysHouse_1F_Movement_PushTowardStairs
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_MaysHouse_1F_Movement_PushTowardStairs
 	applymovement 1, LittlerootTown_MaysHouse_1F_Movement_PushTowardStairs
 	waitmovement 0
 	warp MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F, 255, 1, 1
@@ -95,7 +95,7 @@ LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor:: @ 81F89AE
 	waitmovement 0
 	applymovement 4, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	applymovement 4, LittlerootTown_MaysHouse_1F_Movement_RivalMomApproach
 	waitmovement 0
 	special GetRivalSonDaughterString
@@ -217,7 +217,7 @@ LittlerootTown_MaysHouse_1F_EventScript_MeetRival:: @ 81F8A8B
 	end
 
 LittlerootTown_MaysHouse_1F_EventScript_PlayerFaceMay:: @ 81F8B2A
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	return
 
@@ -263,19 +263,19 @@ LittlerootTown_MaysHouse_1F_Movement_MayApproachPlayer2: @ 81F8B62
 	step_end
 
 LittlerootTown_MaysHouse_1F_EventScript_MayGoUpstairs0:: @ 81F8B6A
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_MaysHouse_1F_Movement_PlayerWatchMayExit0
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_MaysHouse_1F_Movement_PlayerWatchMayExit0
 	applymovement 7, LittlerootTown_MaysHouse_1F_Movement_MayGoUpstairs0
 	waitmovement 0
 	return
 
 LittlerootTown_MaysHouse_1F_EventScript_MayGoUpstairs1:: @ 81F8B7C
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_MaysHouse_1F_Movement_PlayerWatchMayExit1
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_MaysHouse_1F_Movement_PlayerWatchMayExit1
 	applymovement 7, LittlerootTown_MaysHouse_1F_Movement_MayGoUpstairs1
 	waitmovement 0
 	return
 
 LittlerootTown_MaysHouse_1F_EventScript_MayGoUpstairs2:: @ 81F8B8E
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_MaysHouse_1F_Movement_PlayerWatchMayExit2
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_MaysHouse_1F_Movement_PlayerWatchMayExit2
 	applymovement 7, LittlerootTown_MaysHouse_1F_Movement_MayGoUpstairs2
 	waitmovement 0
 	return
@@ -328,91 +328,87 @@ LittlerootTown_MaysHouse_1F_Movement_MayGoUpstairs2: @ 81F8BBF
 	walk_up
 	walk_up
 	step_end
-
 RivalsHouse_1F_Text_OhYoureTheNewNeighbor: @ 81F8BC5
-	.string "Oh, hello. And you are?\p"
-	.string "… … … … … … … … …\n"
-	.string "… … … … … … … … …\p"
-	.string "Oh, you're {PLAYER}{KUN}, our new next-door\n"
-	.string "neighbor! Hi!\p"
-	.string "We have a {STR_VAR_1} about the same\n"
-	.string "age as you.\p"
-	.string "Our {STR_VAR_1} was excited about making\n"
-	.string "a new friend.\p"
-	.string "Our {STR_VAR_1} is upstairs, I think.$"
+	.string "¡Hola, {PLAYER}{KUN}!, ¡Al fin no\n"
+	.string "vivimos solos en este pueblo fantasma!\p"
+	.string "Nuestro retoño debe tener tu misma\n"
+	.string "edad, poco más, poco menos.\p"
+	.string "Parecía que no le importaba si tenía\n"
+	.string "o no nuevos amigos…\p"
+	.string "Es todo un caso…$"
 
 RivalsHouse_1F_Text_LikeChildLikeFather: @ 81F8CA5
-	.string "Like child, like father.\p"
-	.string "My husband is as wild about POKéMON\n"
-	.string "as our child.\p"
-	.string "If he's not at his LAB, he's likely\n"
-	.string "scrabbling about in grassy places.$"
+	.string "De tal palo, tal astilla.\p"
+	.string "Mi esposo está en busca de POKéMON\n"
+	.string "salvajes para nuestro retoño.\p"
+	.string "Si no está en el Laboratorio, estará\n"
+	.string "buscando info seguro, ja ja ja.$"
 
 RivalsHouse_1F_Text_TooBusyToNoticeVisit: @ 81F8D37
-	.string "That {RIVAL}!\p"
-	.string "I guess our child is too busy with\n"
-	.string "POKéMON to notice that you came\l"
-	.string "to visit, {PLAYER}{KUN}.$"
+	.string "¡{RIVAL} es todo un caso!\p"
+	.string "Creo que está con la mente muy\n"
+	.string "ocupada pensando en POKéMON como\l"
+	.string "para saber que viniste, {PLAYER}{KUN}.$"
 
 RivalsHouse_1F_Text_WentOutToRoute103: @ 81F8D93
-	.string "Oh, {RIVAL} went out to ROUTE 103\n"
-	.string "just a little while ago.\p"
-	.string "Like father, like child.\n"
-	.string "{RIVAL} can't stay quietly at home.$"
+	.string "Ah sí, {RIVAL} fue a la RUTA 103\n"
+	.string "Hace poco. Creo que está investigando.\p"
+	.string "De tal palo, tal astilla.\n"
+	.string "{RIVAL} no puede quedarse en casa.$"
 
 RivalsHouse_1F_Text_ShouldGoHomeEverySoOften: @ 81F8E01
-	.string "I think it's wonderful for people to\n"
-	.string "travel with POKéMON.\p"
-	.string "But you should go home every so often\n"
-	.string "to let your mother know you're okay.\p"
-	.string "She might not say it, but I'm sure she\n"
-	.string "worries about you, {PLAYER}{KUN}.$"
+	.string "Creo que es fantástico para las\n"
+	.string "personas viajar con los POKéMON.\p"
+	.string "Pero deberías volver a tu casa de\n"
+	.string "vez en cuando, no seas como tu padre.\p"
+	.string "Quizá no lo diga, pero tu madre se\n"
+	.string "preocupa por ti, {PLAYER}{KUN}.$"
 
 RivalsHouse_1F_Text_MayWhoAreYou: @ 81F8EC6
-	.string "Huh?\n"
-	.string "Who… Who are you?\p"
-	.string "… … … … … … … …\n"
-	.string "… … … … … … … …\p"
-	.string "Oh, you're {PLAYER}{KUN}.\n"
-	.string "So your move was today.\p"
-	.string "Um… I'm MAY.\n"
-	.string "Glad to meet you!\p"
-	.string "I…\n"
-	.string "I have this dream of becoming friends\l"
-	.string "with POKéMON all over the world.\p"
-	.string "I… I heard about you, {PLAYER}{KUN}, from\n"
-	.string "my dad, PROF. BIRCH.\p"
-	.string "I was hoping that you would be nice,\n"
-	.string "{PLAYER}{KUN}, and that we could be friends.\p"
-	.string "Oh, this is silly, isn't it?\n"
-	.string "I… I've just met you, {PLAYER}{KUN}.\p"
-	.string "Eheheh…\p"
-	.string "Oh, no! I forgot!\p"
-	.string "I was supposed to go help Dad catch\n"
-	.string "some wild POKéMON!\p"
-	.string "{PLAYER}{KUN}, I'll catch you later!$"
+	.string "¿Eh?\n"
+	.string "¡¿QUIÉN ERES Y QUÉ HACES EN\n"
+	.string "MI CUARTO?!\n"
+	.string "¡…! … … ¿…? … … … …\p"
+	.string "Oh, eres {PLAYER}{KUN}.\n"
+	.string "Eh… Perdón por el golpe…\p"
+	.string "Soy MAY. Te diré DESQUICIADO\n"
+	.string "Encantada de conocerte, supongo\p"
+	.string "Yo… Quiero ayudar a mi padre\n"
+	.string "con su investigación, para\l"
+	.string "que pase más tiempo en casa…\p"
+	.string "Me contó mucho sobre ti, también.\n"
+	.string "Acabas de mudarte desde Johto, ¿no?.\p"
+	.string "Me dijo que debíamos ser amigos,\n"
+	.string "{PLAYER}{KUN}, pero eso sería una\l"
+	.string "distracción en mi investigación.\p"
+	.string "Además, apenas te conozco.\p"
+	.string "Ah, si. Adiós. Debo irme.\p"
+	.string "Atraparé algunos POKéMON raros\n"
+	.string "para ayudar a papá. Si consigues\n"
+	.string "POKéMON, ¡Te destrozaré en combate!\p"
+	.string "¡Desquiciado, vete de mi cuarto!$"
 
 RivalsHouse_1F_Text_BrendanWhoAreYou: @ 81F90B4
-	.string "Hey!\n"
-	.string "You…\p"
-	.string "Who are you?\p"
-	.string "Oh, you're {PLAYER}, aren't you?\n"
-	.string "Moved in next door, right?\p"
-	.string "I didn't know that you're a girl.\p"
-	.string "Dad, PROF. BIRCH, said that our new\n"
-	.string "next-door neighbor is a GYM LEADER's\l"
-	.string "kid, so I assumed you'd be a guy.\p"
-	.string "My name's BRENDAN.\n"
-	.string "So, hi, neighbor!\p"
-	.string "Huh? Hey, {PLAYER}, don't you have\n"
-	.string "a POKéMON?\p"
-	.string "Do you want me to go catch you one?\p"
-	.string "Aw, darn, I forgot…\p"
-	.string "I'm supposed to go help my dad catch\n"
-	.string "some wild POKéMON.\p"
-	.string "Some other time, okay?$"
+	.string "¡Hey!\n"
+	.string "Tú…\p"
+	.string "¡¿QUÉ HACES EN MI CUARTO, LOCA?!\p"
+	.string "Ah, eres {PLAYER}… Igual, loca.\n"
+	.string "¿Te mudaste desde Johto, y lo\l"
+	.string "primero que se te ocurre es esto?\p"
+	.string "Seguro mamá te dejó entrar, es así\n"
+	.string "de tonta… Como sea, eres hija de\l"
+	.string "un Líder del Gimnasio, ¿No?\p"
+	.string "Soy BRENDAN, y mi padre tampco está\n"
+	.string "en casa mucho tiempo…\p"
+	.string "Por eso quiero ayudarlo a invesigar,\n"
+	.string "para que termine más rápido y pase\l"
+	.string "más tiempo con nosotros…\p"
+	.string "Hablando del tema…\p"
+	.string "Debo ir a recolectar información\n"
+	.string "sobre POKéMON salvajes.\p"
+	.string "¡Hasta luego, loca!$"
 
 RivalsHouse_1F_Text_DoYouHavePokemon: @ 81F9262
-	.string "Hi, neighbor!\p"
-	.string "Do you already have your\n"
-	.string "own POKéMON?$"
+	.string "¡Hola, {PLAYER}!\p"
+	.string "¿Ya no eres inútil y ya\n"
+	.string "conseguiste un POKéMON?$"

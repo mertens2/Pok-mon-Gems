@@ -90,7 +90,7 @@ void LockSelectedEventObject(void)
 
 void ScriptUnfreezeEventObjects(void)
 {
-    u8 playerObjectId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
+    u8 playerObjectId = GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
     EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
     ScriptMovement_UnfreezeEventObjects();
     UnfreezeEventObjects();
@@ -102,7 +102,7 @@ void sub_8098524(void)
 
     if (gEventObjects[gSelectedEventObject].active)
         EventObjectClearHeldMovementIfFinished(&gEventObjects[gSelectedEventObject]);
-    playerObjectId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
+    playerObjectId = GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
     EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
     ScriptMovement_UnfreezeEventObjects();
     UnfreezeEventObjects();

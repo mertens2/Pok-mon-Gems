@@ -2,11 +2,7 @@
 EventScript_CutTree:: @ 82906BB
 	lockall
 	goto_if_unset FLAG_BADGE01_GET, EventScript_CheckTreeCantCut
-	checkpartymove MOVE_CUT
-	compare VAR_RESULT, PARTY_SIZE
-	goto_if_eq EventScript_CheckTreeCantCut
-	setfieldeffectargument 0, VAR_RESULT
-	bufferpartymonnick 0, VAR_RESULT
+	setfieldeffectargument 0, 0
 	buffermovename 1, MOVE_CUT
 	msgbox Text_WantToCut, MSGBOX_YESNO
 	compare VAR_RESULT, NO
@@ -47,25 +43,24 @@ EventScript_CancelCut:: @ 829072B
 	end
 
 Text_WantToCut: @ 829072E
-	.string "This tree looks like it can be\n"
-	.string "CUT down!\p"
-	.string "Would you like to CUT it?$"
+	.string "¿En serio esta cosa me\n"
+	.string "está cortando el paso?\p"
+	.string "Más que árbol parece una\n"
+	.string "rama rara con dos pelotas\l"
+	.string "verdes pegadas...$"
 
 Text_MonUsedFieldMove: @ 8290771
-	.string "{STR_VAR_1} used {STR_VAR_2}!$"
+	.string "¡{PLAYER} cortó el árbol!$"
 
 Text_CantCut: @ 829077D
-	.string "This tree looks like it can be\n"
-	.string "CUT down!$"
+	.string "Esta cosa... Creo que podría\n"
+	.string "cortarla, pero necesito\l"
+	.string "otra medalla...$"
 
 EventScript_RockSmash:: @ 82907A6
 	lockall
 	goto_if_unset FLAG_BADGE03_GET, EventScript_CantSmashRock
-	checkpartymove MOVE_ROCK_SMASH
-	compare VAR_RESULT, PARTY_SIZE
-	goto_if_eq EventScript_CantSmashRock
-	setfieldeffectargument 0, VAR_RESULT
-	bufferpartymonnick 0, VAR_RESULT
+	setfieldeffectargument 0, 0
 	buffermovename 1, MOVE_ROCK_SMASH
 	msgbox Text_WantToSmash, MSGBOX_YESNO
 	compare VAR_RESULT, NO
@@ -117,20 +112,38 @@ EventScript_CancelSmash:: @ 8290837
 	end
 
 Text_WantToSmash: @ 829083A
-	.string "This rock appears to be breakable.\n"
-	.string "Would you like to use ROCK SMASH?$"
+	.string "Esta roca se puede romper.\n"
+	.string "¿Quieres golpearla con\l"
+	.string "la Medalla Voltio?$"
 
 Text_CantSmash: @ 829087F
-	.string "It's a rugged rock, but a POKéMON\n"
-	.string "may be able to smash it.$"
+	.string "Mmhh... Necesito una Medalla\n"
+	.string "más dura para romperla...$"
 
 EventScript_StrengthBoulder:: @ 82908BA
 	lockall
 	goto_if_unset FLAG_BADGE04_GET, EventScript_CantStrength
-	goto_if_set FLAG_SYS_USE_STRENGTH, EventScript_CheckActivatedBoulder
-	checkpartymove MOVE_STRENGTH
+	checkMonType TYPE_FIGHTING
+	compare VAR_RESULT, PARTY_SIZE
+	goto_if_lt Used_Strength
+	checkMonType TYPE_ROCK
+	compare VAR_RESULT, PARTY_SIZE
+	goto_if_lt Used_Strength
+	checkMonType TYPE_STEEL
 	compare VAR_RESULT, PARTY_SIZE
 	goto_if_eq EventScript_CantStrength
+	goto_if_lt Used_Strength
+	msgbox Text_WantToStrength, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_CancelStrength
+	closemessage
+	dofieldeffect FLDEFF_USE_STRENGTH
+	waitstate
+	goto EventScript_ActivateStrength
+	end
+Used_Strength::
+	lockall
+	bufferpartymonnick 0, VAR_RESULT
 	setfieldeffectargument 0, VAR_RESULT
 	msgbox Text_WantToStrength, MSGBOX_YESNO
 	compare VAR_RESULT, NO
@@ -140,7 +153,6 @@ EventScript_StrengthBoulder:: @ 82908BA
 	waitstate
 	goto EventScript_ActivateStrength
 	end
-
 EventScript_FldEffStrength:: @ 82908FD
 	lockall
 	dofieldeffect FLDEFF_USE_STRENGTH
@@ -170,26 +182,26 @@ EventScript_CancelStrength:: @ 8290929
 	end
 
 Text_WantToStrength: @ 829092C
-	.string "It's a big boulder, but a POKéMON\n"
-	.string "may be able to push it aside.\p"
-	.string "Would you like to use STRENGTH?$"
+	.string "Es una gran roca. Tu Pokémon\n"
+	.string "está dispuesto a ayudarte.\p"
+	.string "¿Querrías probar?$"
 
 Text_MonUsedStrength: @ 829098C
-	.string "{STR_VAR_1} used STRENGTH!\p"
-	.string "{STR_VAR_1}'s STRENGTH made it\n"
-	.string "possible to move boulders around!$"
+	.string "¡{PLAYER} pudo mover la roca,\n"
+	.string "todo gracias a {STR_VAR_1}!$"
 
 Text_CantStrength: @ 82909D6
-	.string "It's a big boulder, but a POKéMON\n"
-	.string "may be able to push it aside.$"
+	.string "Podría mover la roca...\n"
+	.string "Si mis Pokémon me ayudaran.$"
 
 Text_StrengthActivated: @ 8290A16
-	.string "STRENGTH made it possible to move\n"
-	.string "boulders around.$"
+	.string "Tus Pokémon trabajan en equipo\n"
+	.string "para mover la roca.$"
 
 EventScript_UseWaterfall:: @ 8290A49
 	lockall
-	checkpartymove MOVE_WATERFALL
+	goto_if_unset FLAG_BADGE08_GET, EventScript_CantWaterfall
+	checkMonType TYPE_WATER
 	compare VAR_RESULT, PARTY_SIZE
 	goto_if_eq EventScript_CantWaterfall
 	bufferpartymonnick 0, VAR_RESULT
@@ -224,7 +236,8 @@ Text_MonUsedWaterfall: @ 8290AFC
 
 EventScript_UseDive:: @ 8290B0F
 	lockall
-	checkpartymove MOVE_DIVE
+	goto_if_unset FLAG_BADGE07_GET, EventScript_CantDive
+	checkMonType TYPE_WATER
 	compare VAR_RESULT, PARTY_SIZE
 	goto_if_eq EventScript_CantDive
 	bufferpartymonnick 0, VAR_RESULT
@@ -249,9 +262,9 @@ EventScript_EndDive:: @ 8290B58
 
 EventScript_UseDiveUnderwater:: @ 8290B5A
 	lockall
-	checkpartymove MOVE_DIVE
+	checkMonType TYPE_WATER
 	compare VAR_RESULT, PARTY_SIZE
-	goto_if_eq EventScript_CantSurface
+	goto_if_eq EventScript_CantDive
 	bufferpartymonnick 0, VAR_RESULT
 	setfieldeffectargument 0, VAR_RESULT
 	setfieldeffectargument 1, 1

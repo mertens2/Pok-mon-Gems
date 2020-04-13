@@ -18,7 +18,8 @@
 #define RTC_ERR_FLAG_MASK      0x0FF0
 
 extern struct Time gLocalTime;
-
+u8 Rtc_GetCurrentHour(void);
+u8 Rtc_GetCurrentMinute(void);
 void RtcDisableInterrupts(void);
 void RtcRestoreInterrupts(void);
 u32 ConvertBcdToBinary(u8 bcd);

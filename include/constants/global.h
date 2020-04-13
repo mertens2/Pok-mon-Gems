@@ -108,4 +108,6 @@
 #define DIR_NORTHWEST   7
 #define DIR_NORTHEAST   8
 
+#define MAX_TRAINER_ITEMS 4
+
 #endif // GUARD_CONSTANTS_GLOBAL_H

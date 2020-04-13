@@ -34,7 +34,7 @@
 #include "task.h"
 #include "tv.h"
 #include "window.h"
-#include "constants/bg_event_constants.h"
+#include "constants/event_bg.h"
 #include "constants/decorations.h"
 #include "constants/event_objects.h"
 #include "constants/items.h"
@@ -150,17 +150,17 @@ static const struct YesNoFuncTable sDeleteRegistryYesNoFuncs =
 static const u8 sSecretBaseOwnerGfxIds[10] =
 {
     // Male
-    EVENT_OBJ_GFX_YOUNGSTER,
-    EVENT_OBJ_GFX_BUG_CATCHER,
-    EVENT_OBJ_GFX_RICH_BOY,
-    EVENT_OBJ_GFX_CAMPER,
-    EVENT_OBJ_GFX_MAN_3,
+    OBJ_EVENT_GFX_YOUNGSTER,
+    OBJ_EVENT_GFX_BUG_CATCHER,
+    OBJ_EVENT_GFX_RICH_BOY,
+    OBJ_EVENT_GFX_CAMPER,
+    OBJ_EVENT_GFX_MAN_3,
     // Female
-    EVENT_OBJ_GFX_LASS,
-    EVENT_OBJ_GFX_GIRL_3,
-    EVENT_OBJ_GFX_WOMAN_2,
-    EVENT_OBJ_GFX_PICNICKER,
-    EVENT_OBJ_GFX_WOMAN_5,
+    OBJ_EVENT_GFX_LASS,
+    OBJ_EVENT_GFX_GIRL_3,
+    OBJ_EVENT_GFX_WOMAN_2,
+    OBJ_EVENT_GFX_PICNICKER,
+    OBJ_EVENT_GFX_WOMAN_5,
 };
 
 static const struct WindowTemplate sRegistryWindowTemplates[] =
@@ -579,7 +579,7 @@ void InitSecretBaseDecorationSprites(void)
             if (MetatileBehavior_HoldsSmallDecoration(metatileBehavior) == TRUE
              || MetatileBehavior_HoldsLargeDecoration(metatileBehavior) == TRUE)
             {
-                gSpecialVar_Result = VAR_OBJ_GFX_ID_0 + (gMapHeader.events->eventObjects[eventObjectId].graphicsId - EVENT_OBJ_GFX_VAR_0);
+                gSpecialVar_Result = VAR_OBJ_GFX_ID_0 + (gMapHeader.events->eventObjects[eventObjectId].graphicsId - OBJ_EVENT_GFX_VAR_0);
                 VarSet(gSpecialVar_Result, gDecorations[decorations[i]].tiles[0]);
                 gSpecialVar_Result = gMapHeader.events->eventObjects[eventObjectId].localId;
                 FlagClear(FLAG_DECORATION_1 + gSpecialVar_0x8004);

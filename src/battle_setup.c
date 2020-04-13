@@ -899,11 +899,82 @@ void ChooseStarter(void)
 
 static void CB2_GiveStarter(void)
 {
+	u16 ivs = 31;
+	u8 hidab = 2;
     u16 starterMon;
-
+	u32 rand = 0;
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
-    ScriptGiveMon(starterMon, 5, ITEM_NONE, 0, 0, 0);
+	rand = Random() % 100;
+
+	if (rand == 10)
+	{
+		FlagSet(FLAG_SHINY);
+		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		FlagClear(FLAG_SHINY);
+	}
+	else if (rand <= 9)
+	{
+		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		SetMonData(&gPlayerParty[0], MON_DATA_ABILITY_NUM, &hidab);
+	}
+	else if (rand == 11)
+	{
+		FlagSet(FLAG_SHINY);
+		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		SetMonData(&gPlayerParty[0], MON_DATA_ABILITY_NUM, &hidab);
+		FlagClear(FLAG_SHINY);
+	}
+	else if ((rand <= 22) && (rand >= 12))
+	{
+		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		SetMonData(&gPlayerParty[0], MON_DATA_HP_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_ATK_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_DEF_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_SPEED_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_SPATK_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_SPDEF_IV, &ivs);
+	}
+	else if (rand == 23)
+	{
+		FlagSet(FLAG_SHINY);
+		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		SetMonData(&gPlayerParty[0], MON_DATA_HP_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_ATK_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_DEF_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_SPEED_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_SPATK_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_SPDEF_IV, &ivs);
+		FlagClear(FLAG_SHINY);
+	}
+	else if (rand == 24)
+	{
+		FlagSet(FLAG_SHINY);
+		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		SetMonData(&gPlayerParty[0], MON_DATA_HP_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_ATK_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_DEF_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_SPEED_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_SPATK_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_SPDEF_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_ABILITY_NUM, &hidab);
+		FlagClear(FLAG_SHINY);
+	}
+	else if ((rand >= 25) && (rand <=30))
+	{
+		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		SetMonData(&gPlayerParty[0], MON_DATA_HP_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_ATK_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_DEF_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_SPEED_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_SPATK_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_SPDEF_IV, &ivs);
+		SetMonData(&gPlayerParty[0], MON_DATA_ABILITY_NUM, &hidab);
+	}
+	else
+	{
+		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+	}
     ResetTasks();
     PlayBattleBGM();
     SetMainCallback2(CB2_StartFirstBattle);

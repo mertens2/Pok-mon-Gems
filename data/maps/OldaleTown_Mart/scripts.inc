@@ -17,6 +17,7 @@ OldaleTown_Mart_Pokemart_Basic: @ 81FC260
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_AWAKENING
+	.2byte ITEM_ORAN_BERRY
 	.2byte ITEM_NONE
 	release
 	end
@@ -34,6 +35,9 @@ OldaleTown_Mart_Pokemart_Expanded: @ 81FC27C
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_AWAKENING
+	.2byte ITEM_ORAN_BERRY
+	.2byte ITEM_LEPPA_BERRY
+	.2byte ITEM_RING_TARGET
 	.2byte ITEM_NONE
 	release
 	end
@@ -56,16 +60,18 @@ OldaleTown_Mart_EventScript_Boy:: @ 81FC2A9
 	end
 
 OldaleTown_Mart_Text_PokeBallsAreSoldOut: @ 81FC2B2
-	.string "The clerk says they're all sold out.\n"
-	.string "I can't buy any POKé BALLS.$"
+	.string "Ya se han vendido todas las Pokéball...$"
 
 OldaleTown_Mart_Text_ImGoingToBuyPokeBalls: @ 81FC2F3
-	.string "I'm going to buy a bunch of POKé BALLS\n"
-	.string "and catch a bunch of POKéMON!$"
+	.string "¡AHORA QUE HAY, COMPRARÉ\n"
+	.string "MUCHAS POKÉBALL!$"
 
 OldaleTown_Mart_Text_RestoreHPWithPotion: @ 81FC338
-	.string "If a POKéMON gets hurt and loses its HP\n"
-	.string "and faints, it won't be able to battle.\p"
-	.string "To prevent your POKéMON from fainting,\n"
-	.string "restore its HP with a POTION.$"
+	.string "Hay Objetos con usos curiosos.\p"
+	.string "El Blanco, por ejemplo, elimina las\n"
+	.string "inmunidades de tipo. Hay movimientos\l"
+	.string "curiosos también, como Truco.\p"
+	.string "Mhh... Truco intercambia los objetos.\n"
+	.string "¡Sería buena idea para enfrentar\l"
+	.string "Pokémon con muchas inmunidades!$"
 

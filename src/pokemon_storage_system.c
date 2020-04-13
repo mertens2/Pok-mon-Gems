@@ -465,7 +465,6 @@ EWRAM_DATA static bool8 sCanOnlyMove = 0;
 
 // This file's functions.
 static void CreatePCMenu(u8 whichMenu, s16 *windowIdPtr);
-static void Cb2_EnterPSS(u8 boxOption);
 static u8 GetCurrentBoxOption(void);
 static u8 HandleInput(void);
 static u8 sub_80CDC2C(void);
@@ -1873,9 +1872,18 @@ static void CreatePCMenu(u8 whichMenu, s16 *windowIdPtr)
 
 static void Cb2_ExitPSS(void)
 {
-    sPreviousBoxOption = GetCurrentBoxOption();
-    gFieldCallback = FieldCb_ReturnToPcMenu;
-    SetMainCallback2(CB2_ReturnToField);
+	if (FlagGet(FLAG_POKEMONPCMENU))
+	{
+		sPreviousBoxOption = GetCurrentBoxOption();
+		gFieldCallback = FieldCb_ReturnToPcMenu;
+		SetMainCallback2(CB2_ReturnToField);
+	}
+	else
+	{
+		sPreviousBoxOption = GetCurrentBoxOption();
+		gFieldCallback = CB2_ReturnToFieldWithOpenMenu;
+		SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
+	}
 }
 
 static s16 StorageSystemGetNextMonIndex(struct BoxPokemon *box, s8 startIdx, u8 stopIdx, u8 mode)
@@ -2152,7 +2160,7 @@ static void Cb2_PSS(void)
     BuildOamBuffer();
 }
 
-static void Cb2_EnterPSS(u8 boxOption)
+void Cb2_EnterPSS(u8 boxOption)
 {
     ResetTasks();
     sCurrentBoxOption = boxOption;
@@ -6791,7 +6799,7 @@ static void SetCursorMonData(void *pokemon, u8 mode)
         {
             sanityIsBagEgg = GetMonData(mon, MON_DATA_SANITY_IS_BAD_EGG);
             if (sanityIsBagEgg)
-                sPSSData->cursorMonIsEgg = TRUE;
+                sPSSData->cursorMonIsEgg = FALSE;
             else
                 sPSSData->cursorMonIsEgg = GetMonData(mon, MON_DATA_IS_EGG);
 
@@ -6815,7 +6823,7 @@ static void SetCursorMonData(void *pokemon, u8 mode)
             u32 otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
             sanityIsBagEgg = GetBoxMonData(boxMon, MON_DATA_SANITY_IS_BAD_EGG);
             if (sanityIsBagEgg)
-                sPSSData->cursorMonIsEgg = TRUE;
+                sPSSData->cursorMonIsEgg = FALSE;
             else
                 sPSSData->cursorMonIsEgg = GetBoxMonData(boxMon, MON_DATA_IS_EGG);
 

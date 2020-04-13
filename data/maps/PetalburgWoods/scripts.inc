@@ -30,7 +30,7 @@ PetalburgWoods_EventScript_DevonResearcherLeft:: @ 822DFD7
 	applymovement 3, PetalburgWoods_Movement_AquaBackOff
 	waitmovement 0
 	call PetalburgWoods_EventScript_DevonResearcherPostBattle
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgWoods_Movement_WatchResearcherLeave
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgWoods_Movement_WatchResearcherLeave
 	applymovement 4, PetalburgWoods_Movement_DevonResearcherExitLeft
 	waitmovement 0
 	goto PetalburgWoods_EventScript_RemoveDevonResearcher
@@ -41,7 +41,7 @@ PetalburgWoods_EventScript_DevonResearcherRight:: @ 822E079
 	call PetalburgWoods_EventScript_DevonResearcherIntro
 	applymovement 4, PetalburgWoods_Movement_DevonResearcherApproachPlayerRight
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox PetalburgWoods_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT
 	closemessage
@@ -59,14 +59,14 @@ PetalburgWoods_EventScript_DevonResearcherRight:: @ 822E079
 	applymovement 4, PetalburgWoods_Movement_DevonResearcherFleeToPlayerRight
 	waitmovement 0
 	msgbox PetalburgWoods_Text_YouHaveToHelpMe, MSGBOX_DEFAULT
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox PetalburgWoods_Text_NoOneCrossesTeamAqua, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_GRUNT_PETALBURG_WOODS, PetalburgWoods_Text_YoureKiddingMe
 	applymovement 3, PetalburgWoods_Movement_AquaBackOff
 	waitmovement 0
 	call PetalburgWoods_EventScript_DevonResearcherPostBattle
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgWoods_Movement_WatchResearcherLeave
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgWoods_Movement_WatchResearcherLeave
 	applymovement 4, PetalburgWoods_Movement_DevonResearcherExitRight
 	waitmovement 0
 	goto PetalburgWoods_EventScript_RemoveDevonResearcher
@@ -85,9 +85,10 @@ PetalburgWoods_EventScript_DevonResearcherPostBattle:: @ 822E138
 	applymovement 3, PetalburgWoods_Movement_AquaRunAway
 	waitmovement 0
 	removeobject 3
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	msgbox PetalburgWoods_Text_ThatWasAwfullyClose, MSGBOX_DEFAULT
+	setflag FLAG_PSS_MENU_GET
 	giveitem ITEM_GREAT_BALL
 	compare VAR_RESULT, 0
 	goto_if_eq PetalburgWoods_EventScript_BagFull
@@ -251,7 +252,7 @@ PetalburgWoods_EventScript_Girl:: @ 822E222
 	faceplayer
 	goto_if_set FLAG_RECEIVED_MIRACLE_SEED, PetalburgWoods_EventScript_ExplainMiracleSeed
 	msgbox PetalburgWoods_Text_TryUsingThisItem, MSGBOX_DEFAULT
-	giveitem ITEM_MIRACLE_SEED
+	giveitem ITEM_SHARP_BEAK
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_MIRACLE_SEED
@@ -260,9 +261,24 @@ PetalburgWoods_EventScript_Girl:: @ 822E222
 
 PetalburgWoods_EventScript_ExplainMiracleSeed:: @ 822E251
 	msgbox PetalburgWoods_Text_MiracleSeedExplanation, MSGBOX_DEFAULT
+	pokemart Woods_Mart_Pokemart_Basic
 	release
 	end
-
+Woods_Mart_Pokemart_Basic:
+	.2byte ITEM_SHARP_BEAK
+	.2byte ITEM_MIRACLE_SEED
+	.2byte ITEM_BLACK_GLASSES
+	.2byte ITEM_CHARCOAL
+	.2byte ITEM_MYSTIC_WATER
+	.2byte ITEM_METAL_COAT
+	.2byte ITEM_SILVER_POWDER
+	.2byte ITEM_DRAGON_FANG
+	.2byte ITEM_MAGNET
+	.2byte ITEM_SPELL_TAG
+	.2byte ITEM_NONE
+	release
+	end
+	
 PetalburgWoods_EventScript_Sign1:: @ 822E25B
 	msgbox PetalburgWoods_Text_TrainerTipsExperience, MSGBOX_SIGN
 	end
@@ -321,60 +337,62 @@ PetalburgWoods_EventScript_JamesRematch:: @ 822E31B
 
 PetalburgWoods_Text_NotAOneToBeFound: @ 822E332
 	.string "Hmmm…\n"
-	.string "Not a one to be found…$"
+	.string "No encuentro ni uno…$"
 
 PetalburgWoods_Text_HaveYouSeenShroomish: @ 822E34F
-	.string "Hello, have you seen any POKéMON\n"
-	.string "called SHROOMISH around here?\p"
-	.string "I really love that POKéMON.$"
+	.string "¡Hola! ¿Has visto a algún\n"
+	.string "Sewaddle por aquí?\p"
+	.string "¡Ese Pokémon es muy poderoso!$"
 
 PetalburgWoods_Text_IWasGoingToAmbushYou: @ 822E3AA
-	.string "I was going to ambush you, but you\n"
-	.string "had to dawdle in PETALBURG WOODS\l"
-	.string "forever, didn't you?\p"
-	.string "I got sick of waiting, so here I am!$"
+	.string "Iba a emboscarte, ¡Pero te metiste\n"
+	.string "en el Bosque Petalburg! ¡Ahora\l"
+	.string "verás el poder de mi Purrloin!\p"
+	.string "¡Juaz juaz juaz!$"
 
 PetalburgWoods_Text_HandOverThosePapers: @ 822E428
-	.string "You! DEVON RESEARCHER!\p"
-	.string "Hand over those papers!$"
+	.string "¡Tú! ¡Investigador Devon!\p"
+	.string "¡Dame esos papeles!$"
 
 PetalburgWoods_Text_YouHaveToHelpMe: @ 822E457
-	.string "Aiyeeeh!\p"
-	.string "You're a POKéMON TRAINER, aren't you?\n"
-	.string "You've got to help me, please!$"
+	.string "¡Aiyeeeh!\p"
+	.string "¿Eres Entrenador Pokémon?\n"
+	.string "¡Tienes que salvarme, por favor!$"
 
 PetalburgWoods_Text_NoOneCrossesTeamAqua: @ 822E4A5
-	.string "Hunh? What do you think you're doing?\n"
-	.string "What, you're going to protect him?\p"
-	.string "No one who crosses TEAM AQUA\n"
-	.string "gets any mercy, not even a kid!\p"
-	.string "Come on and battle me!$"
+	.string "¿Hunh? ¿Qué crees que hacer?\n"
+	.string "¿Qué? ¿Vas a protegerlo?\p"
+	.string "¡El Team Aqua no muestra piedad\n"
+	.string "a ningún entrometido, ni a un niño!\p"
+	.string "¡Adelante, batallemos!$"
 
 PetalburgWoods_Text_YoureKiddingMe: @ 822E542
-	.string "You're kidding me! You're tough!$"
+	.string "¡NO PUEDE SER! ¡AHORA EL JEFE\n"
+	.string "VA A CORTARME EL SALARIO, COMO\l"
+	.string "AL INSPECTOR DE ESE JUEGO!$"
 
 PetalburgWoods_Text_YouveGotSomeNerve: @ 822E563
-	.string "Grrr… You've got some nerve\n"
-	.string "meddling with TEAM AQUA!\l"
-	.string "Come on and battle me again!\p"
-	.string "I wish I could say that, but I'm out of\n"
-	.string "POKéMON…\p"
-	.string "And, hey, we of TEAM AQUA are also\n"
-	.string "after something in RUSTBORO.\p"
-	.string "I'll let you go today!$"
+	.string "Grrr… ¡Ya tienes mala reputación\n"
+	.string "con el Team Aqua!\l"
+	.string "¡Me encantaría tener la revancha!\p"
+	.string "Ya te las verás con el Jefe, juaz juaz…\n"
+	.string "Él es el hombre más fuerte del mundo…\p"
+	.string "Ah, debería irme… Hay algo más\n"
+	.string "interesante que unos simples papeles\l"
+	.string "allá, en Rustboro…$"
 
 PetalburgWoods_Text_ThatWasAwfullyClose: @ 822E63D
 	.string "Whew…\n"
-	.string "That was awfully close!\p"
-	.string "Thanks to you, he didn't rob me of\n"
-	.string "these important papers.\p"
-	.string "I know, I'll give you a GREAT BALL as\n"
-	.string "my thanks!$"
+	.string "¡Eso estuvo cerca!\p"
+	.string "Gracias a ti, no me robaron estos\n"
+	.string "papeles de suma importancia.\p"
+	.string "¡Ya sé, te daré el acceso al PC P.\n"
+	.string "y esta Súper Ball como recompensa!$"
 
 PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro: @ 822E6C7
-	.string "Didn't that TEAM AQUA thug say\n"
-	.string "they were after something in\l"
-	.string "RUSTBORO, too?$"
+	.string "¿Espera, qué ese tipo del Team Aqua\n"
+	.string "dijo que había algo importante en\l"
+	.string "Rustboro…?$"
 
 PetalburgWoods_Text_ICantBeWastingTime: @ 822E712
 	.string "Uh-oh! It's a crisis!\n"
@@ -444,18 +462,17 @@ PetalburgWoods_Text_HiddenItemsExplanation: @ 822EA8B
 	.string "walking.$"
 
 PetalburgWoods_Text_TryUsingThisItem: @ 822EAFE
-	.string "Oh, neat!\n"
-	.string "That's the BADGE from RUSTBORO GYM!\p"
-	.string "You must be a TRAINER.\n"
-	.string "You should try using this item.$"
+	.string "Oh, ¡Genial!\n"
+	.string "¡Es la Medalla del Gimnasio Rustboro!\p"
+	.string "Deberías tener esto:$"
 
 PetalburgWoods_Text_MiracleSeedExplanation: @ 822EB63
-	.string "It's a MIRACLE SEED.\n"
-	.string "If a POKéMON holds that item, its\l"
-	.string "GRASS-type moves become stronger.\p"
-	.string "Besides MIRACLE SEED, I think there are\n"
-	.string "other convenient items for POKéMON\l"
-	.string "to hold.$"
+	.string "Es un Pico Afilado. Al dárselo a\n"
+	.string "un Pokémon, sus movimientos de\l"
+	.string "tipo volador se potenciarán.\p"
+	.string "Pero además del Pico Afilado, hay\n"
+	.string "muchos otros objetos que aumentan\l"
+	.string "el poder. Yo te los puedo vender.$"
 
 PetalburgWoods_Text_TrainerTipsExperience: @ 822EC10
 	.string "TRAINER TIPS\p"

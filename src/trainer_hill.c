@@ -23,7 +23,7 @@
 #include "window.h"
 #include "util.h"
 #include "constants/battle_ai.h"
-#include "constants/event_object_movement_constants.h"
+#include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
 #include "constants/items.h"
 #include "constants/layouts.h"
@@ -253,7 +253,7 @@ static const u8 *const sTagMatchStrings[] =
 
 static const struct EventObjectTemplate sTrainerEventObjectTemplate =
 {
-    .graphicsId = EVENT_OBJ_GFX_RIVAL_BRENDAN_NORMAL,
+    .graphicsId = OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL,
     .elevation = 3,
     .movementType = MOVEMENT_TYPE_LOOK_AROUND,
     .movementRangeX = 1,

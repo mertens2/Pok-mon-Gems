@@ -13,16 +13,42 @@ MtChimney_OnResume: @ 822EDD2
 
 MtChimney_EventScript_Archie:: @ 822EDD5
 	lock
-	faceplayer
+	applymovement 2, Maxie_moves
+	waitmovement 0
 	call_if_unset FLAG_EVIL_LEADER_PLEASE_STOP, MtChimney_EventScript_ArchieGoStopTeamMagma
 	call_if_set FLAG_EVIL_LEADER_PLEASE_STOP, MtChimney_EventScript_ArchieBusyFighting
+	faceplayer
+	msgbox MtChimney_EventScript_ArchieTxt, MSGBOX_DEFAULT
 	closemessage
-	applymovement 1, Common_Movement_FaceOriginalDirection
+	applymovement OBJ_EVENT_ID_PLAYER, Player_moves
+	waitmovement 0
+	applymovement 2, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	applymovement 1, Archie_moves
 	waitmovement 0
 	setflag FLAG_EVIL_LEADER_PLEASE_STOP
 	release
 	end
-
+Maxie_moves:
+	face_left
+	step_end
+Player_moves:
+	walk_down
+	walk_left
+	face_right
+	step_end
+Archie_moves:
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	face_up
+	step_end
+MtChimney_EventScript_ArchieTxt:
+	.string "Archie: ¡Maxie no escuchará razones!\p"
+	.string "¡Ya lo he vencido en una batalla,\n"
+	.string "y ha curado a su equipo! Parece que\l"
+	.string "no me escuchará. Deberás vencerlo tú.$"
 MtChimney_EventScript_ArchieGoStopTeamMagma:: @ 822EDF9
 	msgbox MtChimney_Text_ArchieGoStopTeamMagma, MSGBOX_DEFAULT
 	return
@@ -60,7 +86,7 @@ MtChimney_EventScript_Maxie:: @ 822EE0B
 	call_if_eq MtChimney_EventScript_ArchieApproachPlayerEast
 	compare VAR_FACING, DIR_NORTH
 	call_if_eq MtChimney_EventScript_ArchieApproachPlayerNorth
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox MtChimney_Text_ArchieThankYou, MSGBOX_DEFAULT
 	closemessage
@@ -465,6 +491,7 @@ MtChimney_EventScript_MachineOff:: @ 822F12D
 	end
 
 MtChimney_EventScript_MachineOn:: @ 822F137
+	special HealPlayerParty
 	msgbox MtChimney_Text_MetoriteFittedOnMachine, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -538,54 +565,57 @@ MtChimney_EventScript_SawyerRematch:: @ 822F253
 	end
 
 MtChimney_Text_MeteoriteWillActivateVolcano: @ 822F26A
-	.string "The power contained in the METEORITE…\p"
-	.string "By amplifying its power with this\n"
-	.string "machine, MT. CHIMNEY's volcanic\l"
-	.string "activity will instantly intensify…\p"
-	.string "Its energy will grow deep inside\n"
-	.string "the crater and…\l"
-	.string "Fufufu…$"
+	.string "Maxie: El poder del Meteorito…\p"
+	.string "Que se amplifica con esta máquina,\n"
+	.string "tiene la capacidad de revivir este\l"
+	.string "volcán inactivo…\p"
+	.string "¡Incluso tiene el poder de curar a\n"
+	.string "los Pokémon que estén cerca de ella…!\l"
+	.string "Ese Archie cree que podrá pararme…$"
 
 MtChimney_Text_MaxieIntro: @ 822F32E
-	.string "MAXIE: Hm?\n"
-	.string "Who are you?\p"
+	.string "MAXIE: ¿Hm?\n"
+	.string "¿Quién eres tú?\p"
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
-	.string "I'd heard ARCHIE bemoaning a child\n"
-	.string "who's been meddling in TEAM AQUA's\l"
-	.string "affairs.\p"
-	.string "It must be you he meant.\p"
-	.string "Humph! So you're thinking of\n"
-	.string "interfering with us, TEAM MAGMA?\p"
-	.string "Now you listen.\n"
-	.string "Long ago, living things used the\l"
-	.string "land to live and grow.\p"
-	.string "That is why land is all important!\n"
-	.string "It is the cradle of all!\p"
-	.string "That is why TEAM MAGMA is dedicated\n"
-	.string "to the expansion of the land mass.\p"
-	.string "It is for further advancement of\n"
-	.string "humankind and POKéMON!\p"
-	.string "And for that, we need the power of\n"
-	.string "what sleeps within this mountain…\p"
-	.string "Oh! There was no need for you to\n"
-	.string "learn that much.\p"
-	.string "But, no matter!\n"
-	.string "I'll teach you the consequences of\l"
-	.string "meddling in our grand design!$"
+	.string "Escuché a Archie hablar sobre un\n"
+	.string "niño que se ha estado entrometiendo\l"
+	.string "con sus planes.\p"
+	.string "Seguro se refería a ti…\p"
+	.string "¡ARGH! ¡¿PRIMERO UN VULPIX ALOLA\n"
+	.string "Y AHORA UN NIÑO!? ¿¡QUÉ FALTA!?\p"
+	.string "¿¡QUE ME HAGA FIRMAR LA ADOPCIÓN POR ÉL!?.\n"
+	.string "{PLAYER}: ¡¿Q-qué?! ¡Yo vengo a detener\l"
+	.string "tus tontos planer!\p"
+	.string "Maxie: ¡MPH! Como sea… Hace mucho, la\n"
+	.string "vida solía aflorecer en la tierra,\l"
+	.string "salvaje. ¡Pero el humano tomó ese derecho!\n"
+	.string "¡Por eso debo expandir la tierra!\p"
+	.string "¡Sólo un tercio del mundo no basta!\n"
+	.string "Necesitamos más espacio de cultivo,\l"
+	.string "ganadería, etc. Y los Pokémon necesitan\p"
+	.string "más espacio para vivir en paz…\p"
+	.string "Y para lograr ese objetivo, usaré\n"
+	.string "el poder de estre volcán dormido…\p"
+	.string "¡! Pues, no era necesario que lo sepas,\n"
+	.string "pero el conocimiento debe ser compartido.\p"
+	.string "¡De todas formas!\n"
+	.string "¡Te daré el conocimiento de lo que\l"
+	.string "pasa cuando te metes con Maxie!$"
 
 MtChimney_Text_MaxieDefeat: @ 822F5CF
-	.string "What?!\p"
-	.string "I, MAXIE, was caught off guard?!$"
+	.string "Maxie: ¡¿QUÉ?!\p"
+	.string "¡¿YO, EL PODEROSO MAXIE, DERROTADO?!$"
 
 MtChimney_Text_MaxieYouHaventSeenLastOfMagma: @ 822F5F7
-	.string "MAXIE: But, enough.\n"
-	.string "I will back off this time.\p"
-	.string "But don't think that this is the last\n"
+	.string "Maxie: Suficiente… Si curo una\n"
+	.string "vez más, el poder no bastará…\p"
+	.string "Pero no te creas que esta es la última\n"
 	.string "you've seen of TEAM MAGMA.\p"
-	.string "Fufufu…\p"
-	.string "Even without the METEORITE, if we\n"
-	.string "obtain that ORB… Fufufu…$"
+	.string "¡! Ja ja ja…\p"
+	.string "Hasta sin ese Meteorito…\n"
+	.string "Lograré mi objetivo…\l"
+	.string "¡Llendo a la fuente, el ORBE!$"
 
 MtChimney_Text_TabithaIntro: @ 822F6AA
 	.string "Hehehe!\p"
@@ -662,105 +692,125 @@ MtChimney_Text_Bufoh: @ 822FACB
 	.string "Bufoh!$"
 
 MtChimney_Text_ArchieGoStopTeamMagma: @ 822FAD2
-	.string "ARCHIE: Grr, {PLAYER}!\n"
-	.string "I should've guessed you'd show up!\p"
-	.string "See for yourself what the fanatics\n"
-	.string "of TEAM MAGMA are up to!\p"
-	.string "They're trying to inject the stolen\n"
-	.string "METEORITE's power into the volcano!\p"
-	.string "Doing something like that will cause\n"
-	.string "the volcano's eruption!$"
+	.string "Archie: ¿¡PERO QUÉ HACES!?\n"
+	.string "¡REACCIONA! ¡ACTIVAR EL VOLCÁN\l"
+	.string "PROVOCARÁ UNA MASIVA DESTRUCCIÓN!\p"
+	.string "Maxie: Claro, Archie, destrucción.\p"
+	.string "Tenemos todo controlado, reactivar\n"
+	.string "el Volcán sólo subirá la temperatura\l"
+	.string "del área circundante, evaporando toda\p"
+	.string "el agua del lugar.\p"
+	.string "Archie: ¡¿Q-QUÉ?! ¿ESTO ES POR\n"
+	.string "EL VULPIX DE ALOLA?\l"
+	.string "¡DEJA LAS TONTERÍAS, ESTO\n"
+	.string "DESTRUIRÁ EL EQUILIBRIO NATURAL!\p"
+	.string "Maxie: Pfff… Eso harán TUS planes…\n"
+	.string "¿Inundar el mundo, eso te parece mejor?\p"
+	.string "Archie: ¡PUES AL MENOS ESO SALVARÍA\n"
+	.string "LA VIDA DE LOS POKÉMON DE AGUA!\p"
+	.string "Maxie: No, eso no pasará.\p"
+	.string "Se mezclarían las aguas salada\n"
+	.string "y dulce, causando la muerte del\l"
+	.string "noventa por ciento de la vida\p"
+	.string "marina y… ¿?\p"
+	.string "{PLAYER}: Umh… Esto es incómodo…p"
+	.string "Archie: ¡YA, NO ME IMPORTA!$"
 
 MtChimney_Text_ArchieIHaveMyHandsFull: @ 822FBC7
 	.string "ARCHIE: Grrr…\p"
-	.string "I want to stop that MAXIE,\n"
-	.string "but I can't!\p"
-	.string "Not when I have my hands full battling\n"
-	.string "three opponents at once!$"
+	.string "¡Tienes que derrotar a Maxie!\n"
+	.string "¡No me escuchará, aunque lo derrote!\p"
+	.string "¡Seguro si lo haces tú, podrás detenerlo!\n"
+	.string "¡Ataca con todo tu poder!$"
 
 MtChimney_Text_ArchieThankYou: @ 822FC3D
-	.string "ARCHIE: {PLAYER}!\n"
-	.string "Thank you!\p"
-	.string "With your help, we thwarted TEAM\n"
-	.string "MAGMA's destructive plan!\p"
-	.string "But… You…\n"
-	.string "Whose side are you on?\p"
-	.string "Ah, it doesn't matter.\p"
-	.string "We will remain vigilant and keep up\n"
-	.string "our pursuit of TEAM MAGMA.\p"
-	.string "{PLAYER}, we shall meet again!$"
+	.string "ARCHIE: ¡{PLAYER}!\n"
+	.string "¡Gracias!\p"
+	.string "¡Con tu ayuda, hemos podido parar\n"
+	.string "los planes del TEAM MAGAMA!\p"
+	.string "Pero, aún así…\n"
+	.string "¿De qué lado estás? ¿Estás conmigo\l"
+	.string "o con Maxie?\p"
+	.string "{PLAYER}: Umh… Yo creo que ambos\n"
+	.string "están locos…\p"
+	.string "Archie: Bah, eso no importa ahora.\p"
+	.string "Seguiré a Maxie, junto con su equipo\n"
+	.string "para evitar una próxima catástrofe…\p"
+	.string "¡{PLAYER}, espero volverte a ver!$"
 
 MtChimney_Text_MagmaOutnumbersUs: @ 822FD1F
-	.string "Darn… TEAM MAGMA outnumbers us!\n"
-	.string "We can't keep up with them!$"
+	.string "Demonios… ¡TEAM MAGMA nos supera!\n"
+	.string "¡No podemos con ellos!$"
 
 MtChimney_Text_LessHabitatForWaterPokemon: @ 822FD5B
-	.string "If they expand the land, there'll be\n"
-	.string "less habitats for WATER POKéMON!$"
+	.string "¡Si expanden la tierra, habrá menos\n"
+	.string "hábitat para los Pokémon Marinos!$"
 
 MtChimney_Text_MagmasNameSimilar: @ 822FDA1
-	.string "We're TEAM AQUA!\p"
-	.string "They're TEAM MAGMA!\p"
-	.string "It burns me up that they'd use such\n"
-	.string "a confusing name!$"
+	.string "¡Somos TEAM AQUA!\p"
+	.string "¡Y ellos TEAM MAGMA!\p"
+	.string "¡Me molesta que hayan usado casi\n"
+	.string "nuestro mismo nombre!$"
 
 MtChimney_Text_Bushaa: @ 822FDFC
-	.string "Bushaa!$"
+	.string "¡Bushaaaa!$"
 
 MtChimney_Text_LavaCookiesJust200: @ 822FE04
-	.string "LAVA COOKIES are MT. CHIMNEY's local\n"
-	.string "specialty.\p"
-	.string "Try one. It's just ¥200.$"
+	.string "Las Galleta Lava son la\n"
+	.string "especialidad del MT. CHIMENEA.\p"
+	.string "Cada una vale ¥200, ¡Una ganga!.$"
 
 MtChimney_Text_ThankYouDear: @ 822FE4D
-	.string "Thank you, dear!$"
+	.string "¡Gracias, querido!$"
 
 MtChimney_Text_YouveNotGotTheMoney: @ 822FE5E
-	.string "Oh, dear. You can't buy a thing if\n"
-	.string "you've not got the money.$"
+	.string "Ay, cielito. Lamento decirte que\n"
+	.string "la vida no es gratis, y mucho menos\l"
+	.string "lo son mis Galletas Lava…$"
 
 MtChimney_Text_OhFineThen: @ 822FE9B
-	.string "Oh, fine then.$"
+	.string "Ah, bueno…$"
 
 MtChimney_Text_MetoriteFittedOnMachine: @ 822FEAA
-	.string "A METEORITE is fitted on a mysterious\n"
-	.string "machine…\p"
-	.string "The machine seems to be storing\n"
-	.string "energy in the METEORITE.$"
+	.string "El Meteorito está en una máquina\n"
+	.string "poderosa…\p"
+	.string "La máquina parece haber sanado a tu Equipo,\n"
+	.string "y estar drenando el poder del Meteorito.$"
 
 MtChimney_Text_RemoveTheMeteorite: @ 822FF12
-	.string "A METEORITE is fitted on a mysterious\n"
-	.string "machine…\p"
-	.string "Do you want to remove the METEORITE?$"
+	.string "Un Meteorito en una misteriosa\n"
+	.string "máquina…\p"
+	.string "¿Lo saco?$"
 
 MtChimney_Text_PlayerRemovedMeteorite: @ 822FF66
-	.string "{PLAYER} removed the METEORITE from\n"
-	.string "the mysterious machine.$"
+	.string "{PLAYER} quitó el Meteorito\n"
+	.string "de la máquina rara.$"
 
 MtChimney_Text_PlayerLeftMeteorite: @ 822FF9C
-	.string "{PLAYER} left the METEORITE where\n"
-	.string "it was.$"
+	.string "{PLAYER} dejó el Meteorito en\n"
+	.string "su lugar.$"
 
 MtChimney_Text_MachineMakesNoResponse: @ 822FFC0
-	.string "This mysterious machine…\n"
-	.string "It makes no response whatsoever.$"
+	.string "Esta máquina…\n"
+	.string "Y pensar que pudo haber destruido\n"
+	.string "el mundo entero…$"
 
 MtChimney_Text_RouteSign: @ 822FFFA
 	.string "{DOWN_ARROW} JAGGED PATH\n"
 	.string "LAVARIDGE TOWN AHEAD$"
 
 MtChimney_Text_ShelbyIntro: @ 823001D
-	.string "I've been to the hot springs and\n"
-	.string "refreshed my tired bones.\l"
-	.string "Right now I'm feeling strong!$"
+	.string "Me bañé en aguas termales y\n"
+	.string "se me relajaron hasta los huesos.\l"
+	.string "¡Ahora estoy preparada!$"
 
 MtChimney_Text_ShelbyDefeat: @ 8230076
-	.string "Oh, my goodness.\n"
-	.string "Now, aren't you something!$"
+	.string "Ah, ¿porqué?\n"
+	.string "¡Eres fuerte!$"
 
 MtChimney_Text_ShelbyPostBattle: @ 82300A2
-	.string "Well, well, I've lost. I can't call\n"
-	.string "myself an EXPERT now, can I?$"
+	.string "Bueno, al parecer ya perdí.\n"
+	.string "Ya no puedo ser llamada Experta…$"
 
 MtChimney_Text_ShelbyRegister: @ 82300E3
 	.string "Thank you, child. It was fun, as if\n"
@@ -845,6 +895,4 @@ MtChimney_Text_SawyerRematchDefeat: @ 82305E3
 	.string "firebrand as before!$"
 
 MtChimney_Text_SawyerPostRematch: @ 8230614
-	.string "Actually, it really is hot here.\n"
-	.string "I'm overdressed for these parts.$"
-
+	.string "Actually, it really is hot here.$"

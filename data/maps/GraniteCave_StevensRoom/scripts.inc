@@ -15,8 +15,16 @@ GraniteCave_StevensRoom_EventScript_Steven:: @ 822DC7B
 	msgbox GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
-	playfanfare MUS_ME_TORE_EYE
+	fadescreen 1
+	special ChoosePartyMon
+	waitstate
+	perfectIvs VAR_0x8004
+	playfanfare MUS_FANFA1
+	fadescreen 0
+	waitfanfare
+	delay 30
 	msgbox GraniteCave_StevensRoom_Text_RegisteredSteven, MSGBOX_DEFAULT
+	playfanfare MUS_ME_TORE_EYE
 	waitfanfare
 	closemessage
 	delay 30
@@ -42,13 +50,13 @@ GraniteCave_StevensRoom_EventScript_StevenExitNorth:: @ 822DD0D
 	return
 
 GraniteCave_StevensRoom_EventScript_StevenExitWestEast:: @ 822DD18
-	applymovement EVENT_OBJ_ID_PLAYER, GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit
+	applymovement OBJ_EVENT_ID_PLAYER, GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit
 	applymovement 1, GraniteCave_StevensRoom_Movement_StevenExit
 	waitmovement 0
 	return
 
 GraniteCave_StevensRoom_EventScript_StevenExitSouth:: @ 822DD2A
-	applymovement EVENT_OBJ_ID_PLAYER, GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit
+	applymovement OBJ_EVENT_ID_PLAYER, GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit
 	applymovement 1, GraniteCave_StevensRoom_Movement_StevenExitSouth
 	waitmovement 0
 	return
@@ -85,40 +93,68 @@ GraniteCave_StevensRoom_Movement_StevenExitSouth: @ 822DD51
 	step_end
 
 GraniteCave_StevensRoom_Text_ImStevenLetterForMe: @ 822DD5A
-	.string "My name is STEVEN.\p"
-	.string "I'm interested in rare stones,\n"
-	.string "so I travel here and there.\p"
-	.string "Oh?\n"
-	.string "A LETTER for me?$"
+	.string "{PLAYER}: ¡Steven!\p"
+    .string "Steven: … ¿Te conozco?\n"
+    .string "{PLAYER}: No, pero eso no importa,\l"
+    .string "unos tipos disfrazados de piratas\p"
+    .string "han estado robando Partes Devon y\n"
+    .string "ahora se han llevado una Piedra…\p"
+    .string "Aunque no sé qué clase de Piedra es…\p"
+    .string "Steven: … Ya veo… Pues, les hecharé\n"
+    .string "un ojo, aunque lo de la “Piedra” no\l"
+    .string "me parece malo en lo absoluto…\p"
+    .string "Steven: … … … ¿huh?\n"
+    .string "Eso que llevas en tu mano… ¿No será\l"
+    .string "una Carta? ¿Una de mi padre?\p"
+    .string "{PLAYER}: ¿Huh? Pues, sí, tome.$"
+
 
 GraniteCave_StevensRoom_Text_ThankYouTakeThis: @ 822DDBD
-	.string "STEVEN: Okay, thank you.\p"
-	.string "You went through all this trouble to\n"
-	.string "deliver that. I need to thank you.\p"
-	.string "Let me see…\n"
-	.string "I'll give you this TM.\p"
-	.string "It contains my favorite move,\n"
-	.string "STEEL WING.$"
+    .string "Steven: ¡Gracias! Pasaste por esos\n"
+    .string "problemas sólo para darme esta\l"
+    .string "carta… Debería recompensártelo…\p"
+    .string "¡Ah!\n"
+    .string "¿Qué tal si te doy mi MT favorita?\p"
+    .string "{PLAYER}: ¿MT? ¿No es demasiado?\p"
+    .string "Steven: ¡Tonterías, niño! Además,\n"
+    .string "mis Pokémon ya son demasiado\l"
+    .string "fuertes para este ataque tan débil…$"
+
 
 GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister: @ 822DE6B
-	.string "STEVEN: Your POKéMON appear quite\n"
-	.string "capable.\p"
-	.string "If you keep training, you could even\n"
-	.string "become the CHAMPION of the POKéMON\l"
-	.string "LEAGUE one day. That's what I think.\p"
-	.string "I know, since we've gotten to know each\n"
-	.string "other, let's register one another in\l"
-	.string "our POKéNAVS.\p"
-	.string "… … … … … …$"
+    .string "{PLAYER}: ¡Gracias, Señor Steven!\n"
+    .string "¡Es usted muy amable!\p"
+    .string "Steven: ¿Eso crees…?\n"
+    .string "… … …\p"
+    .string "Espera… ¿Has vencido a esos tres\n"
+    .string "seguidos con menos de tres medallas?\p"
+    .string "{PLAYER}: Umh… Supongo… ¿Es eso\n"
+    .string "tan importante?\p"
+    .string "Steven: … … … …\n"
+    .string "… … (es fuerte… Quizá sea capaz…)\p"
+    .string "Steven: Oye, ¿Quieres participar\n"
+    .string "en la Liga Hoenn, no?\p"
+    .string "Steven: ¡Pues haré a tus Pokémon\n"
+    .string "más fuertes. Pero elige bien, {COLOR LIGHT_RED}{SHADOW RED}sólo\l"
+    .string "será una vez.{COLOR DARK_GREY}{SHADOW LIGHT_GREY} Verás los cambios una\p"
+    .string "vez deposites tus Pokémon en el PC,\n"
+    .string "o en el momento en que suban de\l"
+    .string "nivel. ¿Has entendido?\p"
+    .string "{PLAYER}: S-supongo… ¡Quiero\n"
+    .string "intentarlo, señor!$"
+
 
 GraniteCave_StevensRoom_Text_RegisteredSteven: @ 822DF6A
-	.string "Registered STEVEN\n"
-	.string "in the POKéNAV.$"
+    .string "Steven: ¡Hey, aprovechemos para\n"
+    .string "cambiar números de Pokénav!\p"
+    .string "… … … …\n"
+    .string "… … … …\l"
+    .string "¡Registrado Steven en el Pokénav!$"
+
 
 GraniteCave_StevensRoom_Text_IveGotToHurryAlong: @ 822DF8C
-	.string "Now, I've got to hurry along.$"
+	.string "Steve: ¡Bueno, me voy!$"
 
 GraniteCave_StevensRoom_Text_OhBagIsFull: @ 822DFAA
-	.string "Oh, your BAG is full…\n"
-	.string "That's too bad, then.$"
+	.string "Qué mal, Mochila llena.$"
 

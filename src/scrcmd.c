@@ -4,6 +4,7 @@
 #include "berry.h"
 #include "clock.h"
 #include "coins.h"
+#include "battle.h"
 #include "contest.h"
 #include "contest_link_80F57C4.h"
 #include "contest_painting.h"
@@ -30,6 +31,8 @@
 #include "mystery_event_script.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "constants/pokemon.h"
+#include "pokemon.h"
 #include "pokemon_storage_system.h"
 #include "random.h"
 #include "overworld.h"
@@ -1245,7 +1248,7 @@ bool8 ScrCmd_releaseall(struct ScriptContext *ctx)
     u8 playerObjectId;
 
     HideFieldMessageBox();
-    playerObjectId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
+    playerObjectId = GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
     EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
     ScriptMovement_UnfreezeEventObjects();
     UnfreezeEventObjects();
@@ -1259,7 +1262,7 @@ bool8 ScrCmd_release(struct ScriptContext *ctx)
     HideFieldMessageBox();
     if (gEventObjects[gSelectedEventObject].active)
         EventObjectClearHeldMovementIfFinished(&gEventObjects[gSelectedEventObject]);
-    playerObjectId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
+    playerObjectId = GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
     EventObjectClearHeldMovementIfFinished(&gEventObjects[playerObjectId]);
     ScriptMovement_UnfreezeEventObjects();
     UnfreezeEventObjects();
@@ -1668,7 +1671,7 @@ bool8 ScrCmd_vbufferstring(struct ScriptContext *ctx)
 bool8 ScrCmd_bufferboxname(struct ScriptContext *ctx)
 {
     u8 stringVarIndex = ScriptReadByte(ctx);
-    u16 boxId = VarGet(ScriptReadHalfword(ctx));
+    u32 boxId = VarGet(ScriptReadHalfword(ctx));
 
     StringCopy(sScriptStringVars[stringVarIndex], GetBoxNamePtr(boxId));
     return FALSE;
@@ -1725,6 +1728,7 @@ bool8 ScrCmd_checkpartymove(struct ScriptContext *ctx)
     }
     return FALSE;
 }
+
 
 bool8 ScrCmd_addmoney(struct ScriptContext *ctx)
 {
@@ -2298,4 +2302,85 @@ bool8 ScrCmd_warpsootopolislegend(struct ScriptContext *ctx)
     DoSootopolisLegendWarp();
     ResetInitialPlayerAvatarState();
     return TRUE;
+}
+
+void ScrCmd_changeframe(struct ScriptContext *ctx)
+{
+	u8 frameNumber = ScriptReadByte(ctx);
+	
+	frameNumber--;
+	gSaveBlock2Ptr->optionsWindowFrameType = frameNumber;	
+}
+
+void ScrCmd_changeMini(struct ScriptContext *ctx)
+{
+	u16 miniValue = VarGet(ScriptReadHalfword(ctx));
+	
+	struct EventObject *eventObj = &gEventObjects[gPlayerAvatar.eventObjectId];
+	
+	EventObjectSetGraphicsId(eventObj, miniValue);
+    EventObjectTurn(eventObj, eventObj->movementDirection);
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_ON_FOOT);
+	gSaveBlock2Ptr->playerMini = miniValue;
+}
+
+void ScrCmd_perfectIvs(struct ScriptContext *ctx)
+{
+	u8 idpoke = VarGet(ScriptReadHalfword(ctx));
+	u16 value = 31;
+	SetMonData(&gPlayerParty[idpoke], MON_DATA_HP_IV, &value);
+	SetMonData(&gPlayerParty[idpoke], MON_DATA_ATK_IV, &value);
+	SetMonData(&gPlayerParty[idpoke], MON_DATA_DEF_IV, &value);
+	SetMonData(&gPlayerParty[idpoke], MON_DATA_SPATK_IV, &value);
+	SetMonData(&gPlayerParty[idpoke], MON_DATA_SPDEF_IV, &value);
+	SetMonData(&gPlayerParty[idpoke], MON_DATA_SPEED_IV, &value);
+}
+void ScrCmd_changeNature(struct ScriptContext *ctx)
+{
+	u8 slot = VarGet(ScriptReadHalfword(ctx));
+	u8 nature = VarGet(ScriptReadHalfword(ctx));
+    u32 personality;
+    do
+    {
+        personality = Random32();
+    }
+    while (nature != GetNatureFromPersonality(personality));
+	SetMonData(&gPlayerParty[slot], MON_DATA_PERSONALITY, &personality);
+}
+
+bool8 ScrCmd_checkMonType(struct ScriptContext *ctx)
+{
+    u8 i;
+    u16 typeID = ScriptReadHalfword(ctx);
+
+    gSpecialVar_Result = 0;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL);
+        if (!species)
+            break;
+		else
+			gSpecialVar_Result = PARTY_SIZE;
+        if ((!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) && gBaseStats[species].type1 == typeID) || (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) && gBaseStats[species].type2 == typeID))
+        {
+            gSpecialVar_Result = i;
+            gSpecialVar_0x8004 = species;
+            break;
+        }
+		else
+			gSpecialVar_Result = PARTY_SIZE;
+    }
+    return FALSE;
+}
+
+bool8 ScrCmd_showitemdesc(struct ScriptContext *ctx)
+{
+    DrawHeaderBox();
+    return FALSE;
+}
+
+bool8 ScrCmd_hideitemdesc(struct ScriptContext *ctx)
+{
+    HideHeaderBox();
+    return FALSE;
 }

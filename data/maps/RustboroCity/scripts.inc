@@ -34,7 +34,7 @@ RustboroCity_OnFrame: @ 81E070B
 RustboroCity_EventScript_ScientistAddMatchCall:: @ 81E0715
 	lockall
 	setvar VAR_ROUTE104_STATE, 1
-	applymovement EVENT_OBJ_ID_PLAYER, RustboroCity_Movement_PlayerWalkDown
+	applymovement OBJ_EVENT_ID_PLAYER, RustboroCity_Movement_PlayerWalkDown
 	waitmovement 0
 	playse SE_KAIDAN
 	delay 10
@@ -46,7 +46,7 @@ RustboroCity_EventScript_ScientistAddMatchCall:: @ 81E0715
 	waitmovement 0
 	applymovement 15, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	applymovement 15, RustboroCity_Movement_ScientistWalkInPlaceDown
 	waitmovement 0
@@ -353,7 +353,7 @@ RustboroCity_EventScript_EmployeeApproachDown:: @ 81E0A6E
 RustboroCity_EventScript_EmployeeApproachPlayerFar:: @ 81E0A79
 	applymovement 9, RustboroCity_Movement_EmployeeApproachPlayerFar
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	return
 
@@ -523,7 +523,7 @@ RustboroCity_EventScript_EmployeeFacePlayerUp1:: @ 81E0B6F
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	return
 
@@ -535,7 +535,7 @@ RustboroCity_EventScript_EmployeeFacePlayerLeft1:: @ 81E0B9B
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
 	waitmovement 0
 	return
 
@@ -547,7 +547,7 @@ RustboroCity_EventScript_EmployeeFacePlayerDown1:: @ 81E0BC7
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	return
 
@@ -561,7 +561,7 @@ RustboroCity_EventScript_EmployeeApproachPlayerDown1:: @ 81E0BF3
 	waitmovement 0
 	applymovement 9, RustboroCity_Movement_EmployeeApproachPlayerDown
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	return
 
@@ -631,7 +631,7 @@ RustboroCity_EventScript_EmployeeFacePlayerUp2:: @ 81E0CDC
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	return
 
@@ -643,7 +643,7 @@ RustboroCity_EventScript_EmployeeFacePlayerLeft2:: @ 81E0D08
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft
 	waitmovement 0
 	return
 
@@ -655,7 +655,7 @@ RustboroCity_EventScript_EmployeeFacePlayerDown2:: @ 81E0D34
 	waitmovement 0
 	applymovement 9, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	return
 
@@ -669,7 +669,7 @@ RustboroCity_EventScript_EmployeeApproachPlayerDown2:: @ 81E0D60
 	waitmovement 0
 	applymovement 9, RustboroCity_Movement_EmployeeApproachPlayerDown
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	return
 
@@ -718,7 +718,7 @@ RustboroCity_EventScript_RivalTrigger0:: @ 81E0DF3
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer0
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -734,7 +734,7 @@ RustboroCity_EventScript_RivalTrigger1:: @ 81E0E33
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer1
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -750,7 +750,7 @@ RustboroCity_EventScript_RivalTrigger2:: @ 81E0E73
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer2
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -766,7 +766,7 @@ RustboroCity_EventScript_RivalTrigger3:: @ 81E0EB3
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer3
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -782,7 +782,7 @@ RustboroCity_EventScript_RivalTrigger4:: @ 81E0EF3
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer4
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -798,7 +798,7 @@ RustboroCity_EventScript_RivalTrigger5:: @ 81E0F33
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer5
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -814,7 +814,7 @@ RustboroCity_EventScript_RivalTrigger6:: @ 81E0F73
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer6
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -830,7 +830,7 @@ RustboroCity_EventScript_RivalTrigger7:: @ 81E0FB3
 	waitmovement 0
 	applymovement 14, RustboroCity_Movement_RivalApproachPlayer7
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto RustboroCity_EventScript_RivalEncounter
 
@@ -1038,164 +1038,185 @@ RustboroCity_EventScript_Boy1:: @ 81E1236
 	end
 
 RustboroCity_Text_WeShortenItToDevon: @ 81E123F
-	.string "The DEVON CORPORATION…\n"
-	.string "We all just shorten it to DEVON.\p"
-	.string "That company makes all sorts of\n"
-	.string "convenient products.$"
+    .string "La Corporación Devon…\p"
+    .string "Una de las empresas más poderosas\n"
+    .string "de la región, quizá hasta del mundo.\p"
+    .string "Todos acortamos su nombre a\n"
+    .string "'Devon'. Suena menos malvado, ¿No\l"
+    .string "lo crees?$"
 
 RustboroCity_Text_SneakyLookingManWentAroundCorner: @ 81E12AC
-	.string "Hm? A sneaky-looking man?\p"
-	.string "Come to think of it, yes, a shady-\n"
-	.string "looking guy went around the corner.$"
+    .string "{PLAYER}: ¿Ha visto a un hombre\n"
+    .string "sospechoso por aquí?\p"
+    .string "Transeúnte: ¿Mhh? Eh… No tengo idea\n"
+    .string "de qué responder, ni qué te parece\l"
+    .string "'sospechoso'… Pero sí vi a un\p"
+    .string "tipo vestido como pirata yendo hacia\n"
+    .string "Devon hace un rato…$"
 
 RustboroCity_Text_HaveYouChallengedGym: @ 81E130D
-	.string "Have you taken the POKéMON GYM\n"
-	.string "challenge?\p"
-	.string "When you get that shiny GYM BADGE\n"
-	.string "in hand, I guess TRAINERS begin to\l"
-	.string "realize what is required of them.$"
+    .string "En el momento en el que ganes la\n"
+    .string "brillante Medalla del Gimnasio, todos\l"
+    .string "comenzarán a respetarte más…\p"
+    .string "Es horrible cuando no tienes una\n"
+    .string "y todos se burlan, pero así es la\l"
+    .string "vida de un 'No Entrenador', ¿No?$"
 
 RustboroCity_Text_HeyThatsRustborosGymBadge: @ 81E139E
-	.string "Hey, that's RUSTBORO's GYM BADGE!\p"
-	.string "Out of all the POKéMON GYM BADGES,\n"
-	.string "RUSTBORO's is the coolest, I'd say.$"
+    .string "Mmm… Al parecer, ya tienes la Medalla\n"
+    .string "de esta ciudad… Escucha, si te llegas\l"
+    .string "a convertir en Campeón, prométeme\p"
+    .string "que no se te subirá la fama\n"
+    .string "a la cabeza, justo como Steven Stone…\l"
+    .string "Aunque el Campeón actual… Sí le pasó…$"
 
 RustboroCity_Text_YoureNewAroundHere: @ 81E1407
-	.string "Oh? Who might you be?\n"
-	.string "You're a new face around these parts.\p"
-	.string "Have you just transferred into the\n"
-	.string "POKéMON TRAINER'S SCHOOL?$"
+    .string "¿Huh? A ti no te conozco, pero no\n"
+    .string "conozco a mucha gente que digamos,\l"
+    .string "tampoco, así que no es de sorprender.$"
 
 RustboroCity_Text_GymLeaderIsntEasyWithFire: @ 81E1480
-	.string "I challenged the GYM LEADER, but…\p"
-	.string "It's not going to be easy winning with\n"
-	.string "my FIRE-type POKéMON…\p"
-	.string "FIRE-type POKéMON don't match up\n"
-	.string "well against ROCK-type POKéMON…$"
+    .string "La Líder tiene Pokémon con ventaja\n"
+    .string "contra mi Talonflame… Aún con una\l"
+    .string "evolución final, no consigo ganar…\p"
+    .string "Quizá si tuviera Movimientos de\n"
+    .string "Cobertura podría ganar, pero sólo\l"
+    .string "conoce Picotazo, Ascuas, Ataque Ala\p"
+    .string "y Gruñido… Debería reconsiderar\n"
+    .string "mi estrategia de atacar a lo loco…$"
+
 
 RustboroCity_Text_MrBrineyWalksInTheTunnel: @ 81E1520
-	.string "The old sailor MR. BRINEY lives in\n"
-	.string "a cottage by the sea.\p"
-	.string "He goes for walks in the tunnel every\n"
-	.string "so often.$"
+    .string "El Señor Briney vive cerca del mar.\p"
+    .string "He oído que él y su viejo Peecko aún\n"
+    .string "eran amigos para cuando el Sr. era\l"
+    .string "joven… Eso sí que fue hace mucho…$"
+
 
 RustboroCity_Text_MrBrineyLovesPeeko: @ 81E1589
-	.string "The old sailor MR. BRINEY lives in\n"
-	.string "a cottage by the sea.\p"
-	.string "He said he was going shopping in\n"
-	.string "SLATEPORT for his pet, PEEKO.\p"
-	.string "That old sea dog, he must really love\n"
-	.string "that PEEKO.$"
+    .string "El Sr. Briney AMA a su Peecko,\n"
+    .string "después de todo, han estado juntos\l"
+    .string "desde que Briney era un niño de 9.$"
 
 RustboroCity_Text_WowYouHavePokemon: @ 81E1633
-	.string "Wow, you have POKéMON with you, too.\p"
-	.string "When I get bigger, I'm going to go\n"
-	.string "places with POKéMON, too.$"
+    .string "¿Así que entrenas Pokémon?\n"
+    .string "Pues eso no es lo único de la vida.\p"
+    .string "También puedes ir a los Concursos\n"
+    .string "o jugar con amigos a quién atrapa\l"
+    .string "más Pokémon más rápido.\p"
+    .string "{PLAYER}: Mhh, curioso que lo digas,\n"
+    .string "yo mismo hago eso con {RIVAL}.$"
+
 
 RustboroCity_Text_CatchRarePokemonIfIGoToSchool: @ 81E1695
-	.string "POKéMON TRAINER'S SCHOOL!\p"
-	.string "If I go to this school, will I be able\n"
-	.string "to catch rare POKéMON easily?$"
+	.string "¡Escuela de Entrenadres!$"
 
 RustboroCity_Text_PokemonCanChangeLookFromExp: @ 81E16F4
-	.string "If a POKéMON gains experience in\n"
-	.string "battles, it can sometimes change in\l"
-	.string "the way it looks.$"
+    .string "La evolución es misteriosa, pero se\n"
+    .string "sabe que está relacionada con la\l"
+    .string "Energía Infinita, o eso dicen todos.$"
+
 
 RustboroCity_Text_PokemonChangeShape: @ 81E174B
-	.string "A POKéMON changes shape?\n"
-	.string "If one did that, I would be shocked!$"
+    .string "¿¡QUÉ ENERGÍA INFINITA NI QUÉ\n"
+    .string "SHEDINJA CON MITAD DE VIDA!?\p"
+    .string "¡ES TODO UNA CONSPIRACIÓN\n"
+    .string "PARA ENCUBRIR EL PROYECTO!$"
+
 
 RustboroCity_Text_TradePokemonGrowFast: @ 81E1789
-	.string "A POKéMON you get in a trade from\n"
-	.string "someone grows fast.\p"
-	.string "But if you don't have certain GYM\n"
-	.string "BADGES, it may not obey you…$"
+    .string "Un Pokémon intercambiado crece más\n"
+    .string "rápido, pero también puede llegar a\l"
+    .string "desobedecer…$"
+
 
 RustboroCity_Text_OutOfTheWay: @ 81E17FE
-	.string "Get out!\n"
-	.string "Out of the way!$"
+	.string "¡Largo!\n"
+	.string "¡Fuera del camino!$"
 
 RustboroCity_Text_WaitDontTakeMyGoods: @ 81E1817
-	.string "Wait! Pleeeaaase!\p"
-	.string "Don't take my GOODS!$"
+	.string "¡NOOOO ALTOOOO!\p"
+	.string "¡DAME ESAS PARTES!$"
 
 RustboroCity_Text_HelpMeIWasRobbed: @ 81E183E
-	.string "Oh, it's you!\p"
-	.string "You're that fantastic TRAINER who\n"
-	.string "helped me in PETALBURG WOODS!\p"
-	.string "Help me! I was robbed by TEAM AQUA!\n"
-	.string "I have to get the DEVON GOODS back!\p"
-	.string "If I don't…\n"
-	.string "I'm going to be in serious trouble.$"
+    .string "¡Ey, eres tú! \p"
+    .string "¡Eres quien me salvó en el Bosque!\n"
+    .string "Debes recuperar mis Partes, ese\l"
+    .string "Pirata me las robó…$"
+
 
 RustboroCity_Text_ShadyCharacterTookOffTowardsTunnel: @ 81E1904
-	.string "That shady character, I think he took\n"
-	.string "off towards the tunnel over there.$"
+    .string "Se fue corriendo hacia el\n"
+    .string "Túnel Rusturf como si no hubiera\l"
+    .string "un mañana…$"
+
 
 RustboroCity_Text_YouGotItThankYou: @ 81E194D
-	.string "Oh! How did it go?\n"
-	.string "The DEVON GOODS?\p"
-	.string "You did!\n"
-	.string "You got them back!\p"
-	.string "You really are a great TRAINER!\p"
-	.string "I know! As my thanks, I'll give you\n"
-	.string "another GREAT BALL!$"
+    .string "¿Volviste? Espera… ¡!\n"
+    .string "¡SÍ, TRAJISTE LAS PARTES!\p"
+    .string "podré mantener el empleo otro mes…\p"
+    .string "¡AQUÍ TIENES UNA SUPERBALL!$"
+
 
 RustboroCity_Text_YoureLoadedWithItems: @ 81E19E5
 	.string "You're loaded with items.\n"
 	.string "I can't give you this GREAT BALL.$"
 
 RustboroCity_Text_PleaseComeWithMe: @ 81E1A21
-	.string "Excuse me, please!\n"
-	.string "Please come with me!$"
+    .string "¡Sígueme, sígueme!$"
+
 
 RustboroCity_Text_MayHiLetsRegister: @ 81E1A49
-	.string "MAY: Oh, hi, {PLAYER}{KUN}!\p"
-	.string "You had a MATCH CALL feature put\n"
-	.string "on your POKéNAV!\p"
-	.string "Let's register each other so we can\n"
-	.string "contact one another anytime!\p"
-	.string "… … … … … …$"
+    .string "May: ¿EH? ¡¿DESQUICIADO YA TIENE\n"
+    .string "UNA MEDALLA DEL GIMNASIO!?\p"
+    .string "Como sea… Mi padre me dijo que te\n"
+    .string "diera mi número, para checkear tu\l"
+    .string "Pokédex de vez en cuando…\p"
+    .string "…$"
 
 RustboroCity_Text_RegisteredMay: @ 81E1ADB
 	.string "Registered MAY\n"
 	.string "in the POKéNAV.$"
 
 RustboroCity_Text_MayPassedBrineyWantToBattle: @ 81E1AFA
-	.string "MAY: Oh, by the way, I passed\n"
-	.string "MR. BRINEY in PETALBURG WOODS.\p"
-	.string "I guess he's on his way home to his\n"
-	.string "cottage by the sea.\p"
-	.string "How's your POKéDEX coming along,\n"
-	.string "{PLAYER}{KUN}? Mine's looking pretty decent!\p"
-	.string "So…\n"
-	.string "How about a little battle?$"
+    .string "May: Por cierto, ya tengo registrados\n"
+    .string "más de 25 Pokémon en la Pokédex.\p"
+    .string "Muchos más que tú, pues yo ya\n"
+    .string "cuento con la SúperCaña. Pero toma,\l"
+    .string "me divertiré vien--\p"
+    .string "¡SOLO SI ME VENCES EN COMBATE!\p"
+
 
 RustboroCity_Text_MayOhHaventRaisedPokemonEnough: @ 81E1BD3
-	.string "MAY: Oh, what's the matter?\p"
-	.string "Haven't you caught or raised your\n"
-	.string "POKéMON very much?\p"
-	.string "That's not very good for a TRAINER!$"
+    .string "May: ¡JAJAJA! Desquiciado, ¿tienes\n"
+    .string "miedo de perder ante mí?\l"
+    .string "Sí, debe ser eso, ¡JA, JA, JA!\p"
+    .string "{PLAYER}: (Esa fue la risa más\n"
+    .string "sarcástica que haya escuchado…)$"
+
 
 RustboroCity_Text_MayWantToBattle: @ 81E1C48
-	.string "MAY: So, what do you think?\n"
-	.string "How about a little battle here?$"
+    .string "¿¡YA ESTÁ LISTO EL BEBÉ!?\n"
+    .string "¡VAMOS, COMBÁTEME!$"
+
 
 RustboroCity_Text_MayImNotGoingToLose: @ 81E1C84
-	.string "MAY: You just became a TRAINER,\n"
-	.string "{PLAYER}{KUN}. I'm not going to lose!$"
+    .string "May: ¡JA! Pues perderás, no hay nada\n"
+    .string "que puedas hacer para vencerme...$"
+
 
 RustboroCity_Text_MayDefeat: @ 81E1CC1
-	.string "Yikes!\n"
-	.string "You're better than I expected!$"
+    .string "¿?\n"
+    .string "...\l"
+    .string "P-pero...\p"
+    .string "¡ARGH! ¿¡PORQUÉ SI HE ATRAPADO\n"
+    .string "MÁS POKÉMON!?, ¡YO DEBERÍA GANAR!$"
 
 RustboroCity_Text_MayMrBrineyHint: @ 81E1CE7
-	.string "MAY: Oh, by the way, MR. BRINEY, who\n"
-	.string "I just passed…\p"
-	.string "{PLAYER}{KUN}, you just moved here so you\n"
-	.string "might not know this, but MR. BRINEY\l"
-	.string "was once a revered seafarer.$"
+    .string "¿Sabes qué? Ahora no te doy nada...\p"
+    .string "Por cierto, ese viejo te estaba\n"
+    .string "buscando, Desquiciado...$"
+
 
 RustboroCity_Text_BrendanHiLetsRegister: @ 81E1D7D
 	.string "BRENDAN: Oh, hey, {PLAYER}!\p"

@@ -820,14 +820,14 @@ static const u16 sNaturePowerMoves[] =
 
 static const u16 sPickupItems[] =
 {
-    ITEM_POTION,
-    ITEM_ANTIDOTE,
     ITEM_SUPER_POTION,
+    ITEM_FULL_HEAL,
+    ITEM_WATER_STONE,
     ITEM_GREAT_BALL,
-    ITEM_REPEL,
+    ITEM_SUPER_REPEL,
     ITEM_ESCAPE_ROPE,
     ITEM_X_ATTACK,
-    ITEM_FULL_HEAL,
+    ITEM_DAWN_STONE,
     ITEM_ULTRA_BALL,
     ITEM_HYPER_POTION,
     ITEM_RARE_CANDY,
@@ -842,17 +842,17 @@ static const u16 sPickupItems[] =
 
 static const u16 sRarePickupItems[] =
 {
-    ITEM_HYPER_POTION,
+    ITEM_SHINY_STONE,
     ITEM_NUGGET,
     ITEM_KINGS_ROCK,
-    ITEM_FULL_RESTORE,
+    ITEM_DUSK_STONE,
     ITEM_ETHER,
     ITEM_WHITE_HERB,
-    ITEM_TM44_REST,
-    ITEM_ELIXIR,
-    ITEM_TM01_FOCUS_PUNCH,
+    ITEM_FIRE_STONE,
+    ITEM_MOON_STONE,
+    ITEM_LEAF_STONE,
     ITEM_LEFTOVERS,
-    ITEM_TM26_EARTHQUAKE,
+    ITEM_THUNDER_STONE,
 };
 
 static const u8 sPickupProbabilities[] =
@@ -2789,6 +2789,10 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_AtkDefDown;
                 break;
+			case MOVE_EFFECT_FLASH:
+                BattleScriptPush(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = BattleScript_EffectFlash;
+                break;
             case MOVE_EFFECT_DEF_SPDEF_DOWN: // Close Combat
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_DefSpDefDown;
@@ -3009,6 +3013,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_MoveEffectBugBite;
                 }
+
                 break;
             }
         }
@@ -3447,7 +3452,7 @@ static void Cmd_getexp(void)
                 if (*exp == 0)
                     *exp = 1;
 
-                gExpShareExp = calculatedExp / 2 / viaExpShare;
+                gExpShareExp = calculatedExp * 1.5 / viaExpShare;
                 if (gExpShareExp == 0)
                     gExpShareExp = 1;
             }
@@ -3508,12 +3513,27 @@ static void Cmd_getexp(void)
                         gBattleMoveDamage = 0;
 
                     if (holdEffect == HOLD_EFFECT_EXP_SHARE)
-                        gBattleMoveDamage += gExpShareExp;
+                        gBattleMoveDamage += (gExpShareExp);
                     if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
-                        gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
+                        gBattleMoveDamage = (gBattleMoveDamage * 200) / 100;
                     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && B_TRAINER_EXP_MULTIPLIER != GEN_7)
                         gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
-
+					if (FlagGet(FLAG_BADGE01_GET))
+						gBattleMoveDamage = (gBattleMoveDamage * 105) / 100;
+					if (FlagGet(FLAG_BADGE02_GET))
+						gBattleMoveDamage = (gBattleMoveDamage * 110) / 100;
+					if (FlagGet(FLAG_BADGE03_GET))
+						gBattleMoveDamage = (gBattleMoveDamage * 115) / 100;
+					if (FlagGet(FLAG_BADGE04_GET))
+						gBattleMoveDamage = (gBattleMoveDamage * 120) / 100;
+					if (FlagGet(FLAG_BADGE05_GET))
+						gBattleMoveDamage = (gBattleMoveDamage * 125) / 100;
+					if (FlagGet(FLAG_BADGE06_GET))
+						gBattleMoveDamage = (gBattleMoveDamage * 130) / 100;
+					if (FlagGet(FLAG_BADGE07_GET))
+						gBattleMoveDamage = (gBattleMoveDamage * 140) / 100;
+					if (FlagGet(FLAG_BADGE08_GET))
+						gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
                     if (IsTradedMon(&gPlayerParty[gBattleStruct->expGetterMonId]))
                     {
                         // check if the pokemon doesn't belong to the player
@@ -10685,7 +10705,7 @@ static void Cmd_setdamagetohealthdifference(void)
     }
 }
 
-static void HandleRoomMove(u32 statusFlag, u8 *timer, u8 stringId)
+void HandleRoomMove(u32 statusFlag, u8 *timer, u8 stringId)
 {
     if (gFieldStatuses & statusFlag)
     {
@@ -11032,7 +11052,7 @@ static void Cmd_pickup(void)
                 && species != 0
                 && species != SPECIES_EGG
                 && heldItem == ITEM_NONE
-                && (Random() % 10) == 0)
+                && (Random() % 30) == 0)
             {
                 heldItem = GetBattlePyramidPickupItemId();
                 SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
@@ -11058,7 +11078,7 @@ static void Cmd_pickup(void)
                 && species != 0
                 && species != SPECIES_EGG
                 && heldItem == ITEM_NONE
-                && (Random() % 10) == 0)
+                && (Random() % 30) == 0)
             {
                 s32 j;
                 s32 rand = Random() % 100;
@@ -11070,7 +11090,7 @@ static void Cmd_pickup(void)
                         SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &sPickupItems[lvlDivBy10 + j]);
                         break;
                     }
-                    else if (rand == 99 || rand == 98)
+                    else if (rand >= 90)
                     {
                         SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &sRarePickupItems[lvlDivBy10 + (99 - rand)]);
                         break;

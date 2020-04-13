@@ -139,6 +139,9 @@ $(EVENTOBJGFXDIR)/people/team_aqua/aqua_member_f.4bpp: %.4bpp: %.png
 $(EVENTOBJGFXDIR)/people/team_aqua/aqua_member_m.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
+$(EVENTOBJGFXDIR)/people/team_aqua/matt.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
 $(EVENTOBJGFXDIR)/people/team_aqua/archie.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
@@ -693,3 +696,16 @@ $(EVENTOBJGFXDIR)/effects/unknown_35.4bpp: %.4bpp: %.png
 
 $(EVENTOBJGFXDIR)/effects/unused_grass.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
+
+
+$(EVENTOBJGFXDIR)/pokemon/mightyena.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+	
+$(EVENTOBJGFXDIR)/pokemon/crawdaunt.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+	
+$(EVENTOBJGFXDIR)/pokemon/sharpedo.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+	
+$(EVENTOBJGFXDIR)/pokemon/camerupt.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4

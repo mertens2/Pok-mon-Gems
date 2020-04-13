@@ -1558,8 +1558,42 @@
 	.2byte \item
 	.2byte \quantity
 	.endm
+	
+	.macro changeframe frameNumber:req
+	.byte 0xe3
+	.2byte \frameNumber
+	.endm
 
+	@ Changes the player minisprite.
+	.macro changeMini minivalue:req
+	.byte 0xe4
+	.2byte \minivalue
+	.endm
+	
+	@ Set all pokemon iv's to 31
+	.macro perfectIvs idpoke:req
+	.byte 0xe5
+	.2byte \idpoke
+	.endm
+	
+	.macro changeNature slot:req, nature:req
+	.byte 0xe6
+	.2byte \slot
+	.2byte \nature
+	.endm
+	
+	.macro checkMonType index:req
+	.byte 0xe7
+	.2byte \index
+	.endm
 
+    .macro showitemdesc
+    .byte 0xe8
+    .endm
+
+    .macro hideitemdesc
+    .byte 0xe9
+    .endm
 @ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req
@@ -1723,3 +1757,4 @@
 	setfieldeffectargument 2, \priority
 	dofieldeffect FLDEFF_SPARKLE
 	.endm
+

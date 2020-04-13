@@ -26,10 +26,10 @@ DewfordTown_PokemonCenter_1F_EventScript_Man:: @ 81FC54E
 	end
 
 DewfordTown_PokemonCenter_1F_Text_StoneCavern: @ 81FC557
-	.string "There's a stone cavern at the edge\n"
-	.string "of town.\p"
-	.string "I've heard you can find rare stones\n"
-	.string "there.$"
+	.string "Del otro lado del pueblo hay una\n"
+	.string "caveerna oscura.\p"
+	.string "He oído que puedes encontrar\n"
+	.string "piedras raras.$"
 
 DewfordTown_PokemonCenter_1F_Text_FaintedMonCanUseHM: @ 81FC5AE
 	.string "Even if a POKéMON faints and can't\n"

@@ -72,7 +72,7 @@ PetalburgCity_Gym_OnWarp: @ 820498B
 	.2byte 0
 
 PetalburgCity_Gym_EventScript_TurnPlayerNorth:: @ 8204995
-	turnobject EVENT_OBJ_ID_PLAYER, DIR_NORTH
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	end
 
 PetalburgCity_Gym_OnFrame: @ 820499A
@@ -84,14 +84,14 @@ PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial:: @ 82049A4
 	msgbox PetalburgCity_Gym_Text_DadSoDidItWorkOut, MSGBOX_DEFAULT
 	msgbox PetalburgCity_Gym_Text_WallyThankYouBye, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	applymovement 10, PetalburgCity_Gym_Movement_WallyExitGym
 	waitmovement 0
 	playse SE_KAIDAN
 	removeobject 10
 	setflag FLAG_HIDE_PETALBURG_CITY_WALLY
 	delay 30
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox PetalburgCity_Gym_Text_DadGoCollectBadges, MSGBOX_DEFAULT
 	setvar VAR_PETALBURG_GYM_STATE, 2
@@ -231,13 +231,13 @@ PetalburgCity_Gym_EventScript_WallyArriveNorth:: @ 8204C43
 	applymovement 10, PetalburgCity_Gym_Movement_WallyArriveNorth
 	waitmovement 0
 	applymovement 1, Common_Movement_WalkInPlaceFastestRight
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	return
 
 PetalburgCity_Gym_EventScript_WallyArriveWestEast:: @ 8204C5F
 	applymovement 1, Common_Movement_WalkInPlaceFastestDown
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	applymovement 10, PetalburgCity_Gym_Movement_WallyArrive
 	waitmovement 0
 	return
@@ -245,25 +245,25 @@ PetalburgCity_Gym_EventScript_WallyArriveWestEast:: @ 8204C5F
 PetalburgCity_Gym_EventScript_ExitGymWithWallySouth:: @ 8204C78
 	applymovement 1, Common_Movement_WalkInPlaceFastestDown
 	applymovement 10, PetalburgCity_Gym_Movement_WallyExitSouthWest
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallySouth
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallySouth
 	waitmovement 0
 	return
 
 PetalburgCity_Gym_EventScript_ExitGymWithWallyNorth:: @ 8204C91
 	applymovement 10, PetalburgCity_Gym_Movement_WallyExitNorth
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallyNorth
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallyNorth
 	waitmovement 0
 	return
 
 PetalburgCity_Gym_EventScript_ExitGymWithWallyWest:: @ 8204CA3
 	applymovement 10, PetalburgCity_Gym_Movement_WallyExitSouthWest
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallyWest
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallyWest
 	waitmovement 0
 	return
 
 PetalburgCity_Gym_EventScript_ExitGymWithWallyEast:: @ 8204CB5
 	applymovement 10, PetalburgCity_Gym_Movement_WallyExitEast
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallyEast
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallyEast
 	waitmovement 0
 	return
 
@@ -274,19 +274,19 @@ PetalburgCity_Gym_EventScript_NormanAddressPlayerSouth:: @ 8204CC7
 
 PetalburgCity_Gym_EventScript_NormanAddressPlayerNorth:: @ 8204CD2
 	applymovement 1, Common_Movement_WalkInPlaceFastestDown
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	return
 
 PetalburgCity_Gym_EventScript_NormanAddressPlayerWest:: @ 8204CE4
 	applymovement 1, Common_Movement_WalkInPlaceFastestRight
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	return
 
 PetalburgCity_Gym_EventScript_NormanAddressPlayerEast:: @ 8204CF6
 	applymovement 1, Common_Movement_WalkInPlaceFastestLeft
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	return
 
@@ -516,7 +516,7 @@ PetalburgCity_Gym_EventScript_WallysUncleFaceNormanWest:: @ 8204FE2
 PetalburgCity_Gym_EventScript_WallysUncleApproachPlayerNorth:: @ 8204FED
 	applymovement 11, PetalburgCity_Gym_Movement_WallysUncleApproachPlayerNorth
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	applymovement 1, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	return
@@ -524,7 +524,7 @@ PetalburgCity_Gym_EventScript_WallysUncleApproachPlayerNorth:: @ 8204FED
 PetalburgCity_Gym_EventScript_WallysUncleApproachPlayerEast:: @ 8205009
 	applymovement 11, PetalburgCity_Gym_Movement_WallysUncleApproachPlayerEast
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	applymovement 1, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	return
@@ -532,7 +532,7 @@ PetalburgCity_Gym_EventScript_WallysUncleApproachPlayerEast:: @ 8205009
 PetalburgCity_Gym_EventScript_WallysUncleApproachPlayerWest:: @ 8205025
 	applymovement 11, PetalburgCity_Gym_Movement_WallysUncleApproachPlayerWest
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	applymovement 1, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	return
@@ -540,19 +540,19 @@ PetalburgCity_Gym_EventScript_WallysUncleApproachPlayerWest:: @ 8205025
 PetalburgCity_Gym_EventScript_ExitGymWithWallysUncleNorth:: @ 8205041
 	applymovement 11, PetalburgCity_Gym_Movement_WallysUncleExitNorth
 	applymovement 1, Common_Movement_WalkInPlaceFastestDown
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallysUncleNorth
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallysUncleNorth
 	waitmovement 0
 	return
 
 PetalburgCity_Gym_EventScript_ExitGymWithWallysUncleEast:: @ 820505A
 	applymovement 11, PetalburgCity_Gym_Movement_WallysUncleExitEast
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallysUncleEast
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallysUncleEast
 	waitmovement 0
 	return
 
 PetalburgCity_Gym_EventScript_ExitGymWithWallysUncleWest:: @ 820506C
 	applymovement 11, PetalburgCity_Gym_Movement_WallysUncleExitWest
-	applymovement EVENT_OBJ_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallysUncleWest
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Gym_Movement_PlayerExitWithWallysUncleWest
 	waitmovement 0
 	return
 
@@ -1226,119 +1226,106 @@ PetalburgCity_Gym_EventScript_GymStatue:: @ 8205798
 	end
 
 PetalburgCity_Gym_Text_DadYoureHereWithYourPokemon: @ 82057A2
-	.string "DAD: Hm?\p"
-	.string "Well, if it isn't {PLAYER}!\n"
-	.string "So you're all finished moving in?\p"
-	.string "I'm surprised that you managed to\n"
-	.string "get here by yourself.\p"
-	.string "Oh, I see.\n"
-	.string "You're with your POKéMON.\p"
-	.string "Hm… Then I guess you're going to\n"
-	.string "become a TRAINER like me, {PLAYER}.\p"
-	.string "That's great news!\n"
-	.string "I'll be looking forward to it!$"
+	.string "Papá: ¿Hm?\p"
+	.string "¡Ah, hola, {PLAYER}!\n"
+	.string "¿Ya terminaron de mudarse?\p"
+	.string "Me impresiona que hayas llegado\n"
+	.string "hasta aquí tan rápido.\p"
+	.string "{PLAYER}: ¡Sí! ¡Tengo la certeza\n"
+	.string "de que podré hacer grandes cosas!\p"
+	.string "Papá: Mmhh… Entonces, ¿Eres un\n"
+	.string "Entrenador, {PLAYER}?\p"
+	.string "¡Espero grandes cosas de tu parte!$"
 
 PetalburgCity_Gym_Text_WallyIdLikeAPokemon: @ 82058B1
-	.string "Um… I…\n"
-	.string "I'd like to get a POKéMON, please…$"
+	.string "Um… Ehh…\n"
+	.string "Quisiera tener un Pokémon, porfa…$"
 
 PetalburgCity_Gym_Text_DadOhYoureWallyRight: @ 82058DB
-	.string "DAD: Hm? You're… Uh… Oh, right.\n"
-	.string "You're WALLY, right?$"
+	.string "Papá: ¿Eh? Eres… Uh… Oh, cierto.\n"
+	.string "¿Te llamas Wally, no?$"
 
 PetalburgCity_Gym_Text_WallyIveNeverCaughtAPokemon: @ 8205910
-	.string "WALLY: I'm going to go stay with my\n"
-	.string "relatives in VERDANTURF TOWN.\p"
-	.string "I thought I would be lonely by myself,\n"
-	.string "so I wanted to take a POKéMON along.\p"
-	.string "But I've never caught a POKéMON before.\n"
-	.string "I don't know how…$"
+	.string "Wally: Estaba por ir a vivir a Pueblo\n"
+	.string "Verdantuf con mi familia-- ¡COF COF!\p"
+	.string "Creí que estaría muy solo, así que pensé\n"
+	.string "en atrapar un Pokémon… Pero no sé cómo\l"
+	.string "hacerlo. Sería genial si me pudiera\n"
+	.string "acompañar usted… ¡COF COF COF COF!$"
 
 PetalburgCity_Gym_Text_DadHmISee: @ 82059D8
-	.string "DAD: Hm. I see.$"
+	.string "Papá: Hm. I see.$"
 
 PetalburgCity_Gym_Text_DadPlayerGoWithWally: @ 82059E8
-	.string "DAD: {PLAYER}, you heard that,\n"
-	.string "right?\p"
-	.string "Go with WALLY and make sure that he\n"
-	.string "safely catches a POKéMON.$"
+	.string "Papá: {PLAYER}, Ya oíste.\n"
+	.string "Ve a ayudar a este pobre niño a\l"
+	.string "atrapar su primer Pokémon.$"
 
 PetalburgCity_Gym_Text_IllLoanYouMyZigzagoon: @ 8205A46
-	.string "WALLY, here, I'll loan you my POKéMON.\p"
-	.string "WALLY received a ZIGZAGOON!$"
+	.string "Wally, toma, te prestaré este.\p"
+	.string "¡A Wally le prestaron un Zigzagoon!$"
 
 PetalburgCity_Gym_Text_WallyThankYouAndDadGivesPokeBall: @ 8205A89
-	.string "WALLY: Oh, wow!\n"
-	.string "A POKéMON!\p"
-	.string "DAD: Hm. I'll give you a POKé BALL, too.\n"
-	.string "Go for it!\p"
-	.string "WALLY received a POKé BALL!$"
+	.string "Wallly: ¡Oh, wow!\n"
+	.string "¡Un Pokémon!\p"
+	.string "Papá: Hm. Tendré que darte un Ball, también.\n"
+	.string "¡Wally ahora tiene una Ball!$"
 
 PetalburgCity_Gym_Text_WallyOhWowThankYou: @ 8205AF4
-	.string "WALLY: Oh, wow!\n"
-	.string "Thank you!$"
+	.string "Wallly: ¡Oh, wow!\n"
+	.string "¡G-gracias! ¡COF COF!$"
 
 PetalburgCity_Gym_Text_WouldYouReallyComeWithMe: @ 8205B0F
-	.string "{PLAYER}… Would you really come\n"
-	.string "with me?$"
+	.string "{PLAYER}… ¿En serio vendrás a\n"
+	.string "ayudarme?$"
 
 PetalburgCity_Gym_Text_DadSoDidItWorkOut: @ 8205B32
-	.string "DAD: So, did it work out?$"
+	.string "Papá: Y… ¿Pudiste?$"
 
 PetalburgCity_Gym_Text_WallyThankYouBye: @ 8205B4C
-	.string "WALLY: Thank you, yes, it did.\n"
-	.string "Here's your POKéMON back.\p"
-	.string "{PLAYER}, thank you for coming along\n"
-	.string "with me.\p"
-	.string "You two are why I was able to catch\n"
-	.string "my POKéMON.\p"
-	.string "I promise I'll take really good\n"
-	.string "care of it.\p"
-	.string "Oh! My mom's waiting for me,\n"
-	.string "so I have to go!\p"
-	.string "Bye, {PLAYER}!$"
+	.string "Wallly: Gracias, y sí, pude.\n"
+	.string "Le devolveré a su Zigzagoon.\p"
+	.string "{PLAYER}, ¡Gracias por ayudarme!\n"
+	.string "Eres genial.\p"
+	.string "Les prometo que cuidaré muy\n"
+	.string "bien de Ralts.\p"
+	.string "¡Oh! ¡Tengo que ir a--! ¡COF!,\n"
+	.string "¡Tomar mi medicina!\p"
+	.string "¡Hasta luego, {PLAYER}!$"
 
 PetalburgCity_Gym_Text_DadGoCollectBadges: @ 8205C40
-	.string "DAD: Now…\p"
-	.string "{PLAYER}, if you want to become a\n"
-	.string "strong TRAINER, here's my advice.\p"
-	.string "Head for RUSTBORO CITY beyond this\n"
-	.string "town.\p"
-	.string "There, you should challenge\n"
-	.string "the GYM LEADER, ROXANNE.\p"
-	.string "After her, go on to other POKéMON\n"
-	.string "GYMS and defeat their LEADERS.\p"
-	.string "Collect BADGES from them,\n"
-	.string "understood?\p"
-	.string "Of course, I'm a GYM LEADER, too.\n"
-	.string "We'll battle one day, {PLAYER}.\p"
-	.string "But that's only after you become\n"
-	.string "stronger.$"
+	.string "Papá: Ahora…\p"
+	.string "{PLAYER}, Si te quieres convertir\n"
+	.string "en un Entrenador, ve ganando todos\l"
+	.string "los Gimnasios Pokémon.\p"
+	.string "Son la forma que tenemos los\n"
+	.string "Entrenadores de probarnos a nosotros\l"
+	.string "mismos. Tú serás capaz de vencerlos.\p"
+	.string "A todos los Líderes de Gimnasio y sus\n"
+	.string "acertijos. Deberás ser capaz de\l"
+	.string "afrontar esos retos tú solo.\p"
+	.string "Pero yo también soy un Líder.\n"
+	.string "Un día, batallaremos, {PLAYER}.\p"
+	.string "Pero sólo luego de que hayas\n"
+	.string "ganado cuatro Medallas.\p"
+	.string "Te estaré acompañando de vez en cuando\n"
+	.string "para entrenarte, hijo. Pero no esperes\l"
+	.string "que tenga piedad contigo. ¿Entiendes?$"
 
 PetalburgCity_Gym_Text_NormanGoToRustboro: @ 8205DB4
-	.string "DAD: Hm? Aren't you going to the\n"
-	.string "POKéMON GYM in RUSTBORO CITY?\p"
-	.string "There's no challenge for me to\n"
-	.string "battle a greenhorn TRAINER.\p"
-	.string "{PLAYER}, I want you to challenge me\n"
-	.string "when you become a lot stronger.\p"
-	.string "I'll battle you, {PLAYER}, when you\n"
-	.string "can show me four GYM BADGES, okay?$"
+	.string "Papá: ¿Hm? ¿QUÉ HACES AQUÍ?\n"
+	.string "¡TE DIJE QUE FUERAS A DERROTAR\l"
+	.string "CUATRO GIMNASIOS POKÉMON!$"
 
 PetalburgCity_Gym_Text_NormanGoToDewford: @ 8205EAE
-	.string "DAD: I see… So, you've beaten\n"
-	.string "the GYM LEADER in RUSTBORO CITY.\p"
-	.string "But there are many more TRAINERS\n"
-	.string "who are stronger than you, {PLAYER}.\p"
-	.string "Across the sea in DEWFORD TOWN is a\n"
-	.string "GYM LEADER named BRAWLY.\p"
-	.string "You should go challenge him.$"
+	.string "Papá: ¿Hm? ¿QUÉ HACES AQUÍ?\n"
+	.string "¡TE DIJE QUE FUERAS A DERROTAR\l"
+	.string "CUATRO GIMNASIOS POKÉMON!$"
 
 PetalburgCity_Gym_Text_YouHaveGottenStronger: @ 8205F87
-	.string "DAD: Hm… {PLAYER}, you have gotten\n"
-	.string "stronger.\p"
-	.string "I can tell by the number of BADGES\n"
-	.string "that you've earned.$"
+	.string "Papá: ¿Hm? ¿QUÉ HACES AQUÍ?\n"
+	.string "¡TE DIJE QUE FUERAS A DERROTAR\l"
+	.string "CUATRO GIMNASIOS POKÉMON!$"
 
 PetalburgCity_Gym_Text_NormanIntro: @ 8205FE5
 	.string "DAD: Hm…\n"

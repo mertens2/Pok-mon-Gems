@@ -143,7 +143,7 @@ LittlerootTown_EventScript_StepOffTruckFemale:: @ 81E7EF9
 LittlerootTown_EventScript_GoInsideWithMom:: @ 81E7F17
 	delay 15
 	playse SE_DANSA
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_PlayerStepOffTruck
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PlayerStepOffTruck
 	waitmovement 0
 	opendoor VAR_0x8004, VAR_0x8005
 	waitdooranim
@@ -158,16 +158,16 @@ LittlerootTown_EventScript_GoInsideWithMom:: @ 81E7F17
 	msgbox LittlerootTown_Text_OurNewHomeLetsGoInside, MSGBOX_DEFAULT
 	closemessage
 	applymovement 4, LittlerootTown_Movement_MomApproachDoor
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_PlayerApproachDoor
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PlayerApproachDoor
 	waitmovement 0
 	opendoor VAR_0x8004, VAR_0x8005
 	waitdooranim
 	applymovement 4, LittlerootTown_Movement_MomEnterHouse
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_PlayerEnterHouse
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PlayerEnterHouse
 	waitmovement 0
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
 	setvar VAR_LITTLEROOT_INTRO_STATE, 3
-	hideobjectat EVENT_OBJ_ID_PLAYER, 0
+	hideobjectat OBJ_EVENT_ID_PLAYER, 0
 	closedoor VAR_0x8004, VAR_0x8005
 	waitdooranim
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
@@ -307,7 +307,7 @@ LittlerootTown_EventScript_DangerousWithoutPokemon:: @ 81E80AD
 	msgbox LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT
 	closemessage
 	applymovement 1, LittlerootTown_Movement_TwinPushPlayerFromRoute
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_Movement_PushPlayerBackFromRoute
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PushPlayerBackFromRoute
 	waitmovement 0
 	msgbox LittlerootTown_Text_DangerousIfYouDontHavePokemon, MSGBOX_DEFAULT
 	closemessage
@@ -389,7 +389,7 @@ LittlerootTown_EventScript_GoSaveBirchTrigger:: @ 81E811F
 	lockall
 	applymovement 1, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	special GetPlayerBigGuyGirlString
 	msgbox LittlerootTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT
@@ -401,29 +401,39 @@ LittlerootTown_EventScript_GoSaveBirchTrigger:: @ 81E811F
 	end
 
 LittlerootTown_EventScript_TownSign:: @ 81E8151
+	changeframe 17
 	msgbox LittlerootTown_Text_TownSign, MSGBOX_SIGN
+	changeframe 1
 	end
 
 LittlerootTown_EventScript_BirchsLabSign:: @ 81E815A
+	changeframe 17
 	msgbox LittlerootTown_Text_ProfBirchsLab, MSGBOX_SIGN
+	changeframe 1
 	end
 
 LittlerootTown_EventScript_BrendansHouseSign:: @ 81E8163
 	lockall
 	checkplayergender
+	changeframe 17
 	compare VAR_RESULT, MALE
 	call_if_eq LittlerootTown_EventScript_PlayersHouseSignMale
 	compare VAR_RESULT, FEMALE
 	call_if_eq LittlerootTown_EventScript_BirchsHouseSignFemale
+	changeframe 1
 	releaseall
 	end
 
 LittlerootTown_EventScript_PlayersHouseSignMale:: @ 81E817D
+	changeframe 17
 	msgbox LittlerootTown_Text_PlayersHouse, MSGBOX_DEFAULT
+	changeframe 1
 	return
 
 LittlerootTown_EventScript_BirchsHouseSignFemale:: @ 81E8186
+	changeframe 17
 	msgbox LittlerootTown_Text_ProfBirchsHouse, MSGBOX_DEFAULT
+	changeframe 1
 	return
 
 LittlerootTown_EventScript_MaysHouseSign:: @ 81E818F
@@ -506,7 +516,6 @@ LittlerootTown_EventScript_GiveRunningShoesTrigger:: @ 81E8211
 	call_if_eq LittlerootTown_EventScript_MomReturnHomeMale
 	compare VAR_RESULT, FEMALE
 	call_if_eq LittlerootTown_EventScript_MomReturnHomeFemale
-	goto LittlerootTown_EventScript_SetReceivedRunningShoes
 	end
 
 LittlerootTown_EventScript_SetHomeDoorCoordsMale:: @ 81E8281
@@ -560,70 +569,70 @@ LittlerootTown_EventScript_MomApproachPlayerFemale:: @ 81E82F0
 	return
 
 LittlerootTown_EventScript_MomApproachPlayer0:: @ 81E8333
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	applymovement 4, LittlerootTown_Movement_MomApproachPlayer0
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_MomApproachPlayer1:: @ 81E8348
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	applymovement 4, LittlerootTown_Movement_MomApproachPlayer1
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_MomApproachPlayerMale2:: @ 81E835D
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	applymovement 4, LittlerootTown_Movement_MomApproachPlayerMale2
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_MomApproachPlayerMale3:: @ 81E8372
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	applymovement 4, LittlerootTown_Movement_MomApproachPlayerMale3
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_MomApproachPlayerMale4:: @ 81E8387
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	applymovement 4, LittlerootTown_Movement_MomApproachPlayerMale4
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_MomApproachPlayerMale5:: @ 81E839C
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	applymovement 4, LittlerootTown_Movement_MomApproachPlayerMale5
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_MomApproachPlayerFemale2:: @ 81E83B1
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	applymovement 4, LittlerootTown_Movement_MomApproachPlayerFemale2
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_MomApproachPlayerFemale3:: @ 81E83C6
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	applymovement 4, LittlerootTown_Movement_MomApproachPlayerFemale3
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_MomApproachPlayerFemale4:: @ 81E83DB
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	applymovement 4, LittlerootTown_Movement_MomApproachPlayerFemale4
 	waitmovement 0
 	return
 
 LittlerootTown_EventScript_MomApproachPlayerFemale5:: @ 81E83F0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	applymovement 4, LittlerootTown_Movement_MomApproachPlayerFemale5
 	waitmovement 0
@@ -938,130 +947,136 @@ LittlerootTown_EventScript_Mom:: @ 81E863D
 
 LittlerootTown_EventScript_SetReceivedRunningShoes:: @ 81E8686
 	removeobject 4
-	setflag FLAG_SYS_B_DASH
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
 	release
 	end
 
 LittlerootTown_EventScript_GiveRunningShoes:: @ 81E8693
 	msgbox LittlerootTown_Text_WearTheseRunningShoes, MSGBOX_DEFAULT
-	playfanfare MUS_FANFA4
-	message LittlerootTown_Text_SwitchShoesWithRunningShoes
-	waitfanfare
-	setflag FLAG_RECEIVED_RUNNING_SHOES
+	changeframe 14
 	msgbox LittlerootTown_Text_ExplainRunningShoes, MSGBOX_DEFAULT
+	changeframe 1
+	giveegg SPECIES_SLAKOTH
 	msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_RUNNING_SHOES
+	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	removeobject 4
 	closemessage
 	delay 30
 	return
 
 LittlerootTown_Text_OurNewHomeLetsGoInside: @ 81E86BC
-	.string "MOM: {PLAYER}, we're here, honey!\p"
-	.string "It must be tiring riding with our things\n"
-	.string "in the moving truck.\p"
-	.string "Well, this is LITTLEROOT TOWN.\p"
-	.string "How do you like it?\n"
-	.string "This is our new home!\p"
-	.string "It has a quaint feel, but it seems to be\n"
-	.string "an easy place to live, don't you think?\p"
-	.string "And, you get your own room, {PLAYER}!\n"
-	.string "Let's go inside.$"
+	.string "Mamá: ¡{PLAYER}, llegamos, cariño!\p"
+	.string "Debió ser incómodo viajar en camión…\n"
+	.string "Perdón, es que así era más barato…\p"
+	.string "Bueno, esto es PUEBLO LITTLEROOT.\p"
+	.string "¿A que es bonito? ¡Vamos a vivir\n"
+	.string "en un pueblo con 7 habitantes!\p"
+	.string "Sin dudas es aburrido, pero se siente\n"
+	.string "la tranquilidad rural, ¿No crees?\p"
+	.string "¡Hasta tienes cuarto, {PLAYER}!\p"
+	.string "¡Qué envidia, yo duermo en la mesa y\n"
+	.string "tu padre en el gimnasio, ja ja ja!\p"
+	.string "Bueno, ya, entremos.$"
 
 LittlerootTown_Text_WaitPlayer: @ 81E87E1
-	.string "MOM: Wait, {PLAYER}!$"
+	.string "Mamá: ¡Alto, {PLAYER}!$"
 
 LittlerootTown_Text_WearTheseRunningShoes: @ 81E87F0
-	.string "MOM: {PLAYER}! {PLAYER}! Did you\n"
-	.string "introduce yourself to PROF. BIRCH?\p"
-	.string "Oh! What an adorable POKéMON!\n"
-	.string "You got it from PROF. BIRCH. How nice!\p"
-	.string "You're your father's child, all right.\n"
-	.string "You look good together with POKéMON!\p"
-	.string "Here, honey! If you're going out on an\n"
-	.string "adventure, wear these RUNNING SHOES.\p"
-	.string "They'll put a zip in your step!$"
+	.string "MOM: ¡{PLAYER}! ¿Ya te\n"
+	.string "presentaste al Profesor BIRCH?\p"
+	.string "¡Oh! ¡Que POKéMON más lindo!\n"
+	.string "Seguro te lo dio el Profe Birch.\p"
+	.string "¡Eres igual a tu padre!\n"
+	.string "¡Ambos son adorables con los POKéMON!\p"
+	.string "¡! ¡Hablando de eso!\n"
+	.string "Aquí tengo algo muy especial para\l"
+	.string "ti, de parte de tu padre!$"
 
-LittlerootTown_Text_SwitchShoesWithRunningShoes: @ 81E8925
-	.string "{PLAYER} switched shoes with the\n"
-	.string "RUNNING SHOES.$"
+
 
 LittlerootTown_Text_ExplainRunningShoes: @ 81E894F
-	.string "MOM: {PLAYER}, those shoes came with\n"
-	.string "instructions.\p"
-	.string "“Press the B Button while wearing these\n"
-	.string "RUNNING SHOES to run extra-fast!\p"
-	.string "“Slip on these RUNNING SHOES and race\n"
-	.string "in the great outdoors!”$"
+	.string "Mamá: ¡Es un Huevo Misterioso!$"
 
 LittlerootTown_Text_ComeHomeIfAnythingHappens: @ 81E8A03
+	.string "¡Te ves igual que tu\n"
+	.string "padre, elegiste el mismo\l"
+	.string "ínicial que él cuando viajó a Hoenn!\p"
+	.string "¡Seguro viven grandes aventuras\n"
+	.string "juntos, justo como él!\p"
 	.string "… … … … … … … …\n"
 	.string "… … … … … … … …\p"
-	.string "To think that you have your very own\n"
-	.string "POKéMON now…\l"
-	.string "Your father will be overjoyed.\p"
-	.string "…But please be careful.\n"
-	.string "If anything happens, you can come home.\p"
-	.string "Go on, go get them, honey!$"
+	.string "Pensar que ahora tienes un POKéMON…\n"
+	.string "Wow…\l"
+	.string "Seguro tu padre estaría orgulloso.\p"
+	.string "…Pero, en serio, sé cuidadoso.\p"
+	.string "Hay unos locos por ahí discutiendo\n"
+	.string "sobre agua y rocas… ¡Bueno adiós!$"
 
 LittlerootTown_Text_CanUsePCToStoreItems: @ 81E8ACF
-	.string "If you use a PC, you can store items\n"
-	.string "and POKéMON.\p"
-	.string "The power of science is staggering!$"
+	.string "La PC permite guardar toda clase de\n"
+	.string "cosas. ¡Hasta POKéMON!\p"
+	.string "¡El maltra- que diga, la tecnología\n"
+	.string "es increíble!$"
 
 LittlerootTown_Text_BirchSpendsDaysInLab: @ 81E8B25
-	.string "PROF. BIRCH spends days in his LAB\n"
-	.string "studying, then he'll suddenly go out in\l"
-	.string "the wild to do more research…\p"
-	.string "When does PROF. BIRCH spend time\n"
-	.string "at home?$"
+	.string "El Profesor BIRCH pasa días estudiando\n"
+	.string "en el Laboratorio, después, sale a hacer\l"
+	.string "investigaciones de campo…\p"
+	.string "¿Y ese gordo cuándo pasa tiempo con\n"
+	.string "su familia?$"
 
 LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut: @ 81E8BB8
-	.string "Um, um, um!\p"
-	.string "If you go outside and go in the grass,\n"
-	.string "wild POKéMON will jump out!$"
+	.string "¡Um, um, um!\p"
+	.string "Si vas ahora sin POKéMON, te van a\n"
+	.string "atacar peligrosos perritos nivel 2!$"
 
 LittlerootTown_Text_DangerousIfYouDontHavePokemon: @ 81E8C07
-	.string "It's dangerous if you don't have\n"
-	.string "your own POKéMON.$"
+	.string "Es peligroso ir solo.\n"
+	.string "Y no tengo espadas para darte…$"
 
 LittlerootTown_Text_CanYouGoSeeWhatsHappening: @ 81E8C3A
-	.string "Um, hi!\p"
-	.string "There are scary POKéMON outside!\n"
-	.string "I can hear their cries!\p"
-	.string "I want to go see what's going on,\n"
-	.string "but I don't have any POKéMON…\p"
-	.string "Can you go see what's happening\n"
-	.string "for me?$"
+	.string "¡Ey, hola!\p"
+	.string "¡Allá fuera hay POKéMON horribles!\n"
+	.string "¡Escucho sus Alaridos!\p"
+	.string "Quisiera ir… Pero no tengo POKéMON.\n"
+	.string "Tu vida parece no tener valor…\p"
+	.string "¿Podrías ir a ver qué pasa por\n"
+	.string "mí, y arriesgar tu vida?$"
 
 LittlerootTown_Text_YouSavedBirch: @ 81E8CE3
-	.string "You saved PROF. BIRCH!\n"
-	.string "I'm so glad!$"
+	.string "¡Salvaste al Profe!\n"
+	.string "¡Y no moriste!$"
 
 LittlerootTown_Text_GoodLuckCatchingPokemon: @ 81E8D07
-	.string "Are you going to catch POKéMON?\n"
-	.string "Good luck!$"
+	.string "¿Quires atrapar POKéMON?\n"
+	.string "¡Buena suerte!$"
 
 LittlerootTown_Text_TownSign: @ 81E8D32
-	.string "LITTLEROOT TOWN\n"
-	.string "“A town that can't be shaded any hue.”$"
+	.string "PUEBLO LITTLEROOT\n"
+	.string "“Un pueblo con matices hermosos.”$"
 
 LittlerootTown_Text_ProfBirchsLab: @ 81E8D69
-	.string "PROF. BIRCH'S POKéMON LAB$"
+	.string "LABORATORIO DEL PROFE BIRCH\n"
+	.string "supongo que al Profe BIRCH le\l"
+	.string "gustan las letras mayúsculas…$"
 
 LittlerootTown_Text_PlayersHouse: @ 81E8D83
-	.string "{PLAYER}'s HOUSE$"
+	.string "Casa de Norman$"
 
 LittlerootTown_Text_ProfBirchsHouse: @ 81E8D8E
-	.string "PROF. BIRCH'S HOUSE$"
+	.string "Casa del Profe BIRCH\n"
+	.string "donde tampoco es que pase\l"
+	.string "tanto tiempo que digamos…$"
 
 LittlerootTown_Text_BirchSomethingToShowYouAtLab: @ 81E8DA2
-	.string "PROF. BIRCH: Well, well, {PLAYER}{KUN}!\n"
-	.string "That was good work out there!\p"
-	.string "I knew there was something special\n"
-	.string "about you when I first saw you,\l"
-	.string "but I never expected this.\p"
-	.string "Oh, yes. Do you still have the POKéDEX\n"
-	.string "I gave you?\p"
-	.string "I have something to show you.\n"
-	.string "Let's go to my LAB.$"
+	.string "PROFE BIRCH: ¡Bueno, bueno {PLAYER}{KUN}!\n"
+	.string "¡Eso fue fantástico, eres lo más!\p"
+	.string "Sabía que podía esperar mucho del hijo\n"
+	.string "de un Líder del Gimnasio, pero nunca\l"
+	.string "esperé que me salvara de un Zigzagoon\p"
+	.string "y luego completara la Dex de Hoenn…\n"
+	.string "Por cierto, tráela al laboratorio,\p"
+	.string "junto con el resto de ti, tengo un regalo\n"
+	.string "que hacerte.$"
 

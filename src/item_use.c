@@ -36,7 +36,7 @@
 #include "string_util.h"
 #include "task.h"
 #include "text.h"
-#include "constants/bg_event_constants.h"
+#include "constants/event_bg.h"
 #include "constants/event_objects.h"
 #include "constants/flags.h"
 #include "constants/item_effects.h"
@@ -572,15 +572,15 @@ static u8 GetDirectionToHiddenItem(s16 itemDistanceX, s16 itemDistanceY)
 
 static void PlayerFaceHiddenItem(u8 direction)
 {
-    EventObjectClearHeldMovementIfFinished(&gEventObjects[GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0)]);
-    EventObjectClearHeldMovement(&gEventObjects[GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0)]);
-    UnfreezeEventObject(&gEventObjects[GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0)]);
+    EventObjectClearHeldMovementIfFinished(&gEventObjects[GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0)]);
+    EventObjectClearHeldMovement(&gEventObjects[GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0)]);
+    UnfreezeEventObject(&gEventObjects[GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0)]);
     PlayerTurnInPlace(direction);
 }
 
 static void Task_HiddenItemNearby(u8 taskId)
 {
-    if (EventObjectCheckHeldMovementStatus(&gEventObjects[GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0)]) == TRUE)
+    if (EventObjectCheckHeldMovementStatus(&gEventObjects[GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0)]) == TRUE)
         DisplayItemMessageOnField(taskId, gText_ItemFinderNearby, Task_CloseItemfinderMessage);
 }
 
@@ -588,7 +588,7 @@ static void Task_StandingOnHiddenItem(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    if (EventObjectCheckHeldMovementStatus(&gEventObjects[GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0)]) == TRUE
+    if (EventObjectCheckHeldMovementStatus(&gEventObjects[GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0)]) == TRUE
     || tItemFound == FALSE)
     {
         // Spin player around on item
@@ -730,7 +730,7 @@ static bool8 TryToWaterSudowoodo(void)
     GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
     z = PlayerGetZCoord();
     objId = GetEventObjectIdByXYZ(x, y, z);
-    if (objId == EVENT_OBJECTS_COUNT || gEventObjects[objId].graphicsId != EVENT_OBJ_GFX_SUDOWOODO)
+    if (objId == EVENT_OBJECTS_COUNT || gEventObjects[objId].graphicsId != OBJ_EVENT_GFX_SUDOWOODO)
         return FALSE;
     else
         return TRUE;

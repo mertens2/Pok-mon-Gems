@@ -7,7 +7,7 @@
 #include "task.h"
 #include "union_room.h"
 #include "constants/event_objects.h"
-#include "constants/event_object_movement_constants.h"
+#include "constants/event_object_movement.h"
 #include "constants/flags.h"
 
 EWRAM_DATA struct UnkStruct_8019BA8 * gUnknown_02022C64 = NULL;
@@ -391,7 +391,7 @@ void sub_8019E70(u8 * sp8, s32 r9)
     for (r7 = 0; r7 < 5; r7++)
     {
         s32 r5 = 5 * r9 + r7;
-        sp8[r5] = sprite_new(EVENT_OBJ_GFX_MAN_4, r5 - 0x38, gUnknown_082F0740[r9][0] + gUnknown_082F0760[r7][0], gUnknown_082F0740[r9][1] + gUnknown_082F0760[r7][1], 3, 1);
+        sp8[r5] = sprite_new(OBJ_EVENT_GFX_MAN_4, r5 - 0x38, gUnknown_082F0740[r9][0] + gUnknown_082F0760[r7][0], gUnknown_082F0740[r9][1] + gUnknown_082F0760[r7][1], 3, 1);
         sub_8097C44(r5 - 0x38, TRUE);
     }
 }

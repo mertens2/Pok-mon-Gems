@@ -15,7 +15,7 @@
 #include "battle_pyramid.h"
 #include "constants/battle_setup.h"
 #include "constants/event_objects.h"
-#include "constants/event_object_movement_constants.h"
+#include "constants/event_object_movement.h"
 #include "constants/field_effects.h"
 
 // this file's functions
@@ -774,15 +774,15 @@ void PlayerFaceTrainerAfterBattle(void)
         eventObj = &gEventObjects[gApproachingTrainers[gWhichTrainerToFaceAfterBattle].eventObjectId];
         gPostBattleMovementScript[0] = GetFaceDirectionMovementAction(GetOppositeDirection(eventObj->facingDirection));
         gPostBattleMovementScript[1] = MOVEMENT_ACTION_STEP_END;
-        ScriptMovement_StartObjectMovementScript(EVENT_OBJ_ID_PLAYER, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, gPostBattleMovementScript);
+        ScriptMovement_StartObjectMovementScript(OBJ_EVENT_ID_PLAYER, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, gPostBattleMovementScript);
     }
     else
     {
         eventObj = &gEventObjects[gPlayerAvatar.eventObjectId];
         gPostBattleMovementScript[0] = GetFaceDirectionMovementAction(eventObj->facingDirection);
         gPostBattleMovementScript[1] = MOVEMENT_ACTION_STEP_END;
-        ScriptMovement_StartObjectMovementScript(EVENT_OBJ_ID_PLAYER, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, gPostBattleMovementScript);
+        ScriptMovement_StartObjectMovementScript(OBJ_EVENT_ID_PLAYER, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, gPostBattleMovementScript);
     }
 
-    SetMovingNpcId(EVENT_OBJ_ID_PLAYER);
+    SetMovingNpcId(OBJ_EVENT_ID_PLAYER);
 }

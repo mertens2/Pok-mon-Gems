@@ -13,7 +13,7 @@
 #include "sound.h"
 #include "sprite.h"
 #include "task.h"
-#include "constants/event_object_movement_constants.h"
+#include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
 #include "constants/field_effects.h"
 #include "constants/map_types.h"
@@ -125,7 +125,7 @@ bool8 SetUpFieldMove_RockSmash(void)
         gPostMenuFieldCallback = SetUpPuzzleEffectRegirock;
         return TRUE;
     }
-    else if (CheckObjectGraphicsInFrontOfPlayer(EVENT_OBJ_GFX_BREAKABLE_ROCK) == TRUE)
+    else if (CheckObjectGraphicsInFrontOfPlayer(OBJ_EVENT_GFX_BREAKABLE_ROCK) == TRUE)
     {
         gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
         gPostMenuFieldCallback = sub_81356C4;

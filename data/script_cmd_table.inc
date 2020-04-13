@@ -227,6 +227,12 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_warpsootopolislegend
 	.4byte ScrCmd_buffercontesttype
 	.4byte ScrCmd_bufferitemnameplural
-
+	.4byte ScrCmd_changeframe
+	.4byte ScrCmd_changeMini
+	.4byte ScrCmd_perfectIvs
+	.4byte ScrCmd_changeNature
+	.4byte ScrCmd_checkMonType
+    .4byte ScrCmd_showitemdesc
+    .4byte ScrCmd_hideitemdesc
 gScriptCmdTableEnd:: @ 81DBA08
 	.4byte ScrCmd_nop

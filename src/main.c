@@ -118,6 +118,7 @@ void AgbMain()
     CheckForFlashMemory();
     InitMainCallbacks();
     InitMapMusic();
+	SeedRngWithRtc();
     ClearDma3Requests();
     ResetBgs();
     SetDefaultFontsPointer();
@@ -203,6 +204,13 @@ void SetMainCallback2(MainCallback callback)
     gMain.state = 0;
 }
 
+static void SeedRngWithRtc(void)
+{
+    u32 seed = RtcGetMinuteCount();
+    seed = (seed >> 16) ^ (seed & 0xFFFF);
+    SeedRng(seed);
+}
+
 void StartTimer1(void)
 {
     REG_TM1CNT_H = 0x80;
@@ -210,10 +218,12 @@ void StartTimer1(void)
 
 void SeedRngAndSetTrainerId(void)
 {
-    u16 val = REG_TM1CNT_L;
-    SeedRng(val);
-    REG_TM1CNT_H = 0;
-    gTrainerId = val;
+    u32 seed = RtcGetMinuteCount();
+	u16 val = RtcGetMinuteCount();
+    seed = (seed >> 16) ^ (seed & 0xFFFF);
+    SeedRng(seed);
+	SeedRng(val);
+	gTrainerId = val;
 }
 
 u16 GetGeneratedTrainerIdLower(void)

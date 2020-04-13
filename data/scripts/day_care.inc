@@ -77,6 +77,57 @@ Route117_EventScript_CheckOnTwoMons:: @ 8291CE8
 	release
 	end
 
+Route117_PokemonDayCare_EventScript_EVTrainer::
+	lock
+	faceplayer
+	showmoneybox 0, 0, 0
+	msgbox PokemonEVTrainSiNO, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq RusturfTunnel_EventScript_EVTrainerNO
+	checkmoney 10000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq RusturfTunnel_EventScript_EVTrainerNO
+	special ChoosePartyMon
+	waitstate
+	perfectIvs VAR_0x8004
+	removemoney 10000, 0
+	updatemoneybox 0, 0
+	playse SE_REGI
+	waitse
+	playfanfare MUS_FANFA1
+	msgbox Gracias, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	hidemoneybox
+	release
+	end
+Gracias:
+	.string "¡Gracias! ¡Ahora tus Pokémon\n"
+	.string "son los más fuertes!$"
+PokemonEVTrainSiNO:
+	.string "¡Hola, soy el Entrenador de IV's!\n"
+    .string "Puedo entrenar a tus Pokémon para\l"
+    .string "que sean mucho más fuertes.\p"
+    .string "Y sólo te costará ¥10.000 poké...\p"
+    .string "¿Deseas intentarlo?$"
+
+RusturfTunnel_EventScript_EVTrainerNO::
+	msgbox PokemonEVTrainNO, MSGBOX_DEFAULT
+	hidemoneybox
+	release
+	end
+PokemonEVTrainNO:
+    .string "Mmmhh... Seguro pronto querrás\n"
+    .string "entrenar. Luego nos veremos...$"
+
+
+Route117_PokemonDayCare_EventScript_EVTrainerNO::
+	msgbox PokemonEVTrainNO, MSGBOX_DEFAULT
+	hidemoneybox
+	release
+	end
+
+
 Route117_PokemonDayCare_EventScript_DaycareWoman:: @ 8291D11
 	lock
 	faceplayer
@@ -261,10 +312,6 @@ Route117_PokemonDayCare_Movement_RetrieveDaycareMon: @ 8291F47
 	walk_slow_down
 	step_end
 
-@ Unused. Possibly a commented script, or a typo end added to the above Movement script
-Route117_PokemonDayCare_EventScript_UnusedEnd:: @ 8291F5B
-	end
-
 Route117_PokemonDayCare_EventScript_TwoMonsInDaycare:: @ 8291F5C
 	msgbox Route117_PokemonDayCare_Text_GoodToSeeYou, MSGBOX_DEFAULT
 	setvar VAR_0x8004, 0
@@ -274,19 +321,6 @@ Route117_PokemonDayCare_EventScript_TwoMonsInDaycare:: @ 8291F5C
 	msgbox Route117_PokemonDayCare_Text_TakeYourMonBack, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq Route117_PokemonDayCare_EventScript_TryRetrieveMon
-	msgbox Route117_PokemonDayCare_Text_ComeAgain, MSGBOX_DEFAULT
-	release
-	end
-
-@ Unused
-Route117_PokemonDayCare_EventScript_UnusedRetrieveMon:: @ 8291F95
-	special ShowDaycareLevelMenu
-	waitstate
-	compare VAR_RESULT, 2
-	goto_if_eq Route117_PokemonDayCare_EventScript_ComeAgain
-	copyvar VAR_0x8004, VAR_RESULT
-	specialvar VAR_RESULT, TakePokemonFromDaycare
-	msgbox Route117_PokemonDayCare_Text_HeresYourMon, MSGBOX_DEFAULT
 	msgbox Route117_PokemonDayCare_Text_ComeAgain, MSGBOX_DEFAULT
 	release
 	end
@@ -340,11 +374,6 @@ Route117_Text_FriendlyWithOtherTrainersMon: @ 82921E5
 	.string "{STR_VAR_2}'s {STR_VAR_3}.\p"
 	.string "I may even have seen it receiving\n"
 	.string "a piece of MAIL.$"
-
-@ Unused
-Route117_Text_SeeWifeIfYouWantToPickUpMon: @ 829225A
-	.string "If you want to pick up your POKéMON,\n"
-	.string "have a word with my wife.$"
 
 Route117_Text_YourMonsAreDoingFine: @ 8292299
 	.string "Ah, it's you! Your {STR_VAR_1} and\n"
@@ -401,10 +430,6 @@ Route117_PokemonDayCare_Text_YourMonHasGrownXLevels: @ 82924CC
 Route117_PokemonDayCare_Text_YourTeamIsFull: @ 82924EF
 	.string "Your POKéMON team is full.\n"
 	.string "Make room, then come see me.$"
-
-@ Unused
-Route117_PokemonDayCare_Text_TakeBackWhichMon: @ 8292527
-	.string "Which POKéMON will you take back?$"
 
 Route117_PokemonDayCare_Text_ItWillCostX: @ 8292549
 	.string "If you want your {STR_VAR_1} back,\n"

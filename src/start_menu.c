@@ -45,6 +45,7 @@
 #include "constants/songs.h"
 #include "rom_8011DC0.h"
 #include "union_room.h"
+#include "pokemon_storage_system.h"
 #include "constants/rgb.h"
 
 // Menu actions
@@ -53,11 +54,12 @@ enum
     MENU_ACTION_POKEDEX,
     MENU_ACTION_POKEMON,
     MENU_ACTION_BAG,
+	MENU_ACTION_PC,
     MENU_ACTION_POKENAV,
     MENU_ACTION_PLAYER,
     MENU_ACTION_SAVE,
     MENU_ACTION_OPTION,
-    MENU_ACTION_EXIT,
+	MENU_ACTION_EXIT,
     MENU_ACTION_RETIRE_SAFARI,
     MENU_ACTION_PLAYER_LINK,
     MENU_ACTION_REST_FRONTIER,
@@ -94,6 +96,7 @@ EWRAM_DATA static u8 sSaveInfoWindowId = 0;
 static bool8 StartMenuPokedexCallback(void);
 static bool8 StartMenuPokemonCallback(void);
 static bool8 StartMenuBagCallback(void);
+static bool8 StartMenuPCCallback(void);
 static bool8 StartMenuPokeNavCallback(void);
 static bool8 StartMenuPlayerNameCallback(void);
 static bool8 StartMenuSaveCallback(void);
@@ -159,6 +162,7 @@ static const struct MenuAction sStartMenuItems[] =
     {gText_MenuPokedex, {.u8_void = StartMenuPokedexCallback}},
     {gText_MenuPokemon, {.u8_void = StartMenuPokemonCallback}},
     {gText_MenuBag, {.u8_void = StartMenuBagCallback}},
+	{gText_MenuPC, {.u8_void = StartMenuPCCallback}},
     {gText_MenuPokenav, {.u8_void = StartMenuPokeNavCallback}},
     {gText_MenuPlayer, {.u8_void = StartMenuPlayerNameCallback}},
     {gText_MenuSave, {.u8_void = StartMenuSaveCallback}},
@@ -170,6 +174,8 @@ static const struct MenuAction sStartMenuItems[] =
     {gText_MenuRetire, {.u8_void = StartMenuBattlePyramidRetireCallback}},
     {gText_MenuBag, {.u8_void = StartMenuBattlePyramidBagCallback}}
 };
+
+
 
 static const struct BgTemplate sUnknown_085105A8[] =
 {
@@ -280,19 +286,22 @@ static void BuildNormalStartMenu(void)
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
     {
         AddStartMenuAction(MENU_ACTION_POKEMON);
+		if (FlagGet(FLAG_PSS_MENU_GET) == TRUE)
+		{
+			AddStartMenuAction(MENU_ACTION_PC);
+		}
     }
-
-    AddStartMenuAction(MENU_ACTION_BAG);
-
+	if (FlagGet(FLAG_BAG_DISABLED)== FALSE)
+	{
+		AddStartMenuAction(MENU_ACTION_BAG);
+	}
     if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
     {
         AddStartMenuAction(MENU_ACTION_POKENAV);
     }
-
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildSafariZoneStartMenu(void)
@@ -300,10 +309,10 @@ static void BuildSafariZoneStartMenu(void)
     AddStartMenuAction(MENU_ACTION_RETIRE_SAFARI);
     AddStartMenuAction(MENU_ACTION_POKEDEX);
     AddStartMenuAction(MENU_ACTION_POKEMON);
+	AddStartMenuAction(MENU_ACTION_PC);
     AddStartMenuAction(MENU_ACTION_BAG);
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildLinkModeStartMenu(void)
@@ -318,7 +327,6 @@ static void BuildLinkModeStartMenu(void)
 
     AddStartMenuAction(MENU_ACTION_PLAYER_LINK);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildUnionRoomStartMenu(void)
@@ -333,7 +341,6 @@ static void BuildUnionRoomStartMenu(void)
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildBattlePikeStartMenu(void)
@@ -342,7 +349,6 @@ static void BuildBattlePikeStartMenu(void)
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildBattlePyramidStartMenu(void)
@@ -353,7 +359,6 @@ static void BuildBattlePyramidStartMenu(void)
     AddStartMenuAction(MENU_ACTION_REST_FRONTIER);
     AddStartMenuAction(MENU_ACTION_RETIRE_FRONTIER);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildMultiPartnerRoomStartMenu(void)
@@ -361,7 +366,6 @@ static void BuildMultiPartnerRoomStartMenu(void)
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_OPTION);
-    AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void ShowSafariBallsWindow(void)
@@ -625,6 +629,23 @@ static bool8 StartMenuPokemonCallback(void)
 
     return FALSE;
 }
+
+static bool8 StartMenuPCCallback(void)
+{
+	u8 taskId;
+    if (!gPaletteFade.active)
+    {
+        PlayRainStoppingSoundEffect();
+        RemoveExtraStartMenuWindows();
+		EnableInterrupts(FLAG_POKEMONPCMENU);
+		Cb2_EnterPSS(2);
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+
 
 static bool8 StartMenuBagCallback(void)
 {

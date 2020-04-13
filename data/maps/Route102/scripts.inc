@@ -76,30 +76,30 @@ Route102_EventScript_Allen:: @ 81EC1E1
 	end
 
 Route102_Text_WatchMeCatchPokemon: @ 81EC1F8
-	.string "WALLY: {PLAYER}…\n"
-	.string "POKéMON hide in tall grass like this,\l"
-	.string "don't they?\p"
-	.string "Please watch me and see if I can\n"
-	.string "catch one properly.\p"
-	.string "…Whoa!$"
+	.string "Wally: {PLAYER}…\n"
+	.string "Los POKéMON se esconden en el\l"
+	.string "pasto alto, ¿no?\p"
+	.string "Por favor, supervísame y dime\n"
+	.string "si lo hago bien…\p"
+	.string "¡…Whoa!$"
 
 Route102_Text_WallyIDidIt: @ 81EC271
-	.string "WALLY: I did it… It's my…\n"
-	.string "My POKéMON!$"
+	.string "Wally: L-lo hice… Este es…\n"
+	.string "¡MI PRIMER POKÉMON!$"
 
 Route102_Text_LetsGoBack: @ 81EC297
-	.string "{PLAYER}, thank you!\n"
-	.string "Let's go back to the GYM!$"
+	.string "¡{PLAYER}, GRACIAS!\n"
+	.string "¡Volvamos al Gimnasio!$"
 
 Route102_Text_ImNotVeryTall: @ 81EC2C0
-	.string "I'm…not very tall, so I sink right\n"
-	.string "into tall grass.\p"
-	.string "The grass goes up my nose and…\n"
+	.string "No… Soy alto, por lo que me\n"
+	.string "camuflo en el pasto.\p"
+	.string "Aunque, a veces entra a mi…\n"
 	.string "Fwafwafwafwafwa…\p"
-	.string "Fwatchoo!$"
+	.string "¡Fwatchoo!$"
 
 Route102_Text_CatchWholeBunchOfPokemon: @ 81EC32E
-	.string "I'm going to catch a whole bunch of\n"
+	.string "¡Voy a atrapar a muchísimos\n"
 	.string "POKéMON!$"
 
 Route102_Text_RouteSignOldale: @ 81EC35B

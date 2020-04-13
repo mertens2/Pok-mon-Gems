@@ -110,7 +110,7 @@ Route103_EventScript_RivalExit:: @ 81EC50A
 	end
 
 Route103_EventScript_RivalExitFacingNorth:: @ 81EC53D
-	applymovement EVENT_OBJ_ID_PLAYER, Route103_Movement_WatchRivalExitFacingNorth
+	applymovement OBJ_EVENT_ID_PLAYER, Route103_Movement_WatchRivalExitFacingNorth
 	applymovement 2, Route103_Movement_RivalExitFacingNorth1
 	waitmovement 0
 	playse SE_DANSA
@@ -120,7 +120,7 @@ Route103_EventScript_RivalExitFacingNorth:: @ 81EC53D
 	end
 
 Route103_EventScript_RivalExitFacingEastOrWest:: @ 81EC561
-	applymovement EVENT_OBJ_ID_PLAYER, Route103_Movement_WatchRivalExitFacingEastOrWest
+	applymovement OBJ_EVENT_ID_PLAYER, Route103_Movement_WatchRivalExitFacingEastOrWest
 	applymovement 2, Route103_Movement_RivalExit1
 	waitmovement 0
 	playse SE_DANSA
@@ -292,67 +292,68 @@ Route103_EventScript_Isabelle:: @ 81EC78F
 	end
 
 Route103_Text_MayRoute103Pokemon: @ 81EC7A6
-	.string "MAY: Let's see… The POKéMON found\n"
-	.string "on ROUTE 103 include…$"
+	.string "MAY: Bueno… Ya atrapé 2 Pokémon\n"
+	.string "entre esta ruta y la 101…$"
 
 Route103_Text_MayLetsBattle: @ 81EC7DE
-	.string "Oh, hi, {PLAYER}{KUN}!\p"
-	.string "…Oh, I see, my dad gave you\n"
-	.string "a POKéMON as a gift.\p"
-	.string "Since we're here, let's have a quick\n"
-	.string "battle!\p"
-	.string "I'll give you a taste of what being\n"
-	.string "a TRAINER is like.$"
+	.string "¡{PLAYER}{KUN}!\p"
+	.string "…Oh, entonces mi padre también\n"
+	.string "te dio un Pokémon… Pues qué mal.\p"
+	.string "¡Porque estás a punto de perder\n"
+	.string "toda esperanza de convertirte\l"
+	.string "en un Entrenador!\p"
+	.string "¡Es hora de destrozarte, desquiciado!$"
 
 Route103_Text_MayDefeated: @ 81EC881
-	.string "Wow! That's great!\n"
-	.string "{PLAYER}{KUN}, you're pretty good!$"
+	.string "¡¿QUÉ?!\n"
+	.string "¿¡INCLUSO AUNQUE TENÍA 3 POKÉMON!?$"
 
 Route103_Text_MayTimeToHeadBack: @ 81EC8AE
-	.string "MAY: I think I know why my dad has\n"
-	.string "an eye out for you now.\p"
-	.string "I mean, you just got that POKéMON,\n"
-	.string "but it already likes you.\p"
-	.string "You might be able to befriend any\n"
-	.string "kind of POKéMON easily.\p"
-	.string "Well, it's time to head back to\n"
-	.string "the LAB.$"
+	.string "MAY: Debo admitir que eres fuerte,\n"
+	.string "no puedo mentir al respecto.\p"
+	.string "Pero ni creas que voy a dejarte\n"
+	.string "atrapar más Pokémon que yo.\p"
+	.string "YO soy la que va a ayudar a mi\n"
+	.string "padre, mucho más que tú, al menos.\p"
+	.string "Bueno, es hora de que vuelva al\n"
+	.string "Laboratorio.$"
 
 Route103_Text_BrendanRoute103Pokemon: @ 81EC989
-	.string "BRENDAN: Okay, so it's this one and\n"
-	.string "that one that live on ROUTE 103…$"
+	.string "BRENDAN: Okay.. Así que estos\n"
+	.string "viven aquí, y esos otros allí…$"
 
 Route103_Text_BrendanLetsBattle: @ 81EC9CE
-	.string "Hey, it's {PLAYER}!\p"
-	.string "…Oh, yeah, Dad gave you a POKéMON.\p"
-	.string "Since we're here, how about a little\n"
-	.string "battle?\p"
-	.string "I'll teach you what being a TRAINER's\n"
-	.string "about!$"
+	.string "¡Ay, no, es {PLAYER}!\p"
+	.string "…Ah, sí, te dieron un Pokémon…\p"
+	.string "No tienes que presumirlo, ¿Sabes?\n"
+	.string "Yo tengo muchos y voy a derrotarte.\p"
+	.string "¡Te quitaré las ganas de convertirte\n"
+	.string "en Entrenadora, loca!$"
 
 Route103_Text_BrendanDefeated: @ 81ECA59
-	.string "Huh, {PLAYER}, you're not too shabby.$"
+	.string "¿¡QUÉ!? ¡{PLAYER}, NO PRESUMAS!$"
 
 Route103_Text_BrendanTimeToHeadBack: @ 81ECA79
-	.string "BRENDAN: I think I get it.\n"
-	.string "I think I know why my dad has his eye\l"
-	.string "out for you now.\p"
-	.string "Look, your POKéMON already likes you,\n"
-	.string "even though you just got it.\p"
-	.string "{PLAYER}, I get the feeling that you\n"
-	.string "could befriend any POKéMON with ease.\p"
-	.string "We should head back to the LAB.$"
+	.string "BRENDAN: Supongo que mi padre\n"
+	.string "por fin hizo algo bien después de\l"
+	.string "todo, darte un Pokémon.\p"
+	.string "Mira, incluso aunque tu Pokémon te\n"
+	.string "quiera, yo no voy a quitarte el\l"
+	.string "ojo de encima. No perderé ante ti.\p"
+	.string "Ya verás cuántos Pokémon atrapo.\p"
+	.string "Serán, en definitiva, muchos más\n"
+	.string "que los que tú atrapes.$"
 
 Route103_Text_ShouldHaveBroughtPotion: @ 81ECB73
-	.string "My POKéMON is staggeringly tired…\n"
-	.string "I should have brought a POTION…$"
+	.string "Quizá debí haber traído Bayas…\n"
+	.string "¡Mis Pokémon no aguantarán!$"
 
 Route103_Text_ShortcutToOldale: @ 81ECBB5
-	.string "If you cross the sea from here,\n"
-	.string "it'll be a shortcut to OLDALE TOWN.\p"
-	.string "Fufufu, that's useful, isn't it?$"
+	.string "Si cruzas el riachuelo, terminarás\n"
+	.string "en Pueblo Oldale.\p"
+	.string "¿No es eso útil?$"
 
 Route103_Text_RouteSign: @ 81ECC1A
-	.string "ROUTE 103\n"
-	.string "{DOWN_ARROW} OLDALE TOWN$"
+	.string "RUTA 103\n"
+	.string "{DOWN_ARROW} PUEBLO OLDALE$"
 

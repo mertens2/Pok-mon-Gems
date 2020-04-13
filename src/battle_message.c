@@ -1584,7 +1584,7 @@ static const u8 sText_Round1[] = _("Round 1");
 static const u8 sText_Round2[] = _("Round 2");
 static const u8 sText_Semifinal[] = _("Semifinal");
 static const u8 sText_Final[] = _("Final");
-
+const u8 SlowForces[] = _("¡Las dimensiones se alteraron!");
 const u8 *const gRoundsStringTable[] =
 {
     sText_Round1,

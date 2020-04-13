@@ -16,7 +16,7 @@ MeteorFalls_1F_1R_EventScript_OpenStevensCave:: @ 822BD3A
 MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
 	lockall
 	playbgm MUS_MGM0, 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_FaceDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
 	waitmovement 0
 	delay 30
 	applymovement 5, Common_Movement_WalkInPlaceDown
@@ -37,7 +37,7 @@ MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_HoldItRightThereMagma, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	applymovement 5, Common_Movement_WalkInPlaceFastestLeft
 	applymovement 6, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
@@ -54,7 +54,7 @@ MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_BeSeeingYouTeamAqua, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, MeteorFalls_1F_1R_Movement_PushPlayerOutOfWay
+	applymovement OBJ_EVENT_ID_PLAYER, MeteorFalls_1F_1R_Movement_PushPlayerOutOfWay
 	applymovement 5, MeteorFalls_1F_1R_Movement_MagmaGrunt1Exit
 	applymovement 6, MeteorFalls_1F_1R_Movement_MagmaGrunt2Exit
 	waitmovement 0
@@ -232,78 +232,78 @@ MeteorFalls_1F_1R_EventScript_MetCozmo:: @ 822BF3D
 	end
 
 MeteorFalls_1F_1R_Text_WithThisMeteorite: @ 822BF47
-	.string "Hehehe!\p"
-	.string "With this METEORITE, that thing in\n"
-	.string "MT. CHIMNEY will…$"
+	.string "Recluta: ¡Je je je!\p"
+	.string "Con el Meteorito, esa cosa en el\n"
+	.string "MONTE CHIMNEY hará…$"
 
 MeteorFalls_1F_1R_Text_DontExpectMercyFromMagma: @ 822BF84
-	.string "Heh?\p"
-	.string "I don't know who you are, but if you get\n"
-	.string "in the way of TEAM MAGMA, don't\l"
-	.string "expect any mercy!$"
+	.string "Recluta: ¿Huh?\p"
+	.string "No te conozco, niño. Pero si te metes\n"
+	.string "con el TEAM MAGMA, ¡No esperes\l"
+	.string "que seamos piadosos!$"
 
 MeteorFalls_1F_1R_Text_HoldItRightThereMagma: @ 822BFE4
-	.string "Hold it right there, TEAM MAGMA!\p"
-	.string "You're badly mistaken if you think you\n"
-	.string "can have your way with the world!$"
+	.string "Archie: ¡Alto ahí, TEAM MAGMA!\p"
+	.string "¡Están muy equivocados si creen que\n"
+	.string "podrán arruinar así este mundo!$"
 
 MeteorFalls_1F_1R_Text_BeSeeingYouTeamAqua: @ 822C04E
-	.string "Hehehe!\n"
-	.string "Even TEAM AQUA joins us!\p"
-	.string "But it's too much trouble to deal with\n"
-	.string "you all…\p"
-	.string "Heh, it doesn't matter!\p"
-	.string "We've got the METEORITE, so off to\n"
-	.string "MT. CHIMNEY we go!\p"
-	.string "Hehehe! Be seeing you, you TEAM\n"
-	.string "AQUA dingbats!$"
+	.string "Maxie: ¿A quién tenemos aquí?\n"
+	.string "¡Al final cambiaste de opinión!\p"
+	.string "Y aunque no lo hubieras hecho…\n"
+	.string "No puedes hacerte el héroe…\p"
+	.string "¡Tú estás por destruir el mundo con\n"
+	.string "tus estupideces, Archie!\p"
+	.string "¡Pero no importa, ya tenemos el METEORITO!\p"
+	.string "¡Cuida bien de ese Sandslash, Archie!\n"
+	.string "¡Hasta luego, idiotas!$"
 
 MeteorFalls_1F_1R_Text_ArchieSeenYouBefore: @ 822C11C
-	.string "ARCHIE: Didn't I see you before?\n"
-	.string "At SLATEPORT's MUSEUM?\p"
-	.string "Ah, so your name is {PLAYER}.\p"
-	.string "At the time, I thought you were one\n"
-	.string "of TEAM MAGMA's goons.\p"
-	.string "Humph…\n"
-	.string "You're one odd kid.\p"
-	.string "TEAM MAGMA is a dangerous group of\n"
-	.string "total fanatics.\p"
-	.string "They engage in destruction, claiming\n"
-	.string "to expand the land mass.\p"
-	.string "They are the rivals to us,\n"
-	.string "the sea-loving TEAM AQUA!$"
+	.string "ARCHIE: ¡ARGH! ¡Ese Maxie ya va a ver…!\n"
+	.string "Espera…¿Qué no te vi en el MUSEO SLATERPORT?\p"
+	.string "Ah, entonces te llamas {PLAYER}.\p"
+	.string "En ese momento, creí que estabas con\n"
+	.string "el estúpido TEAM MAGMA…\p"
+	.string "Tú…\n"
+	.string "Sin dudas eres raro. Pero te diré algo.\p"
+	.string "Ten cuidado con ese TEAM MAGMA, y\n"
+	.string "sobretodo con su líder, Maxie.\p"
+	.string "Cuando quiere, puede causar mucho daño…\n"
+	.string "Quieren erradicar el agua de la Tierra.\p"
+	.string "¡Son rivales eternos de nosotros,\n"
+	.string "el bondadoso TEAM AQUA!$"
 
 MeteorFalls_1F_1R_Text_BossWeShouldChaseMagma: @ 822C268
-	.string "BOSS, we should give chase to\n"
-	.string "TEAM MAGMA…$"
+	.string "Jefe, señor… Deberíamos perseguir a\n"
+	.string "ese TEAM MAGMA…$"
 
 MeteorFalls_1F_1R_Text_ArchieYesNoTellingWhatMagmaWillDo: @ 822C292
-	.string "ARCHIE: Yes, yes, we must!\n"
-	.string "We've got to hurry.\p"
-	.string "There's no telling what TEAM MAGMA\n"
-	.string "will do at MT. CHIMNEY!$"
+	.string "ARCHIE: ¡Sí, sí, claro!\n"
+	.string "Nos tenemos que ir. Ese Maxie no ganará.\p"
+	.string "No hay límites de maldad para el TEAM MAGMA\n"
+	.string "¡Seguro planean modificar el Volcán!$"
 
 MeteorFalls_1F_1R_Text_ArchieFarewell: @ 822C2FC
-	.string "ARCHIE: {PLAYER}, you should keep\n"
-	.string "an eye out for TEAM MAGMA, too.\p"
-	.string "Farewell!$"
+	.string "ARCHIE: {PLAYER}, deberías mantenerte\n"
+	.string "informado sobre el TEAM MAGMA.\p"
+	.string "¡Avísame si hacen algo! ¡Adiós!$"
 
 MeteorFalls_1F_1R_Text_MeetProfCozmo: @ 822C342
-	.string "I… I'm COZMO…\n"
-	.string "I'm a PROFESSOR…\p"
-	.string "TEAM MAGMA asked me to guide them\n"
-	.string "to METEOR FALLS…\p"
-	.string "But they tricked me.\n"
-	.string "They even took my METEORITE away…\p"
-	.string "And then another similar bunch,\n"
-	.string "TEAM AQUA showed up.\p"
-	.string "After that…\n"
-	.string "I don't understand any of it.\p"
-	.string "But that TEAM MAGMA…\p"
-	.string "What are they going to do with that\n"
-	.string "METEORITE at MT. CHIMNEY?$"
+	.string "Hey… Soy Cozmo…\n"
+	.string "Soy un Profesor…\p"
+	.string "El TEAM MAGMA me dijo que investigaríamos\n"
+	.string "la CATARATA METEORO…\p"
+	.string "Pero me engañaron.\n"
+	.string "Hasta me quitaron el Meteorito…\p"
+	.string "Y el grupo rival, el TEAM AQUA,\n"
+	.string "se presentó. No entendía sus peleas.\p"
+	.string "Pero luego… El líder del TEAM MAGMA\n"
+	.string "venció al administrador del TEAM AQUA.\p"
+	.string "Se escaparon… Y cuando llegaste,\n"
+	.string "es cuando vinieron con su líder. ¿Qué\n"
+	.string "harán con el Meteorito en MONTE CHIMENEA?$"
 
 MeteorFalls_1F_1R_Text_WhatsTeamMagmaDoingAtMtChimney: @ 822C47D
-	.string "PROF. COZMO: But that TEAM MAGMA…\p"
-	.string "What are they going to do with that\n"
-	.string "METEORITE at MT. CHIMNEY?$"
+	.string "Profe Cozmo: Me pregunto…\p"
+	.string "¿Qué planean hacer los del TEAM MAGMA'\n"
+	.string "¿Y cómo el TEAM AQUA los detendrá?$"

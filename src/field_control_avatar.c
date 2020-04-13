@@ -28,7 +28,7 @@
 #include "trainer_see.h"
 #include "trainer_hill.h"
 #include "wild_encounter.h"
-#include "constants/bg_event_constants.h"
+#include "constants/event_bg.h"
 #include "constants/event_objects.h"
 #include "constants/field_poison.h"
 #include "constants/map_types.h"
@@ -80,8 +80,8 @@ void FieldClearPlayerInput(struct FieldInput *input)
     input->heldDirection2 = FALSE;
     input->tookStep = FALSE;
     input->pressedBButton = FALSE;
-    input->input_field_1_0 = FALSE;
-    input->input_field_1_1 = FALSE;
+    input->pressedLButton = FALSE;
+    input->pressedRButton = FALSE;
     input->input_field_1_2 = FALSE;
     input->input_field_1_3 = FALSE;
     input->dpadDirection = 0;
@@ -105,6 +105,10 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
                 input->pressedAButton = TRUE;
             if (newKeys & B_BUTTON)
                 input->pressedBButton = TRUE;
+            if (newKeys & L_BUTTON)
+                input->pressedLButton = TRUE;
+            if (newKeys & R_BUTTON)
+                input->pressedRButton = TRUE;
         }
 
         if (heldKeys & (DPAD_UP | DPAD_DOWN | DPAD_LEFT | DPAD_RIGHT))
@@ -122,14 +126,27 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
             input->checkStandardWildEncounter = TRUE;
     }
 
-    if (heldKeys & DPAD_UP)
-        input->dpadDirection = DIR_NORTH;
-    else if (heldKeys & DPAD_DOWN)
-        input->dpadDirection = DIR_SOUTH;
-    else if (heldKeys & DPAD_LEFT)
-        input->dpadDirection = DIR_WEST;
-    else if (heldKeys & DPAD_RIGHT)
-        input->dpadDirection = DIR_EAST;
+	if (heldKeys & DPAD_UP && !FlagGet(FLAG_BLOCKED_UP)){
+		if(FlagGet(FLAG_INVERTED_MOVEMENT))
+			input->dpadDirection = DIR_SOUTH;
+		else
+			input->dpadDirection = DIR_NORTH;
+	} else if (heldKeys & DPAD_DOWN && !FlagGet(FLAG_BLOCKED_DOWN)){
+		if(FlagGet(FLAG_INVERTED_MOVEMENT))
+			input->dpadDirection = DIR_NORTH;
+		else
+			input->dpadDirection = DIR_SOUTH;
+	} else if (heldKeys & DPAD_LEFT && !FlagGet(FLAG_BLOCKED_LEFT)){
+		if(FlagGet(FLAG_INVERTED_MOVEMENT))
+			input->dpadDirection = DIR_EAST;
+		else
+			input->dpadDirection = DIR_WEST;
+	} else if (heldKeys & DPAD_RIGHT && !FlagGet(FLAG_BLOCKED_RIGHT)){
+		if(FlagGet(FLAG_INVERTED_MOVEMENT))
+			input->dpadDirection = DIR_WEST;
+		else
+			input->dpadDirection = DIR_EAST;
+	}
 }
 
 int ProcessPlayerFieldInput(struct FieldInput *input)
@@ -186,7 +203,11 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         ShowStartMenu();
         return TRUE;
     }
-    if (input->pressedSelectButton && UseRegisteredKeyItemOnField() == TRUE)
+    if (input->pressedSelectButton && UseRegisteredKeyItemOnField(0))
+        return TRUE;
+    else if (input->pressedLButton && UseRegisteredKeyItemOnField(1))
+        return TRUE;
+    else if (input->pressedRButton && UseRegisteredKeyItemOnField(2))
         return TRUE;
 
     return FALSE;
@@ -269,7 +290,7 @@ const u8 *GetInteractedLinkPlayerScript(struct MapPosition *position, u8 metatil
     else
         eventObjectId = GetEventObjectIdByXYZ(position->x + gDirectionToVectors[direction].x, position->y + gDirectionToVectors[direction].y, position->height);
 
-    if (eventObjectId == EVENT_OBJECTS_COUNT || gEventObjects[eventObjectId].localId == EVENT_OBJ_ID_PLAYER)
+    if (eventObjectId == EVENT_OBJECTS_COUNT || gEventObjects[eventObjectId].localId == OBJ_EVENT_ID_PLAYER)
         return NULL;
 
     for (i = 0; i < 4; i++)
@@ -290,14 +311,14 @@ static const u8 *GetInteractedEventObjectScript(struct MapPosition *position, u8
     const u8 *script;
 
     eventObjectId = GetEventObjectIdByXYZ(position->x, position->y, position->height);
-    if (eventObjectId == EVENT_OBJECTS_COUNT || gEventObjects[eventObjectId].localId == EVENT_OBJ_ID_PLAYER)
+    if (eventObjectId == EVENT_OBJECTS_COUNT || gEventObjects[eventObjectId].localId == OBJ_EVENT_ID_PLAYER)
     {
         if (MetatileBehavior_IsCounter(metatileBehavior) != TRUE)
             return NULL;
 
         // Look for an event object on the other side of the counter.
         eventObjectId = GetEventObjectIdByXYZ(position->x + gDirectionToVectors[direction].x, position->y + gDirectionToVectors[direction].y, position->height);
-        if (eventObjectId == EVENT_OBJECTS_COUNT || gEventObjects[eventObjectId].localId == EVENT_OBJ_ID_PLAYER)
+        if (eventObjectId == EVENT_OBJECTS_COUNT || gEventObjects[eventObjectId].localId == OBJ_EVENT_ID_PLAYER)
             return NULL;
     }
 
@@ -448,7 +469,7 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
 
 static const u8 *GetInteractedWaterScript(struct MapPosition *unused1, u8 metatileBehavior, u8 direction)
 {
-    if (FlagGet(FLAG_BADGE05_GET) == TRUE && PartyHasMonWithSurf() == TRUE && IsPlayerFacingSurfableFishableWater() == TRUE)
+    if (IsPlayerFacingSurfableFishableWater() == TRUE)
         return EventScript_UseSurf;
 
     if (MetatileBehavior_IsWaterfall(metatileBehavior) == TRUE)

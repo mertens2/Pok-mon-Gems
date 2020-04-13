@@ -355,6 +355,7 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectGearUp
 	.4byte BattleScript_EffectIncinerate
 	.4byte BattleScript_EffectBugBite
+
 	
 BattleScript_EffectBugBite:
 	setmoveeffect MOVE_EFFECT_BUG_BITE | MOVE_EFFECT_CERTAIN
@@ -2306,6 +2307,7 @@ BattleScript_EffectAccuracyDown:
 	setstatchanger STAT_ACC, 1, TRUE
 	goto BattleScript_EffectStatDown
 	
+
 BattleScript_EffectSpecialAttackDown:
 	setstatchanger STAT_SPATK, 1, TRUE
 	goto BattleScript_EffectStatDown
@@ -5183,6 +5185,21 @@ BattleScript_TrickRoomEnds::
 	waitmessage 0x40
 	end2
 	
+BattleScript_TrickRoomEndsAbility::
+	pause 0x10
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_TRICKROOMENDS
+	waitmessage 0x40
+	end3
+	
+BattleScript_TrickRoomActivates::
+	pause 0x10
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNTWISTEDDIMENSIONS
+	waitmessage 0x40
+	playanimation BS_BATTLER_0,B_ANIM_TERRAIN_MISTY , NULL
+	end3
+	
 BattleScript_WonderRoomEnds::
 	printstring STRINGID_WONDERROOMENDS
 	waitmessage 0x40
@@ -5753,6 +5770,25 @@ BattleScript_PrintMonIsRooted::
 	waitmessage 0x40
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectFlash::
+	setbyte sSTAT_ANIM_PLAYED, FALSE
+	playstatchangeanimation BS_TARGET, BIT_ACC | BIT_EVASION, STAT_CHANGE_CANT_PREVENT | STAT_CHANGE_NEGATIVE | STAT_CHANGE_ONLY_MULTIPLE
+	playstatchangeanimation BS_TARGET, BIT_ACC, STAT_CHANGE_CANT_PREVENT | STAT_CHANGE_NEGATIVE
+	setstatchanger STAT_ACC, 2, TRUE
+	statbuffchange MOVE_EFFECT_FLASH | MOVE_EFFECT_CERTAIN | STAT_BUFF_ALLOW_PTR, BattleScript_FlashTryEva
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_FlashTryEva
+	printfromtable gStatDownStringIds
+	waitmessage 0x40
+BattleScript_FlashTryEva:
+	playstatchangeanimation BS_TARGET, BIT_EVASION, STAT_CHANGE_CANT_PREVENT | STAT_CHANGE_NEGATIVE
+	setstatchanger STAT_EVASION, 2, TRUE
+	statbuffchange MOVE_EFFECT_FLASH | MOVE_EFFECT_CERTAIN | STAT_BUFF_ALLOW_PTR, BattleScript_FlashRet
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_FlashRet
+	printfromtable gStatDownStringIds
+	waitmessage 0x40
+BattleScript_FlashRet:
+	return
+
 BattleScript_AtkDefDown::
 	setbyte sSTAT_ANIM_PLAYED, FALSE
 	playstatchangeanimation BS_ATTACKER, BIT_DEF | BIT_ATK, STAT_CHANGE_CANT_PREVENT | STAT_CHANGE_NEGATIVE | STAT_CHANGE_ONLY_MULTIPLE
@@ -5862,6 +5898,7 @@ BattleScript_SAtkDown2::
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_SAtkDown2End
 	printfromtable gStatDownStringIds
 	waitmessage 0x40
+
 BattleScript_SAtkDown2End::
 	return
 	
@@ -5889,6 +5926,7 @@ BattleScript_MegaEvolution::
 	handlemegaevo BS_ATTACKER, 2
 	printstring STRINGID_MEGAEVOEVOLVED
 	waitmessage 0x40
+	switchinabilities BS_ATTACKER
 	end2
 	
 BattleScript_StanceChangeActivates::
@@ -6300,6 +6338,7 @@ BattleScript_AbilityPopUp:
 	pause 0x10
 	return
 
+
 BattleScript_SpeedBoostActivates::
 	call BattleScript_AbilityPopUp
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
@@ -6441,7 +6480,7 @@ BattleScript_ElectricSurgeActivates::
 	waitstate
 	playanimation BS_SCRIPTING, B_ANIM_TERRAIN_ELECTRIC, NULL
 	end3
-	
+
 BattleScript_MistySurgeActivates::
 	pause 0x20
 	call BattleScript_AbilityPopUp
@@ -6465,6 +6504,8 @@ BattleScript_PsychicSurgeActivates::
 	waitstate
 	playanimation BS_SCRIPTING, B_ANIM_TERRAIN_PSYCHIC, NULL
 	end3
+	
+
 	
 BattleScript_BadDreamsActivates::
 	setbyte gBattlerTarget, 0

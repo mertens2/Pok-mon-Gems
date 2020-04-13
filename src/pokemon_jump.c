@@ -317,8 +317,6 @@ static const struct PokemonJumpMons gPkmnJumpSpecies[] =
     { .species = SPECIES_METAPOD,    .unk2 = 1, },
     { .species = SPECIES_WEEDLE,     .unk2 = 1, },
     { .species = SPECIES_KAKUNA,     .unk2 = 1, },
-    { .species = SPECIES_RATTATA,    .unk2 = 1, },
-    { .species = SPECIES_RATICATE,   .unk2 = 1, },
     { .species = SPECIES_PIKACHU,    .unk2 = 0, },
     { .species = SPECIES_SANDSHREW,  .unk2 = 0, },
     { .species = SPECIES_NIDORAN_F,  .unk2 = 0, },
@@ -327,7 +325,6 @@ static const struct PokemonJumpMons gPkmnJumpSpecies[] =
     { .species = SPECIES_VULPIX,     .unk2 = 0, },
     { .species = SPECIES_JIGGLYPUFF, .unk2 = 2, },
     { .species = SPECIES_ODDISH,     .unk2 = 2, },
-    { .species = SPECIES_PARAS,      .unk2 = 1, },
     { .species = SPECIES_MEOWTH,     .unk2 = 0, },
     { .species = SPECIES_PSYDUCK,    .unk2 = 2, },
     { .species = SPECIES_MANKEY,     .unk2 = 1, },
@@ -2589,7 +2586,7 @@ static void sub_802C9D4(struct PokemonJump2 *arg0, struct PokemonJump1_MonInfo *
     if (buffer && unusedBuffer)
     {
         HandleLoadSpecialPokePic(
-            &gMonStillFrontPicTable[jumpMon->species],
+            &gMonFrontPicTable[jumpMon->species],
             buffer,
             jumpMon->species,
             jumpMon->personality);

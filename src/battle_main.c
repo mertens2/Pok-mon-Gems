@@ -62,6 +62,7 @@
 #include "constants/species.h"
 #include "constants/trainers.h"
 #include "cable_club.h"
+#include "money.h"
 
 extern struct MusicPlayerInfo gMPlayInfo_SE1;
 extern struct MusicPlayerInfo gMPlayInfo_SE2;
@@ -244,6 +245,7 @@ EWRAM_DATA struct BattleHealthboxInfo *gUnknown_020244DC = NULL;
 EWRAM_DATA u16 gBattleMovePower = 0;
 EWRAM_DATA u16 gMoveToLearn = 0;
 EWRAM_DATA u8 gBattleMonForms[MAX_BATTLERS_COUNT] = {0};
+EWRAM_DATA u8 gMaxPartyLevel = 1;
 EWRAM_DATA u32 gFieldStatuses = 0;
 EWRAM_DATA struct FieldTimer gFieldTimers = {0};
 EWRAM_DATA u8 gBattlerAbility = 0;
@@ -437,6 +439,7 @@ static void (* const sEndTurnFuncsTable[])(void) =
 };
 
 const u8 gStatusConditionString_PoisonJpn[8] = _("どく$$$$$");
+const u8 SlowForce[31] = _("¡Las dimensiones se alteraron!");
 const u8 gStatusConditionString_SleepJpn[8] = _("ねむり$$$$");
 const u8 gStatusConditionString_ParalysisJpn[8] = _("まひ$$$$$");
 const u8 gStatusConditionString_BurnJpn[8] = _("やけど$$$$");
@@ -458,10 +461,16 @@ const u8 * const gStatusConditionStringsTable[7][2] =
 static const u8 sPkblToEscapeFactor[][3] = {{0, 0, 0}, {3, 5, 0}, {2, 3, 0}, {1, 2, 0}, {1, 1, 0}};
 static const u8 sGoNearCounterToCatchFactor[] = {4, 3, 2, 1};
 static const u8 sGoNearCounterToEscapeFactor[] = {4, 4, 4, 4};
+static const u16 sBadgeFlags[8] =
+{
+    FLAG_BADGE01_GET, FLAG_BADGE02_GET, FLAG_BADGE03_GET, FLAG_BADGE04_GET,
+    FLAG_BADGE05_GET, FLAG_BADGE06_GET, FLAG_BADGE07_GET, FLAG_BADGE08_GET,
+};
+static const u16 sWhiteOutBadgeMoney[9] = { 8, 16, 24, 36, 48, 60, 80, 100, 120, };
 
-// code
 void CB2_InitBattle(void)
 {
+    u32 i;
     MoveSaveBlocks_ResetHeap();
     AllocateBattleResources();
     AllocateBattleSpritesData();
@@ -1808,6 +1817,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u32 nameHash = 0;
     u32 personalityValue;
     u8 fixedIV;
+	u8 finalability;
     s32 i, j;
     u8 monsCount;
 
@@ -1857,7 +1867,9 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * 31 / 255;
+				
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+				SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].abilityNums);
                 break;
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET:
@@ -1870,12 +1882,13 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * 31 / 255;
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
-
+				
                 for (j = 0; j < MAX_MON_MOVES; j++)
                 {
                     SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
                     SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
                 }
+				SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].abilityNums);
                 break;
             }
             case F_TRAINER_PARTY_HELD_ITEM:
@@ -1887,9 +1900,11 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * 31 / 255;
+				
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
-
+				
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+				SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].abilityNums);
                 break;
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
@@ -1901,8 +1916,9 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * 31 / 255;
+				
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
-
+				
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
                 for (j = 0; j < MAX_MON_MOVES; j++)
@@ -1910,6 +1926,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
                     SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
                 }
+				SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].abilityNums);
                 break;
             }
             }
@@ -2589,6 +2606,7 @@ extern const struct MonCoords gCastformFrontSpriteCoords[];
 void SpriteCB_FaintOpponentMon(struct Sprite *sprite)
 {
     u8 battler = sprite->sBattler;
+    u32 personality = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_PERSONALITY);
     u16 species;
     u8 yOffset;
 
@@ -2601,16 +2619,8 @@ void SpriteCB_FaintOpponentMon(struct Sprite *sprite)
 
     if (species == SPECIES_UNOWN)
     {
-        u32 personalityValue = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_PERSONALITY);
-        u16 unownForm = ((((personalityValue & 0x3000000) >> 18) | ((personalityValue & 0x30000) >> 12) | ((personalityValue & 0x300) >> 6) | (personalityValue & 3)) % 0x1C);
-        u16 unownSpecies;
-
-        if (unownForm == 0)
-            unownSpecies = SPECIES_UNOWN;  // Use the A Unown form.
-        else
-            unownSpecies = NUM_SPECIES + unownForm;  // Use one of the other Unown letters.
-
-        yOffset = gMonFrontPicCoords[unownSpecies].y_offset;
+        species = GetUnownSpeciesId(personality);
+        yOffset = gMonFrontPicCoords[species].y_offset;
     }
     else if (species == SPECIES_CASTFORM)
     {
@@ -3079,6 +3089,8 @@ void FaintClearSetData(void)
 
     gBattleMons[gActiveBattler].status2 = 0;
     gStatuses3[gActiveBattler] = 0;
+	
+
 
     for (i = 0; i < gBattlersCount; i++)
     {
@@ -3152,7 +3164,6 @@ void FaintClearSetData(void)
     gBattleMons[gActiveBattler].type1 = gBaseStats[gBattleMons[gActiveBattler].species].type1;
     gBattleMons[gActiveBattler].type2 = gBaseStats[gBattleMons[gActiveBattler].species].type2;
     gBattleMons[gActiveBattler].type3 = TYPE_MYSTERY;
-
     ClearBattlerMoveHistory(gActiveBattler);
     ClearBattlerAbilityHistory(gActiveBattler);
     UndoFormChange(gBattlerPartyIndexes[gActiveBattler], GET_BATTLER_SIDE(gActiveBattler));
@@ -3210,7 +3221,7 @@ static void DoBattleIntro(void)
                 gBattleMons[gActiveBattler].type1 = gBaseStats[gBattleMons[gActiveBattler].species].type1;
                 gBattleMons[gActiveBattler].type2 = gBaseStats[gBattleMons[gActiveBattler].species].type2;
                 gBattleMons[gActiveBattler].type3 = TYPE_MYSTERY;
-                gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);
+				gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);
                 gBattleStruct->hpOnSwitchout[GetBattlerSide(gActiveBattler)] = gBattleMons[gActiveBattler].hp;
                 gBattleMons[gActiveBattler].status2 = 0;
                 for (i = 0; i < NUM_BATTLE_STATS; i++)
@@ -3282,7 +3293,6 @@ static void DoBattleIntro(void)
         if (!gBattleControllerExecFlags)
         {
             struct HpAndStatus hpStatus[PARTY_SIZE];
-
             for (i = 0; i < PARTY_SIZE; i++)
             {
                 if (GetMonData(&gEnemyParty[i], MON_DATA_SPECIES2) == SPECIES_NONE

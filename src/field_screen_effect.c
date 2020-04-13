@@ -27,7 +27,7 @@
 #include "start_menu.h"
 #include "task.h"
 #include "text.h"
-#include "constants/event_object_movement_constants.h"
+#include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
@@ -338,7 +338,7 @@ static void Task_ExitDoor(u8 taskId)
         {
             u8 eventObjId;
             SetPlayerVisibility(TRUE);
-            eventObjId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
+            eventObjId = GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
             EventObjectSetHeldMovement(&gEventObjects[eventObjId], MOVEMENT_ACTION_WALK_NORMAL_DOWN);
             task->data[0] = 2;
         }
@@ -348,7 +348,7 @@ static void Task_ExitDoor(u8 taskId)
         {
             u8 eventObjId;
             task->data[1] = FieldAnimateDoorClose(*x, *y);
-            eventObjId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
+            eventObjId = GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
             EventObjectClearHeldMovementIfFinished(&gEventObjects[eventObjId]);
             task->data[0] = 3;
         }
@@ -386,7 +386,7 @@ static void Task_ExitNonAnimDoor(u8 taskId)
         {
             u8 eventObjId;
             SetPlayerVisibility(TRUE);
-            eventObjId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
+            eventObjId = GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
             EventObjectSetHeldMovement(&gEventObjects[eventObjId], GetWalkNormalMovementAction(GetPlayerFacingDirection()));
             task->data[0] = 2;
         }
@@ -694,9 +694,9 @@ static void Task_DoDoorWarp(u8 taskId)
         if (task->data[1] < 0 || gTasks[task->data[1]].isActive != TRUE)
         {
             u8 eventObjId;
-            eventObjId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
+            eventObjId = GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
             EventObjectClearHeldMovementIfActive(&gEventObjects[eventObjId]);
-            eventObjId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
+            eventObjId = GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
             EventObjectSetHeldMovement(&gEventObjects[eventObjId], MOVEMENT_ACTION_WALK_NORMAL_UP);
             task->data[0] = 2;
         }
@@ -706,7 +706,7 @@ static void Task_DoDoorWarp(u8 taskId)
         {
             u8 eventObjId;
             task->data[1] = FieldAnimateDoorClose(*x, *y - 1);
-            eventObjId = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
+            eventObjId = GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
             EventObjectClearHeldMovementIfFinished(&gEventObjects[eventObjId]);
             SetPlayerVisibility(FALSE);
             task->data[0] = 3;

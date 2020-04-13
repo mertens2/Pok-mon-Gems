@@ -4,7 +4,7 @@
 #include "malloc.h"
 #include "rotating_tile_puzzle.h"
 #include "script_movement.h"
-#include "constants/event_object_movement_constants.h"
+#include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
 #include "constants/metatile_labels.h"
 
@@ -57,7 +57,7 @@ void FreeRotatingTilePuzzle(void)
     if (sRotatingTilePuzzle != NULL)
         FREE_AND_SET_NULL(sRotatingTilePuzzle);
 
-    id = GetEventObjectIdByLocalIdAndMap(EVENT_OBJ_ID_PLAYER, 0, 0);
+    id = GetEventObjectIdByLocalIdAndMap(OBJ_EVENT_ID_PLAYER, 0, 0);
     EventObjectClearHeldMovementIfFinished(&gEventObjects[id]);
     ScriptMovement_UnfreezeEventObjects();
 }

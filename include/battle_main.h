@@ -84,6 +84,7 @@ extern const u8 gAbilityNames[][ABILITY_NAME_LENGTH + 1];
 extern const u8 *const gAbilityDescriptionPointers[];
 
 extern const u8 gStatusConditionString_PoisonJpn[8];
+extern const u8 SlowForce[31];
 extern const u8 gStatusConditionString_SleepJpn[8];
 extern const u8 gStatusConditionString_ParalysisJpn[8];
 extern const u8 gStatusConditionString_BurnJpn[8];

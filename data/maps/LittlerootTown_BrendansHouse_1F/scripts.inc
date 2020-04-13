@@ -63,7 +63,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock:: @ 81F7814
 	lockall
 	msgbox PlayersHouse_1F_Text_GoSetTheClock, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_PushTowardStairs
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_PushTowardStairs
 	applymovement 1, LittlerootTown_BrendansHouse_1F_Movement_PushTowardStairs
 	waitmovement 0
 	warp MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, 255, 7, 1
@@ -96,7 +96,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor:: @ 81F785E
 	waitmovement 0
 	applymovement 4, Common_Movement_Delay48
 	waitmovement 0
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	applymovement 4, LittlerootTown_BrendansHouse_1F_Movement_RivalMomApproach
 	waitmovement 0
 	special GetRivalSonDaughterString
@@ -183,7 +183,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_MeetRival:: @ 81F78E2
 	end
 
 LittlerootTown_BrendansHouse_1F_EventScript_PlayerFaceBrendan:: @ 81F7981
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	return
 
@@ -229,19 +229,19 @@ LittlerootTown_BrendansHouse_1F_Movement_BrendanApproachPlayer2: @ 81F79B9
 	step_end
 
 LittlerootTown_BrendansHouse_1F_EventScript_BrendanGoUpstairs0:: @ 81F79C1
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit0
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit0
 	applymovement 7, LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs0
 	waitmovement 0
 	return
 
 LittlerootTown_BrendansHouse_1F_EventScript_BrendanGoUpstairs1:: @ 81F79D3
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit1
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit1
 	applymovement 7, LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs1
 	waitmovement 0
 	return
 
 LittlerootTown_BrendansHouse_1F_EventScript_BrendanGoUpstairs2:: @ 81F79E5
-	applymovement EVENT_OBJ_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit2
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit2
 	applymovement 7, LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs2
 	waitmovement 0
 	return
@@ -296,153 +296,174 @@ LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs2: @ 81F7A16
 	step_end
 
 PlayersHouse_1F_Text_IsntItNiceInHere: @ 81F7A1C
-	.string "MOM: See, {PLAYER}?\n"
-	.string "Isn't it nice in here, too?$"
+	.string "Mamá: ¿Hermoso, no, {PLAYER}?\n"
+	.string "¡Aquí dormiré! Aunque cuando te\l"
+	.string "vayas, dormiré en tu cuarto…$"
 
 PlayersHouse_1F_Text_MoversPokemonGoSetClock: @ 81F7A46
-	.string "The mover's POKéMON do all the work\n"
-	.string "of moving us in and cleaning up after.\l"
-	.string "This is so convenient!\p"
-	.string "{PLAYER}, your room is upstairs.\n"
-	.string "Go check it out, dear!\p"
-	.string "DAD bought you a new clock to mark\n"
-	.string "our move here.\l"
-	.string "Don't forget to set it!$"
+	.string "Los Vigoroth hacen todo el trabajo\n"
+	.string "con su increíble Fuerza.\p"
+	.string "No es parte del servicio limpiar, pero\n"
+	.string "no dejarán la casa hecha un desastre…\p"
+	.string "{PLAYER}, ve al cuarto, que está arriba.\n"
+	.string "¡Mira cada rincón!\p"
+	.string "Papá te compró un Reloj de Pared\n"
+	.string "cuando veníamos hacia aquí.\l"
+	.string "¡Ponlo en hora! Sabré si no lo haces.$"
 
 PlayersHouse_1F_Text_ArentYouInterestedInRoom: @ 81F7B24
-	.string "MOM: Well, {PLAYER}?\p"
-	.string "Aren't you interested in seeing your\n"
-	.string "very own room?$"
+	.string "Mamá: ¿Y, {PLAYER}?\p"
+	.string "¿Que tal está tu nuevo\n"
+	.string "cuarto? ¿La cama es cómoda?$"
 
 PlayersHouse_1F_Text_GoSetTheClock: @ 81F7B67
-	.string "MOM: {PLAYER}.\p"
-	.string "Go set the clock in your room, honey.$"
+	.string "Mamá: {PLAYER}.\p"
+	.string "No te vas a ir hasta preparar el reloj.$"
 
 PlayersHouse_1F_Text_OhComeQuickly: @ 81F7B96
-	.string "MOM: Oh! {PLAYER}, {PLAYER}!\n"
-	.string "Quick! Come quickly!$"
+	.string "Mamá: ¡Oh! ¡{PLAYER}, {PLAYER}!\n"
+	.string "¡Mira, mira!$"
 
 PlayersHouse_1F_Text_MaybeDadWillBeOn: @ 81F7BBC
-	.string "MOM: Look! It's PETALBURG GYM!\n"
-	.string "Maybe DAD will be on!$"
+	.string "Mamá: Es el GIMNASIO PETALBURG!\n"
+	.string "¡Tu padre se ve hermoso en TV!$"
 
 PlayersHouse_1F_Text_ItsOverWeMissedHim: @ 81F7BF1
-	.string "MOM: Oh… It's over.\p"
-	.string "I think DAD was on, but we missed him.\n"
-	.string "Too bad.$"
+	.string "Mamá: Oh… Muy tarde.\p"
+	.string "Te perdiste a tu papá muy nervioso\n"
+	.string "como para hablar. Fue adorable, ¡ja ja!.$"
 
 PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor: @ 81F7C35
-	.string "Oh, yes.\n"
-	.string "One of DAD's friends lives in town.\p"
-	.string "PROF. BIRCH is his name.\p"
-	.string "He lives right next door, so you should\n"
-	.string "go over and introduce yourself.$"
+	.string "¡Ah, sí!\n"
+	.string "El amigo de la infancia de tu padre\p"
+	.string "vive literalmente al lado de casa.\p"
+	.string "El Profe seguro estará encantado\n"
+	.string "de volver a verte.$"
 
 PlayersHouse_1F_Text_SeeYouHoney: @ 81F7CC3
-	.string "MOM: See you, honey!$"
+	.string "Mamá: ¡Hasta luego, hijito!$"
 
 PlayersHouse_1F_Text_DidYouMeetProfBirch: @ 81F7CD8
-	.string "MOM: Did you introduce yourself to\n"
-	.string "PROF. BIRCH?$"
+	.string "Mamá: ¿Ya saludaste al Profe BIRCH?$"
 
 PlayersHouse_1F_Text_YouShouldRestABit: @ 81F7D08
-	.string "MOM: How are you doing, {PLAYER}?\n"
-	.string "You look a little tired.\p"
-	.string "I think you should rest a bit.$"
+	.string "Mamá: ¿Cómo vas, {PLAYER}?\n"
+	.string "Te ves cansado…\p"
+	.string "Dormir un poco te hará bien.$"
 
 PlayersHouse_1F_Text_TakeCareHoney: @ 81F7D5C
-	.string "MOM: Take care, honey!$"
+	.string "Mamá: ¡Cuídate, cielo!\n"
+	.string "¡Que no te lleve Drifloon!$"
 
 PlayersHouse_1F_Text_GotDadsBadgeHeresSomethingFromMom: @ 81F7D73
-	.string "MOM: Oh? Did DAD give you that BADGE?\p"
-	.string "Then here's something from your MOM!$"
+	.string "Mamá: ¿Oh? ¿Tu papá te dio esa Medalla?\p"
+	.string "Debí haber estado ahí, seguro tu padre se\n"
+	.string "veía hermoso al combatir… O tal vez no.\p"
+	.string "¡Como sea, yo también te daré algo!$"
 
 PlayersHouse_1F_Text_DontPushYourselfTooHard: @ 81F7DBE
-	.string "Don't push yourself too hard, dear.\n"
-	.string "You can always come home.\p"
-	.string "Go for it, honey!$"
+	.string "No te sobreexijas, hijito.\n"
+	.string "Siempre puedes venir a descansar.\p"
+	.string "¡Tú puedes, campeón!$"
 
 PlayersHouse_1F_Text_IsThatAPokenav: @ 81F7E0E
-	.string "MOM: What is that, honey? A POKéNAV?\n"
-	.string "Someone from DEVON gave it to you?\p"
-	.string "Well, honey, how about registering\n"
-	.string "your mom?\p"
+	.string "Mamá: ¿Qué es esa cosa? ¿Un POKéNAV?\n"
+	.string "Es sin dudas un invento de Devon, que mal\l"
+	.string "diseño. El mío personalizado es mejor…\n"
+	.string "¡Como sea, ten mi número!\p"
 	.string "… … …$"
 
 PlayersHouse_1F_Text_RegisteredMom: @ 81F7E89
-	.string "Registered MOM\n"
-	.string "in the POKéNAV.$"
+	.string "Registrada Mamá.$"
 
 PlayersHouse_1F_Text_Vigoroth1: @ 81F7EA8
-	.string "Fugiiiiih!$"
+	.string "¡Vigo!$"
 
 PlayersHouse_1F_Text_Vigoroth2: @ 81F7EB3
-	.string "Huggoh, uggo uggo…$"
+	.string "Rot rot rot…\n"
+	.string "Parece sobreexplotado…$"
 
 PlayersHouse_1F_Text_ReportFromPetalburgGym: @ 81F7EC6
-	.string "INTERVIEWER: …We brought you this\n"
-	.string "report from in front of PETALBURG GYM.$"
+	.string "ENTREVISTADOR: Señor Norman… ¿A\n"
+	.string "dónde va?\p"
+	.string "Creo haber visto que estaba sonrojado…\n"
+	.string "Seguro se puso nervioso por la cámara…\l"
+	.string "Como sea… Aquí termina el show.$"
 
 PlayersHouse_1F_Text_TheresAMovieOnTV: @ 81F7F0F
-	.string "There is a movie on TV.\p"
-	.string "Two men are dancing on a big piano\n"
-	.string "keyboard.\p"
-	.string "Better get going!$"
+	.string "Están dando un programa de Galar.\p"
+	.string "Dos tipos con un sentido dudoso de\n"
+	.string "la moda están combatiendo…\p"
+	.string "¡Vamos, hombre de la campera rara!$"
 
 PlayersHouse_1F_Text_RunningShoesManual: @ 81F7F66
-	.string "It's the instruction booklet for the\n"
-	.string "RUNNING SHOES.\p"
-	.string "“Press the B Button to run while\n"
-	.string "wearing your RUNNING SHOES.\p"
-	.string "“Lace up your RUNNING SHOES and hit\n"
-	.string "the road running!”$"
+	.string "Aquí dice ”Agua de dieta”…$"
 
 PlayersHouse_1F_Text_TicketFromBrineyCameForYou: @ 81F800E
-	.string "DAD: Hm?\p"
-	.string "Hey, it's {PLAYER}!\p"
-	.string "It's been a while since I saw you,\n"
-	.string "but you look…stronger, somehow.\p"
-	.string "That's the impression I get.\n"
-	.string "But your old man hasn't given up yet!\p"
-	.string "Oh, yes, I have something for you.\n"
-	.string "This came to you from someone named\l"
-	.string "MR. BRINEY.$"
+	.string "Ppaá: ¿Hm?\p"
+	.string "¡Hey, es {PLAYER}!\p"
+	.string "Seguro estás disfrutando ser campeón,\n"
+	.string "deberíamos entrenar un día de estos.\p"
+	.string "Ya das la talla para Líder de Gimnasio,\n"
+	.string "incluso a tu corta edad. Justo como un\l"
+	.string "presumido pelopincho, que es Líder\p"
+	.string "de Ciudad Verde. Sin dudas, combina\n"
+	.string "con su nombre. Escuché que a su novio\l"
+	.string "no le hace gracia que se la pase\p"
+	.string "en el Gimnasio siempre…\p"
+	.string "¡Ja! Lo mismo que me dice tu madre.\p"
+	.string "¡Ah, sí! Tengo algo que darte…\n"
+	.string "Esto te lo entrega el Sr. BRINEY,\l"
+	.string "antiguo mentor de Wallace.$"
 
 PlayersHouse_1F_Text_PortsInSlateportLilycove: @ 81F80FE
-	.string "DAD: Hm, a TICKET for a ferry?\p"
-	.string "If I recall, there are ferry ports in\n"
-	.string "SLATEPORT and LILYCOVE.$"
+	.string "Papá: ¿Eh, un TICKET para el ferry?\p"
+	.string "Si me acuerto bien, hay puertos en\n"
+	.string "SLATEPORT y LILYCOVE.$"
 
 PlayersHouse_1F_Text_BetterGetBackToGym: @ 81F815B
-	.string "I'd better get back to PETALBURG GYM.\p"
-	.string "MOM, thanks for looking after the house\n"
-	.string "while I'm away.$"
+	.string "Debería volver al GIMNASIO PETALBURG…\p"
+	.string "Un día de estos deberías ir y retarme,\n"
+	.string "¡Aceptaré un reto siempre! Si me ganas,\l"
+	.string "quizá te deje encargarte del Gimnasio\p"
+	.string "mientras salgo a comer con tu madre,\n"
+	.string "¿Te parece?\p"
+	.string "Amor, gracias por cuidar la casa mientras\n"
+	.string "no estoy.$"
 
 PlayersHouse_1F_Text_DadShouldStayLonger: @ 81F81B9
-	.string "MOM: That DAD of yours…\p"
-	.string "He comes home for the first time in a\n"
-	.string "while, but all he talks about is POKéMON.\p"
-	.string "He should relax and stay a little longer.$"
+	.string "Mamá: Ese padre tuyo…\p"
+	.string "Viene por primera vez desde hace un año\n"
+	.string "y sólo habla de POKéMON.\p"
+	.string "Si no fuera por lo delicioso que cocina,\n"
+	.string "porque me manda sus almuerzos desde el\l"
+	.string "GIMNASIO y porque es así de hermoso,\p"
+	.string "probablemente estaría por ahí buscándome\n"
+	.string "un mejor marido… O quizá podría tener\l"
+	.string "algunas amigas… Me han dicho que Lorelei,\p"
+	.string "de la región Kanto y Candice, de Sinnoh son\n"
+	.string "agradables…\p"
+	.string "De todas formas, debería relajarse más tiempo…$"
 
 PlayersHouse_1F_Text_IsThatABreakingStory: @ 81F824B
-	.string "MOM: Is that a breaking news story?$"
+	.string "Mamá: ¿Es una noticia?$"
 
 PlayersHouse_1F_Text_LatiEmergencyNewsFlash: @ 81F826F
-	.string "We bring you this emergency\n"
-	.string "news flash!\p"
-	.string "In various HOENN locales, there have\n"
-	.string "been reports of a BZZT…colored\l"
-	.string "POKéMON in flight.\p"
-	.string "The identity of this POKéMON is\n"
-	.string "currently unknown.\p"
-	.string "We now return you to the regular\n"
-	.string "movie program.$"
+	.string "¡EMERGENCIA DE COLOR BZZZ!\n"
+	.string "¡! ¡!\p"
+	.string "¡Varios locales de Hoenn, han visto\n"
+	.string "POKéMON de color BZZ en el cielo!\l"
+	.string "…\p"
+	.string "La identidad de los POKéMON aún se\n"
+	.string "desconoce.\p"
+	.string "Ahora, volvemos al doceavo combate\n"
+	.string "de Red y Green por el título de campeón.$"
 
 PlayersHouse_1F_Text_WhatColorDidTheySay: @ 81F8351
-	.string "MOM: {PLAYER}, did you catch that?\p"
-	.string "What color did the announcer say\n"
-	.string "that POKéMON was?$"
+	.string "Mamá: {PLAYER}, ¿Lo entendiste?\p"
+	.string "¿De qué color era el POKéMON\n"
+	.string "que está aterrorizando Hoenn?$"
 
 PlayersHouse_1F_Text_StillUnknownPokemon: @ 81F83A1
-	.string "MOM: Well, isn't that something!\n"
-	.string "There are still unknown POKéMON.$"
+	.string "Mamá: ¡Bueno, algo es algo!\n"
+	.string "Aún hay POKéMON que no se conocen…$"

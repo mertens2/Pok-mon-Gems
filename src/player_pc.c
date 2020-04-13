@@ -169,7 +169,10 @@ static const struct MenuAction gPCText_ItemPCOptionsText[] =
 
 static const struct ItemSlot gNewGamePCItems[] =
 {
-    { ITEM_POTION, 1 },
+    { ITEM_POTION, 2 },
+	{ ITEM_MIRACLE_SEED, 1 },
+	{ ITEM_MYSTIC_WATER, 1 },
+	{ ITEM_CHARCOAL, 1 },
     { ITEM_NONE, 0 }
 };
 

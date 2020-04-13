@@ -152,7 +152,7 @@ Route116_EventScript_Briney:: @ 81F2D84
 Route116_EventScript_BrineyTrigger:: @ 81F2D95
 	lockall
 	applymovement 11, Common_Movement_WalkInPlaceFastestRight
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox Route116_Text_ScoundrelMadeOffWithPeeko, MSGBOX_DEFAULT
 	setvar VAR_ROUTE116_STATE, 2
@@ -190,6 +190,7 @@ Route116_EventScript_PlayerHasGlasses:: @ 81F2DF1
 
 Route116_EventScript_FoundGlassesOnPlayer:: @ 81F2E1B
 	msgbox Route116_Text_NotWhatImLookingForMaybeTheyArentHere, MSGBOX_DEFAULT
+	giveitem ITEM_NUGGET, 1
 	closemessage
 	goto Route116_EventScript_GlassesManExit
 	end
@@ -305,7 +306,15 @@ Route116_EventScript_Janice:: @ 81F2F7C
 	trainerbattle_single TRAINER_JANICE, Route116_Text_JaniceIntro, Route116_Text_JaniceDefeat
 	msgbox Route116_Text_JanicePostBattle, MSGBOX_AUTOCLOSE
 	end
-
+Route116_EventScript_Pokemon::
+	msgbox OhDosVelozBall, MSGBOX_NPC
+	giveitem ITEM_QUICK_BALL 2
+	removeobject 8
+	setflag FLAG_ITEM_ROUTE_116_REPEL
+	end
+OhDosVelozBall:
+	.string "¡OH! ¡Genial, dos Veloz\n"
+	.string "Ball! ¡Es fantástico!$"
 Route116_EventScript_Karen:: @ 81F2F93
 	trainerbattle_single TRAINER_KAREN_1, Route116_Text_KarenIntro, Route116_Text_KarenDefeat, Route116_EventScript_TryRegisterKarenAfterBattle
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -370,122 +379,91 @@ Route116_EventScript_Johnson:: @ 81F3086
 	end
 
 Route116_Text_ScoundrelMadeOffWithPeeko: @ 81F309D
-	.string "Ohhh, what am I to do?\p"
-	.string "We were on our walk, PEEKO and I, when\n"
-	.string "we were jumped by an odd thug…\p"
-	.string "The scoundrel made off with my\n"
-	.string "darling PEEKO!\p"
-	.string "Wrrrooooooaaaar! PEEKO!$"
+	.string "Ahh… ¿Y ahora qué voy a hacer?\p"
+	.string "Estaba aquí, jugando con Peeko…\n"
+	.string "¡Y alguien se lo llevó a la cueva…!\p"
+	.string "¡NOOOOOOOOOOOoOoOoOooooOOoo! ¡PEEKO!$"
 
 Route116_Text_WantToDigTunnel: @ 81F3140
-	.string "Nnn… Roar!\p"
-	.string "I want to dig that tunnel!$"
+	.string "¡Nnn… Roar!\p"
+	.string "¡YA QUIERO CAVAR ESE TÚNEL!$"
 
 Route116_Text_DiggingTunnelWhenGoonOrderedMeOut: @ 81F3166
-	.string "Nnn… Roar!\n"
-	.string "What's going on?\p"
-	.string "I was digging the tunnel without any\n"
-	.string "tools when some goon ordered me out!\p"
-	.string "That tunnel's filled with POKéMON\n"
-	.string "that react badly to loud noises.\l"
-	.string "They could cause an uproar.\p"
-	.string "That's why we stopped using heavy\n"
-	.string "equipment for tunneling…\p"
-	.string "I'm worried that the goon will do\n"
-	.string "something stupid and startle the\l"
-	.string "POKéMON into an uproar.$"
+	.string "¡Nnn… Roar!\n"
+	.string "¿Qué pasa?\p"
+	.string "¡Estaba cavando ese túnel sin ninguna\n"
+	.string "herramienta cuando alguien me !\p"
+	.string "Dijeron que la cueva está llena de Pokémon\n"
+	.string "que reaccionan con los ruidos…\l"
+	.string "Incluso podrían armar un Alboroto…$"
 
 Route116_Text_GoonHightailedItOutOfTunnel: @ 81F32C1
-	.string "Nnn… Roar!\p"
-	.string "That goofy goon hightailed it out of\n"
-	.string "the tunnel! I can go back to digging!$"
+	.string "¡Nnn… Roar!\p"
+	.string "¡Ese idiota me lo impide!\n"
+	.string "¡No puedo seguir cavando!$"
 
 Route116_Text_ThankYouTokenOfAppreciation: @ 81F3317
-	.string "Oh! It's you!\p"
-	.string "You're that person who not only helped\n"
-	.string "me in PETALBURG WOODS, but also got\l"
-	.string "back my stolen package and then even\l"
-	.string "graciously delivered it to SLATEPORT!\p"
-	.string "CAPT. STERN informed us that the\n"
-	.string "package arrived, too!\p"
-	.string "I thank you very, very much!\p"
-	.string "Why, if I were a rain cloud, I would\n"
-	.string "shower you with gratitude and hail\l"
-	.string "you as a hero!\p"
-	.string "For you, the most wonderful TRAINER,\n"
-	.string "I bear good news!\p"
-	.string "Recently, our company developed\n"
-	.string "a new kind of POKé BALL.\p"
-	.string "As a token of our appreciation, this\n"
-	.string "is our gift to our wonderful TRAINER!$"
+	.string "¡Ah, eres tú!\p"
+	.string "Eres la persona que me ayudó en el\n"
+	.string "bosque… ¡Y ahora recuperas mi paquete\l"
+	.string "robado! ¡Eres un alma caritativa!\l"
+	.string "Tengo que agradecértelo de alguna\n"
+	.string "forma…\p"
+	.string "¡Ya sé, toma esta nueva Poké Ball\n"
+	.string "en la que he estado trabajando!$"
 
 Route116_Text_NewBallAvailableAtMart: @ 81F3521
-	.string "Our new POKé BALL will be available\n"
-	.string "at the POKéMON MART in RUSTBORO.\p"
-	.string "Please do try it out!\n"
-	.string "Thank you and bye-bye!$"
+	.string "Nuestra nueva Ball estará disponible\n"
+	.string "en la Tienda Pokémon de Rustboro.$"
 
 Route116_Text_BagIsJamPacked: @ 81F3593
 	.string "Your BAG is jam-packed.\n"
 	.string "I can't give you this REPEAT BALL.$"
 
 Route116_Text_TokenOfAppreciation: @ 81F35CE
-	.string "As a token of our appreciation for\n"
-	.string "your delivering our package, I have\l"
-	.string "a gift of a new kind of POKé BALL\l"
-	.string "for our most wonderful TRAINER!$"
+	.string "¡Gracias, en serio! ¡Toma esta Ball!$"
 
 Route116_Text_CanYouHelpMeFindGlasses: @ 81F3657
-	.string "I dropped my glasses…\n"
-	.string "Can you help me find them?$"
+	.string "Se me cayeron las gafas…\n"
+	.string "{PLAYER}: Emhh… No, las tienes puestas…\l"
+	.string "¡ESAS NO! ¡Las oscuras!$"
 
 Route116_Text_MayISeeThoseGlasses: @ 81F3688
-	.string "Those glasses!\n"
-	.string "May I see them for a second?$"
+	.string "¡Esas gafas!\n"
+	.string "¿Me dejas verlas?$"
 
 Route116_Text_NotWhatImLookingForMaybeTheyArentHere: @ 81F36B4
 	.string "Hmm…\n"
-	.string "These are BLACKGLASSES.\l"
-	.string "They're not what I'm looking for…\p"
-	.string "Maybe my glasses aren't around\n"
-	.string "here…$"
+	.string "¡SON LAS QUE BUSCO! ¡ACEPTA ESTO COMO RECOMPENSA!$"
 
 Route116_Text_CantFindGlassesNotHere: @ 81F3718
 	.string "Hmm…\n"
-	.string "I can't find my glasses anywhere…\l"
-	.string "Maybe they're not around here…$"
+	.string "Quizá haya más…$"
 
 Route116_Text_NotWhatImLookingFor: @ 81F375E
 	.string "Hmm…\n"
-	.string "These are BLACKGLASSES.\l"
-	.string "They're not what I'm looking for…$"
+	.string "No te daré más regalos…$"
 
 Route116_Text_RouteSignRustboro: @ 81F379D
 	.string "ROUTE 116\n"
 	.string "{LEFT_ARROW} RUSTBORO CITY$"
 
 Route116_Text_RusturfTunnelSign: @ 81F37B7
-	.string "RUSTURF TUNNEL\n"
-	.string "“Linking RUSTBORO and VERDANTURF\p"
-	.string "“The tunnel project has been\n"
-	.string "canceled.”$"
+	.string "TÚNEL RUSTURF\n"
+	.string "“Cancelado.”$"
 
 Route116_Text_TunnelersRestHouse: @ 81F380F
 	.string "TUNNELER'S REST HOUSE$"
 
 Route116_Text_TrainerTipsBToStopEvolution: @ 81F3825
-	.string "TRAINER TIPS\p"
-	.string "If you want to stop a POKéMON from\n"
-	.string "evolving, press the B Button while it\l"
-	.string "is trying to evolve.\l"
-	.string "The startled POKéMON will stop.\p"
-	.string "This is called an evolution cancel.$"
+	.string "¡TRAINER TIPS!\p"
+	.string "El nuevo PC Portátil no\n"
+	.string "tiene señal en cuevas…$"
 
 Route116_Text_TrainerTipsBagHasPockets: @ 81F38D4
-	.string "TRAINER TIPS\p"
-	.string "Your BAG has several POCKETS.\p"
-	.string "Items you obtain are automatically\n"
-	.string "placed in the appropriate POCKETS.\p"
-	.string "No TRAINER can afford to be without\n"
-	.string "a BAG of their own.$"
+	.string "¡TRAINER TIPS!\p"
+	.string "¡Recuerda ser precavido!\p"
+	.string "Lleva siempre muchas Ball, en caso\n"
+	.string "de encontrar un Pokémon fuerte, pero\l"
+	.string "también lleva muchas Bayas…$"
 

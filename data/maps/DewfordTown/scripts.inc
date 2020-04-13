@@ -1,7 +1,75 @@
 DewfordTown_MapScripts:: @ 81E9507
 	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_OnTransition
 	.byte 0
-
+Dewford_Load::
+	goto_if_unset FLAG_DEWFORDGRUNT, Dewford_Grunt
+	end
+Dewford_Grunt::
+	lock
+	setvar VAR_DEWFORD_GRUNT, 1
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft
+	applymovement 6, Common_Movement_FacePlayer
+	waitmovement 0
+	message Incomodo
+	delay 120
+	closemessage
+	applymovement 6, Common_Movement_ExclamationMark
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_QuestionMark
+	waitmovement 0
+	msgbox Wooops, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+	applymovement 6, Escape
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, FollowHim
+	waitmovement 0
+	removeobject 6
+	msgbox Quefuetodoeso, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	setflag FLAG_DEWFORDGRUNT
+	release
+	end
+FollowHim:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	delay_8
+	face_up
+	step_end
+	step_end
+Quefuetodoeso:
+	.string "{PLAYER}: ¿Q-qué fue todo eso?\n"
+	.string "¿Ese era un pirata?\l"
+	.string "… … … … … …\p"
+	.string "¡Ah!\n"
+	.string "¡Es uno de esos tipos del\l"
+	.string "Timo Agua o lo que sea!\p"
+	.string "¡Tengo que seguirlo,\n"
+	.string "seguro quiere robar\l"
+	.string "algo más! … … …\p"
+	.string "P-pero el Gimnasio…$"
+Escape:
+	jump_in_place_left_right
+	jump_in_place_down_up
+	walk_fastest_down
+	delay_16
+	lock_facing_direction
+	walk_slow_up
+	unlock_facing_direction
+	walk_up
+	walk_fast_up
+	walk_fastest_up
+	walk_fastest_up
+	walk_fastest_up
+	walk_fastest_up
+	step_end
+Wooops:
+	.string "Recluta: … … … … ¡Me voy!$"
+Incomodo:
+	.string ". . . . . . . . . . . .\n"
+	.string ". . . . . . . . . . . .$"
 DewfordTown_OnTransition: @ 81E950D
 	setflag FLAG_VISITED_DEWFORD_TOWN
 	end
@@ -117,29 +185,29 @@ DewfordTown_EventScript_FishingNotSoGood:: @ 81E9656
 DewfordTown_EventScript_SailToPetalburg:: @ 81E9660
 	call EventScript_BackupMrBrineyLocation
 	setobjectpriority 2, MAP_DEWFORD_TOWN, 0
-	setobjectpriority EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN, 0
+	setobjectpriority OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN, 0
 	applymovement 2, DewfordTown_Movement_BrineyBoardBoat
 	waitmovement 0
 	removeobject 2
-	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_PlayerBoardBoat
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_PlayerBoardBoat
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
+	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN
 	call Common_EventScript_PlayBrineysBoatMusic
 	applymovement 4, DewfordTown_Movement_SailToPetalburg
-	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_SailToPetalburg
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_SailToPetalburg
 	waitmovement 0
-	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE104
 	call Common_EventScript_StopBrineysBoatMusic
-	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_ExitBoatPetalburg
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_ExitBoatPetalburg
 	waitmovement 0
-	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE104
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE104
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	clearflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	hideobjectat 4, MAP_DEWFORD_TOWN
 	setvar VAR_BOARD_BRINEY_BOAT_STATE, 2
-	resetobjectpriority EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
+	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN
 	warp MAP_ROUTE104_MR_BRINEYS_HOUSE, 255, 5, 4
 	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
 	waitstate
@@ -149,20 +217,20 @@ DewfordTown_EventScript_SailToPetalburg:: @ 81E9660
 DewfordTown_EventScript_SailToSlateport:: @ 81E96E7
 	call EventScript_BackupMrBrineyLocation
 	setobjectpriority 2, MAP_DEWFORD_TOWN, 0
-	setobjectpriority EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN, 1
+	setobjectpriority OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN, 1
 	applymovement 2, DewfordTown_Movement_BrineyBoardBoat
 	waitmovement 0
 	removeobject 2
-	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_PlayerBoardBoat
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_PlayerBoardBoat
 	waitmovement 0
-	hideobjectat EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
+	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN
 	call Common_EventScript_PlayBrineysBoatMusic
 	applymovement 4, DewfordTown_Movement_SailToSlateport
-	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_SailToSlateport
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_SailToSlateport
 	waitmovement 0
 	call Common_EventScript_StopBrineysBoatMusic
-	showobjectat EVENT_OBJ_ID_PLAYER, MAP_ROUTE109
-	applymovement EVENT_OBJ_ID_PLAYER, DewfordTown_Movement_ExitBoatSlateport
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE109
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_ExitBoatSlateport
 	waitmovement 0
 	setobjectxyperm 2, 21, 26
 	addobject 2
@@ -178,7 +246,7 @@ DewfordTown_EventScript_SailToSlateport:: @ 81E96E7
 	call_if_set FLAG_DELIVERED_DEVON_GOODS, DewfordTown_EventScript_LandedSlateport
 	closemessage
 	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
-	resetobjectpriority EVENT_OBJ_ID_PLAYER, MAP_DEWFORD_TOWN
+	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN
 	resetobjectpriority 2, MAP_ROUTE109
 	copyobjectxytoperm 2
 	release
@@ -589,8 +657,55 @@ DewfordTown_Movement_BrineyExitBoat: @ 81E991F
 	walk_up
 	walk_up
 	step_end
+DewfordTown_EventScript_TrendyPhraseBoy::
+	lock
+	faceplayer
+	multichoice  20, 0, MULTI_BADGESDEBUG 0
+	switch VAR_RESULT
+	case 0, DewfordTown_EventScript_Badge1
+	case 1, DewfordTown_EventScript_Badge2
+	case 2, DewfordTown_EventScript_Badge3
+	case 3, DewfordTown_EventScript_Badge4
+	case 4, DewfordTown_EventScript_Badge5
+	case 5, DewfordTown_EventScript_Badge6
+	case 6, DewfordTown_EventScript_Badge7
+	case 7, DewfordTown_EventScript_Badge8	
+	end
+DewfordTown_EventScript_Badge1::
+	setflag FLAG_BADGE01_GET
+	release
+	end
+DewfordTown_EventScript_Badge2::
+	setflag FLAG_BADGE02_GET
+	release
+	end
+DewfordTown_EventScript_Badge3::
+	setflag FLAG_BADGE03_GET
+	release
+	end
+DewfordTown_EventScript_Badge4::
+	setflag FLAG_BADGE04_GET
+	release
+	end
+DewfordTown_EventScript_Badge5::
+	setflag FLAG_VISITED_SOOTOPOLIS_CITY
+	setflag FLAG_BADGE05_GET
+	release
+	end
+DewfordTown_EventScript_Badge6::
+	setflag FLAG_BADGE06_GET
+	release
+	end
+DewfordTown_EventScript_Badge7::
+	setflag FLAG_BADGE07_GET
+	release
+	end
+DewfordTown_EventScript_Badge8::
+	setflag FLAG_BADGE08_GET
+	release
+	end
 
-DewfordTown_EventScript_TrendyPhraseBoy:: @ 81E9922
+DewfordTown_EventScript_DadordeMedallas:: @ 81E9922
 	lock
 	faceplayer
 	call Common_EventScript_BufferTrendyPhrase
@@ -637,22 +752,22 @@ DewfordTown_EventScript_PhraseNotTrendyEnough:: @ 81E999E
 	end
 
 DewfordTown_Text_TinyIslandCommunity: @ 81E99A8
-	.string "DEWFORD is a tiny island community.\n"
-	.string "If something gets trendy here,\l"
-	.string "everyone picks up on it right away.$"
+    .string "He escuchado que han caído {COLOR LIGHT_BLUE}{SHADOW BLUE}pedazos\n"
+    .string "de Luna desde el cielo recientemente.\p"
+    .string "{COLOR DARK_GREY}{SHADOW LIGHT_GREY}Me pregunto a qué se deberá eso...$"
 
 DewfordTown_Text_TownSign: @ 81E9A0F
-	.string "DEWFORD TOWN\n"
-	.string "“A tiny island in the blue sea.”$"
+	.string "{COLOR LIGHT_BLUE}{SHADOW BLUE}¡PUEBLO DEWFORD!\n"
+	.string "{COLOR DARK_GREY}{SHADOW LIGHT_GREY}“Una isla cerca del mar.”$"
 
 DewfordTown_Text_GymSign: @ 81E9A3D
-	.string "DEWFORD TOWN POKéMON GYM\n"
-	.string "LEADER: BRAWLY\l"
-	.string "“A big wave in fighting!”$"
+	.string "{COLOR LIGHT_RED}{SHADOW RED}GIMNASIO DEWFORD\n"
+	.string "{COLOR DARK_GREY}{SHADOW LIGHT_GREY}LÍDER: BRAWLY\l"
+	.string "“¡Una chocante ola!”$"
 
 DewfordTown_Text_HallSign: @ 81E9A7F
-	.string "DEWFORD HALL\n"
-	.string "“Everyone's information exchange!”$"
+	.string "{COLOR LIGHT_RED}{SHADOW RED}SALÓN DEWFORD\n"
+	.string "{COLOR DARK_GREY}{SHADOW LIGHT_GREY}“¡Lo que está de moda se sabe aquí!”$"
 
 Route104_Text_LandedInDewfordDeliverLetter: @ 81E9AAF
 	.string "MR. BRINEY: Ahoy!\n"

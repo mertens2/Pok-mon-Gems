@@ -23,7 +23,7 @@ Route101_EventScript_StartBirchRescue:: @ 81EBCDE
 	closemessage
 	setobjectxy 2, 0, 15
 	setobjectxy 4, 0, 16
-	applymovement EVENT_OBJ_ID_PLAYER, Route101_Movement_EnterScene
+	applymovement OBJ_EVENT_ID_PLAYER, Route101_Movement_EnterScene
 	applymovement 2, Route101_Movement_BirchRunAway1
 	applymovement 4, Route101_Movement_PoochyenaChase1
 	waitmovement 0
@@ -45,7 +45,7 @@ Route101_EventScript_PreventExitSouth:: @ 81EBD4E
 	lockall
 	msgbox Route101_Text_DontLeaveMe, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, Route101_Movement_PreventExitSouth
+	applymovement OBJ_EVENT_ID_PLAYER, Route101_Movement_PreventExitSouth
 	waitmovement 0
 	releaseall
 	end
@@ -54,7 +54,7 @@ Route101_EventScript_PreventExitWest:: @ 81EBD64
 	lockall
 	msgbox Route101_Text_DontLeaveMe, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, Route101_Movement_PreventExitWest
+	applymovement OBJ_EVENT_ID_PLAYER, Route101_Movement_PreventExitWest
 	waitmovement 0
 	releaseall
 	end
@@ -63,7 +63,7 @@ Route101_EventScript_PreventExitNorth:: @ 81EBD7A
 	lockall
 	msgbox Route101_Text_DontLeaveMe, MSGBOX_DEFAULT
 	closemessage
-	applymovement EVENT_OBJ_ID_PLAYER, Route101_Movement_PreventExitNorth
+	applymovement OBJ_EVENT_ID_PLAYER, Route101_Movement_PreventExitNorth
 	waitmovement 0
 	releaseall
 	end
@@ -222,8 +222,8 @@ Route101_EventScript_BirchsBag:: @ 81EBE16
 	setflag FLAG_RESCUED_BIRCH
 	fadescreen FADE_TO_BLACK
 	removeobject 4
-	setobjectxy EVENT_OBJ_ID_PLAYER, 6, 13
-	applymovement EVENT_OBJ_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
+	setobjectxy OBJ_EVENT_ID_PLAYER, 6, 13
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	special ChooseStarter
 	waitstate
@@ -260,42 +260,46 @@ Route101_Movement_BirchApproachPlayer: @ 81EBE8D
 	step_end
 
 Route101_Text_HelpMe: @ 81EBE8F
-	.string "H-help me!$"
+	.string "¡A-ayuda! ¡Soy alérgico a Zizgagoon!$"
 
 Route101_Text_PleaseHelp: @ 81EBE9A
-	.string "Hello! You over there!\n"
-	.string "Please! Help!\p"
-	.string "In my BAG!\n"
-	.string "There's a POKé BALL!$"
+	.string "¡Tú, si tú!\n"
+	.string "¡POKéBALLS!\p"
+	.string "¡Hay tres en mi MOCHILA!\n"
+	.string "¡Toma una y derrota a este bicho!$"
 
 Route101_Text_DontLeaveMe: @ 81EBEDF
-	.string "Wh-Where are you going?!\n"
-	.string "Don't leave me like this!$"
+	.string "¡¿QUÉ HACES?!\n"
+	.string "¡LA ALERGIA ME PUEDE MATAR!$"
 
 Route101_Text_YouSavedMe: @ 81EBF12
-	.string "PROF. BIRCH: Whew…\p"
-	.string "I was in the tall grass studying wild\n"
-	.string "POKéMON when I was jumped.\p"
-	.string "You saved me.\n"
-	.string "Thanks a lot!\p"
-	.string "Oh?\p"
-	.string "Hi, you're {PLAYER}{KUN}!\p"
-	.string "This is not the place to chat, so come\n"
-	.string "by my POKéMON LAB later, okay?$"
+	.string "PROF. BIRCH: Uf…\p"
+	.string "Estaba estudiando qué Pokémon\n"
+	.string "aparecen en esta RUTA y solté\l"
+	.string "la MOCHILA en tanto vi a ese POKéMON…\p"
+	.string "…\n"
+	.string "¡Me salvaste la vida! ¡Para la otra,\l"
+	.string "tendré mi anti alergias en el bolsillo!\p"
+	.string "¿Oh?\p"
+	.string "¡Hey, eres {PLAYER}{KUN}!\p"
+	.string "Aquí no es cómodo hablar, ven a mi\n"
+	.string "LABORATORIO POKéMON...$"
 
 Route101_Text_TakeTiredPokemonToPokeCenter: @ 81EBFDD
-	.string "If POKéMON get tired, take them to\n"
-	.string "a POKéMON CENTER.\p"
-	.string "There's a POKéMON CENTER in OLDALE\n"
-	.string "TOWN right close by.$"
+	.string "Si tus Pokémon tienen Pokérus, la señora\n"
+	.string "del Centro Pokémon te avisará.\p"
+	.string "Sólo dura unos días, así que asegúrate de\n"
+	.string "curar allí siempre. Hace a los Pokémon fuertes.$"
 
 Route101_Text_WildPokemonInTallGrass: @ 81EC04A
-	.string "Wild POKéMON will jump out at you in\n"
-	.string "tall grass.\p"
-	.string "If you want to catch POKéMON, you have\n"
-	.string "to go into the tall grass and search.$"
+	.string "Los Pokémon salvajes son muy\n"
+	.string "agresivos. Sobretodo con alergias.\p"
+	.string "Yo no tengo, y quiero atrapar a un Wurmple.\n"
+	.string "Espero evolucione en Cascoon.$"
 
 Route101_Text_RouteSign: @ 81EC0C8
-	.string "ROUTE 101\n"
-	.string "{UP_ARROW} OLDALE TOWN$"
+	.string "RUTA 101\n"
+	.string "¡CUIDADO CON SPINARAK!\l"
+	.string "¡ES VENENOSO!\p"
+	.string "{UP_ARROW} PUEBLO OLDALE$"
 

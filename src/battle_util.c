@@ -3,6 +3,7 @@
 #include "battle_anim.h"
 #include "battle_controllers.h"
 #include "battle_interface.h"
+#include "constants/battle_script_commands.h"
 #include "battle_setup.h"
 #include "party_menu.h"
 #include "pokemon.h"
@@ -2937,6 +2938,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                 BattleScriptPushCursorAndCallback(BattleScript_PsychicSurgeActivates);
                 effect++;
             }
+            break;
+		case ABILITY_SLOW_FORCE:
+            if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM)
+            {
+                gFieldStatuses &= ~(STATUS_FIELD_TRICK_ROOM);
+                BattleScriptExecute(BattleScript_TrickRoomEnds);
+                effect++;
+            }
+			else 
+			{
+				BattleScriptPushCursorAndCallback(BattleScript_TrickRoomActivates);
+				effect++;
+				gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
+				gFieldTimers.trickRoomTimer = 7;
+				gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+			}
+            gBattleStruct->turnCountersTracker++;
             break;
         case ABILITY_INTIMIDATE:
             if (!(gSpecialStatuses[battler].intimidatedMon))
