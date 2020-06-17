@@ -228,6 +228,54 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_RATTATA] =
+    {
+        .categoryName = _("MOUSE"),
+        .height = 3,
+        .weight = 35,
+        .description = gRattataPokedexText,
+        .pokemonScale = 481,
+        .pokemonOffset = 21,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_RATICATE] =
+    {
+        .categoryName = _("MOUSE"),
+        .height = 7,
+        .weight = 185,
+        .description = gRaticatePokedexText,
+        .pokemonScale = 459,
+        .pokemonOffset = 18,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_SPEAROW] =
+    {
+        .categoryName = _("TINY BIRD"),
+        .height = 3,
+        .weight = 20,
+        .description = gSpearowPokedexText,
+        .pokemonScale = 571,
+        .pokemonOffset = 22,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_FEAROW] =
+    {
+        .categoryName = _("BEAK"),
+        .height = 12,
+        .weight = 380,
+        .description = gFearowPokedexText,
+        .pokemonScale = 278,
+        .pokemonOffset = 1,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_EKANS] =
     {
         .categoryName = _("SNAKE"),
@@ -504,6 +552,29 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_PARAS] =
+    {
+        .categoryName = _("MUSHROOM"),
+        .height = 3,
+        .weight = 54,
+        .description = gParasPokedexText,
+        .pokemonScale = 593,
+        .pokemonOffset = 22,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_PARASECT] =
+    {
+        .categoryName = _("MUSHROOM"),
+        .height = 10,
+        .weight = 295,
+        .description = gParasectPokedexText,
+        .pokemonScale = 307,
+        .pokemonOffset = 8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
 
     [NATIONAL_DEX_VENONAT] =
     {

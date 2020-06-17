@@ -5219,7 +5219,7 @@ void sub_8093AF0(struct EventObject *eventObject, struct Sprite *sprite, u8 dire
     sprite->data[2] = 1;
 }
 
-void sub_8093B60(struct EventObject *eventObject, struct Sprite *sprite, u8 direction)
+void an_walk_any_1(struct EventObject *eventObject, struct Sprite *sprite, u8 direction)
 {
     sub_8093AF0(eventObject, sprite, direction);
     npc_apply_anim_looping(eventObject, sprite, GetMoveDirectionAnimNum(eventObject->facingDirection));
@@ -5239,7 +5239,7 @@ bool8 an_walk_any_2(struct EventObject *eventObject, struct Sprite *sprite)
 
 bool8 MovementAction_WalkSlowDiagonalUpLeft_Step0(struct EventObject *eventObject, struct Sprite *sprite)
 {
-    sub_8093B60(eventObject, sprite, DIR_NORTHWEST);
+    an_walk_any_1(eventObject, sprite, DIR_NORTHWEST);
     return MovementAction_WalkSlowDiagonalUpLeft_Step1(eventObject, sprite);
 }
 
@@ -5255,7 +5255,7 @@ bool8 MovementAction_WalkSlowDiagonalUpLeft_Step1(struct EventObject *eventObjec
 
 bool8 MovementAction_WalkSlowDiagonalUpRight_Step0(struct EventObject *eventObject, struct Sprite *sprite)
 {
-    sub_8093B60(eventObject, sprite, DIR_NORTHEAST);
+    an_walk_any_1(eventObject, sprite, DIR_NORTHEAST);
     return MovementAction_WalkSlowDiagonalUpRight_Step1(eventObject, sprite);
 }
 
@@ -5271,7 +5271,7 @@ bool8 MovementAction_WalkSlowDiagonalUpRight_Step1(struct EventObject *eventObje
 
 bool8 MovementAction_WalkSlowDiagonalDownLeft_Step0(struct EventObject *eventObject, struct Sprite *sprite)
 {
-    sub_8093B60(eventObject, sprite, DIR_SOUTHWEST);
+    an_walk_any_1(eventObject, sprite, DIR_SOUTHWEST);
     return MovementAction_WalkSlowDiagonalDownLeft_Step1(eventObject, sprite);
 }
 
@@ -5287,7 +5287,7 @@ bool8 MovementAction_WalkSlowDiagonalDownLeft_Step1(struct EventObject *eventObj
 
 bool8 MovementAction_WalkSlowDiagonalDownRight_Step0(struct EventObject *eventObject, struct Sprite *sprite)
 {
-    sub_8093B60(eventObject, sprite, DIR_SOUTHEAST);
+    an_walk_any_1(eventObject, sprite, DIR_SOUTHEAST);
     return MovementAction_WalkSlowDiagonalDownRight_Step1(eventObject, sprite);
 }
 
@@ -5303,7 +5303,7 @@ bool8 MovementAction_WalkSlowDiagonalDownRight_Step1(struct EventObject *eventOb
 
 bool8 MovementAction_WalkSlowDown_Step0(struct EventObject *eventObject, struct Sprite *sprite)
 {
-    sub_8093B60(eventObject, sprite, DIR_SOUTH);
+    an_walk_any_1(eventObject, sprite, DIR_SOUTH);
     return MovementAction_WalkSlowDown_Step1(eventObject, sprite);
 }
 
@@ -5319,7 +5319,7 @@ bool8 MovementAction_WalkSlowDown_Step1(struct EventObject *eventObject, struct 
 
 bool8 MovementAction_WalkSlowUp_Step0(struct EventObject *eventObject, struct Sprite *sprite)
 {
-    sub_8093B60(eventObject, sprite, DIR_NORTH);
+    an_walk_any_1(eventObject, sprite, DIR_NORTH);
     return MovementAction_WalkSlowUp_Step1(eventObject, sprite);
 }
 
@@ -5335,7 +5335,7 @@ bool8 MovementAction_WalkSlowUp_Step1(struct EventObject *eventObject, struct Sp
 
 bool8 MovementAction_WalkSlowLeft_Step0(struct EventObject *eventObject, struct Sprite *sprite)
 {
-    sub_8093B60(eventObject, sprite, DIR_WEST);
+    an_walk_any_1(eventObject, sprite, DIR_WEST);
     return MovementAction_WalkSlowLeft_Step1(eventObject, sprite);
 }
 
@@ -5351,7 +5351,7 @@ bool8 MovementAction_WalkSlowLeft_Step1(struct EventObject *eventObject, struct 
 
 bool8 MovementAction_WalkSlowRight_Step0(struct EventObject *eventObject, struct Sprite *sprite)
 {
-    sub_8093B60(eventObject, sprite, DIR_EAST);
+    an_walk_any_1(eventObject, sprite, DIR_EAST);
     return MovementAction_WalkSlowRight_Step1(eventObject, sprite);
 }
 
@@ -6695,7 +6695,7 @@ bool8 MovementAction_ShowReflection_Step0(struct EventObject *eventObject, struc
 
 bool8 MovementAction_WalkDownStartAffine_Step0(struct EventObject *eventObject, struct Sprite *sprite)
 {
-    sub_8093B60(eventObject, sprite, DIR_SOUTH);
+    an_walk_any_1(eventObject, sprite, DIR_SOUTH);
     sprite->affineAnimPaused = FALSE;
     StartSpriteAffineAnimIfDifferent(sprite, 0);
     return MovementAction_WalkDownStartAffine_Step1(eventObject, sprite);
@@ -6714,7 +6714,7 @@ bool8 MovementAction_WalkDownStartAffine_Step1(struct EventObject *eventObject, 
 
 bool8 MovementAction_WalkDownAffine_Step0(struct EventObject *eventObject, struct Sprite *sprite)
 {
-    sub_8093B60(eventObject, sprite, DIR_SOUTH);
+    an_walk_any_1(eventObject, sprite, DIR_SOUTH);
     sprite->affineAnimPaused = FALSE;
     ChangeSpriteAffineAnimIfDifferent(sprite, 1);
     return MovementAction_WalkDownAffine_Step1(eventObject, sprite);
@@ -9032,3 +9032,484 @@ u8 MovementAction_Fly_Finish(struct EventObject *eventObject, struct Sprite *spr
 {
     return TRUE;
 }
+
+
+//// new movement actions
+u8 GetBackwardsDirection(u8 direction)
+{
+    return (--direction ^ 1) + 1;
+}
+
+#define tEventObjectId data[0]
+#define tZCoord        data[1]
+#define tInvisible     data[2]
+#define tDirection data[3]
+#define tSpeed     data[4]
+#define tStepNo    data[5]
+bool8 ObjectStep_Backwards(struct Sprite *sprite)
+{
+    if (!(sprite->data[4] & 1))
+    {
+        Step1(sprite, GetBackwardsDirection(sprite->tDirection));
+        sprite->data[5]++;
+    }
+
+    sprite->data[4]++;
+
+    if (sprite->data[5] > 15)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 an_walk_any_2_backwards(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (ObjectStep_Backwards(sprite))
+    {
+        ShiftStillEventObjectCoords(eventObject);
+        eventObject->triggerGroundEffectsOnStop = TRUE;
+        sprite->animPaused = TRUE;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static void MoveObject_SlowestBackwards(struct EventObject *eventObject, struct Sprite *sprite, u8 direction)
+{
+    s16 x;
+    s16 y;
+
+    x = eventObject->currentCoords.x;
+    y = eventObject->currentCoords.y;
+    SetEventObjectDirection(eventObject, direction);
+    MoveCoords(GetBackwardsDirection(direction), &x, &y);
+    ShiftEventObjectCoords(eventObject, x, y);
+    sub_80976DC(sprite, direction);
+    sprite->animPaused = FALSE;
+    eventObject->triggerGroundEffectsOnMove = TRUE;
+    sprite->data[2] = 1;
+}
+
+static void an_walk_any_1_backwards(struct EventObject *eventObject, struct Sprite *sprite, u8 direction)
+{
+    MoveObject_SlowestBackwards(eventObject, sprite, direction);
+    npc_apply_anim_looping(eventObject, sprite, GetMoveDirectionAnimNum(eventObject->facingDirection));
+}
+
+
+bool8 MovementAction_WalkSlowestUpBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    an_walk_any_1_backwards(eventObject, sprite, DIR_SOUTH);
+    return MovementAction_WalkSlowestBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_WalkSlowestBackwards_Step1(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (an_walk_any_2_backwards(eventObject, sprite))
+    {
+        sprite->data[2] = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementAction_WalkSlowestDownBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    an_walk_any_1_backwards(eventObject, sprite, DIR_NORTH);
+    return MovementAction_WalkSlowestBackwards_Step1(eventObject, sprite);
+}
+
+
+bool8 MovementAction_WalkSlowestRightBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    an_walk_any_1_backwards(eventObject, sprite, DIR_WEST);
+    return MovementAction_WalkSlowestBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_WalkSlowestLeftBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    an_walk_any_1_backwards(eventObject, sprite, DIR_EAST);
+    return MovementAction_WalkSlowestBackwards_Step1(eventObject, sprite);
+}
+
+//walk slow backwards
+#define tDirection data[3]
+#define tDelay     data[4]
+#define tStepNo    data[5]
+static bool8 ObjectMove_Slow(struct Sprite *sprite)
+{
+    if (++sprite->tDelay < 3)
+    {
+        Step1(sprite, GetBackwardsDirection(sprite->tDirection));
+        sprite->tStepNo++;
+    }
+    else
+    {
+        sprite->tDelay = 0;
+    }
+
+    if (sprite->tStepNo > 15)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+static bool8 an_walk_any_2_slow_backwards(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (ObjectMove_Slow(sprite))
+    {
+        ShiftStillEventObjectCoords(eventObject);
+        eventObject->triggerGroundEffectsOnStop = TRUE;
+        sprite->animPaused = TRUE;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementAction_WalkSlowBackwards_Step1(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (an_walk_any_2_slow_backwards(eventObject, sprite))
+    {
+        sprite->data[2] = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+void MoveObject_SlowBackwards(struct EventObject *eventObject, struct Sprite *sprite, u8 direction)
+{
+    // to do: same as MoveObject_SlowestBackwards?
+    s16 x;
+    s16 y;
+
+    x = eventObject->currentCoords.x;
+    y = eventObject->currentCoords.y;
+    SetEventObjectDirection(eventObject, direction);
+    MoveCoords(GetBackwardsDirection(direction), &x, &y);
+    ShiftEventObjectCoords(eventObject, x, y);
+    sub_80976DC(sprite, direction);
+    sprite->animPaused = FALSE;
+    eventObject->triggerGroundEffectsOnMove = TRUE;
+    sprite->data[2] = 1;
+}
+
+void an_go_any_1_backwards(struct EventObject *eventObject, struct Sprite *sprite, u8 direction)
+{
+    MoveObject_SlowBackwards(eventObject, sprite, direction);
+    npc_apply_anim_looping(eventObject, sprite, GetMoveDirectionAnimNum(eventObject->facingDirection));
+}
+
+bool8 MovementAction_WalkSlowUpBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    an_go_any_1_backwards(eventObject, sprite, DIR_SOUTH);
+    return MovementAction_WalkSlowBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_WalkSlowDownBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    an_go_any_1_backwards(eventObject, sprite, DIR_NORTH);
+    return MovementAction_WalkSlowBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_WalkSlowLeftBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    an_go_any_1_backwards(eventObject, sprite, DIR_EAST);
+    return MovementAction_WalkSlowBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_WalkSlowRightBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    an_go_any_1_backwards(eventObject, sprite, DIR_WEST);
+    return MovementAction_WalkSlowBackwards_Step1(eventObject, sprite);
+}
+
+// walk backwards
+static void npc_apply_direction_backward(struct EventObject *eventObject, struct Sprite *sprite, u8 direction, u8 speed)
+{
+    s16 x;
+    s16 y;
+
+    x = eventObject->currentCoords.x;
+    y = eventObject->currentCoords.y;
+    SetEventObjectDirection(eventObject, direction);
+    MoveCoords(GetBackwardsDirection(direction), &x, &y);
+    ShiftEventObjectCoords(eventObject, x, y);
+    oamt_npc_ministep_reset(sprite, direction, speed);
+    sprite->animPaused = FALSE;
+    if (gLockedAnimEventObjects != NULL && FindLockedEventObjectIndex(eventObject) != EVENT_OBJECTS_COUNT)
+    {
+        sprite->animPaused = TRUE;
+    }
+
+    eventObject->triggerGroundEffectsOnMove = TRUE;
+    sprite->data[2] = 1;
+}
+
+static void do_go_anim_backwards(struct EventObject *eventObject, struct Sprite *sprite, u8 direction, u8 speed)
+{
+    u8 (*functions[NELEMS(gUnknown_0850DEE8)])(u8);
+
+    memcpy(functions, gUnknown_0850DEE8, sizeof gUnknown_0850DEE8);
+    npc_apply_direction_backward(eventObject, sprite, direction, speed);
+    npc_apply_anim_looping(eventObject, sprite, functions[speed](eventObject->facingDirection));
+}
+
+bool8 obj_npc_ministep_backward(struct Sprite *sprite)
+{
+    if (sprite->data[5] >= gUnknown_0850E768[sprite->data[4]])
+        return FALSE;
+
+    gUnknown_0850E754[sprite->data[4]][sprite->data[5]](sprite, GetBackwardsDirection(sprite->tDirection));
+    sprite->data[5]++;
+    if (sprite->data[5] < gUnknown_0850E768[sprite->data[4]])
+        return FALSE;
+
+    return TRUE;
+}
+
+bool8 npc_obj_ministep_stop_on_arrival_backward(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (obj_npc_ministep_backward(sprite))
+    {
+        ShiftStillEventObjectCoords(eventObject);
+        eventObject->triggerGroundEffectsOnStop = TRUE;
+        sprite->animPaused = TRUE;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementAction_WalkBackwards_Step1(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (npc_obj_ministep_stop_on_arrival_backward(eventObject, sprite))
+    {
+        sprite->data[2] = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementAction_WalkUpBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    do_go_anim_backwards(eventObject, sprite, DIR_SOUTH, 0);
+    return MovementAction_WalkBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_WalkDownBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    do_go_anim_backwards(eventObject, sprite, DIR_NORTH, 0);
+    return MovementAction_WalkBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_WalkRightBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    do_go_anim_backwards(eventObject, sprite, DIR_WEST, 0);
+    return MovementAction_WalkBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_WalkLeftBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    do_go_anim_backwards(eventObject, sprite, DIR_EAST, 0);
+    return MovementAction_WalkBackwards_Step1(eventObject, sprite);
+}
+
+
+//walk fast backwards
+bool8 MovementAction_WalkFastBackwards_Step1(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    return MovementAction_WalkBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_WalkFastUpBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    do_go_anim_backwards(eventObject, sprite, DIR_SOUTH, 1);
+    return MovementAction_WalkFastBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_WalkFastDownBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    do_go_anim_backwards(eventObject, sprite, DIR_NORTH, 1);
+    return MovementAction_WalkFastBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_WalkFastRightBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    do_go_anim_backwards(eventObject, sprite, DIR_WEST, 1);
+    return MovementAction_WalkFastBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_WalkFastLeftBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    do_go_anim_backwards(eventObject, sprite, DIR_EAST, 1);
+    return MovementAction_WalkFastBackwards_Step1(eventObject, sprite);
+}
+
+// jump 2 backwards
+static void sub_8093FC4_backwards(struct EventObject *eventObject, struct Sprite *sprite, u8 direction, u8 speed, u8 a5)
+{
+    s16 displacements[ARRAY_COUNT(gUnknown_0850DFBC)];
+    s16 x;
+    s16 y;
+
+    memcpy(displacements, gUnknown_0850DFBC, sizeof gUnknown_0850DFBC);
+    x = 0;
+    y = 0;
+    SetEventObjectDirection(eventObject, direction);
+    MoveCoordsInDirection(GetBackwardsDirection(direction), &x, &y, displacements[speed], displacements[speed]);
+    ShiftEventObjectCoords(eventObject, eventObject->currentCoords.x + x, eventObject->currentCoords.y + y);
+    sub_809783C(sprite, direction, speed, a5);
+    sprite->data[2] = 1;
+    sprite->animPaused = 0;
+    eventObject->triggerGroundEffectsOnMove = 1;
+    eventObject->disableCoveringGroundEffects = 1;
+}
+
+static void maybe_shadow_1_backwards(struct EventObject *eventObject, struct Sprite *sprite, u8 direction, u8 speed, u8 a4)
+{
+    sub_8093FC4_backwards(eventObject, sprite, direction, speed, a4);
+    npc_apply_anim_looping(eventObject, sprite, GetMoveDirectionAnimNum(eventObject->facingDirection));
+    DoShadowFieldEffect(eventObject);
+}
+
+
+static u8 sub_80940C4_backwards(struct EventObject *eventObject, struct Sprite *sprite, u8 callback(struct Sprite *))
+{
+    s16 displacements[ARRAY_COUNT(gUnknown_0850DFC2)];
+    s16 x;
+    s16 y;
+    u8 result;
+
+    memcpy(displacements, gUnknown_0850DFC2, sizeof gUnknown_0850DFC2);
+    result = callback(sprite);
+    if (result == 1 && displacements[sprite->data[4]] != 0)
+    {
+        x = 0;
+        y = 0;
+        MoveCoordsInDirection(GetBackwardsDirection(eventObject->movementDirection), &x, &y, displacements[sprite->data[4]], displacements[sprite->data[4]]);
+        ShiftEventObjectCoords(eventObject, eventObject->currentCoords.x + x, eventObject->currentCoords.y + y);
+        eventObject->triggerGroundEffectsOnMove = TRUE;
+        eventObject->disableCoveringGroundEffects = TRUE;
+    }
+    else if (result == 0xFF)
+    {
+        ShiftStillEventObjectCoords(eventObject);
+        eventObject->triggerGroundEffectsOnStop = TRUE;
+        eventObject->landingJump = TRUE;
+        sprite->animPaused = TRUE;
+    }
+    return result;
+}
+
+static u8 sub_809785C_backwards(struct Sprite *sprite)
+{
+    s16 v5[3];
+    u8 v6[3];
+    u8 v2;
+
+    memcpy(v5, gUnknown_0850E840, 6);
+    memcpy(v6, gUnknown_0850E846, 3);
+    v2 = 0;
+
+    if (sprite->data[4])
+        Step1(sprite, GetBackwardsDirection(sprite->data[3]));
+
+    sprite->pos2.y = sub_8097820(sprite->data[6] >> v6[sprite->data[4]], sprite->data[5]);
+
+    sprite->data[6]++;
+
+    if (sprite->data[6] == (v5[sprite->data[4]] >> 1))
+        v2 = 1;
+
+    if (sprite->data[6] >= v5[sprite->data[4]])
+    {
+        sprite->pos2.y = 0;
+        v2 = -1;
+    }
+
+    return v2;
+}
+
+static u8 sub_8094188_backwards(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    return sub_80940C4_backwards(eventObject, sprite, sub_809785C_backwards);
+}
+
+static bool8 sub_80941B0_backwards(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (sub_8094188_backwards(eventObject, sprite) == 0xFF)
+        return TRUE;
+
+    return FALSE;
+}
+
+bool8 MovementAction_Jump2UpBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    maybe_shadow_1_backwards(eventObject, sprite, DIR_SOUTH, 2, 0);
+    return MovementAction_Jump2Backwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_Jump2DownBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    maybe_shadow_1_backwards(eventObject, sprite, DIR_NORTH, 2, 0);
+    return MovementAction_Jump2Backwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_Jump2RightBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    maybe_shadow_1_backwards(eventObject, sprite, DIR_WEST, 2, 0);
+    return MovementAction_Jump2Backwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_Jump2LeftBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    maybe_shadow_1_backwards(eventObject, sprite, DIR_EAST, 2, 0);
+    return MovementAction_Jump2Backwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_Jump2Backwards_Step1(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (sub_80941B0_backwards(eventObject, sprite))
+    {
+        eventObject->hasShadow = FALSE;
+        sprite->data[2] = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+//jump back
+bool8 MovementAction_JumpUpBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    maybe_shadow_1_backwards(eventObject, sprite, DIR_SOUTH, 1, 2);
+    return MovementAction_JumpBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_JumpDownBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    maybe_shadow_1_backwards(eventObject, sprite, DIR_NORTH, 1, 2);
+    return MovementAction_JumpBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_JumpRightBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    maybe_shadow_1_backwards(eventObject, sprite, DIR_WEST, 1, 2);
+    return MovementAction_JumpBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_JumpLeftBackwards_Step0(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    maybe_shadow_1_backwards(eventObject, sprite, DIR_EAST, 1, 2);
+    return MovementAction_JumpBackwards_Step1(eventObject, sprite);
+}
+
+bool8 MovementAction_JumpBackwards_Step1(struct EventObject *eventObject, struct Sprite *sprite)
+{
+    if (sub_80941B0_backwards(eventObject, sprite))
+    {
+        eventObject->hasShadow = 0;
+        sprite->data[2] = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+

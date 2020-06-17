@@ -112,7 +112,29 @@ const u8 gPidgeotPokedexText[] = _(
     "by the beautiful feathers on its head that\n"
     "they choose Pidgeot as their Pokémon.");
 
+const u8 gRattataPokedexText[] = _(
+    "A Rattata is cautious in the extreme.\n"
+    "Even while it is asleep, it constantly\n"
+    "moves its ears and listens for danger.\n"
+    "It will make its nest anywhere.");
 
+const u8 gRaticatePokedexText[] = _(
+    "A Raticate's sturdy fangs grow steadily.\n"
+    "To keep them ground down, it gnaws on\n"
+    "rocks and logs. It may even chew on the\n"
+    "walls of houses.");
+
+const u8 gSpearowPokedexText[] = _(
+    "Its loud cry can be heard over half a mile\n"
+    "away. If its high, keening cry is heard\n"
+    "echoing all around, it is a sign that they\n"
+    "are warning each other of danger.");
+
+const u8 gFearowPokedexText[] = _(
+    "Its long neck and elongated beak are\n"
+    "ideal for catching prey in soil or water.\n"
+    "It deftly moves this extended and skinny\n"
+    "beak to pluck prey.");
 
 const u8 gEkansPokedexText[] = _(
     "An Ekans curls itself up in a spiral while\n"
@@ -252,6 +274,17 @@ const u8 gVileplumePokedexText[] = _(
     "with the powder as it walks. The pollen is\n"
     "highly toxic and causes paralysis.");
 
+const u8 gParasPokedexText[] = _(
+    "A Paras has parasitic tochukaso\n"
+    "mushrooms growing on its back. They grow\n"
+    "by drawing nutrients from the host. They\n"
+    "are valued as a medicine for long life.");
+
+const u8 gParasectPokedexText[] = _(
+    "Parasect are known to infest the roots of\n"
+    "large trees en masse and drain nutrients.\n"
+    "When an infested tree dies, they move\n"
+    "onto another tree all at once.");
 
 const u8 gVenonatPokedexText[] = _(
     "Its coat of thin, stiff hair that covers\n"

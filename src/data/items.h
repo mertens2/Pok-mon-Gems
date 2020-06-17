@@ -1586,7 +1586,7 @@ const struct Item gItems[] =
     {
         .name = _("Pepita"),
         .itemId = ITEM_NUGGET,
-        .price = 10000,
+        .price = 20000,
         .description = sNuggetDesc,
         .pocket = POCKET_ITEMS,
         .type = 4,

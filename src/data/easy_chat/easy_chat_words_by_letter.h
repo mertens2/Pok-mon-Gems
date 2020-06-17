@@ -500,6 +500,7 @@ const u16 gEasyChatWordsByLetter_F[] = {
     EC_WORD_FAST,
     EC_WORD_FATHER,
     EC_WORD_FEAR,
+    EC_POKEMON2(FEAROW),
     EC_MOVE2(FEATHER_DANCE),
     EC_POKEMON(FEEBAS),
     EC_WORD_FEELING,
@@ -1178,6 +1179,8 @@ const u16 gEasyChatWordsByLetter_O[] = {
 
 const u16 gEasyChatWordsByLetter_P[] = {
     EC_MOVE(PAIN_SPLIT),
+    EC_POKEMON2(PARAS),
+    EC_POKEMON2(PARASECT),
     EC_WORD_PARDON,
     EC_WORD_PARENT,
     EC_WORD_PARTNER,
@@ -1297,6 +1300,8 @@ const u16 gEasyChatWordsByLetter_R[] = {
     EC_POKEMON2(RAPIDASH),
     EC_WORD_RARE,
     EC_WORD_RATHER,
+    EC_POKEMON2(RATICATE),
+    EC_POKEMON2(RATTATA),
     EC_POKEMON(RAYQUAZA),
     EC_MOVE2(RAZOR_LEAF),
     EC_MOVE(RAZOR_WIND),
@@ -1531,6 +1536,7 @@ const u16 gEasyChatWordsByLetter_S[] = {
     EC_WORD_SOUNDPROOF,
     EC_WORD_SP_ABILITY,
     EC_MOVE(SPARK),
+    EC_POKEMON2(SPEAROW),
     EC_WORD_SPECTATOR,
     EC_WORD_SPEED_BOOST,
     EC_POKEMON(SPHEAL),

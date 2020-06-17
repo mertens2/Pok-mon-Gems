@@ -27,12 +27,10 @@ LilycoveCity_DepartmentStore_5F_EventScript_ClerkFarLeft:: @ 821FFA6
 
 	.align 2
 LilycoveCity_DepartmentStore_5F_Pokemart_Dolls: @ 821FFC0
-	.2byte DECOR_PICHU_DOLL
 	.2byte DECOR_PIKACHU_DOLL
 	.2byte DECOR_MARILL_DOLL
 	.2byte DECOR_JIGGLYPUFF_DOLL
 	.2byte DECOR_DUSKULL_DOLL 
-	.2byte DECOR_WYNAUT_DOLL
 	.2byte DECOR_BALTOY_DOLL
 	.2byte DECOR_KECLEON_DOLL
 	.2byte DECOR_AZURILL_DOLL
@@ -64,6 +62,7 @@ LilycoveCity_DepartmentStore_5F_Pokemart_Cushions: @ 821FFF4
 	.2byte DECOR_GRASS_CUSHION
 	.2byte DECOR_FIRE_CUSHION
 	.2byte DECOR_WATER_CUSHION
+	.2byte DECOR_KISS_CUSHION
 	.2byte DECOR_NONE
 	release
 	end
@@ -89,6 +88,7 @@ LilycoveCity_DepartmentStore_5F_Pokemart_Posters: @ 8220024
 	.2byte DECOR_LONG_POSTER
 	.2byte DECOR_SEA_POSTER
 	.2byte DECOR_SKY_POSTER
+	.2byte DECOR_KISS_POSTER
 	.2byte DECOR_NONE
 	release
 	end

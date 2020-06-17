@@ -95,6 +95,26 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0x88,
         .y_offset = 0x2,
     },
+    [SPECIES_RATTATA] =
+    {
+        .size = 0x44,
+        .y_offset = 0xd,
+    },
+    [SPECIES_RATICATE] =
+    {
+        .size = 0x66,
+        .y_offset = 0x6,
+    },
+    [SPECIES_SPEAROW] =
+    {
+        .size = 0x45,
+        .y_offset = 0xc,
+    },
+    [SPECIES_FEAROW] =
+    {
+        .size = 0x78,
+        .y_offset = 0x0,
+    },
     [SPECIES_EKANS] =
     {
         .size = 0x65,
@@ -208,6 +228,16 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_VILEPLUME] =
     {
         .size = 0x77,
+        .y_offset = 0x7,
+    },
+    [SPECIES_PARAS] =
+    {
+        .size = 0x55,
+        .y_offset = 0xe,
+    },
+    [SPECIES_PARASECT] =
+    {
+        .size = 0x86,
         .y_offset = 0x7,
     },
     [SPECIES_VENONAT] =
@@ -4403,6 +4433,16 @@ const struct MonCoords gMonFrontPicCoords[] =
         .y_offset = 6,
     },
     // Alolan Forms
+    [SPECIES_ALOLAN_RATTATA] =
+    {
+        .size = 0x44,
+        .y_offset = 0xd,
+    },
+    [SPECIES_ALOLAN_RATICATE] =
+    {
+        .size = 0x66,
+        .y_offset = 0x6,
+    },
     [SPECIES_ALOLAN_RAICHU] =
     {
         .size = 0x67,

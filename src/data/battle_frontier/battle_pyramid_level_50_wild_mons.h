@@ -261,10 +261,10 @@ static const struct PyramidWildMon sLevel50WildMons_Round5[] =
 static const struct PyramidWildMon sLevel50WildMons_Round6[] =
 {
     {
-        .species = SPECIES_DIGLETT,
+        .species = SPECIES_DRILBUR,
         .lvl = 41,
         .abilityNum = ABILITY_RANDOM,
-        .moves = {MOVE_ROCK_SLIDE, MOVE_SLASH, MOVE_DIG, MOVE_NONE}
+        .moves = {MOVE_ROCK_SLIDE, MOVE_SLASH, MOVE_DIG, MOVE_METAL_CLAW}
     },
     {
         .species = SPECIES_TRAPINCH,
@@ -279,7 +279,7 @@ static const struct PyramidWildMon sLevel50WildMons_Round6[] =
         .moves = {MOVE_DESTINY_BOND, MOVE_SPLASH, MOVE_COUNTER, MOVE_MIRROR_COAT}
     },
     {
-        .species = SPECIES_DIGLETT,
+        .species = SPECIES_DRILBUR,
         .lvl = 42,
         .abilityNum = ABILITY_RANDOM,
         .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_MAGNITUDE, MOVE_TOXIC}
@@ -303,10 +303,10 @@ static const struct PyramidWildMon sLevel50WildMons_Round6[] =
         .moves = {MOVE_COUNTER, MOVE_MIRROR_COAT, MOVE_DESTINY_BOND, MOVE_NONE}
     },
     {
-        .species = SPECIES_DUGTRIO,
+        .species = SPECIES_EXCADRILL,
         .lvl = 45,
         .abilityNum = 1,
-        .moves = {MOVE_ROCK_SLIDE, MOVE_SLUDGE_BOMB, MOVE_EARTHQUAKE, MOVE_PROTECT}
+        .moves = {MOVE_ROCK_SLIDE, MOVE_METAL_CLAW, MOVE_EARTHQUAKE, MOVE_SWORDS_DANCE}
     }
 };
 
@@ -441,10 +441,10 @@ static const struct PyramidWildMon sLevel50WildMons_Round9[] =
         .moves = {MOVE_SHADOW_BALL, MOVE_SURF, MOVE_ICE_BEAM, MOVE_FLAMETHROWER}
     },
     {
-        .species = SPECIES_XATU,
+        .species = SPECIES_GOTHITELLE,
         .lvl = 44,
         .abilityNum = ABILITY_RANDOM,
-        .moves = {MOVE_CONFUSE_RAY, MOVE_SHADOW_BALL, MOVE_PSYCHIC, MOVE_STEEL_WING}
+        .moves = {MOVE_CONFUSE_RAY, MOVE_SHADOW_BALL, MOVE_PSYCHIC, MOVE_THUNDER_WAVE}
     },
     {
         .species = SPECIES_ALAKAZAM,

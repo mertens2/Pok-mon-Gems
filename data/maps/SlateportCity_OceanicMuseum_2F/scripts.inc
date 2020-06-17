@@ -22,10 +22,15 @@ SlateportCity_OceanicMuseum_2F_EventScript_CaptStern:: @ 820BB00
 	call_if_eq SlateportCity_OceanicMuseum_2F_EventScript_PlayerFaceGrunts
 	msgbox SlateportCity_OceanicMuseum_2F_Text_WellTakeThoseParts, MSGBOX_DEFAULT
 	compare VAR_FACING, DIR_EAST
+	msgbox  MuyTarde, MSGBOX_DEFAULT
+	setvar VAR_0x8004, ITEM_DEVON_GOODS
+	call Common_EventScript_PlayerHandedOverTheItem
 	call_if_ne SlateportCity_OceanicMuseum_2F_EventScript_SternFaceGrunts
 	msgbox SlateportCity_OceanicMuseum_2F_Text_SternWhoAreYou, MSGBOX_DEFAULT
 	msgbox SlateportCity_OceanicMuseum_2F_Text_WereTeamAqua, MSGBOX_DEFAULT
 	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_QuestionMark
+	waitmovement 0
 	applymovement 4, SlateportCity_OceanicMuseum_2F_Movement_GruntApproachToBattle
 	waitmovement 0
 	compare VAR_FACING, DIR_SOUTH
@@ -59,6 +64,16 @@ SlateportCity_OceanicMuseum_2F_EventScript_CaptStern:: @ 820BB00
 	waitmovement 0
 	msgbox SlateportCity_OceanicMuseum_2F_Text_ArchieWarning, MSGBOX_DEFAULT
 	closemessage
+	msgbox SlateportCity_OceanicMuseum_2F_Desicion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq SlateportCity_OceanicMuseum_2F_EventScript_CaptSternOdio
+	msgbox SlateportCity_OceanicMuseum_2F_Estabien, MSGBOX_DEFAULT
+	closemessage
+	addvar VAR_ARCHIES_TRUST, 1
+	msgbox SlateportCity_OceanicMuseum_2F_BuenaDesicion, MSGBOX_DEFAULT
+	msgbox SlateportCity_OceanicMuseum_2F_EresAliadoAqua, MSGBOX_DEFAULT
+	givedecoration DECOR_BLUE_TENT
+	giveitem ITEM_MYSTIC_WATER, 1
 	savebgm MUS_DUMMY
 	fadedefaultbgm
 	fadescreen FADE_TO_BLACK
@@ -71,8 +86,6 @@ SlateportCity_OceanicMuseum_2F_EventScript_CaptStern:: @ 820BB00
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox SlateportCity_OceanicMuseum_2F_Text_SternThankYouForSavingUs, MSGBOX_DEFAULT
-	setvar VAR_0x8004, ITEM_DEVON_GOODS
-	call Common_EventScript_PlayerHandedOverTheItem
 	msgbox SlateportCity_OceanicMuseum_2F_Text_SternIveGotToGo, MSGBOX_DEFAULT
 	closemessage
 	fadescreen FADE_TO_BLACK
@@ -90,7 +103,97 @@ SlateportCity_OceanicMuseum_2F_EventScript_CaptStern:: @ 820BB00
 	fadescreen FADE_FROM_BLACK
 	release
 	end
+MuyTarde:
+    .string "{PLAYER}: ¡Muy tarde!\n"
+    .string "Tenga, Capitán Stern.$"
+SlateportCity_OceanicMuseum_2F_NoloEstoy:
+    .string "{PLAYER}: ¡NO!\n"
+    .string "Es decir, sí, en el mar habitan\l"
+    .string "Pokémon y eso, pero…\p"
+    .string "{PLAYER}: ¡Todo se trata de\n"
+    .string "equilibrio! En tierra firme habitan\l"
+    .string "un sinnúmero de Pokémon…\p"
+    .string "{PLAYER}: ¡Y también humanos!\n"
+	.string "Nuestros seres amados…\p"
+    .string "Es igual de importante… Y el\p"
+    .string "crecimiento de los mares es\n"
+    .string "alarmante, también…$"
+SlateportCity_OceanicMuseum_2F_MalaDesicion:
+    .string "Archie: … … …\n"
+    .string "… … … … … …\l"
+    .string "… … … … … … … … … … … …\p"
+    .string "Archie: ¿¡TIERRA!? ¡CREÍ QUE NO\n"
+    .string "ERAS DE ESOS DESGRACIADOS\l"
+    .string "DEL EQUIPO MAGMA!\p"
+    .string "{PLAYER}: Ya se lo dije, no lo soy…\p"
+    .string "Archie: ¡PERO CLARO QUE LO ERES!\n"
+    .string "¡SEGURO ERES UN ALIADO DE ELLOS!\l"
+    .string "Me recuerdas a… ÉL…\p"
+    .string "Archie: ¿Sabes? Por personas{COLOR RED}{SHADOW LIGHT_BLUE} cerradas\n"
+    .string "y agresivas {COLOR DARK_GREY}{SHADOW LIGHT_GREY}como tú, el mundo está\l"
+    .string "como está… Aunque seguro no lo sabes…\p"
+    .string "Archie: No creo que comprendas la\n"
+    .string "complejidad de la situación, debes\l"
+    .string "estar confundido…\p"
+    .string "Archie: Aunque sí entiendes algo…\n"
+    .string "{COLOR BLUE}{SHADOW LIGHT_RED}Nuestros amados están en la tierra…{COLOR DARK_GREY}{SHADOW LIGHT_GREY}\l"
+    .string "Y eso es… Importantísimo…\p"
+    .string "Archie: … … … …$"
 
+SlateportCity_OceanicMuseum_2F_Inteligente:
+    .string "Archie: Aunque cegado, pareces\n"
+    .string "bastante inteligente y bueno en las\l"
+    .string "batallas Pokémon…\p"
+    .string "Archie: Entonces, sabrás la\n"
+    .string "inutilidad de estos en combate.\p"
+    .string "Archie: Tómalo como un regalo\n"
+    .string "por compasión… Del generoso Archie.$"
+
+SlateportCity_OceanicMuseum_2F_EventScript_CaptSternOdio::
+	msgbox SlateportCity_OceanicMuseum_2F_NoloEstoy, MSGBOX_DEFAULT
+	closemessage
+	applymovement 2, Common_Movement_ExclamationMark
+	waitmovement 0
+	msgbox SlateportCity_OceanicMuseum_2F_MalaDesicion, MSGBOX_DEFAULT
+	closemessage
+	applymovement 2, Common_Movement_FaceLeft
+	waitmovement 0
+	delay 8
+	applymovement 2, Common_Movement_FaceRight
+	waitmovement 0
+	msgbox SlateportCity_OceanicMuseum_2F_Inteligente, MSGBOX_DEFAULT
+	closemessage
+	givedecoration DECOR_RED_TENT
+	giveitem ITEM_RING_TARGET, 1
+	savebgm MUS_DUMMY
+	fadedefaultbgm
+	fadescreen FADE_TO_BLACK
+	removeobject 2
+	removeobject 3
+	removeobject 4
+	fadescreen FADE_FROM_BLACK
+	delay 30
+	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
+	waitmovement 0
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternThankYouForSavingUs, MSGBOX_DEFAULT
+	msgbox SlateportCity_OceanicMuseum_2F_Text_SternIveGotToGo, MSGBOX_DEFAULT
+	closemessage
+	fadescreen FADE_TO_BLACK
+	playfanfare MUS_ME_ASA
+	waitfanfare
+	special HealPlayerParty
+	removeobject 1
+	setflag FLAG_HIDE_ROUTE_110_TEAM_AQUA
+	compare VAR_REGISTER_BIRCH_STATE, 0
+	call_if_eq SlateportCity_OceanicMuseum_2F_EventScript_ReadyRegisterBirch
+	setflag FLAG_DELIVERED_DEVON_GOODS
+	clearflag FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE
+	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
+	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1
+	fadescreen FADE_FROM_BLACK
+	release
+	end
 SlateportCity_OceanicMuseum_2F_EventScript_ReadyRegisterBirch:: @ 820BC8C
 	setvar VAR_REGISTER_BIRCH_STATE, 1
 	return
@@ -273,99 +376,200 @@ SlateportCity_OceanicMuseum_2F_EventScript_MuseumPatron3:: @ 820BD76
 	release
 	end
 
+SlateportCity_OceanicMuseum_2F_Estabien:
+    .string "{PLAYER}: ¡Por supuesto que lo estoy!\p"
+    .string "Después de todo, el mar es increíble,\n"
+    .string "¡Y es el hábitat de cientos de miles\l"
+    .string "de Pokémon! Aunque…\p"
+    .string "{PLAYER}: Creo que el submarino\n"
+    .string "debería pasar por una seria ronda de\l"
+    .string "pruebas antes de que sea usado…$"
+
+SlateportCity_OceanicMuseum_2F_BuenaDesicion:
+    .string "Archie: ¡Bien dicho, tú, bien dicho!\n"
+    .string "Eres sin dudas, eres como yo…\l"
+    .string "Has abierto mis ojos ante una\p"
+    .string "posiblidad que no había previsto…\p"
+    .string "Archie: Si el submarino llegara a\n"
+    .string "tener un percance, ¡Toda la misión\l"
+    .string "sería arruinada!\p"
+    .string "{PLAYER}: Eh… Sí, sí, y probablemente\n"
+    .string "no sobrevivirían a la presión del\l"
+    .string "fondo marino…\p"
+    .string "Archie: ¡Mi vida es lo de menos!\p"
+    .string "El sueño del Equipo Aqua estaría\n"
+    .string "comprometido! ¡Es inimaginable!$"
+SlateportCity_OceanicMuseum_2F_EresAliadoAqua:
+    .string "Archie: ¡Es grandioso contar con\n"
+    .string "alguien tan {COLOR BLUE}{SHADOW LIGHT_RED}calmado y fuerte {COLOR DARK_GREY}{SHADOW LIGHT_GREY}como\l"
+    .string "yo en el Equipo, alguien igual de\p"
+    .string "pacífico como el fantástico Archie!…\p"
+    .string "{PLAYER}: S-su equipo no lo parece\n"
+    .string "tanto… Ya me atacaron en 4 ocasiones\l"
+    .string "y una vez robaron mi mochila junto\p"
+    .string "a varios de mis Pokémon…\p"
+    .string "Archie: ¿Qué? ¿Esos ineptos?\n"
+    .string "¡Te alegrará saber que ya no forman\l"
+    .string "parte de mi equipo!\p"
+    .string "Archie: ¡El Equipo Aqua tiene una\n"
+    .string "reputación que mantener!\p"
+    .string "Archie: Bueno, lo quieras o no, ahora\n"
+    .string "eres un aliado del Equipo Aqua.\p"
+    .string "Archie: Eso no significa que seas\n"
+    .string "parte del equipo, sin embargo, y\l"
+    .string "si interfieres cobrarás el mismo\p"
+    .string "castigo que cobraría un Recluta del\n"
+    .string "{COLOR LIGHT_RED}{SHADOW RED}Equipo Magma…{COLOR DARK_GREY}{SHADOW LIGHT_GREY}\p"
+    .string "Archie: Creo… Que deberías tener\n"
+    .string "esto, para recordar esa alianza.\l"
+    .string "Es un regalo del generoso Archie.$"
+
+
 SlateportCity_OceanicMuseum_2F_Text_ThankYouForTheParts: @ 820BD8D
-	.string "Yes? If you're looking for STERN,\n"
-	.string "that would be me.\p"
-	.string "Ah! Those must be the parts I ordered\n"
-	.string "from MR. STONE of DEVON.\p"
-	.string "Thank you! That's great!\n"
-	.string "We can prepare for our expedition now.$"
+    .string "???: ¿Si? Si buscas a Stern, ese\n"
+    .string "sería yo.\p"
+    .string "Stern. ¡Ah! ¡Esas son las Partes que\n"
+    .string "le ordené al científico de Devon!\p"
+    .string "{PLAYER}: Sí, pero… ¿Porqué el\n"
+    .string "Presidente Stone no sabía nada-?\p"
+    .string "Stern: ¡Las conoce por otro nombre,\n"
+    .string "así de simple!$"
 
 SlateportCity_OceanicMuseum_2F_Text_WellTakeThoseParts: @ 820BE40
-	.string "Hehehe, hold it!\n"
-	.string "We'll take those parts!$"
+    .string "???: ¡Esas Partes son nuestras!\p"
+    .string "???: ¡Sí, legalmente nuestras!$"
 
 SlateportCity_OceanicMuseum_2F_Text_SternWhoAreYou: @ 820BE69
-	.string "CAPT. STERN: Wh-what?\n"
-	.string "Who are you people?$"
+    .string "Stern: ¿EH? ¿Equi…én son estos?\p"
+    .string "{PLAYER}: ¿Eh? {COLOR LIGHT_BLUE} {SHADOW BLUE}(No tiene cara de\n"
+    .string "sorprendido, si no de culpa…){COLOR DARK_GREY} {SHADOW LIGHT_GREY}\p"
+    .string "Recluta A: ¡Sabes quienes somos!\n"
+    .string "Recluta B: ¡Pero igual lo diremos!$"
 
 SlateportCity_OceanicMuseum_2F_Text_WereTeamAqua: @ 820BE93
-	.string "We're TEAM AQUA!\p"
-	.string "Our BOSS wants those parts!\n"
-	.string "Shut your yap and fork them over!$"
+    .string "Recluta A: ¡Somos el Equipo Aqua!\n"
+    .string "Recluta B: ¡Y el Jefe solicitó las\l"
+    .string "Partes que te pidió!$"
 
 SlateportCity_OceanicMuseum_2F_Text_Grunt1Defeat: @ 820BEE2
-	.string "Awaaaah!\n"
-	.string "A kid beat me!$"
+	.string "¡AAAHHH!\n"
+	.string "¡Este chico es fuerte!$"
 
 SlateportCity_OceanicMuseum_2F_Text_BossGoingToBeFurious: @ 820BEFA
-	.string "Oh, man, what a disaster…\n"
-	.string "The BOSS is going to be furious…$"
+	.string "Ay, no, qué desastre…\n"
+	.string "El Jefe no lo perdonará…$"
 
 SlateportCity_OceanicMuseum_2F_Text_LetMeTakeCareOfThis: @ 820BF35
-	.string "Humph, sniveling wimp!\n"
-	.string "Let me take care of this!$"
+	.string "¡Ah, pero qué inútil!\n"
+	.string "¡Yo terminaré con esto!$"
 
 SlateportCity_OceanicMuseum_2F_Text_Grunt2Defeat: @ 820BF66
-	.string "What?!\n"
-	.string "I lost, too!$"
+	.string "¡¿QUÉ?!\n"
+	.string "¡PERDÍ TAMBIÉN!$"
 
 SlateportCity_OceanicMuseum_2F_Text_MeddlingKid: @ 820BF7A
-	.string "Now what? If we don't get the parts,\n"
-	.string "we're in for it!\p"
-	.string "Arrgh, I didn't count on being meddled\n"
-	.string "with by some meddling kid!$"
+    .string "Recluta A: ¿Y ahora qué?\n"
+    .string "¡Necesitábamos las Partes, pero ese\l"
+    .string "niño nos destrozará de nuevo!\p"
+    .string "Recluta B: ¡No lo sé, no contaba\n"
+    .string "con que un simple niño nos pondría\l"
+    .string "un freno!\p"
+    .string "Recluta A: P-pero las Partes…\n"
+    .string "Ambos: ¿No eran nuestras legalmente?$"
 
 SlateportCity_OceanicMuseum_2F_Text_CameToSeeWhatsTakingSoLong: @ 820BFF2
-	.string "I came to see what was taking so\n"
-	.string "long to snatch some parts, and you\l"
-	.string "simps are held up by a mere child?$"
+    .string "???: ¡¿Qué?!\n"
+    .string "Vengo aquí para ver porqué tardan\l"
+    .string "tanto en traer mi Parte, y ¿Qué veo?\p"
+    .string "{PLAYER}: {COLOR LIGHT_BLUE} {SHADOW BLUE}(No sé quién sea él, pero\n"
+    .string "sin dudas es imponente…){COLOR DARK_GREY} {SHADOW LIGHT_GREY}\p"
+    .string "???: No importa qué digan, ese niño\n"
+    .string "no tiene derecho a negarles lo que\l"
+    .string "ya es mío. Debí haberlas venido a\p"
+    .string "buscar yo…$"
+
 
 SlateportCity_OceanicMuseum_2F_Text_ArchieWarning: @ 820C059
-	.string "We are TEAM AQUA,\n"
-	.string "and we love the sea!\p"
-	.string "And I am TEAM AQUA's leader,\n"
-	.string "ARCHIE!\p"
-	.string "What makes you interfere with us?\p"
-	.string "…No! You can't be!\n"
-	.string "You're not one of TEAM MAGMA?\p"
-	.string "Wait, that can't be right.\n"
-	.string "You're not dressed for the part.\p"
-	.string "… … … … … …\n"
-	.string "… … … … … …\p"
-	.string "POKéMON, people… All life depends on\n"
-	.string "the sea.\p"
-	.string "So, TEAM AQUA is dedicated to\n"
-	.string "the expansion of the sea.\p"
-	.string "Don't you agree? What we are doing\n"
-	.string "is a magnificent undertaking.\p"
-	.string "Ah, fine…\n"
-	.string "You're still too young to understand\l"
-	.string "our noble objective.\p"
-	.string "But, I warn you, don't even consider\n"
-	.string "interfering with our plans again.\p"
-	.string "The consequences will cost you\n"
-	.string "dearly!\p"
-	.string "And don't you forget it!$"
+    .string "???: ¡Somos el gran Equipo Aqua!\n"
+    .string "¡Liderado por el gran, poderoso y\l"
+    .string "majestuoso Archie!\p"
+    .string "{PLAYER}: ¿¡ARCHIE!?\p"
+    .string "{COLOR LIGHT_BLUE} {SHADOW BLUE}(¿El mismo Archie al que tanto\n"
+    .string "admiraban esos Reclutas?){COLOR DARK_GREY} {SHADOW LIGHT_GREY}\p"
+    .string "Archie: Al parecer, este niño ya me\n"
+    .string "conoce…\p"
+    .string "Archie: ¿Tú quién eres, niño, eh?\n"
+    .string "¡Responde!\p"
+    .string "{PLAYER}: Ehh… Ehh… ¡Soy {PLAYER}!\p"
+    .string "Archie: ¿{PLAYER}, eh? Me aseguraré\n"
+    .string "de recordar ese nombre…\p"
+    .string "Archie: Así sabré a quién ir a buscar\n"
+    .string "cuando destroze los malvados planes\l"
+    .string "del{COLOR LIGHT_RED}{SHADOW RED} Equipo Magma…{COLOR DARK_GREY}{SHADOW LIGHT_GREY}\p"
+    .string "{PLAYER}: ¿E-Equipo Magma?\p"
+    .string "Archie: ¿No los conoces?\p"
+    .string "S-sí, ahora que lo pienso, no te\n"
+    .string "vistes con esas ridículas ropas de\l"
+    .string "cavernícola.\p"
+    .string "… … … … … …\n"
+    .string "… … … … … …\l"
+    .string "… … … … … …\p"
+    .string "Archie: Pokémon, gente… ¡Todos ellos\n"
+    .string "pagarán el mismo precio, sufrirán\l"
+    .string "el mismo destino por las egoístas\p"
+    .string "acciones humanas.\p"
+    .string "Archie: No soy diferente. ¡Pero\n"
+    .string "pienso solucionar esos problemas!\p"
+    .string "{PLAYER}: ¿De qué hablas? ¿Problemas?\p"
+    .string "Archie: ¡Sí, problemas!\n"
+    .string "¡La contaminación!\p"
+    .string "¡El calentamiento de las aguas!\p"
+    .string "Archie: ¡Todo eso provoca el cambio\n"
+    .string "climático! ¡Sobretodo el\l"
+    .string "calentamiento oceánico!\p"
+    .string "Archie: Necesito saber, niño,\n"
+    .string "¿Estás de acuerdo con lo que digo?\l"
+    .string "¿Crees tu también que hay que\p"
+    .string "hacer algo para arreglar eso?$"
+
+SlateportCity_OceanicMuseum_2F_Desicion:
+	.string "{PLAYER}: Eh… Y-yo…$"
 
 SlateportCity_OceanicMuseum_2F_Text_SternThankYouForSavingUs: @ 820C2BE
-	.string "CAPT. STERN: You're…\n"
-	.string "Ah, okay, you're {PLAYER}{KUN}…\p"
-	.string "Anyway, that was a tense situation!\n"
-	.string "Thank you for saving us!\p"
-	.string "Oh, yes, I almost forgot that you\n"
-	.string "even brought the parts from DEVON!$"
+    .string "Stern: ¡Lamento esos acontecimientos!\p"
+    .string "¡No conozco a esos del Equipo\n"
+    .string "Aqua, ni siquiera sabía de su\l"
+    .string "existencia hasta hoy!\p"
+    .string "{PLAYER}: Claaaaaaro, pero… No tiene\n"
+    .string "que decírmelo, después de todo,\l"
+    .string "parecen mantener un perfil bajo…\p"
+    .string "Stern: Sí, sí, supongo que si fueran\n"
+    .string "más ruidosos los habría conocido…\p"
+    .string "{PLAYER}: Por cierto… Quien me pidió\n"
+    .string "que viniera aquí a entregarlo fue\l"
+    .string "atacado por el Equipo Aqua dos veces…\p"
+    .string "Stern: Uh… Yo no me enteré de eso…\p"
+    .string "{PLAYER}: Bueno, no es importante…\n"
+    .string "¡Lo importante es que ya tienes las\l"
+    .string "Partes!$"
+
 
 SlateportCity_OceanicMuseum_2F_Text_SternIveGotToGo: @ 820C36C
-	.string "CAPT. STERN: Whoops!\n"
-	.string "There's no time to lose!\p"
-	.string "We have to set out on our ocean-floor\n"
-	.string "expedition really soon.\p"
-	.string "Thanks again, but now I've got\n"
-	.string "to go!\p"
-	.string "Feel free to wander around and check\n"
-	.string "out our facilities, though.$"
-
+    .string "{PLAYER}: Aún así… ¿Qué era todo\n"
+    .string "eso de que eran suyas por derecho?\p"
+    .string "Stern: Uh… ¡M-Mentiras de unos\n"
+    .string "estúpidos hombres en cosplay!\p"
+    .string "Stern: Probablemente sólo querían\n"
+    .string "manipularte para que les\l"
+    .string "des las Partes.\p"
+    .string "{PLAYER}: Sí, tiene sentido… No se\n"
+    .string "ven muy honestos ni confiables…\p"
+    .string "Stern: ¡Pero yo sí que lo soy!\n"
+    .string "¡Conmigo, este proyecto saldrá\l"
+    .string "a flote, incluso sin Devon!\p"
+    .string "Como sea… ¡Me t-tengo que ir!\n"
+    .string "¡P-pero tómate tu tiempo para ver\l"
+    .string "el museo!$"
 SlateportCity_OceanicMuseum_2F_Text_RemindsMeOfAbandonedShip: @ 820C43F
 	.string "I saw a model of a ship here.\p"
 	.string "It reminded me of the ABANDONED SHIP\n"

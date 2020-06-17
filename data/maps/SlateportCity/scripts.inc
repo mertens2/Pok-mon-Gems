@@ -115,7 +115,102 @@ SlateportCity_Movement_ScottExit: @ 81DCDB4
 	walk_left
 	walk_left
 	step_end
-
+SlateportCity_EventScript_HombreAntiAquaTrigger1::
+	lock
+	setvar VAR_TRIGGER_SLATEPORT, 1
+	applymovement 36, Common_Movement_ExclamationMark
+	applymovement 37, Common_Movement_ExclamationMark
+	waitmovement 0
+	delay 8
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+	waitmovement 0
+	msgbox SlateportCity_EnMediodeAlgo, MSGBOX_DEFAULT
+	delay 8
+	applymovement OBJ_EVENT_ID_PLAYER, Player_Atras
+	waitmovement 0
+	msgbox SlateportCity_Text_DiscusionAqua, MSGBOX_DEFAULT
+	delay 8
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	msgbox SlateportCity_Text_DiscusionAquaPlayer, MSGBOX_DEFAULT
+	setflag FLAG_TRIGGER_SLATEPORT
+	release
+	end
+SlateportCity_Man::
+	lock
+	goto_if_set FLAG_TRIGGER_SLATEPORT, SlateportCity_ManAfter1
+	setvar VAR_TRIGGER_SLATEPORT, 1
+	msgbox SlateportCity_Text_DiscusionAqua, MSGBOX_DEFAULT
+	delay 8
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	msgbox SlateportCity_Text_DiscusionAquaPlayer, MSGBOX_DEFAULT
+	setflag FLAG_TRIGGER_SLATEPORT
+	release
+	end
+SlateportCity_Man2::
+	lock
+	goto_if_set FLAG_TRIGGER_SLATEPORT, SlateportCity_ManAfter2
+	setvar VAR_TRIGGER_SLATEPORT, 1
+	msgbox SlateportCity_Text_DiscusionAqua, MSGBOX_DEFAULT
+	delay 8
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	msgbox SlateportCity_Text_DiscusionAquaPlayer, MSGBOX_DEFAULT
+	setflag FLAG_TRIGGER_SLATEPORT
+	release
+	end
+SlateportCity_ManAfter1::
+	lock
+	faceplayer
+	msgbox SlateportCity_Text_SeaweedFullOfLife, MSGBOX_DEFAULT
+	release
+	end
+SlateportCity_ManAfter2::
+	lock
+	faceplayer
+	msgbox SlateportCity_Text_EveryoneCallsHimCaptStern, MSGBOX_DEFAULT
+	giveitem ITEM_MACH_BIKE, 1
+	giveitem ITEM_TM43, 1
+	release
+	end
+SlateportCity_Movement_HombreAntiAquaTrigger2:
+	walk_diag_southeast
+	walk_down
+	walk_down
+	walk_down
+	step_end
+SlateportCity_Movement_HombreAntiAquaTrigger2b:
+	walk_diag_northwest
+	walk_up
+	walk_up
+	walk_up
+	step_end
+SlateportCity_EventScript_HombreAntiAquaTrigger2::
+	lock
+	setvar FLAG_TRIGGER_SLATEPORT, 1
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	special SpawnCameraObject
+	applymovement OBJ_EVENT_ID_CAMERA, SlateportCity_Movement_HombreAntiAquaTrigger2
+	waitmovement 0
+	msgbox SlateportCity_Text_DiscusionAqua, MSGBOX_DEFAULT
+	delay 8
+	applymovement OBJ_EVENT_ID_CAMERA, SlateportCity_Movement_HombreAntiAquaTrigger2b
+	waitmovement 0
+	special RemoveCameraObject
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement 0
+	msgbox SlateportCity_Text_DiscusionAquaPlayer, MSGBOX_DEFAULT
+	setflag FLAG_TRIGGER_SLATEPORT
+	release
+	end
+Player_Atras:
+	walk_down_backwards
+	step_end
+SlateportCity_EnMediodeAlgo:
+    .string "¡Hey, quítate! ¡Estamos hablando!$"
 SlateportCity_EventScript_EnergyGuru:: @ 81DCDBD
 	lock
 	faceplayer
@@ -502,6 +597,11 @@ SlateportCity_PokemartDecor_Dolls: @ 81DD184
 	.2byte DECOR_AZURILL_DOLL
 	.2byte DECOR_MARILL_DOLL
 	.2byte DECOR_SKITTY_DOLL
+	.2byte DECOR_DUSKULL_DOLL
+	.2byte DECOR_DITTO_DOLL
+	.2byte DECOR_GULPIN_DOLL
+	.2byte DECOR_LOTAD_DOLL
+	.2byte DECOR_KECLEON_DOLL
 	.2byte DECOR_NONE
 	release
 	end
@@ -537,6 +637,9 @@ SlateportCity_PokemartDecor: @ 81DD1B8
 	.2byte DECOR_A_NOTE_MAT
 	.2byte DECOR_B_NOTE_MAT
 	.2byte DECOR_C_HIGH_NOTE_MAT
+	.2byte DECOR_GLITTER_MAT
+	.2byte DECOR_JUMP_MAT
+	.2byte DECOR_SPIN_MAT
 	.2byte DECOR_NONE
 	release
 	end
@@ -972,17 +1075,48 @@ SlateportCity_Text_EffortRibbonLooksGoodOnIt: @ 81DD77B
 	.string "RIBBON looks good on it!$"
 
 SlateportCity_Text_WonderIfLighthouseStartlesPokemon: @ 81DD7AD
-	.string "The light of the lighthouse reaches\n"
-	.string "dozens of miles away.\p"
-	.string "I wonder if it doesn't startle POKéMON\n"
-	.string "in the sea.$"
+    .string "El Equipo Aqua está desobedeciendo\n"
+    .string "a Devon, al desarrollar el Submarino.\p"
+    .string "Ojalá todos pudiéramos ignorar\n"
+    .string "así las órdenes de tan malvada\l"
+    .string "organización.$"
+
+SlateportCity_Text_DiscusionAqua:
+    .string "Chico A: El Equipo Aqua\n"
+	.string "no tiene derecho a hacer\l"
+    .string "lo que quiera.\p"
+	.string "Por algo Devon manda Hoenn.\p"
+    .string "Saben lo que hacen.\p"
+    .string "Chico B: Están en todo\n"
+	.string "su derecho de desarrollar\l"
+    .string "tecnología de exploración marina.\p"
+    .string "Son un grupo de biólogos marinos.\p"
+    .string "Devon solamente está evitando que\n"
+    .string "exploren el mar porque deben\l"
+    .string "estar escondiendo algo ahí.\p"
+    .string "Chico A: ¡NO HABLES ASÍ DE DEVON!\n"
+    .string "Aunque pensara que es posible, ellos\l"
+    .string "tienen oídos en todos lados…\p"
+    .string "-susurro- Chico B: Son capaces\n"
+    .string "de hacer lo que sea para\l"
+	.string "mantener su imagen… -susurro-\p"
+    .string "Incluso hacer desaparecer a alguien.$"
+SlateportCity_Text_DiscusionAquaPlayer:
+    .string "{PLAYER}:{COLOR LIGHT_BLUE} {SHADOW BLUE}(¿Q-qué? ¿Devon haría eso?)\n"
+    .string "(Incluso si así fuera… ¿Porqué?)\p"
+    .string "(Ahora que lo pienso… El Presidente\n"
+    .string "no parecía saber lo que Las Partes\l"
+    .string "eran, y eso que él manda ahí…)\p"
+    .string "(¿Qué estarán escondiendo?)$"
+
 
 SlateportCity_Text_SeaweedFullOfLife: @ 81DD81A
-	.string "Ooh, look at this!\p"
-	.string "The seaweed you can get around these\n"
-	.string "parts is fresh and full of life.\p"
-	.string "Why, it looks like it can even rear up\n"
-	.string "and attack!$"
+    .string "El Equipo Aqua pondrá a Slaterport\n"
+    .string "en muchos problemas legales…\p"
+    .string "Si hubiera una manera de hacer que\n"
+    .string "también estuvieran involucrados\l"
+    .string "en este asunto… Ganaríamos el juicio…$"
+
 
 SlateportCity_Text_HowTownIsBornAndGrows: @ 81DD8A6
 	.string "Where the water is clean, the fruits\n"
@@ -992,123 +1126,156 @@ SlateportCity_Text_HowTownIsBornAndGrows: @ 81DD8A6
 	.string "That is how a town is born and grows.$"
 
 SlateportCity_Text_SlateportWonderfulPlace: @ 81DD93D
-	.string "Shopping where you can breathe the\n"
-	.string "scent of the ocean…\p"
-	.string "SLATEPORT is such a wonderful place!$"
+    .string "¡Slaterport es un lugar genial!\p"
+    .string "¡Y el Equipo Aqua evitará que el\n"
+    .string "calentamiento de las aguas nos\l"
+    .string "quite estas playas!$"
+
 
 SlateportCity_Text_BuyBricksSoDecorWontGetDirty: @ 81DD999
-	.string "If you put DOLLS or CUSHIONS on\n"
-	.string "the floor, they'll get dirty.\p"
-	.string "I'm going to buy some BRICKS so my\n"
-	.string "DOLLS and CUSHIONS won't get dirty\l"
-	.string "when I leave them out.$"
+    .string "Los Peluches se arruinan en el\n"
+    .string "suelo… ¡Por eso he comprado Bloques!\p"
+    .string "… ¿…?\p"
+    .string "¿Equipo Aqua?\n"
+    .string "He escuchado algo de eso, pero…\l"
+    .string "Me la paso en mi Base Secreta,\p"
+    .string "¡Y no me entero de nada después!$"
+
 
 SlateportCity_Text_GoingToCompeteInBattleTent: @ 81DDA34
-	.string "Wroooar! I'm going to compete in\n"
-	.string "the BATTLE TENT, too!\p"
-	.string "But before that, I need to catch\n"
-	.string "some POKéMON!$"
+    .string "¡ROOOOAAAAR! ¡Imito al movimiento\n"
+    .string "Rugido! Es mi estrategia preferida\l"
+    .string "de la Tienda Batalla!\p"
+    .string "… ¿…?\p"    
+	.string "¿Equipo Aqua? Eh…\n"
+    .string "Prefiero no meterme en esas cosas…\p"
+    .string "¡Lo único que se es que su líder,\n"
+    .string "Archie, es el hombre más hermoso\l"
+    .string "que he visto! Lástima que esté loco…\p"
+	.string "Me pregunto, ¿Cómo lo aguantará su\n"
+	.string "novia? He oído que sale con la admin…$"
+
 
 SlateportCity_Text_BushedHikingFromMauville: @ 81DDA9A
-	.string "Whew… I'm just bushed…\p"
-	.string "I hiked over from MAUVILLE CITY.\n"
-	.string "But, boy, this city's huge.\p"
-	.string "If I'd known this, I would've ridden\n"
-	.string "my BIKE here.$"
+    .string "Debí haber traído mi Bici Carrera…\n"
+    .string "Este lugar es ¡ENOOOORME!\p"
+    .string "Me pregunto si a esos piratas\n"
+    .string "les faltará mucho para irse\l"
+    .string "del Museo. Quiero verlo…$"
 
 SlateportCity_Text_EveryoneCallsHimCaptStern: @ 81DDB21
-	.string "STERN, the fellow who built the\n"
-	.string "MUSEUM, also happens to be the leader\l"
-	.string "of an undersea exploration team.\p"
-	.string "So, everyone calls him CAPT. STERN.$"
+    .string "El Capitán Stern, aunque no capitán\n"
+    .string "real, es parte del Equipo Aqua.\l"
+    .string "O, al menos, eso dice la página…\p"
+    .string "verdadalternativadelaranabarbada.ru$"
+
 
 SlateportCity_Text_WhatsLongLineOverThere: @ 81DDBAC
-	.string "What is that over there?\n"
-	.string "That long line…$"
+	.string "Esos piratas…\n"
+	.string "¿Estarán haciendo cosplay?…\l"
+	.string "¿Podré yo participar?…$"
 
 SlateportCity_Text_VisitedMuseumOften: @ 81DDBD5
-	.string "When I was a child, I visited\n"
-	.string "the MUSEUM often.\p"
-	.string "I used to dream about the mysteries of\n"
-	.string "the sea after seeing the exhibits.$"
+    .string "En mis tiempos, visitaba el Museo\n"
+    .string "a diario. Ahora prefiero ver las\l"
+    .string "reliquias por Internet.$"
+
 
 SlateportCity_Text_QuitPushing: @ 81DDC4F
-	.string "Hey, there! Quit pushing!\n"
-	.string "This is the line, can't you see?$"
+    .string "¡No empujes! ¡Respeta la fila!$"
+
 
 SlateportCity_Text_AquaHasPolicy: @ 81DDC8A
-	.string "TEAM AQUA has a policy of\n"
-	.string "assembling and dispersing at\l"
-	.string "the operation site.$"
+    .string "Estamos haciendo fila para\n"
+    .string "tener la oportunidad de ver al\l"
+    .string "gran, poderoso y hermoso Archie.\p"
+    .string "¡El hombre más fuerte del mundo!\n"
+    .string "¡Le seguiremos hasta que evite\l"
+    .string "exitosamente el cambio climático!$"
+
 
 SlateportCity_Text_BossIsBrilliant: @ 81DDCD5
-	.string "Our BOSS is brilliant.\p"
-	.string "What would he want to do with\n"
-	.string "a MUSEUM now?$"
+    .string "Todos hablan de lo atractivo que es\n"
+    .string "nuestro líder. Pero yo no le veo\l"
+    .string "lo lindo…\p"
+    .string "¡Además, lo sigo por su inteligencia!$"
+
 
 SlateportCity_Text_WhatsNewSchemeIWonder: @ 81DDD18
-	.string "What's the new scheme, I wonder?\p"
-	.string "Our BOSS is scary when he's mad, so\n"
-	.string "I'd better not screw things up…$"
+    .string "¿Qué nuevo plan tendrá el Jefe?\n"
+    .string "Quisiera preguntarle, pero no es mi\l"
+    .string "misión, así que sólo me dirá que\p"
+    .string "vuelva a ella…$"
+
 
 SlateportCity_Text_ShouldTakeItAll: @ 81DDD7D
-	.string "If there's something we need in\n"
-	.string "the MUSEUM, we should take it all!$"
+    .string "¡Nuestro Jefe es claramente superior\n"
+    .string "a su rival! ¡Está comenzando las\l"
+    .string "acciones antes que él!$"
 
 SlateportCity_Text_DontButtIn: @ 81DDDC0
-	.string "Hey, you there!\n"
-	.string "Don't butt in!$"
+    .string "¡Hey! ¡Si vienes a ver el desarrollo\n"
+    .string "del Submarino como yo, haz la fila!$"
+
 
 SlateportCity_Text_RemindsMeOfLongLineForGames: @ 81DDDDF
-	.string "A long line, huh?\p"
-	.string "It reminds me of the times I lined up to\n"
-	.string "buy smash-hit games…$"
+    .string "Esta larga fila me da nostalgia…\p"
+    .string "Me recuerda a esos tiempos más\n"
+    .string "simples, cuando hacía filas para\l"
+    .string "jugar el arcade de Donkey Kong…$"
+
 
 SlateportCity_Text_WhyAreWeLiningUp: @ 81DDE2F
-	.string "Why are we even lining up and paying?\n"
-	.string "We should just march in!$"
+    .string "¿Porqué siquiera estamos pagando?\n"
+    .string "¡Deberíamos entrar gratis! Cualquier\l"
+    .string "lugar de renombre que hable del mar…\p"
+    .string "¡Debería ser nuestro por derecho!$"
+
 
 SlateportCity_Text_WhatDoYouWant: @ 81DDE6E
-	.string "What?\n"
-	.string "What do you want?$"
+	.string "¿Qué?\n"
+	.string "¿Qué quieres?$"
 
 SlateportCity_Text_IllReadSignForYou: @ 81DDE86
-	.string "You want to read this sign?\n"
-	.string "I'll read it for you!$"
+	.string "¿Te leo el cartel?\n"
+	.string "¡Está bien!$"
 
 SlateportCity_Text_SaysSomethingLikeSeaIsEndless: @ 81DDEB8
-	.string "Let's see…\p"
-	.string "Um… I think it says something like\n"
-	.string "“the life in the sea is endless.”\p"
-	.string "Yup, I'm pretty sure that's what\n"
-	.string "it says.$"
+	.string "A ver…\p"
+	.string "Um… Dice algo así como…:\n"
+	.string "“La vida marina es perfecta.”\p"
+	.string "Sep, dice exactamente eso$"
 
 SlateportCity_Text_ShouldveBroughtMyGameBoy: @ 81DDF32
-	.string "Grumble…\p"
-	.string "I should've brought my Game Boy\n"
-	.string "Advance so I wouldn't get bored in line…\p"
-	.string "Grumble…$"
+    .string "Uggghhhh… Debí haber traído\n"
+    .string "mi Nintendo DS… Podría estar jugando\l"
+    .string "Pokémon Negro o quizá NSMB…\p"
+    .string "Ahora me aburroooooooo…\n"
+    .string "Uggghhhh…$"
+
 
 SlateportCity_Text_HotSpringsAfterOperation: @ 81DDF8D
-	.string "When this operation's over, I'll take\n"
-	.string "you to a hot spring spa!\p"
-	.string "That's what our leader said.\n"
-	.string "I can't wait!$"
+	.string "Cuando termine esta misión,\n"
+	.string "¡Iré a las aguas termales!\p"
+	.string "Nuestro generoso líder me dio\n"
+	.string "boletos, ¡No puedo esperar!$"
 
 SlateportCity_Text_SeaIsSoWet: @ 81DDFF7
-	.string "The sea is just so vast…\p"
-	.string "Could the sea have been made by\n"
-	.string "the tears shed by POKéMON?$"
+	.string "El mar es taaaaan enorme…\p"
+	.string "¿Podría el mar estar hecho\n"
+	.string "de las melacólicas lágrimas\l"
+	.string "de quienes perdieron familia?$"
 
 SlateportCity_Text_SinkOldBoats: @ 81DE04B
-	.string "Do you know what they do with old\n"
-	.string "ships that become too creaky to sail?\p"
-	.string "They sink them in the sea so they\n"
-	.string "become habitats for POKéMON.$"
+	.string "¿Sabes lo que hacen con las naves\n"
+	.string "viejas que no sirven?\p"
+	.string "Las abandonan para que los\n"
+	.string "Pokémon vivan aquí.$"
 
 SlateportCity_Text_BuyTooMuch: @ 81DE0D2
-	.string "Whenever I visit here, I get carried\n"
-	.string "away and buy too much.$"
+	.string "Cuando vengo aquí, compro\n"
+	.string "demasiado. Me gusta comprarle\l"
+	.string "regalos a mi novia y familia…$"
 
 SlateportCity_Text_GetNameRaterToHelpYou: @ 81DE10E
 	.string "If you want to change your POKéMON's\n"
@@ -1169,56 +1336,66 @@ SlateportCity_Text_MostInvaluableExperience: @ 81DE4C4
 	.string "invaluable experience…$"
 
 SlateportCity_Text_SternMoveAheadWithExploration: @ 81DE502
-	.string "CAPT. STERN: Yes, indeed. We intend to\n"
-	.string "move ahead with our exploration.$"
+    .string "Stern: Eh… Eh, sí, planeamos seguir\n"
+    .string "con la expedición, sin importar\l"
+    .string "nada…$"
 
 SlateportCity_Text_GabbyWonderfulThanksForInterview: @ 81DE54A
-	.string "GABBY: That's wonderful, CAPT. STERN!\n"
-	.string "Thank you for taking the time from\l"
-	.string "your busy schedule to talk to us.\p"
-	.string "We hope we can interview you again\n"
-	.string "with news of more discoveries!$"
+    .string "Gabby: ¡Eso es maravilloso!\p"
+    .string "Gabby: Pero… ¿No se le hace raro que\n"
+    .string "Devon se niegue a participar en\l"
+    .string "el proyecto?\p"
+    .string "Stern: Eh… Eh… ¿S-sí? Pero no\n"
+    .string "importa, contamos con el apoyo\l"
+    .string "económico de alguien muy generoso…$"
+
 
 SlateportCity_Text_SternWhewFirstInterview: @ 81DE5F7
-	.string "CAPT. STERN: Whew…\p"
-	.string "That was my first time to be filmed for\n"
-	.string "TV. That was nerve-wracking.$"
+    .string "Stern: Uf… Eso estuvo cerca…\n"
+    .string "Esa fue la primera vez que salgo\l"
+    .string "en TV nacional… Espero que todo\p"
+    .string "salga bien y no haya que regrabar…$"
+
 
 SlateportCity_Text_OhPlayerWeMadeDiscovery: @ 81DE64F
-	.string "Oh! {PLAYER}{KUN}!\n"
-	.string "You're looking great!\p"
-	.string "We made a huge discovery on our last\n"
-	.string "seafloor exploration.\p"
-	.string "We found an underwater cavern on\n"
-	.string "ROUTE 128.\p"
-	.string "We think it's the habitat of a POKéMON\n"
-	.string "that's said to have been long extinct.$"
+    .string "¡Oh! ¡{PLAYER}! ¡Es fantástico!\p"
+    .string "Hemos descubierto una cueva\n"
+    .string "submarina que alberga a un Pokémon\l"
+    .string "que se creía extinto…$"
+
 
 SlateportCity_Text_AquaWillAssumeControlOfSubmarine: @ 81DE724
-	.string "Fufufu…\n"
-	.string "CAPT. STERN, I presume.\p"
-	.string "We of TEAM AQUA will assume\n"
-	.string "control of your submarine!\p"
-	.string "Your objections are meaningless!\n"
-	.string "We expect your total cooperation!\p"
-	.string "Fufufu…\n"
-	.string "Just watch and learn what TEAM\l"
-	.string "AQUA has planned!$"
+    .string "???: Oh, hola, ¿Capitán Stern, eras?\n"
+    .string "Espero que tenga listo el submarino\l"
+    .string "que le encargamos… \p"
+    .string "Usted ya se ha portado mal en el\n"
+    .string "pasado, y, como sus colaboradores,\l"
+    .string "merecemos legalmente el acceso al\p"
+    .string "Submarino, que tanto has tardado en\n"
+    .string "construir…$"
+
 
 SlateportCity_Text_SternWhatWasAllThat: @ 81DE7F7
-	.string "CAPT. STERN: What was that all about?\p"
-	.string "It sounded like someone using\n"
-	.string "a megaphone…\p"
-	.string "Where did it come from?$"
+    .string "Stern: Eh… Eh… ¿De qué hablas?\n"
+    .string "¡Deja el megáfono, la cobardía y\l"
+    .string "muéstrate, A-- Eh… Quien seas!\p"
+    .string "{PLAYER}: Espera… ¿Colaboradores?\n"
+    .string "'A', ¿Quién?\p"
+    .string "Stern: Eh… N-no… ¿No lo sé?\p"
+    .string "{PLAYER}: ¿¡CÓMO ES ESA UNA\n"
+    .string "PREGUNTA!?$"
 
 SlateportCity_Text_FromHarborTryingToTakeSub: @ 81DE860
-	.string "It's from the HARBOR!\p"
-	.string "The submarine!\n"
-	.string "They're trying to take it!$"
+    .string "¡Es del Puerto! ¡Roban el submarino!$"
 
 SlateportCity_Text_PleaseComeWithMe: @ 81DE8A0
-	.string "{PLAYER}{KUN}!\n"
-	.string "Please, come with me!$"
+    .string "Stern: ¿Robar? Nah, imposible…\p"
+    .string "{PLAYER}: ¿¡CÓMO ESTÁS TAN SEGURO!?\p"
+    .string "{PLAYER}: ¡YA HE VISTO A ESOS LOCOS\n"
+    .string "ROBANDO LAS PARTES Y UNAS\l"
+    .string "PIEDRAS!\p"
+    .string "Stern: Ehh… Es… Sólo una corazonada…\p"
+    .string "¡NO IMPORTA, VEN CONMIGO!$"
 
 SlateportCity_Text_BattleTentSign: @ 81DE8BC
 	.string "BATTLE TENT SLATEPORT SITE\n"

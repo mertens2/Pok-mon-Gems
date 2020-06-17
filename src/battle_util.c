@@ -5730,6 +5730,22 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         if (moveType == TYPE_FIRE || moveType == TYPE_ICE)
             MulModifier(&modifier, UQ_4_12(0.5));
         break;
+    case ABILITY_SWARM:
+        if (moveType == TYPE_FLYING && gBattleMons[battlerDef].hp <= (gBattleMons[battlerDef].maxHP / 3))
+            MulModifier(&modifier, UQ_4_12(0.5));
+        break;
+    case ABILITY_TORRENT:
+        if (moveType == TYPE_GRASS && gBattleMons[battlerDef].hp <= (gBattleMons[battlerDef].maxHP / 3))
+            MulModifier(&modifier, UQ_4_12(0.5));
+        break;
+    case ABILITY_BLAZE:
+        if (moveType == TYPE_WATER && gBattleMons[battlerDef].hp <= (gBattleMons[battlerDef].maxHP / 3))
+            MulModifier(&modifier, UQ_4_12(0.5));
+        break;
+    case ABILITY_OVERGROW:
+        if (moveType == TYPE_FIRE && gBattleMons[battlerDef].hp <= (gBattleMons[battlerDef].maxHP / 3))
+            MulModifier(&modifier, UQ_4_12(0.5));
+        break;
     }
 
     // ally's abilities

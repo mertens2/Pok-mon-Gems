@@ -1068,7 +1068,7 @@ RustboroCity_Text_HeyThatsRustborosGymBadge: @ 81E139E
     .string "a convertir en Campeón, prométeme\p"
     .string "que no se te subirá la fama\n"
     .string "a la cabeza, justo como Steven Stone…\l"
-    .string "Aunque el Campeón actual… Sí le pasó…$"
+    .string "Aunque al Campeón actual… Sí le pasó…$"
 
 RustboroCity_Text_YoureNewAroundHere: @ 81E1407
     .string "¿Huh? A ti no te conozco, pero no\n"
@@ -1142,7 +1142,7 @@ RustboroCity_Text_HelpMeIWasRobbed: @ 81E183E
     .string "¡Ey, eres tú! \p"
     .string "¡Eres quien me salvó en el Bosque!\n"
     .string "Debes recuperar mis Partes, ese\l"
-    .string "Pirata me las robó…$"
+    .string "Recluta de bajo estatus las robó…$"
 
 
 RustboroCity_Text_ShadyCharacterTookOffTowardsTunnel: @ 81E1904
@@ -1154,7 +1154,7 @@ RustboroCity_Text_ShadyCharacterTookOffTowardsTunnel: @ 81E1904
 RustboroCity_Text_YouGotItThankYou: @ 81E194D
     .string "¿Volviste? Espera… ¡!\n"
     .string "¡SÍ, TRAJISTE LAS PARTES!\p"
-    .string "podré mantener el empleo otro mes…\p"
+    .string "Podré mantener el empleo otro mes…\p"
     .string "¡AQUÍ TIENES UNA SUPERBALL!$"
 
 
@@ -1191,7 +1191,7 @@ RustboroCity_Text_MayOhHaventRaisedPokemonEnough: @ 81E1BD3
     .string "May: ¡JAJAJA! Desquiciado, ¿tienes\n"
     .string "miedo de perder ante mí?\l"
     .string "Sí, debe ser eso, ¡JA, JA, JA!\p"
-    .string "{PLAYER}: (Esa fue la risa más\n"
+    .string "{PLAYER}: {COLOR LIGHT_BLUE} {SHADOW BLUE}(Esa fue la risa más\n"
     .string "sarcástica que haya escuchado…)$"
 
 
@@ -1300,30 +1300,34 @@ RustboroCity_Text_CuttersHouse: @ 81E2296
 	.string "CUTTER'S HOUSE$"
 
 RustboroCity_Text_DevelopedNewPokenavFeature: @ 81E22A5
-	.string "I've been developing an added feature\n"
-	.string "for the POKéNAV…\p"
-	.string "And it turned out great!\p"
-	.string "{PLAYER}, may I see that POKéNAV?\n"
-	.string "The one our PRESIDENT gave you?$"
+    .string "He estado desarrollando una\n"
+    .string "función extra para el Pokénav.\p"
+    .string "Es un regalo de mi parte por\n"
+    .string "ayudarme a recuperar las Partes.$"
+
 
 RustboroCity_Text_AddedMatchCallPleaseCallMrStone: @ 81E2331
-	.string "There you go, {PLAYER}!\p"
-	.string "I added a new feature named\n"
-	.string "MATCH CALL to your POKéNAV.\p"
-	.string "Using the MATCH CALL feature,\n"
-	.string "you can chat with people who have\l"
-	.string "been registered in your POKéNAV.\p"
-	.string "{PLAYER}, our PRESIDENT STONE should\n"
-	.string "be registered in your POKéNAV.\p"
-	.string "Test it out.\n"
-	.string "Please give our PRESIDENT a call.$"
+    .string "¡Ahí lo tienes, {PLAYER}!\n"
+    .string "¡He añadido la funcionalidad de\l"
+    .string "Celular a tu Pokénav!\p"
+    .string "Con ella, podrás llamar a--\p"
+    .string "{PLAYER}: Entonces, es un Celular\n"
+    .string "común y corriente, ¿verdad?\p"
+    .string "Investigador: Uhhh… ¿S-sí?\n"
+    .string "¡P-pero añadido al Pokénav!\p"
+    .string "Como sea, necesito que sepas\p"
+	.string "que nadie en Devon sabe de\n"
+	.string "las 'Partes'.\p"
+	.string "Ahora, ¡Llama al Presidente y\n"
+	.string "prueba la función de celular!$"
+
 
 RustboroCity_Text_PleaseSelectPokenav: @ 81E2449
-	.string "Please select the POKéNAV.$"
+	.string "Ahora, llama al Presidente.$"
 
 RustboroCity_Text_IdBetterGetBackToWork: @ 81E2464
-	.string "Okay, I'd better get back to work.\n"
-	.string "Please take care, {PLAYER}!$"
+	.string "Debería volver a trabajar…\n"
+	.string "¡Cuídate, {PLAYER}!$"
 
 RustboroCity_Text_YouCanHave2On2Battle: @ 81E249D
 	.string "Did you know this?\p"

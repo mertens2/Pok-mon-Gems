@@ -332,6 +332,12 @@ const u16 gSpeciesToNationalPokedexNum[NUM_SPECIES] = // Assigns all species to 
 	SPECIES_TO_NATIONAL(PIDGEY),
 	SPECIES_TO_NATIONAL(PIDGEOTTO),
 	SPECIES_TO_NATIONAL(PIDGEOT),
+	SPECIES_TO_NATIONAL(RATTATA),
+	[SPECIES_ALOLAN_RATTATA - 1] = NATIONAL_DEX_RATTATA,
+	SPECIES_TO_NATIONAL(RATICATE),
+	[SPECIES_ALOLAN_RATICATE - 1] = NATIONAL_DEX_RATICATE,
+	SPECIES_TO_NATIONAL(SPEAROW),
+	SPECIES_TO_NATIONAL(FEAROW),
 	SPECIES_TO_NATIONAL(EKANS),
 	SPECIES_TO_NATIONAL(ARBOK),
 	SPECIES_TO_NATIONAL(PIKACHU),
@@ -358,6 +364,8 @@ const u16 gSpeciesToNationalPokedexNum[NUM_SPECIES] = // Assigns all species to 
 	SPECIES_TO_NATIONAL(ODDISH),
 	SPECIES_TO_NATIONAL(GLOOM),
 	SPECIES_TO_NATIONAL(VILEPLUME),
+	SPECIES_TO_NATIONAL(PARAS),
+	SPECIES_TO_NATIONAL(PARASECT),
 	SPECIES_TO_NATIONAL(VENONAT),
 	SPECIES_TO_NATIONAL(VENOMOTH),
 	SPECIES_TO_NATIONAL(DIGLETT),
@@ -1430,6 +1438,10 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_PIDGEY - 1] = 0x47,
     [SPECIES_PIDGEOTTO - 1] = 0x17,
     [SPECIES_PIDGEOT - 1] = 0x29,
+    [SPECIES_RATTATA - 1] = 0x43,
+    [SPECIES_RATICATE - 1] = 0x2b,
+    [SPECIES_SPEAROW - 1] = 0x18,
+    [SPECIES_FEAROW - 1] = 0x2b,
     [SPECIES_EKANS - 1] = 0x16,
     [SPECIES_ARBOK - 1] = 0x17,
     [SPECIES_PIKACHU - 1] = 0x2c,
@@ -1453,6 +1465,8 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_ODDISH - 1] = 0x00,
     [SPECIES_GLOOM - 1] = 0x45,
     [SPECIES_VILEPLUME - 1] = 0x49,
+    [SPECIES_PARAS - 1] = 0x46,
+    [SPECIES_PARASECT - 1] = 0x0f,
     [SPECIES_VENONAT - 1] = 0x06,
     [SPECIES_VENOMOTH - 1] = 0x4b,
     [SPECIES_DIGLETT - 1] = 0x10,
@@ -2472,18 +2486,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
                 personality = Random32();
                 shinyValue = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
                 rolls++;
-            } while (shinyValue >= SHINY_ODDS && rolls <= SHINY_CHARM_REROLLS);
-        }
-        else if (FlagGet(FLAG_SHINY))
-        {
-            u32 shinyValue;
-            u32 rolls = 0;
-            do
-            {
-                personality = Random32();
-                shinyValue = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
-                rolls++;
-            } while (shinyValue >= SHINY_ODDS);
+            } while (shinyValue >= SHINY_ODDS && rolls < SHINY_CHARM_REROLLS);
         }
     }
 

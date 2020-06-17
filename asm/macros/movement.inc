@@ -126,6 +126,31 @@
 	create_movement_action figure_8
 	create_movement_action fly_up
 	create_movement_action fly_down
+    @ new movements
+    create_movement_action walk_slowest_up_backwards
+    create_movement_action walk_slowest_down_backwards
+    create_movement_action walk_slowest_right_backwards
+    create_movement_action walk_slowest_left_backwards
+    create_movement_action walk_slow_up_backwards
+    create_movement_action walk_slow_down_backwards
+    create_movement_action walk_slow_right_backwards
+    create_movement_action walk_slow_left_backwards
+    create_movement_action walk_up_backwards
+    create_movement_action walk_down_backwards
+    create_movement_action walk_right_backwards
+    create_movement_action walk_left_backwards
+    create_movement_action walk_fast_up_backwards
+    create_movement_action walk_fast_down_backwards
+    create_movement_action walk_fast_right_backwards
+    create_movement_action walk_fast_left_backwards
+    create_movement_action jump_2_up_backwards
+    create_movement_action jump_2_down_backwards
+    create_movement_action jump_2_right_backwards
+    create_movement_action jump_2_left_backwards
+    create_movement_action jump_up_backwards
+    create_movement_action jump_down_backwards
+    create_movement_action jump_right_backwards
+    create_movement_action jump_left_backwards
 
 	enum_start 0xfe
 	create_movement_action step_end

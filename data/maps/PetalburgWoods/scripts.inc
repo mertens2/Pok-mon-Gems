@@ -345,14 +345,15 @@ PetalburgWoods_Text_HaveYouSeenShroomish: @ 822E34F
 	.string "¡Ese Pokémon es muy poderoso!$"
 
 PetalburgWoods_Text_IWasGoingToAmbushYou: @ 822E3AA
-	.string "Iba a emboscarte, ¡Pero te metiste\n"
+	.string "Iba a buscar ESO, ¡Pero te metiste\n"
 	.string "en el Bosque Petalburg! ¡Ahora\l"
 	.string "verás el poder de mi Purrloin!\p"
 	.string "¡Juaz juaz juaz!$"
 
 PetalburgWoods_Text_HandOverThosePapers: @ 822E428
 	.string "¡Tú! ¡Investigador Devon!\p"
-	.string "¡Dame esos papeles!$"
+	.string "¡Ya sabes qué hacer!\n"
+	.string "¡Dame los planos!$"
 
 PetalburgWoods_Text_YouHaveToHelpMe: @ 822E457
 	.string "¡Aiyeeeh!\p"
@@ -362,7 +363,7 @@ PetalburgWoods_Text_YouHaveToHelpMe: @ 822E457
 PetalburgWoods_Text_NoOneCrossesTeamAqua: @ 822E4A5
 	.string "¿Hunh? ¿Qué crees que hacer?\n"
 	.string "¿Qué? ¿Vas a protegerlo?\p"
-	.string "¡El Team Aqua no muestra piedad\n"
+	.string "¡Equipo Aqua no muestra piedad\n"
 	.string "a ningún entrometido, ni a un niño!\p"
 	.string "¡Adelante, batallemos!$"
 
@@ -373,34 +374,36 @@ PetalburgWoods_Text_YoureKiddingMe: @ 822E542
 
 PetalburgWoods_Text_YouveGotSomeNerve: @ 822E563
 	.string "Grrr… ¡Ya tienes mala reputación\n"
-	.string "con el Team Aqua!\l"
+	.string "con el Equipo Aqua!\l"
 	.string "¡Me encantaría tener la revancha!\p"
 	.string "Ya te las verás con el Jefe, juaz juaz…\n"
 	.string "Él es el hombre más fuerte del mundo…\p"
 	.string "Ah, debería irme… Hay algo más\n"
-	.string "interesante que unos simples papeles\l"
+	.string "que debo ir a buscar,\l"
 	.string "allá, en Rustboro…$"
 
 PetalburgWoods_Text_ThatWasAwfullyClose: @ 822E63D
 	.string "Whew…\n"
 	.string "¡Eso estuvo cerca!\p"
-	.string "Gracias a ti, no me robaron estos\n"
-	.string "papeles de suma importancia.\p"
-	.string "¡Ya sé, te daré el acceso al PC P.\n"
-	.string "y esta Súper Ball como recompensa!$"
+	.string "Por suerte no se llevó estos\n"
+	.string "planos de suma importancia.\p"
+	.string "¡Ya sé, te daré el acceso al PC\n"
+	.string "Portátil, y también\l"
+	.string "esta Súper Ball como recompensa!$"
 
 PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro: @ 822E6C7
-	.string "¿Espera, qué ese tipo del Team Aqua\n"
+	.string "¿Espera, qué ese del Equipo Aqua\n"
 	.string "dijo que había algo importante en\l"
 	.string "Rustboro…?$"
 
 PetalburgWoods_Text_ICantBeWastingTime: @ 822E712
-	.string "Uh-oh! It's a crisis!\n"
-	.string "I can't be wasting time!$"
+	.string "¡Ay, no, no, no, no!\n"
+	.string "¡Tengo que evitar que se lleve\l"
+	.string "las Partes!$"
 
 PetalburgWoods_Text_YoureLoadedWithItems: @ 822E741
-	.string "You're loaded with items.\n"
-	.string "I can't give you this GREAT BALL.$"
+	.string "De alguna manera inexplicable\n"
+	.string "tienes la mochila llena a este punto.$"
 
 PetalburgWoods_Text_GoBugPokemonTeam: @ 822E77D
 	.string "I caught a whole bunch of POKéMON!\p"

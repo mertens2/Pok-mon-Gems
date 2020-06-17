@@ -55,6 +55,12 @@ SlateportCity_Harbor_EventScript_AquaEscapeScene:: @ 820C9F5
 	waitmovement 0
 	msgbox SlateportCity_Harbor_Text_ArchieYouAgainHideoutInLilycove, MSGBOX_DEFAULT
 	closemessage
+	compare VAR_ARCHIES_TRUST, 1
+	goto_if_eq ArchieOdio
+	msgbox SlateportCity_Harbor_EventScript_ArchieCariño, MSGBOX_DEFAULT 
+	applymovement 6, Common_Movement_FaceUp
+	waitmovement 0
+	msgbox SlateportCity_Harbor_EventScript_ArchieMonologointerno, MSGBOX_DEFAULT
 	applymovement 6, SlateportCity_Harbor_Movement_AquaBoardSub
 	applymovement 7, SlateportCity_Harbor_Movement_AquaBoardSub
 	applymovement 8, SlateportCity_Harbor_Movement_SubmarineExit
@@ -75,13 +81,74 @@ SlateportCity_Harbor_EventScript_AquaEscapeScene:: @ 820C9F5
 	call_if_eq SlateportCity_Harbor_EventScript_SternApproachPlayer
 	msgbox SlateportCity_Harbor_Text_CaptSternWhyStealMySubmarine, MSGBOX_DEFAULT
 	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
+	waitmovement 0
+	delay 12
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	msgbox SlateportCity_Harbor_EventScript_SternDisculpa, MSGBOX_DEFAULT
+	closemessage
+	delay 12
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement 0
+	msgbox SlateportCity_Harbor_EventScript_PlayerYaQue, MSGBOX_DEFAULT
+	closemessage
+	applymovement 4, Common_Movement_ExclamationMark
+	waitmovement 0
+	msgbox SlateportCity_Harbor_EventScript_SternExplica, MSGBOX_DEFAULT
+	closemessage
 	setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE
 	setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE
 	copyobjectxytoperm 4
 	setobjectmovementtype 4, MOVEMENT_TYPE_FACE_RIGHT
 	releaseall
 	end
-
+ArchieOdio::
+	msgbox SlateportCity_Harbor_EventScript_ArchieOdio, MSGBOX_DEFAULT 
+	applymovement 6, Common_Movement_FaceUp
+	waitmovement 0
+	msgbox SlateportCity_Harbor_EventScript_ArchieMonologointerno, MSGBOX_DEFAULT
+	applymovement 6, SlateportCity_Harbor_Movement_AquaBoardSub
+	applymovement 7, SlateportCity_Harbor_Movement_AquaBoardSub
+	applymovement 8, SlateportCity_Harbor_Movement_SubmarineExit
+	waitmovement 0
+	removeobject 6
+	removeobject 7
+	removeobject 8
+	setvar VAR_SLATEPORT_HARBOR_STATE, 2
+	setflag FLAG_MET_TEAM_AQUA_HARBOR
+	setflag FLAG_HIDE_LILCOVE_MOTEL_SCOTT
+	compare VAR_0x8008, 0
+	call_if_eq SlateportCity_Harbor_EventScript_SternApproachPlayer0
+	compare VAR_0x8008, 1
+	call_if_eq SlateportCity_Harbor_EventScript_SternApproachPlayer1
+	compare VAR_0x8008, 2
+	call_if_eq SlateportCity_Harbor_EventScript_SternApproachPlayer
+	compare VAR_0x8008, 3
+	call_if_eq SlateportCity_Harbor_EventScript_SternApproachPlayer
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
+	waitmovement 0
+	delay 12
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	msgbox SlateportCity_Harbor_EventScript_SternDisculpa, MSGBOX_DEFAULT
+	closemessage
+	delay 12
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement 0
+	msgbox SlateportCity_Harbor_EventScript_PlayerYaQue, MSGBOX_DEFAULT
+	closemessage
+	applymovement 4, Common_Movement_ExclamationMark
+	waitmovement 0
+	msgbox SlateportCity_Harbor_EventScript_SternExplica, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE
+	setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE
+	copyobjectxytoperm 4
+	setobjectmovementtype 4, MOVEMENT_TYPE_FACE_RIGHT
+	releaseall
+	end
 SlateportCity_Harbor_EventScript_SternApproachPlayer0:: @ 820CA89
 	applymovement 4, SlateportCity_Harbor_Movement_SternApproachPlayer0
 	waitmovement 0
@@ -458,29 +525,135 @@ SlateportCity_Harbor_Text_SubTooSmallForMe: @ 820D194
 	.string "any room for the CAPTAIN…$"
 
 SlateportCity_Harbor_Text_SameThugsTriedToRobAtMuseum: @ 820D232
-	.string "CAPT. STERN: Those thugs…\p"
-	.string "They're the same lot who tried to rob\n"
-	.string "the DEVON GOODS at the MUSEUM.$"
+    .string "Stern: Esos estúpidos…\p"
+    .string "¡Son los mismos que me exigieron\n"
+    .string "Las Partes que tanto me han costado\l"
+    .string "crear! ¡No dejen que se vayan!$"
 
 SlateportCity_Harbor_Text_ArchieYouAgainHideoutInLilycove: @ 820D291
-	.string "ARCHIE: Oh?\n"
-	.string "Not you again…\p"
-	.string "You are tenacious to track us here,\n"
-	.string "that much I will give you.\p"
-	.string "But now…\n"
-	.string "No one can stop us! No one!\p"
-	.string "Or, will you follow us back to our\n"
-	.string "HIDEOUT in LILYCOVE CITY?\p"
-	.string "Fwahahahaha…$"
+    .string "Archie: ¿Eh? ¡Ah!\p"
+    .string "Es usted…\p"
+    .string "El Capitán Stern en persona…\n"
+    .string "¡La persona que ha hecho todo\l"
+    .string "esto posible! ¡El Submarino del\p"
+    .string "Equipo Aqua ya ha sido construido!\p"
+    .string "{PLAYER}: ¿Qué?\n"
+    .string "Bueno, sí que construyó el submarino,\l"
+    .string "pero… Aún así…\p"
+    .string "… … …\n"
+    .string "… … …\l"
+    .string "¡…!\p"
+    .string "{PLAYER}: ¡CAPITÁN STERN! ¡USTED ES\n"
+    .string "MIEMBRO DEL EQUIPO AQUA!$"
+SlateportCity_Harbor_EventScript_ArchieCariño:
+    .string "Archie: ¡Bien, bien! ¡Denle un\n"
+    .string "dulce al niño, al fin ha notado\l"
+    .string "lo obvio!\p"
+    .string "Archie: Pues sí, niño, es así\n"
+    .string "tal cual lo dices. Este tipo que\l"
+    .string "ves aquí forma parte de nuestra\p"
+    .string "grandiosa y benéfica organización.\p"
+    .string "Stern: Ehh… Ehhh… Y-yo…\p"
+    .string "{PLAYER}: ¡YO CONFIÉ EN USTED!\p"
+    .string "¡ARRGGH! ¡ESTO ME PASA POR AYUDAR\n"
+    .string "A DESCONOCIDOS! ¡Y SEGURO QUE\l"
+    .string "EL CIENTÍFICO DEL INCIDENTE DE LAS\p"
+    .string "PARTES ES INFILTRADO SUYO, ¿NO?\p"
+    .string "Stern: Eh… Ehhh…\p"
+    .string "Archie: Pues… Sí, de hecho así es…\p"
+    .string "Archie: Tener a un interno en Devon\n"
+    .string "era una clara ventaja frente al\l"
+    .string "Equipo Magma, así no él no perdía\n"
+    .string "su trabajo… Porque no lo tenía en\l"
+    .string "primer lugar.\p"
+    .string "Stern: … Y-yo… No…$"
+SlateportCity_Harbor_EventScript_ArchieOdio:
+    .string "Archie: Hasta que al fin\n"
+    .string "reaccionas, estúpido e\l"
+    .string "incocente niño.\p"
+    .string "Archie: Es increíble que con\n"
+    .string "tu poca capacidaad cerebral lo\l"
+	.string "hayas notado. Este tipo que\p"
+    .string "ves aquí forma parte de nuestra\n"
+    .string "grandiosa y benéfica organización.\p"
+    .string "Stern: Ehh… Ehhh… Y-yo…\p"
+    .string "{PLAYER}: ¡YO CONFIÉ EN USTED!\p"
+    .string "¡ARRGGH! ¡ESTO ME PASA POR AYUDAR\n"
+    .string "A DESCONOCIDOS! ¡Y SEGURO QUE\l"
+    .string "EL CIENTÍFICO DEL INCIDENTE DE LAS\p"
+    .string "PARTES ES INFILTRADO SUYO, ¿NO?\p"
+    .string "Stern: Eh… Ehhh…\p"
+    .string "Archie: Pues… Sí, de hecho así es…\p"
+    .string "Archie: Tener a un interno en Devon\n"
+    .string "era una clara ventaja frente al\l"
+    .string "Equipo Magma, así no él no perdía\n"
+    .string "su trabajo… Porque no lo tenía en\l"
+    .string "primer lugar.\p"
+    .string "Stern: … Y-yo… No…$"
+SlateportCity_Harbor_EventScript_ArchieMonologointerno:
+    .string "Archie: {COLOR BLUE} {SHADOW LIGHT_BLUE}(Ahora verás, Maxie, verás\n"
+    .string "de lo que es capaz la fuerza del\l"
+    .string "líder del Equipo Aqua…)$"
+
 
 SlateportCity_Harbor_Text_CaptSternWhyStealMySubmarine: @ 820D35A
-	.string "CAPT. STERN: Why…\p"
-	.string "Why would TEAM AQUA steal my\n"
-	.string "SUBMARINE EXPLORER 1?\p"
-	.string "They can't be after the slumbering\n"
-	.string "POKéMON at the bottom of the sea…\p"
-	.string "But even if I were to chase them,\n"
-	.string "I don't stand a chance against them…$"
+    .string "Stern: Ehhh… S-sobre todo eso, yo…\p"
+    .string "{PLAYER}: ¡NO LO PUEDO CREER!\n"
+    .string "¿CÓMO FUI TAN CIEGO?\l"
+    .string "¡AAARRRGGGHH!\p"
+    .string "{PLAYER}: AHORA EL EQUIPO AQUA\n"
+    .string "ESTÁ EN QUIÉN SABE DONDE\l"
+    .string "HACIENDO QUIÉN SABE QUÉ.$"
+
+SlateportCity_Harbor_EventScript_SternDisculpa:
+    .string "Stern: M-mira, y-y-yo no tenía opción\n"
+    .string "ese submarino era mi vida. Devon\l"
+    .string "no ha dado su apoyo y…\p"
+    .string "Stern: ¡Pero sé a dónde se dirigen!\p"
+    .string "Stern: Quizá he cometido errores en\n"
+    .string "el pasado… Y no puedo arreglarlos…\p"
+    .string "Stern: ¡Pero puedo comenzar a hacer\n"
+    .string "un cambio!$"
+
+SlateportCity_Harbor_EventScript_PlayerYaQue:
+    .string "{PLAYER}: ¿Sabes? No confío en ti,\n"
+    .string "pero eres lo único que me queda para\l"
+    .string "saber los planes del Equipo Aqua…\p"
+    .string "{PLAYER}: Necesitaré saber a dónde\n"
+    .string "van y qué planean hacer. ¿Entendido?\p"
+    .string "Stern: ¡Sí! Estoy tan feliz de que\n"
+    .string "pueda ser de ayuda… Qué haremos-\p"
+    .string "{PLAYER}: ¿Haremos? WOW, WOW, no.\p"
+    .string "{PLAYER}: YO iré a donde están y YO\n"
+    .string "voy a detener sus planes. Luego de\l"
+    .string "eso, se acabó. ¿Ok?\p"
+    .string "Stern: S-sí, creo que es lo justo-\p"
+    .string "{PLAYER}: ¡DEJA DE DIBAGAR Y HABLA!$"
+
+SlateportCity_Harbor_EventScript_SternExplica:
+    .string "Stern: Bien, bien. El Equipo Aqua\n"
+    .string "planea usar la energía infinita de\l"
+    .string "dentro de las Piedras Evolutivas para\p"
+    .string "unirlas y localizar así al Orbe Azul.\p"
+    .string "{PLAYER}: ¿Orbe Azul?\p"
+    .string "Stern: El Orbe Azul contiene una\n"
+    .string "gran cantidad de Energía Infinita,\l"
+    .string "de acuerdo con las leyendas.\p"
+    .string "Dicen que es el poder que Groudon y\n"
+    .string "Kyogre, los legendarios de la tierra\l"
+    .string "y el mar, perdieron al entrar en su\p"
+    .string "eterno sueño.\p"
+    .string "Los Orbes Rojo y Azul tienen la\n"
+    .string "capacidad de terminar su sueño y\l"
+    .string "devolverlos a su antigua gloria.\p"
+    .string "Si logran encontrar el Orbe Azul,\n"
+    .string "usarán el poder de Kyogre para\l"
+    .string "detener el calentamiento de los\p"
+    .string "océanos y así disminuir en gran\n"
+    .string "medida las consecuencias del cambio\l"
+    .string "climático.\p"
+    .string "Deben estar ahora en Lilycove, donde\n"
+    .string "se ubica su Base Secreta.$"
 
 SlateportCity_Harbor_Text_TeamAquaLeftNeedDive: @ 820D42B
 	.string "CAPT. STERN: Oh, {PLAYER}{KUN}…\p"

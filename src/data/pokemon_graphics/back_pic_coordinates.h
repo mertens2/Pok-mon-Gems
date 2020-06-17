@@ -95,7 +95,26 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0x87,
         .y_offset = 0x7
     },
-
+    [SPECIES_RATTATA] =
+    {
+        .size = 0x87,
+        .y_offset = 0x7
+    },
+    [SPECIES_RATICATE] =
+    {
+        .size = 0x86,
+        .y_offset = 0xa
+    },
+    [SPECIES_SPEAROW] =
+    {
+        .size = 0x77,
+        .y_offset = 0x6
+    },
+    [SPECIES_FEAROW] =
+    {
+        .size = 0x87,
+        .y_offset = 0x4
+    },
     [SPECIES_EKANS] =
     {
         .size = 0x76,

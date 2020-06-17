@@ -44,6 +44,14 @@ LilycoveCity_DepartmentStoreRooftop_PokemartDecor_ClearOutSale: @ 8220248
 	.2byte DECOR_CUTE_TV
 	.2byte DECOR_WAILMER_DOLL
 	.2byte DECOR_RHYDON_DOLL
+	.2byte DECOR_CHIKORITA_DOLL
+	.2byte DECOR_TOTODILE_DOLL
+	.2byte DECOR_CYNDAQUIL_DOLL
+	.2byte DECOR_TOGEPI_DOLL
+	.2byte DECOR_SMOOCHUM_DOLL
+	.2byte DECOR_TREECKO_DOLL
+	.2byte DECOR_TORCHIC_DOLL
+	.2byte DECOR_MUDKIP_DOLL
 	.2byte 0
 	release
 	end

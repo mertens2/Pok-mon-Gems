@@ -123,9 +123,9 @@ const struct ContestWinner gUnknown_08587FA4[] =
     {
         .personality = 0,
         .trainerId = 0xFFFF,
-        .species = SPECIES_XATU,
+        .species = SPECIES_GOTHITELLE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
-        .monName = _("TUXA"),
+        .monName = _("GOTITITA"),
         .trainerName = _("JULIET"),
         .contestRank = CONTEST_RANK_NORMAL
     },
@@ -701,8 +701,8 @@ const struct ContestPokemon gContestOpponents[] =
         .otId = 0xFFFF
     },
     [CONTEST_OPPONENT_CALE] = {
-        .species = SPECIES_DIGLETT,
-        .nickname = _("DIGLE"),
+        .species = SPECIES_DRILBUR,
+        .nickname = _("BESTMOLE"),
         .trainerName = _("CALE"),
         .trainerGfxId = OBJ_EVENT_GFX_HIKER,
         .aiChecks = 0x20800FFF,
@@ -788,8 +788,8 @@ const struct ContestPokemon gContestOpponents[] =
         .otId = 0xFFFF
     },
     [CONTEST_OPPONENT_KYLIE] = {
-        .species = SPECIES_LEDYBA,
-        .nickname = _("BALEDY"),
+        .species = SPECIES_SWADLOON,
+        .nickname = _("Lil' baby"),
         .trainerName = _("KYLIE"),
         .trainerGfxId = OBJ_EVENT_GFX_BEAUTY,
         .aiChecks = 0x20100FFF,
@@ -803,14 +803,14 @@ const struct ContestPokemon gContestOpponents[] =
         {
             MOVE_BATON_PASS,
             MOVE_AGILITY,
-            MOVE_SWIFT,
+            MOVE_BUG_BITE,
             MOVE_ATTRACT
         },
-        .cool = 8,
-        .beauty = 6,
-        .cute = 8,
-        .smart = 6,
-        .tough = 2,
+        .cool = 6,
+        .beauty = 12,
+        .cute = 16,
+        .smart = 12,
+        .tough = 4,
         .sheen = 90,
         .unk2C = {0},
         .personality = 0,
@@ -1194,8 +1194,8 @@ const struct ContestPokemon gContestOpponents[] =
         .otId = 0xFFFF
     },
     [CONTEST_OPPONENT_ASHTON] = {
-        .species = SPECIES_GOLDEEN,
-        .nickname = _("GOLDEN"),
+        .species = SPECIES_SHELLOS,
+        .nickname = _("SHELLY"),
         .trainerName = _("ASHTON"),
         .trainerGfxId = OBJ_EVENT_GFX_MAN_3,
         .aiChecks = 0x80008FFF,
@@ -1339,8 +1339,8 @@ const struct ContestPokemon gContestOpponents[] =
         .otId = 0xFFFF
     },
     [CONTEST_OPPONENT_RAUL] = {
-        .species = SPECIES_FARFETCHD,
-        .nickname = _("FETCHIN"),
+        .species = SPECIES_PIDOVE,
+        .nickname = _("PERUANO"),
         .trainerName = _("RAUL"),
         .trainerGfxId = OBJ_EVENT_GFX_MAN_5,
         .aiChecks = 0x82000FFF,
@@ -1353,16 +1353,16 @@ const struct ContestPokemon gContestOpponents[] =
         .moves =
         {
             MOVE_FACADE,
-            MOVE_FURY_CUTTER,
+            MOVE_RAZOR_WIND,
             MOVE_FLY,
             MOVE_RETURN
         },
-        .cool = 40,
-        .beauty = 10,
-        .cute = 40,
-        .smart = 20,
-        .tough = 20,
-        .sheen = 110,
+        .cool = 60,
+        .beauty = 20,
+        .cute = 60,
+        .smart = 30,
+        .tough = 40,
+        .sheen = 120,
         .unk2C = {0},
         .personality = 0,
         .otId = 0xFFFF
@@ -2499,9 +2499,9 @@ const struct ContestPokemon gContestOpponents[] =
         .otId = 0xFFFF
     },
     [CONTEST_OPPONENT_CAMILLE] = {
-        .species = SPECIES_NATU,
-        .nickname = _("UTAN"),
-        .trainerName = _("CAMILLE"),
+        .species = SPECIES_GOTHITA,
+        .nickname = _("Gothity"),
+        .trainerName = _("Camily"),
         .trainerGfxId = OBJ_EVENT_GFX_LASS,
         .aiChecks = 0x80040FFF,
         .whichRank = CONTEST_RANK_MASTER,

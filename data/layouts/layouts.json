@@ -1328,7 +1328,7 @@
             "name": "GraniteCave_B1F_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Cave",
-            "width": 32
+            "width": 40
         },
         {
             "blockdata_filepath": "data/layouts/GraniteCave_B2F/map.bin",
@@ -1963,22 +1963,22 @@
         {
             "blockdata_filepath": "data/layouts/SecretBase_RedCave1/map.bin",
             "border_filepath": "data/layouts/SecretBase_RedCave1/border.bin",
-            "height": 9,
+            "height": 12,
             "id": "LAYOUT_SECRET_BASE_RED_CAVE1",
             "name": "SecretBase_RedCave1_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseRedCave",
-            "width": 11
+            "width": 12
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_BrownCave1/map.bin",
             "border_filepath": "data/layouts/SecretBase_BrownCave1/border.bin",
-            "height": 9,
+            "height": 14,
             "id": "LAYOUT_SECRET_BASE_BROWN_CAVE1",
             "name": "SecretBase_BrownCave1_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseBrownCave",
-            "width": 11
+            "width": 14
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_BlueCave1/map.bin",
@@ -1988,17 +1988,17 @@
             "name": "SecretBase_BlueCave1_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseBlueCave",
-            "width": 11
+            "width": 16
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_YellowCave1/map.bin",
             "border_filepath": "data/layouts/SecretBase_YellowCave1/border.bin",
-            "height": 9,
+            "height": 20,
             "id": "LAYOUT_SECRET_BASE_YELLOW_CAVE1",
             "name": "SecretBase_YellowCave1_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseYellowCave",
-            "width": 11
+            "width": 40
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_Tree1/map.bin",
@@ -2008,27 +2008,27 @@
             "name": "SecretBase_Tree1_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseTree",
-            "width": 11
+            "width": 24
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_Shrub1/map.bin",
             "border_filepath": "data/layouts/SecretBase_Shrub1/border.bin",
-            "height": 9,
+            "height": 12,
             "id": "LAYOUT_SECRET_BASE_SHRUB1",
             "name": "SecretBase_Shrub1_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseShrub",
-            "width": 11
+            "width": 14
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_RedCave2/map.bin",
             "border_filepath": "data/layouts/SecretBase_RedCave2/border.bin",
-            "height": 16,
+            "height": 42,
             "id": "LAYOUT_SECRET_BASE_RED_CAVE2",
             "name": "SecretBase_RedCave2_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseRedCave",
-            "width": 7
+            "width": 20
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_BrownCave2/map.bin",
@@ -2063,12 +2063,12 @@
         {
             "blockdata_filepath": "data/layouts/SecretBase_Tree2/map.bin",
             "border_filepath": "data/layouts/SecretBase_Tree2/border.bin",
-            "height": 16,
+            "height": 30,
             "id": "LAYOUT_SECRET_BASE_TREE2",
             "name": "SecretBase_Tree2_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseTree",
-            "width": 7
+            "width": 30
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_Shrub2/map.bin",
@@ -2078,57 +2078,57 @@
             "name": "SecretBase_Shrub2_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseShrub",
-            "width": 15
+            "width": 20
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_RedCave3/map.bin",
             "border_filepath": "data/layouts/SecretBase_RedCave3/border.bin",
-            "height": 8,
+            "height": 12,
             "id": "LAYOUT_SECRET_BASE_RED_CAVE3",
             "name": "SecretBase_RedCave3_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseRedCave",
-            "width": 15
+            "width": 22
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_BrownCave3/map.bin",
             "border_filepath": "data/layouts/SecretBase_BrownCave3/border.bin",
-            "height": 11,
+            "height": 14,
             "id": "LAYOUT_SECRET_BASE_BROWN_CAVE3",
             "name": "SecretBase_BrownCave3_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseBrownCave",
-            "width": 15
+            "width": 30
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_BlueCave3/map.bin",
             "border_filepath": "data/layouts/SecretBase_BlueCave3/border.bin",
-            "height": 17,
+            "height": 25,
             "id": "LAYOUT_SECRET_BASE_BLUE_CAVE3",
             "name": "SecretBase_BlueCave3_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseBlueCave",
-            "width": 10
+            "width": 25
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_YellowCave3/map.bin",
             "border_filepath": "data/layouts/SecretBase_YellowCave3/border.bin",
-            "height": 11,
+            "height": 18,
             "id": "LAYOUT_SECRET_BASE_YELLOW_CAVE3",
             "name": "SecretBase_YellowCave3_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseYellowCave",
-            "width": 12
+            "width": 18
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_Tree3/map.bin",
             "border_filepath": "data/layouts/SecretBase_Tree3/border.bin",
-            "height": 8,
+            "height": 10,
             "id": "LAYOUT_SECRET_BASE_TREE3",
             "name": "SecretBase_Tree3_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseTree",
-            "width": 17
+            "width": 26
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_Shrub3/map.bin",
@@ -2138,17 +2138,17 @@
             "name": "SecretBase_Shrub3_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseShrub",
-            "width": 13
+            "width": 20
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_RedCave4/map.bin",
             "border_filepath": "data/layouts/SecretBase_RedCave4/border.bin",
-            "height": 15,
+            "height": 18,
             "id": "LAYOUT_SECRET_BASE_RED_CAVE4",
             "name": "SecretBase_RedCave4_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseRedCave",
-            "width": 9
+            "width": 22
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_BrownCave4/map.bin",
@@ -2168,7 +2168,7 @@
             "name": "SecretBase_BlueCave4_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseBlueCave",
-            "width": 9
+            "width": 12
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_YellowCave4/map.bin",
@@ -2183,22 +2183,22 @@
         {
             "blockdata_filepath": "data/layouts/SecretBase_Tree4/map.bin",
             "border_filepath": "data/layouts/SecretBase_Tree4/border.bin",
-            "height": 14,
+            "height": 18,
             "id": "LAYOUT_SECRET_BASE_TREE4",
             "name": "SecretBase_Tree4_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseTree",
-            "width": 14
+            "width": 20
         },
         {
             "blockdata_filepath": "data/layouts/SecretBase_Shrub4/map.bin",
             "border_filepath": "data/layouts/SecretBase_Shrub4/border.bin",
-            "height": 11,
+            "height": 16,
             "id": "LAYOUT_SECRET_BASE_SHRUB4",
             "name": "SecretBase_Shrub4_Layout",
             "primary_tileset": "gTileset_SecretBase",
             "secondary_tileset": "gTileset_SecretBaseShrub",
-            "width": 14
+            "width": 20
         },
         {
             "blockdata_filepath": "data/layouts/BattleColosseum_2P/map.bin",

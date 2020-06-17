@@ -616,7 +616,7 @@ const struct BattleFrontierTrainer gSlateportBattleTentTrainers[NUM_BATTLE_TENT_
     [SLATEPORT_TENT_TRAINER_MAGGIE] = {
         .facilityClass = FACILITY_CLASS_SCHOOL_KID_F,
         .trainerName = _("MAGGIE"),
-        .speechBefore = {EC_POKEMON(VULPIX), EC_POKEMON(XATU), EC_POKEMON2(UMBREON), EC_WORD_ELLIPSIS, EC_WORD_UM, EC_WORD_ELLIPSIS},
+        .speechBefore = {EC_POKEMON(VULPIX), EC_POKEMON(PICHU), EC_POKEMON2(UMBREON), EC_WORD_ELLIPSIS, EC_WORD_UM, EC_WORD_ELLIPSIS},
         .speechWin = {EC_POKEMON(NOSEPASS), EC_WORD_ELLIPSIS, EC_WORD_UM, EC_POKEMON(SEVIPER), EC_WORD_EXCL, -1},
         .speechLose = {EC_POKEMON(NOSEPASS), EC_WORD_ELLIPSIS, EC_WORD_UM, EC_POKEMON2(SNORLAX), EC_WORD_ELLIPSIS, EC_WORD_UH_OH},
         .monSet = gSlateportBattleTentTrainerMons_Maggie
@@ -901,8 +901,8 @@ const struct FacilityMon gSlateportBattleTentMons[NUM_SLATEPORT_TENT_MONS] =
         .nature = NATURE_JOLLY
     },
     [SLATEPORT_TENT_MON_GOLDEEN] = {
-        .species = SPECIES_GOLDEEN,
-        .moves = {MOVE_WATER_SPORT, MOVE_HORN_ATTACK, MOVE_WATERFALL, MOVE_SUPERSONIC},
+        .species = SPECIES_SHELLOS,
+        .moves = {MOVE_WATER_SPORT, MOVE_MUD_SLAP, MOVE_WATERFALL, MOVE_REST},
         .itemTableId = BATTLE_FRONTIER_ITEM_SCOPE_LENS,
         .evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_DEFENSE,
         .nature = NATURE_CALM
@@ -1926,8 +1926,8 @@ const struct FacilityMon gVerdanturfBattleTentMons[NUM_VERDANTURF_TENT_MONS] =
         .nature = NATURE_MILD
     },
     [VERDANTURF_TENT_MON_GOLDEEN_1] = {
-        .species = SPECIES_GOLDEEN,
-        .moves = {MOVE_WATERFALL, MOVE_MUD_SPORT, MOVE_SUPERSONIC, MOVE_DOUBLE_TEAM},
+        .species = SPECIES_SHELLOS,
+        .moves = {MOVE_WATERFALL, MOVE_MUD_SPORT, MOVE_ENERGY_BALL, MOVE_DOUBLE_TEAM},
         .itemTableId = BATTLE_FRONTIER_ITEM_MYSTIC_WATER,
         .evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED,
         .nature = NATURE_GENTLE
@@ -1975,8 +1975,8 @@ const struct FacilityMon gVerdanturfBattleTentMons[NUM_VERDANTURF_TENT_MONS] =
         .nature = NATURE_NAUGHTY
     },
     [VERDANTURF_TENT_MON_GOLDEEN_2] = {
-        .species = SPECIES_GOLDEEN,
-        .moves = {MOVE_PECK, MOVE_SUPERSONIC, MOVE_PSYBEAM, MOVE_RAIN_DANCE},
+        .species = SPECIES_SHELLOS,
+        .moves = {MOVE_MUD_SLAP, MOVE_SLAM, MOVE_WATER_GUN, MOVE_RAIN_DANCE},
         .itemTableId = BATTLE_FRONTIER_ITEM_KINGS_ROCK,
         .evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
         .nature = NATURE_GENTLE
@@ -2919,15 +2919,15 @@ const struct FacilityMon gFallarborBattleTentMons[NUM_FALLARBOR_TENT_MONS] =
         .nature = NATURE_ADAMANT
     },
     [FALLARBOR_TENT_MON_GOLDEEN_1] = {
-        .species = SPECIES_GOLDEEN,
+        .species = SPECIES_SHELLOS,
         .moves = {MOVE_WATERFALL, MOVE_RAIN_DANCE, MOVE_FLAIL, MOVE_PROTECT},
         .itemTableId = BATTLE_FRONTIER_ITEM_GANLON_BERRY,
         .evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_ATTACK,
         .nature = NATURE_HASTY
     },
     [FALLARBOR_TENT_MON_GOLDEEN_2] = {
-        .species = SPECIES_GOLDEEN,
-        .moves = {MOVE_SLEEP_TALK, MOVE_HORN_DRILL, MOVE_REST, MOVE_SUPERSONIC},
+        .species = SPECIES_SHELLOS,
+        .moves = {MOVE_PROTECT, MOVE_MUD_SLAP, MOVE_REST, MOVE_SURF},
         .itemTableId = BATTLE_FRONTIER_ITEM_MENTAL_HERB,
         .evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_HP,
         .nature = NATURE_CAREFUL

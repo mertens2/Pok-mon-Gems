@@ -192,6 +192,65 @@ static const union AnimCmd sAnim_PIDGEOT_1[] =
 };
 
 
+static const union AnimCmd sAnim_RATTATA_1[] =
+{
+    ANIMCMD_FRAME(0, 3),
+    ANIMCMD_FRAME(1, 50),
+    ANIMCMD_FRAME(1, 28),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_RATICATE_1[] =
+{
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_SPEAROW_1[] =
+{
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_FEAROW_1[] =
+{
+    ANIMCMD_FRAME(1, 7),
+    ANIMCMD_FRAME(0, 7),
+    ANIMCMD_FRAME(1, 7),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 7),
+    ANIMCMD_FRAME(0, 7),
+    ANIMCMD_FRAME(1, 7),
+    ANIMCMD_FRAME(0, 7),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_EKANS_1[] =
 {
@@ -506,6 +565,38 @@ static const union AnimCmd sAnim_VILEPLUME_1[] =
     ANIMCMD_FRAME(0, 13),
     ANIMCMD_FRAME(1, 21),
     ANIMCMD_FRAME(0, 10),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_PARAS_1[] =
+{
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_PARASECT_1[] =
+{
+    ANIMCMD_FRAME(1, 10),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 10),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 35),
+    ANIMCMD_FRAME(0, 15),
     ANIMCMD_END,
 };
 
@@ -8109,6 +8200,17 @@ static const union AnimCmd sAnim_MEGA_DIANCIE_1[] =
 	ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_ALOLAN_RATTATA_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_ALOLAN_RATICATE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 
 static const union AnimCmd sAnim_ALOLAN_RAICHU_1[] =
 {
@@ -8385,7 +8487,25 @@ static const union AnimCmd *const sAnims_PIDGEOT[] ={
     sAnim_PIDGEOT_1,
 };
 
+static const union AnimCmd *const sAnims_RATTATA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_RATTATA_1,
+};
 
+static const union AnimCmd *const sAnims_RATICATE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_RATICATE_1,
+};
+
+static const union AnimCmd *const sAnims_SPEAROW[] ={
+    sAnim_GeneralFrame0,
+    sAnim_SPEAROW_1,
+};
+
+static const union AnimCmd *const sAnims_FEAROW[] ={
+    sAnim_GeneralFrame0,
+    sAnim_FEAROW_1,
+};
 
 static const union AnimCmd *const sAnims_EKANS[] ={
     sAnim_GeneralFrame0,
@@ -12802,7 +12922,15 @@ static const union AnimCmd *const sAnims_MEGA_DIANCIE[] ={
 	sAnim_MEGA_DIANCIE_1,
 };
 
+static const union AnimCmd *const sAnims_ALOLAN_RATTATA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ALOLAN_RATTATA_1,
+};
 
+static const union AnimCmd *const sAnims_ALOLAN_RATICATE[] ={
+    sAnim_GeneralFrame0,
+    sAnim_ALOLAN_RATICATE_1,
+};
 
 static const union AnimCmd *const sAnims_ALOLAN_RAICHU[] ={
     sAnim_GeneralFrame0,
@@ -12978,6 +13106,10 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(PIDGEY),
     ANIM_CMD(PIDGEOTTO),
     ANIM_CMD(PIDGEOT),
+    ANIM_CMD(RATTATA),
+    ANIM_CMD(RATICATE),
+    ANIM_CMD(SPEAROW),
+    ANIM_CMD(FEAROW),
     ANIM_CMD(EKANS),
     ANIM_CMD(ARBOK),
     ANIM_CMD(PIKACHU),
@@ -13826,6 +13958,8 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(MEGA_GALLADE),
     ANIM_CMD(MEGA_AUDINO),
     ANIM_CMD(MEGA_DIANCIE),
+    ANIM_CMD(ALOLAN_RATTATA),
+    ANIM_CMD(ALOLAN_RATICATE),
     ANIM_CMD(ALOLAN_RAICHU),
     ANIM_CMD(ALOLAN_SANDSHREW),
     ANIM_CMD(ALOLAN_SANDSLASH),

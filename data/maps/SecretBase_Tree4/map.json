@@ -24,8 +24,8 @@
             "script": "SecretBase_EventScript_RecordMixTrainer",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 10,
-            "y": 9
+            "x": 17,
+            "y": 11
         },
         {
             "elevation": 3,
@@ -220,7 +220,7 @@
             "dest_warp_id": 126,
             "elevation": 0,
             "x": 7,
-            "y": 12
+            "y": 16
         }
     ],
     "weather": "WEATHER_NONE"

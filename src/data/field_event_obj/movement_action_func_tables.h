@@ -261,6 +261,38 @@ u8 MovementAction_FlyUp_Step1(struct EventObject *, struct Sprite *);
 u8 MovementAction_Fly_Finish(struct EventObject *, struct Sprite *);
 u8 MovementAction_FlyDown_Step0(struct EventObject *, struct Sprite *);
 u8 MovementAction_FlyDown_Step1(struct EventObject *, struct Sprite *);
+//new movements
+u8 MovementAction_WalkSlowestUpBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkSlowestDownBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkSlowestRightBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkSlowestLeftBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkSlowUpBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkSlowDownBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkSlowLeftBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkSlowRightBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkUpBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkDownBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkLeftBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkRightBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkFastUpBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkFastDownBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkFastLeftBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkFastRightBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkSlowestBackwards_Step1(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkSlowBackwards_Step1(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkBackwards_Step1(struct EventObject *, struct Sprite *);
+u8 MovementAction_WalkFastBackwards_Step1(struct EventObject *, struct Sprite *);
+u8 MovementAction_Jump2UpBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_Jump2DownBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_Jump2RightBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_Jump2LeftBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_Jump2Backwards_Step1(struct EventObject *, struct Sprite *);
+u8 MovementAction_JumpUpBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_JumpDownBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_JumpLeftBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_JumpRightBackwards_Step0(struct EventObject *, struct Sprite *);
+u8 MovementAction_JumpBackwards_Step1(struct EventObject *, struct Sprite *);
+
 
 u8 (*const gMovementActionFuncs_FaceDown[])(struct EventObject *, struct Sprite *);
 u8 (*const gMovementActionFuncs_FaceUp[])(struct EventObject *, struct Sprite *);
@@ -420,6 +452,31 @@ u8 (*const gMovementActionFuncs_DestroyExtraTaskIfAtTop[])(struct EventObject *,
 u8 (*const gMovementActionFuncs_Figure8[])(struct EventObject *, struct Sprite *);
 u8 (*const gMovementActionFuncs_FlyUp[])(struct EventObject *, struct Sprite *);
 u8 (*const gMovementActionFuncs_FlyDown[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkSlowestUpBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkSlowestDownBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkSlowestRightBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkSlowestLeftBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkSlowUpBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkSlowDownBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkSlowLeftBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkSlowRightBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkUpBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkDownBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkLeftBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkRightBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkFastUpBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkFastDownBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkFastLeftBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkFastRightBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_Jump2UpBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_Jump2DownBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_Jump2RightBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_Jump2LeftBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_JumpUpBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_JumpDownBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_JumpLeftBackwards[])(struct EventObject *, struct Sprite *);
+u8 (*const gMovementActionFuncs_JumpRightBackwards[])(struct EventObject *, struct Sprite *);
+
 
 u8 (*const *const gMovementActionFuncs[])(struct EventObject *, struct Sprite *) = {
     [MOVEMENT_ACTION_FACE_DOWN] = gMovementActionFuncs_FaceDown,
@@ -580,6 +637,31 @@ u8 (*const *const gMovementActionFuncs[])(struct EventObject *, struct Sprite *)
     [MOVEMENT_ACTION_FIGURE_8] = gMovementActionFuncs_Figure8,
     [MOVEMENT_ACTION_FLY_UP] = gMovementActionFuncs_FlyUp,
     [MOVEMENT_ACTION_FLY_DOWN] = gMovementActionFuncs_FlyDown,
+    //new movement actions
+    [MOVEMENT_ACTION_WALK_SLOWEST_UP_BACKWARDS] = gMovementActionFuncs_WalkSlowestUpBackwards,
+    [MOVEMENT_ACTION_WALK_SLOWEST_DOWN_BACKWARDS] = gMovementActionFuncs_WalkSlowestDownBackwards,
+    [MOVEMENT_ACTION_WALK_SLOWEST_RIGHT_BACKWARDS] = gMovementActionFuncs_WalkSlowestRightBackwards,
+    [MOVEMENT_ACTION_WALK_SLOWEST_LEFT_BACKWARDS] = gMovementActionFuncs_WalkSlowestLeftBackwards,
+    [MOVEMENT_ACTION_WALK_SLOW_UP_BACKWARDS] = gMovementActionFuncs_WalkSlowUpBackwards,
+    [MOVEMENT_ACTION_WALK_SLOW_DOWN_BACKWARDS] = gMovementActionFuncs_WalkSlowDownBackwards,
+    [MOVEMENT_ACTION_WALK_SLOW_RIGHT_BACKWARDS] = gMovementActionFuncs_WalkSlowRightBackwards,
+    [MOVEMENT_ACTION_WALK_SLOW_LEFT_BACKWARDS] = gMovementActionFuncs_WalkSlowLeftBackwards,
+    [MOVEMENT_ACTION_WALK_NORMAL_UP_BACKWARDS] = gMovementActionFuncs_WalkUpBackwards,
+    [MOVEMENT_ACTION_WALK_NORMAL_DOWN_BACKWARDS] = gMovementActionFuncs_WalkDownBackwards,
+    [MOVEMENT_ACTION_WALK_NORMAL_RIGHT_BACKWARDS] = gMovementActionFuncs_WalkRightBackwards,
+    [MOVEMENT_ACTION_WALK_NORMAL_LEFT_BACKWARDS] = gMovementActionFuncs_WalkLeftBackwards,
+    [MOVEMENT_ACTION_WALK_FAST_UP_BACKWARDS] = gMovementActionFuncs_WalkFastUpBackwards,
+    [MOVEMENT_ACTION_WALK_FAST_DOWN_BACKWARDS] = gMovementActionFuncs_WalkFastDownBackwards,
+    [MOVEMENT_ACTION_WALK_FAST_RIGHT_BACKWARDS] = gMovementActionFuncs_WalkFastRightBackwards,
+    [MOVEMENT_ACTION_WALK_FAST_LEFT_BACKWARDS] = gMovementActionFuncs_WalkFastLeftBackwards,
+    [MOVEMENT_ACTION_JUMP_2_UP_BACKWARDS] = gMovementActionFuncs_Jump2UpBackwards,
+    [MOVEMENT_ACTION_JUMP_2_DOWN_BACKWARDS] = gMovementActionFuncs_Jump2DownBackwards,
+    [MOVEMENT_ACTION_JUMP_2_RIGHT_BACKWARDS] = gMovementActionFuncs_Jump2RightBackwards,
+    [MOVEMENT_ACTION_JUMP_2_LEFT_BACKWARDS] = gMovementActionFuncs_Jump2LeftBackwards,
+    [MOVEMENT_ACTION_JUMP_UP_BACKWARDS] = gMovementActionFuncs_JumpUpBackwards,
+    [MOVEMENT_ACTION_JUMP_DOWN_BACKWARDS] = gMovementActionFuncs_JumpDownBackwards,
+    [MOVEMENT_ACTION_JUMP_RIGHT_BACKWARDS] = gMovementActionFuncs_JumpRightBackwards,
+    [MOVEMENT_ACTION_JUMP_LEFT_BACKWARDS] = gMovementActionFuncs_JumpLeftBackwards,
 };
 
 u8 (*const gMovementActionFuncs_FaceDown[])(struct EventObject *, struct Sprite *) = {
@@ -1510,4 +1592,151 @@ u8 (*const gMovementActionFuncs_StopLevitate[])(struct EventObject *, struct Spr
 u8 (*const gMovementActionFuncs_DestroyExtraTaskIfAtTop[])(struct EventObject *, struct Sprite *) = {
     MovementAction_DestroyExtraTaskIfAtTop_Step0,
     MovementAction_Finish,
+};
+
+
+
+//new movement actions
+u8 (*const gMovementActionFuncs_WalkSlowestUpBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkSlowestUpBackwards_Step0,
+    MovementAction_WalkSlowestBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkSlowestDownBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkSlowestDownBackwards_Step0,
+    MovementAction_WalkSlowestBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkSlowestRightBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkSlowestRightBackwards_Step0,
+    MovementAction_WalkSlowestBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkSlowestLeftBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkSlowestLeftBackwards_Step0,
+    MovementAction_WalkSlowestBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkSlowUpBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkSlowUpBackwards_Step0,
+    MovementAction_WalkSlowBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkSlowDownBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkSlowDownBackwards_Step0,
+    MovementAction_WalkSlowBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkSlowLeftBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkSlowLeftBackwards_Step0,
+    MovementAction_WalkSlowBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkSlowRightBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkSlowRightBackwards_Step0,
+    MovementAction_WalkSlowBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkUpBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkUpBackwards_Step0,
+    MovementAction_WalkBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkDownBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkDownBackwards_Step0,
+    MovementAction_WalkBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkRightBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkRightBackwards_Step0,
+    MovementAction_WalkBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkLeftBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkLeftBackwards_Step0,
+    MovementAction_WalkBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkFastUpBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkFastUpBackwards_Step0,
+    MovementAction_WalkFastBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkFastDownBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkFastDownBackwards_Step0,
+    MovementAction_WalkFastBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkFastRightBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkFastRightBackwards_Step0,
+    MovementAction_WalkFastBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkFastLeftBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_WalkFastLeftBackwards_Step0,
+    MovementAction_WalkFastBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_Jump2UpBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_Jump2UpBackwards_Step0,
+    MovementAction_Jump2Backwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_Jump2DownBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_Jump2DownBackwards_Step0,
+    MovementAction_Jump2Backwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_Jump2RightBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_Jump2RightBackwards_Step0,
+    MovementAction_Jump2Backwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_Jump2LeftBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_Jump2LeftBackwards_Step0,
+    MovementAction_Jump2Backwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_JumpUpBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_JumpUpBackwards_Step0,
+    MovementAction_JumpBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_JumpDownBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_JumpDownBackwards_Step0,
+    MovementAction_JumpBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_JumpRightBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_JumpRightBackwards_Step0,
+    MovementAction_JumpBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_JumpLeftBackwards[])(struct EventObject *, struct Sprite *) = {
+    MovementAction_JumpLeftBackwards_Step0,
+    MovementAction_JumpBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
 };

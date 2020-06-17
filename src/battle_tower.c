@@ -40,6 +40,8 @@
 
 extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_MaxieTrainer[];
 extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_TabithaTrainer[];
+extern const u8 AquaMale_Dewford[];
+extern const u8 AquaFemale_Dewford[];
 
 // EWRAM vars.
 EWRAM_DATA const struct BattleFrontierTrainer *gFacilityTrainers = NULL;
@@ -2166,6 +2168,16 @@ void DoSpecialTrainerBattle(void)
 
         if (gSpecialVar_0x8005 & MULTI_BATTLE_CHOOSE_MONS) // Skip mons restoring(done in the script)
             gBattleScripting.specialTrainerBattleType = 0xFF;
+        break;
+    case SPECIAL_BATTLE_DOUBLE_AQUA_1:
+        gBattleTypeFlags = BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS;
+        gApproachingTrainerId = 0;
+        BattleSetup_ConfigureTrainerBattle(AquaMale_Dewford + 1);
+        gApproachingTrainerId = 1;
+        BattleSetup_ConfigureTrainerBattle(AquaFemale_Dewford + 1);
+        CreateTask(Task_StartBattleAfterTransition, 1);
+        PlayMapChosenOrBattleBGM(0);
+        BattleTransition_StartOnField(B_TRANSITION_AQUA);
         break;
     }
 }
