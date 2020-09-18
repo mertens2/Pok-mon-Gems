@@ -33,6 +33,9 @@ static bool8 CheckPyramidBagHasSpace(u16 itemId, u16 count);
 
 // EWRAM variables
 EWRAM_DATA struct BagPocket gBagPockets[POCKETS_COUNT] = {0};
+EWRAM_DATA u16 Items[BAG_ITEMS_COUNT][2] = {0};
+EWRAM_DATA u16 Berries[BAG_BERRIES_COUNT][2] = {0};
+void ItemId_GetHoldEffectParam_Script();
 
 // rodata
 #include "data/text/item_descriptions.h"
@@ -96,22 +99,16 @@ void CopyItemName(u16 itemId, u8 *dst)
 {
     StringCopy(dst, ItemId_GetName(itemId));
 }
-
+static const u8 sText_s[] = _("s");
 void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
 {
-    if (itemId == ITEM_POKE_BALL)
+    StringCopy(dst, ItemId_GetName(itemId));
+    if (quantity > 1)
     {
-        if (quantity < 2)
-            StringCopy(dst, ItemId_GetName(ITEM_POKE_BALL));
-        else
-            StringCopy(dst, gText_PokeBalls);
-    }
-    else
-    {
-        if (itemId >= ITEM_CHERI_BERRY && itemId <= ITEM_ENIGMA_BERRY)
+        if (ItemId_GetPocket(itemId) == POCKET_BERRIES)
             GetBerryCountString(dst, gBerries[itemId - ITEM_CHERI_BERRY].name, quantity);
         else
-            StringCopy(dst, ItemId_GetName(itemId));
+            StringAppend(dst, sText_s);
     }
 }
 
@@ -1274,4 +1271,61 @@ void DestroyItemIconSprite(void)
 	FreeSpritePaletteByTag(ITEM_TAG);
 	FreeSpriteOamMatrix(&gSprites[gSpecialVar_0x8009]);
 	DestroySprite(&gSprites[gSpecialVar_0x8009]);
+}
+
+void TakeAwayItemsAndBerries(void)
+{
+	if(IsBagPocketNonEmpty(ITEMS_POCKET))
+	{
+		u16 i;
+		for(i = 0; i < gBagPockets[ITEMS_POCKET].capacity; i++)
+		{
+			if(gBagPockets[ITEMS_POCKET].itemSlots[i].itemId != ITEM_NONE)
+			{
+				Items[i][0] = gBagPockets[ITEMS_POCKET].itemSlots[i].itemId;
+				Items[i][1] = GetBagItemQuantity(&gBagPockets[ITEMS_POCKET].itemSlots[i].quantity);
+			}
+		}
+		ClearItemSlots(gBagPockets[ITEMS_POCKET].itemSlots, gBagPockets[ITEMS_POCKET].capacity);
+	}
+	if(IsBagPocketNonEmpty(BERRIES_POCKET))
+	{
+		u16 j;
+		for(j = 0; j < gBagPockets[BERRIES_POCKET].capacity; j++)
+		{
+			if(gBagPockets[BERRIES_POCKET].itemSlots[j].itemId != ITEM_NONE)
+			{
+				Berries[j][0] = gBagPockets[BERRIES_POCKET].itemSlots[j].itemId;
+				Berries[j][1] = GetBagItemQuantity(&gBagPockets[BERRIES_POCKET].itemSlots[j].quantity);
+			}
+		}
+		ClearItemSlots(gBagPockets[BERRIES_POCKET].itemSlots, gBagPockets[BERRIES_POCKET].capacity);
+	}
+}
+
+void GiveBackItemsAndBerries(void)
+{
+	u16 i = 0;
+	while(Items[i][0])
+	{
+		gBagPockets[ITEMS_POCKET].itemSlots[i].itemId = Items[i][0];
+		SetBagItemQuantity(&gBagPockets[ITEMS_POCKET].itemSlots[i].quantity, Items[i][1]);
+		Items[i][0], Items[i][1] = 0;
+		i++;
+	}
+	
+	i = 0;
+	
+	while(Berries[i][0])
+	{
+		gBagPockets[BERRIES_POCKET].itemSlots[i].itemId = Berries[i][0];
+		SetBagItemQuantity(&gBagPockets[BERRIES_POCKET].itemSlots[i].quantity, Items[i][1]);
+		Berries[i][0], Berries[i][1] = 0;
+		i++;
+	}
+}
+
+void ItemId_GetHoldEffectParam_Script()
+{
+    VarSet(VAR_RESULT, ItemId_GetHoldEffectParam(VarGet(VAR_0x8004)));
 }

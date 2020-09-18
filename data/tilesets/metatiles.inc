@@ -557,3 +557,11 @@ gMetatiles_UnionRoom:: @ 83DF392
 	.align 1
 gMetatileAttributes_UnionRoom:: @ 83DF6A2
 	.incbin "data/tilesets/secondary/union_room/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_New_Outside::
+	.incbin "data/tilesets/primary/new_outside/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_New_Outside::
+	.incbin "data/tilesets/primary/new_outside/metatile_attributes.bin"

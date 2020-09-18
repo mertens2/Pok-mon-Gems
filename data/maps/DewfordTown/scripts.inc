@@ -2,8 +2,211 @@ DewfordTown_MapScripts:: @ 81E9507
 	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_OnTransition
 	.byte 0
 Dewford_Load::
-	goto_if_unset FLAG_DEWFORDGRUNT, Dewford_Grunt
 	end
+Dewford_Wally::
+	lock
+	applymovement 7, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement 7, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox OhPlayer, MSGBOX_DEFAULT
+	applymovement 7, Common_Movement_FaceRight
+	waitmovement 0
+	msgbox Enfrentare, MSGBOX_DEFAULT
+	closemessage
+	applymovement 7, Common_Movement_FacePlayer
+	waitmovement 0
+	msgbox Ralts, MSGBOX_DEFAULT
+	closemessage
+	applymovement 7, Common_Movement_FaceUp
+	waitmovement 0
+	opendoor 8,17
+	waitdooranim
+	delay 12
+	msgbox Tupuedes, MSGBOX_DEFAULT
+	closemessage
+	applymovement 7, Walkup
+	removeobject 7
+	waitmovement 0
+	delay 16
+	closedoor 8,17
+	waitdooranim
+	compare VAR_FACING, DIR_WEST
+	goto_if_eq Player1
+	compare VAR_FACING, DIR_EAST
+	goto_if_eq Player3
+	compare VAR_FACING, DIR_NORTH
+	goto_if_eq Player2
+	compare VAR_FACING, DIR_SOUTH
+	goto_if_eq Player2
+	end
+Player1::
+	applymovement OBJ_EVENT_ID_PLAYER, Observar
+	waitmovement 0
+	delay 16
+	goto WallyResto
+	end
+Player2::
+	applymovement OBJ_EVENT_ID_PLAYER, Observar2
+	waitmovement 0
+	delay 16
+	goto WallyResto
+	end
+Player3::
+	applymovement OBJ_EVENT_ID_PLAYER, Observar3
+	waitmovement 0
+	delay 16
+	goto WallyResto
+	end
+WallyResto::
+	msgbox NoVeo, MSGBOX_DEFAULT
+	closemessage
+	playmoncry SPECIES_MEDITITE, 0
+	waitmoncry
+	delay 16
+	playmoncry SPECIES_RALTS, 0
+	waitmoncry
+	msgbox Batalla, MSGBOX_DEFAULT
+	playmoncry SPECIES_RALTS, 0
+	msgbox ralts, MSGBOX_DEFAULT
+	waitmoncry
+	closemessage
+	playmoncry SPECIES_KIRLIA, 0
+	msgbox evolucionaste, MSGBOX_DEFAULT
+	waitmoncry
+	fadescreen 1
+	opendoor 8,17
+	waitdooranim
+	addobject 7
+	applymovement 7, Walkup
+	waitmovement 0
+	fadescreen 0
+	applymovement 7, Common_Movement_FaceDown
+	waitmovement 0
+	applymovement 7, Walkdown
+	closedoor 8,17
+	waitdooranim
+	applymovement 7, Common_Movement_FacePlayer
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
+	waitmovement 0
+	msgbox ehganado, MSGBOX_DEFAULT
+	release
+	end
+
+ehganado:
+    .string "(Uff… Tú puedes, Wally. Tú puedes.)$"
+Tupuedes:
+    .string "(Uff… Tú puedes, Wally. Tú puedes.)$"
+NoVeo:
+    .string "Wally: ¡AAAHH! ¡Está todo oscuro,\n"
+    .string "no puedo ver!\p"
+    .string "Supongo que tendremos que\n"
+    .string "arreglárnosla con lo que tenemos,\l"
+    .string "Ralts.\p"
+    .string "…\n"
+    .string "………\l"
+    .string "… ¡…AHH! ¡Un Entrenador!\p"
+    .string "¡Ve, Ralts!\n"
+    .string "¡Meditite, al centro y al frente!$"
+
+Batalla:
+    .string "¿Huh? ¿Ya contra el líder?\p"
+    .string "¡Bueno, 'COF' vamos allá, Ralts!\p"
+    .string "Ralts, ¡Usa Confusión!\n"
+    .string "¡Vamos, ahora usa Conjuro!\l"
+    .string "…\p"
+    .string "Y-ya… 'COF'……'COF' Queda… 'COF'\n"
+    .string "¡…POCO!\p"
+    .string "¡Una última Confusión!$"
+ralts:
+	.string "¡RALTS……………!$"
+
+evolucionaste:
+	.string "¡……………KIRLIA!\p"
+    .string "Wally: ¿U-uh?\n"
+    .string "¿A-acaso…?\p"
+    .string "¡EVOLUCIONASTE! ¡Y…! Y…\p"
+    .string "He… He… G-ganado…\p"
+    .string "'COF' ¡No lo puedo creer, Ralts eh…\n"
+    .string "…digo, Kirlia! ¡Es increíble!$"
+
+Walkdown:
+	walk_down
+	step_end
+	
+Walkup:
+	walk_up
+	step_end
+	
+Wallyentra:
+	walk_down
+	walk_right
+	walk_right
+	delay_8
+	face_up
+	step_end
+	
+Mirar:
+	face_down
+	delay_8
+	face_right
+	delay_16
+	step_end
+	
+Observar:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_left
+	walk_fast_up
+	step_end
+Observar2:
+	walk_fast_left
+	walk_fast_left
+	walk_fast_up
+	walk_fast_up
+	step_end
+Observar3:
+	walk_fast_left
+	walk_fast_up
+	step_end
+OhPlayer:
+    .string "Wally: ¡Oh, {PLAYER}!\p"
+    .string "¿Cómo has estado? ¿Has atrapado\n"
+    .string "algún nuevo Pokémon?\p"
+    .string "Yo Quiero participar en el desafío\n"
+    .string "de los Gimnasios, quizá eso me\l"
+    .string "'COF' ayude a mejorar mi condición.$"
+Enfrentare:
+    .string "Wally: Enfrentaré este Gimnasio\n"
+    .string "primero, porque parece el más\l"
+    .string "fácil para mi Ralts.\p"
+    .string "¿Sabes? No tengo mucha confianza\n"
+    .string "en poder ganar, no he podido ganarte\l"
+    .string "antes…\p"
+    .string "Realmente espero que ellos no\n"
+    .string "tengan razón…\p"
+    .string "{PLAYER}: ¿Ellos?\p"
+    .string "Wally: Sí, mis vecinos allá en\n"
+    .string "Verdantuff… Ellos me burlaban por\l"
+    .string "no contar con ningún Pokémon.\p"
+    .string "La situación no ha cambiado en lo\n"
+    .string "absoluto en Petalburg, tampoco.\p"
+    .string "No hay tantos niños allá, pero los\n"
+    .string "adultos hablan en mi espalda de mis\l"
+    .string "padres, porque siempre estoy enfermo.$"
+Ralts:
+    .string "Wally: ¡Pero bueno! 'COF'\p"
+    .string "No debo dejar que lo que me dicen\n"
+    .string "quite lo mejor de mí. ¡Debo\l"
+    .string "continuar! ¿No?\p"
+    .string "Pero bueno, mi Ralts tiene ventaja\n"
+    .string "en este Gimnasio, con su Confusión\l"
+    .string "podré ganar. Y cuando lo haga……\p"
+    .string "Quizá podamos forjar una\n"
+    .string "amistad…$"
+
+
 Dewford_Grunt::
 	lock
 	setvar VAR_DEWFORD_GRUNT, 1
@@ -45,7 +248,7 @@ Quefuetodoeso:
 	.string "… … … … … …\p"
 	.string "¡Ah!\n"
 	.string "¡Es uno de esos tipos del\l"
-	.string "Timo Agua o lo que sea!\p"
+	.string "Kilo Agua o lo que sea!\p"
 	.string "¡Tengo que seguirlo,\n"
 	.string "seguro quiere robar\l"
 	.string "algo más! … … …\p"

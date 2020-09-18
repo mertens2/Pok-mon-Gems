@@ -450,7 +450,8 @@ struct RankingHall2P
     u8 name2[PLAYER_NAME_LENGTH + 1];
     u8 language;
 };
-
+#include "constants/items.h"
+#define ITEM_FLAGS_COUNT ((ITEMS_COUNT / 8) + ((ITEMS_COUNT % 8) ? 1 : 0))
 struct SaveBlock2
 {
     /*0x00*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
@@ -484,7 +485,7 @@ struct SaveBlock2
     /*0x57C*/ struct RankingHall2P hallRecords2P[2][3]; // From record mixing.
     /*0x624*/ u16 contestLinkResults[5][4]; // 4 positions for 5 categories.
     /*0x64C*/ struct BattleFrontier frontier;
-			  u8 itemFlags[ITEM_FLAGS_COUNT];
+    /*0xF2C*/ u8 itemFlags[ITEM_FLAGS_COUNT];
 			
 }; // sizeof=0xF2C
 
@@ -989,6 +990,8 @@ struct SaveBlock1
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
     /*0x3D88*/ u16 registeredItemL;
     /*0x3D8A*/ u16 registeredItemR;
+	struct Pokemon Empty;
+	struct Pokemon BossTeam[PARTY_SIZE - 1];
     // sizeof: 0x3D8C
 };
 
@@ -1010,5 +1013,7 @@ struct TradeRoomPlayer
     struct MapPosition pos;
     u16 field_C;
 };
+
+
 
 #endif // GUARD_GLOBAL_H

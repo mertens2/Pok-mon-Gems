@@ -4,8 +4,8 @@
 #include "battle_transition.h"
 #include "main.h"
 #include "task.h"
-#include "safari_zone.h"
 #include "script.h"
+#include "safari_zone.h"
 #include "event_data.h"
 #include "metatile_behavior.h"
 #include "field_player_avatar.h"
@@ -83,6 +83,8 @@ static void RegisterTrainerInMatchCall(void);
 static void HandleRematchVarsOnBattleEnd(void);
 static const u8 *GetIntroSpeechOfApproachingTrainer(void);
 static const u8 *GetTrainerCantBattleSpeech(void);
+extern const u8 ChainNumber[]; 
+extern const u8 AddChain[]; 
 
 // ewram vars
 EWRAM_DATA static u16 sTrainerBattleMode = 0;
@@ -588,18 +590,52 @@ void StartRegiBattle(void)
 
 static void CB2_EndWildBattle(void)
 {
+	u16 species;
+	u16 ptr;
+	u8 nickname[POKEMON_NAME_LENGTH + 1];
+	u16 lastPokemonFound;
+	species = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES);
     CpuFill16(0, (void*)(BG_PLTT), BG_PLTT_SIZE);
     ResetOamRange(0, 128);
-
     if (IsPlayerDefeated(gBattleOutcome) == TRUE && !InBattlePyramid() && !InBattlePike())
     {
         SetMainCallback2(CB2_WhiteOut);
     }
     else
     {
-        SetMainCallback2(CB2_ReturnToField);
-        gFieldCallback = sub_80AF6F0;
-    }
+		if ((gBattleOutcome != B_OUTCOME_WON) && (gBattleOutcome != B_OUTCOME_CAUGHT))
+		{
+			if (species == VarGet(VAR_SPECIESCHAINED) && VarGet(VAR_CHAIN) >= 1)
+			{
+				VarSet(VAR_CHAIN,0);
+				VarSet(VAR_SPECIESCHAINED,0);
+			}
+			else if ((species != VarGet(VAR_SPECIESCHAINED)) && (VarGet(VAR_CHAIN) >= 1))
+				species = VarGet(VAR_SPECIESCHAINED);
+		}
+		else if ((gBattleOutcome == B_OUTCOME_WON) || (gBattleOutcome == B_OUTCOME_CAUGHT))
+		{
+			if (VarGet(VAR_CHAIN) == 0)
+			{
+				VarSet(VAR_SPECIESCHAINED,species);
+				ScriptContext1_SetupScript(AddChain);
+			}
+			else if ((species == VarGet(VAR_SPECIESCHAINED)) && VarGet(VAR_CHAIN) >=30)
+				VarSet(VAR_CHAIN,30);
+			else if ((species == VarGet(VAR_SPECIESCHAINED)) && VarGet(VAR_CHAIN) >=3)
+			{
+				GetSpeciesName(gStringVar2 ,VarGet(VAR_SPECIESCHAINED));
+				ScriptContext1_SetupScript(ChainNumber);
+			}
+			else if ((species == VarGet(VAR_SPECIESCHAINED)) && (VarGet(VAR_CHAIN) ==2 || VarGet(VAR_CHAIN) ==1))
+				ScriptContext1_SetupScript(AddChain);
+			else if ((species != VarGet(VAR_SPECIESCHAINED)) && (VarGet(VAR_CHAIN) != 0))
+				VarSet(VAR_CHAIN,0);
+				VarSet(VAR_SPECIESCHAINED,species);
+		}
+		SetMainCallback2(CB2_ReturnToField);
+		gFieldCallback = sub_80AF6F0;
+	}
 }
 
 static void CB2_EndScriptedWildBattle(void)
@@ -1377,6 +1413,7 @@ void BattleSetup_StartTrainerBattle(void)
     ScriptContext1_Stop();
 }
 
+
 static void CB2_EndTrainerBattle(void)
 {
     if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
@@ -1388,6 +1425,10 @@ static void CB2_EndTrainerBattle(void)
         if (InBattlePyramid() || InTrainerHillChallenge())
             SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
         else
+			if (FlagGet(FLAG_STARTED_BOSS))
+			{
+				FlagClear(FLAG_STARTED_BOSS);
+			}
             SetMainCallback2(CB2_WhiteOut);
     }
     else
@@ -1939,3 +1980,4 @@ u16 CountBattledRematchTeams(u16 trainerId)
 
     return i;
 }
+

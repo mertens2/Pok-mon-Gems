@@ -54,10 +54,10 @@
 #define FLAG_DEWFORDGRUNT    0x2A
 #define FLAG_DEWFORDWALLY    0x2B 
 #define FLAG_DEWFORDTEAMAQUADEFEATED    0x2C
-#define FLAG_GRANITECAVEITEM1    0x2D // Unused Flag
-#define FLAG_GRANITECAVEITEM2    0x2E // Unused Flag
-#define FLAG_TRIGGER_SLATEPORT    0x2F // Unused Flag
-#define FLAG_UNUSED_0x030    0x30 // Unused Flag
+#define FLAG_GRANITECAVEITEM1    0x2D 
+#define FLAG_GRANITECAVEITEM2    0x2E 
+#define FLAG_TRIGGER_SLATEPORT    0x2F 
+#define FLAG_STARTED_BOSS    0x30 
 #define FLAG_UNUSED_0x031    0x31 // Unused Flag
 #define FLAG_UNUSED_0x032    0x32 // Unused Flag
 #define FLAG_UNUSED_0x033    0x33 // Unused Flag

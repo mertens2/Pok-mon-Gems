@@ -1587,10 +1587,20 @@
 	.2byte \index
 	.endm
 
-    .macro showitemdesc
+    .macro showdescription
     .byte 0xe8
     .endm
-
+    
+    .macro showitemdesc
+    setvar VAR_0x8009, 0
+    showdescription
+    .endm
+    
+    .macro showberrydesc
+    setvar VAR_0x8009, 1
+    showdescription
+    .endm
+    
     .macro hideitemdesc
     .byte 0xe9
     .endm
@@ -1758,3 +1768,20 @@
 	dofieldeffect FLDEFF_SPARKLE
 	.endm
 
+	.macro getemptyslot
+	callnative ScrCmd_getemptyslot
+	.endm
+	
+	.macro deletepokemon num:req
+	setvar VAR_0x8004, \num,
+	callnative ScrCmd_deletepokemon
+	.endm
+
+	.macro savepartofteam
+	callnative ScrCmd_savepartofteam
+	.endm
+	
+	.macro loadpartofteam
+	callnative ScrCmd_loadpartofteam
+	.endm
+	

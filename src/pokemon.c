@@ -2522,24 +2522,50 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
     else
     {
-        u32 iv;
-        value = Random();
+		if (VarGet(VAR_CHAIN) >=10)
+		{
+			u32 iv;
+			iv = VarGet(VAR_CHAIN);
+			SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
+			SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
+			SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
+			SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
+			SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
+			SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
+		}
+		else if (VarGet(VAR_CHAIN) ==30)
+		{
+			u32 iv;
+			iv = 31;
+			SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
+			SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
+			SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
+			SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
+			SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
+			SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
+		}
+		else
+		{
+			u32 iv;
+			value = Random();
 
-        iv = value & 0x1F;
-        SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
-        iv = (value & 0x3E0) >> 5;
-        SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
-        iv = (value & 0x7C00) >> 10;
-        SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
+			iv = value & 0x1F;
+			SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
+			iv = (value & 0x3E0) >> 5;
+			SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
+			iv = (value & 0x7C00) >> 10;
+			SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
 
-        value = Random();
+			value = Random();
+	
+			iv = value & 0x1F;
+			SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
+			iv = (value & 0x3E0) >> 5;
+			SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
+			iv = (value & 0x7C00) >> 10;
+			SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
+		}
 
-        iv = value & 0x1F;
-        SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
-        iv = (value & 0x3E0) >> 5;
-        SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
-        iv = (value & 0x7C00) >> 10;
-        SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
     }
 
     if (gBaseStats[species].abilities[1])
@@ -6674,7 +6700,7 @@ bool8 IsShinyOtIdPersonality(u32 otId, u32 personality)
 {
     bool8 retVal = FALSE;
     u32 shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
-    if (shinyValue < SHINY_ODDS)
+    if (shinyValue < (SHINY_ODDS + (VarGet(VAR_CHAIN))*6))
         retVal = TRUE;
     return retVal;
 }

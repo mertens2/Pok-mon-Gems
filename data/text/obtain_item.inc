@@ -1,31 +1,34 @@
 gText_ObtainedTheItem:: @ 8272A78
-	.string "Obtained the {STR_VAR_2}!$"
-
+	.string "¡Has obtenido {STR_VAR_2}!$"
+	
+gText_ObtainedTheItems::
+    .string "¡Obtuviste {STR_VAR_1} {STR_VAR_2}!$"
+	
 gText_TheBagIsFull:: @ 8272A89
-	.string "The BAG is full…$"
+	.string "La mochila está llena…$"
 
 gText_PutItemInPocket:: @ 8272A9A
-	.string "{PLAYER} put away the {STR_VAR_2}\n"
-	.string "in the {STR_VAR_3} POCKET.$"
+	.string "{PLAYER} puso {STR_VAR_2}\n"
+	.string "en el bolsillo {STR_VAR_3}.$"
 
 gText_PlayerFoundOneItem:: @ 8272ABF
-	.string "{PLAYER} found one {STR_VAR_2}!$"
+	.string "¡{PLAYER} encontró {STR_VAR_2}!$"
 
 gText_TooBadBagIsFull:: @ 8272AD0
-	.string "Too bad!\n"
-	.string "The BAG is full…$"
+	.string "¡Mala suerte!\n"
+	.string "La mochila está llena…$"
 
 gText_PlayerPutItemInBag:: @ 8272AEA
-	.string "{PLAYER} put away the {STR_VAR_2}\n"
-	.string "in the BAG.$"
+	.string "{PLAYER} puso {STR_VAR_2}\n"
+	.string "en la Mochila.$"
 
 gText_ObtainedTheDecor:: @ 8272B09
-	.string "Obtained the {STR_VAR_2}!$"
+	.string "¡Has obtenido {STR_VAR_2}!$"
 
 gText_NoRoomLeftForAnother:: @ 8272B1A
-	.string "Too bad! There's no room left for\n"
-	.string "another {STR_VAR_2}…$"
+	.string "¡Mala suerte! No queda lugar\n"
+	.string "par más {STR_VAR_2}…$"
 
 gText_TheDecorWasTransferredToThePC:: @ 8272B48
-	.string "The {STR_VAR_2} was transferred\n"
-	.string "to the PC.$"
+	.string "{STR_VAR_2} se ha transferido\n"
+	.string "a tu PC.$"
