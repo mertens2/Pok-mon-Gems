@@ -18,5 +18,8 @@ bool8 IsFieldMessageBoxHidden(void);
 u8 GetFieldMessageBoxMode(void);
 void sub_8098374(void);
 void InitFieldMessageBox(void);
+void SetHideMessageBox(u8 walkaway);
+u8 GetHidingMessageBox(void);
+void TryHideMessageBox(void);
 
 #endif // GUARD_FIELD_MESSAGE_BOX_H

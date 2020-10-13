@@ -212,7 +212,7 @@ Route101_EventScript_Boy:: @ 81EBE04
 	end
 
 Route101_EventScript_RouteSign:: @ 81EBE0D
-	msgbox Route101_Text_RouteSign, MSGBOX_SIGN
+	msgbox Route101_Text_RouteSign, MSGBOX_SIGN, MSGBOX_SUB_DEFAULT
 	end
 
 Route101_EventScript_BirchsBag:: @ 81EBE16
@@ -286,10 +286,11 @@ Route101_Text_YouSavedMe: @ 81EBF12
 	.string "LABORATORIO POKéMON...$"
 
 Route101_Text_TakeTiredPokemonToPokeCenter: @ 81EBFDD
-	.string "Si tus Pokémon tienen Pokérus, la señora\n"
-	.string "del Centro Pokémon te avisará.\p"
-	.string "Sólo dura unos días, así que asegúrate de\n"
-	.string "curar allí siempre. Hace a los Pokémon fuertes.$"
+	.string "¿Sabías que en esta Ruta, aparecen\n"
+	.string "Spinarak, Zigzagoon, Wurmple,\p"
+	.string "Audino y muchos más?\n"
+	.string "Aprendí eso leyendo los carteles\l"
+	.string "y hablando con la gente.$"
 
 Route101_Text_WildPokemonInTallGrass: @ 81EC04A
 	.string "Los Pokémon salvajes son muy\n"
@@ -301,5 +302,6 @@ Route101_Text_RouteSign: @ 81EC0C8
 	.string "RUTA 101\n"
 	.string "¡CUIDADO CON SPINARAK!\l"
 	.string "¡ES VENENOSO!\p"
+	.string "¡Y POOCHYENA ES MUY\n"
+	.string "AGRESIVO!\p"
 	.string "{UP_ARROW} PUEBLO OLDALE$"
-

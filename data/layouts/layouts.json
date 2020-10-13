@@ -4,7 +4,7 @@
     {
       "id": "LAYOUT_PETALBURG_CITY",
       "name": "PetalburgCity_Layout",
-      "width": 30,
+      "width": 32,
       "height": 30,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
@@ -94,7 +94,7 @@
     {
       "id": "LAYOUT_LITTLEROOT_TOWN",
       "name": "LittlerootTown_Layout",
-      "width": 20,
+      "width": 30,
       "height": 20,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
@@ -105,7 +105,7 @@
       "id": "LAYOUT_OLDALE_TOWN",
       "name": "OldaleTown_Layout",
       "width": 20,
-      "height": 20,
+      "height": 25,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/OldaleTown/border.bin",
@@ -175,7 +175,7 @@
       "id": "LAYOUT_ROUTE102",
       "name": "Route102_Layout",
       "width": 50,
-      "height": 20,
+      "height": 30,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/Route102/border.bin",
@@ -1344,8 +1344,8 @@
     {
       "id": "LAYOUT_PETALBURG_WOODS",
       "name": "PetalburgWoods_Layout",
-      "width": 48,
-      "height": 44,
+      "width": 58,
+      "height": 56,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/PetalburgWoods/border.bin",
@@ -4420,6 +4420,26 @@
       "secondary_tileset": "gTileset_Slateport",
       "border_filepath": "data/layouts/IslaRetoSPlaya/border.bin",
       "blockdata_filepath": "data/layouts/IslaRetoSPlaya/map.bin"
+    },
+    {
+      "id": "LAYOUT_CASA_BRAGG_MC_FADDEN",
+      "name": "CasaBraggMcFadden_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/CasaBraggMcFadden/border.bin",
+      "blockdata_filepath": "data/layouts/CasaBraggMcFadden/map.bin"
+    },
+    {
+      "id": "LAYOUT_CASA_JEWEL",
+      "name": "CasaJewel_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/CasaJewel/border.bin",
+      "blockdata_filepath": "data/layouts/CasaJewel/map.bin"
     }
   ]
 }

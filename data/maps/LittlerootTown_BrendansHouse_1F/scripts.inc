@@ -296,9 +296,7 @@ LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs2: @ 81F7A16
 	step_end
 
 PlayersHouse_1F_Text_IsntItNiceInHere: @ 81F7A1C
-	.string "Mamá: ¿Hermoso, no, {PLAYER}?\n"
-	.string "¡Aquí dormiré! Aunque cuando te\l"
-	.string "vayas, dormiré en tu cuarto…$"
+	.string "Mamá: ¿Hermoso, no, {PLAYER}?$"
 
 PlayersHouse_1F_Text_MoversPokemonGoSetClock: @ 81F7A46
 	.string "Los Vigoroth hacen todo el trabajo\n"
@@ -325,7 +323,7 @@ PlayersHouse_1F_Text_OhComeQuickly: @ 81F7B96
 	.string "¡Mira, mira!$"
 
 PlayersHouse_1F_Text_MaybeDadWillBeOn: @ 81F7BBC
-	.string "Mamá: Es el GIMNASIO PETALBURG!\n"
+	.string "Mamá: Es el Gimnasio Petalburg!\n"
 	.string "¡Tu padre se ve hermoso en TV!$"
 
 PlayersHouse_1F_Text_ItsOverWeMissedHim: @ 81F7BF1
@@ -380,15 +378,15 @@ PlayersHouse_1F_Text_Vigoroth1: @ 81F7EA8
 	.string "¡Vigo!$"
 
 PlayersHouse_1F_Text_Vigoroth2: @ 81F7EB3
-	.string "Rot rot rot…\n"
+	.string "Rot rot rot…\p"
 	.string "Parece sobreexplotado…$"
 
 PlayersHouse_1F_Text_ReportFromPetalburgGym: @ 81F7EC6
 	.string "ENTREVISTADOR: Señor Norman… ¿A\n"
 	.string "dónde va?\p"
-	.string "Creo haber visto que estaba sonrojado…\n"
+	.string "Creo que estaba sonrojado…\n"
 	.string "Seguro se puso nervioso por la cámara…\l"
-	.string "Como sea… Aquí termina el show.$"
+	.string "Como sea… ¡Aquí termina el show!.$"
 
 PlayersHouse_1F_Text_TheresAMovieOnTV: @ 81F7F0F
 	.string "Están dando un programa de Galar.\p"
@@ -397,10 +395,11 @@ PlayersHouse_1F_Text_TheresAMovieOnTV: @ 81F7F0F
 	.string "¡Vamos, hombre de la campera rara!$"
 
 PlayersHouse_1F_Text_RunningShoesManual: @ 81F7F66
-	.string "Aquí dice ”Agua de dieta”…$"
+	.string "Aquí dice ”Agua de dieta”\n"
+	.string "…$"
 
 PlayersHouse_1F_Text_TicketFromBrineyCameForYou: @ 81F800E
-	.string "Ppaá: ¿Hm?\p"
+	.string "Papá: ¿Hm?\p"
 	.string "¡Hey, es {PLAYER}!\p"
 	.string "Seguro estás disfrutando ser campeón,\n"
 	.string "deberíamos entrenar un día de estos.\p"
@@ -422,7 +421,7 @@ PlayersHouse_1F_Text_PortsInSlateportLilycove: @ 81F80FE
 	.string "SLATEPORT y LILYCOVE.$"
 
 PlayersHouse_1F_Text_BetterGetBackToGym: @ 81F815B
-	.string "Debería volver al GIMNASIO PETALBURG…\p"
+	.string "Debería volver al Gimnasio Petalburg…\p"
 	.string "Un día de estos deberías ir y retarme,\n"
 	.string "¡Aceptaré un reto siempre! Si me ganas,\l"
 	.string "quizá te deje encargarte del Gimnasio\p"
@@ -434,10 +433,10 @@ PlayersHouse_1F_Text_BetterGetBackToGym: @ 81F815B
 PlayersHouse_1F_Text_DadShouldStayLonger: @ 81F81B9
 	.string "Mamá: Ese padre tuyo…\p"
 	.string "Viene por primera vez desde hace un año\n"
-	.string "y sólo habla de POKéMON.\p"
+	.string "y sólo habla de Pokémon.\p"
 	.string "Si no fuera por lo delicioso que cocina,\n"
 	.string "porque me manda sus almuerzos desde el\l"
-	.string "GIMNASIO y porque es así de hermoso,\p"
+	.string "Gimnasio y porque es así de hermoso,\p"
 	.string "probablemente estaría por ahí buscándome\n"
 	.string "un mejor marido… O quizá podría tener\l"
 	.string "algunas amigas… Me han dicho que Lorelei,\p"
@@ -450,20 +449,20 @@ PlayersHouse_1F_Text_IsThatABreakingStory: @ 81F824B
 
 PlayersHouse_1F_Text_LatiEmergencyNewsFlash: @ 81F826F
 	.string "¡EMERGENCIA DE COLOR BZZZ!\n"
-	.string "¡! ¡!\p"
+	.string "¡!BZZZ, BZZZ¡!\p"
 	.string "¡Varios locales de Hoenn, han visto\n"
-	.string "POKéMON de color BZZ en el cielo!\l"
+	.string "Pokémon de color BZZ en el cielo!\l"
 	.string "…\p"
-	.string "La identidad de los POKéMON aún se\n"
+	.string "La identidad de los Pokémon aún se\n"
 	.string "desconoce.\p"
 	.string "Ahora, volvemos al doceavo combate\n"
 	.string "de Red y Green por el título de campeón.$"
 
 PlayersHouse_1F_Text_WhatColorDidTheySay: @ 81F8351
 	.string "Mamá: {PLAYER}, ¿Lo entendiste?\p"
-	.string "¿De qué color era el POKéMON\n"
+	.string "¿De qué color era el Pokémon\n"
 	.string "que está aterrorizando Hoenn?$"
 
 PlayersHouse_1F_Text_StillUnknownPokemon: @ 81F83A1
 	.string "Mamá: ¡Bueno, algo es algo!\n"
-	.string "Aún hay POKéMON que no se conocen…$"
+	.string "Aún hay Pokémon que no se conocen…$"

@@ -1269,6 +1269,16 @@ bool8 ScrCmd_release(struct ScriptContext *ctx)
     return FALSE;
 }
 
+//Set message type and subtype
+bool8 ScrCmd_setmessagebox(struct ScriptContext * ctx)
+{
+    u8 type = ctx->data[1];
+    u8 subtype = ctx->data[2];
+
+    SetMsgBox(type, subtype);
+    return FALSE;
+}
+
 bool8 ScrCmd_message(struct ScriptContext *ctx)
 {
     const u8 *msg = (const u8 *)ScriptReadWord(ctx);
@@ -1331,6 +1341,12 @@ static bool8 WaitForAorBPress(void)
         return TRUE;
     if (gMain.newKeys & B_BUTTON)
         return TRUE;
+    //Check if wait should be overriden
+    if (GetHidingMessageBox() == 2)
+	{
+		SetHideMessageBox(0);
+		return TRUE;
+	}
     return FALSE;
 }
 
@@ -2414,3 +2430,4 @@ void ScrCmd_loadpartofteam(void)
 	for(i = 0; !GetMonData(gSaveBlock1Ptr->BossTeam[i], MON_DATA_SPECIES, NULL); i++)
 		gPlayerParty[i] = gSaveBlock1Ptr->BossTeam[i];
 }
+

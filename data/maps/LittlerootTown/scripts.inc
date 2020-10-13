@@ -401,39 +401,29 @@ LittlerootTown_EventScript_GoSaveBirchTrigger:: @ 81E811F
 	end
 
 LittlerootTown_EventScript_TownSign:: @ 81E8151
-	changeframe 17
-	msgbox LittlerootTown_Text_TownSign, MSGBOX_SIGN
-	changeframe 1
+	msgbox LittlerootTown_Text_TownSign, MSGBOX_SIGN, MSGBOX_SUB_DEFAULT
 	end
 
 LittlerootTown_EventScript_BirchsLabSign:: @ 81E815A
-	changeframe 17
-	msgbox LittlerootTown_Text_ProfBirchsLab, MSGBOX_SIGN
-	changeframe 1
+	msgbox LittlerootTown_Text_ProfBirchsLab, MSGBOX_SIGN, MSGBOX_SUB_DEFAULT
 	end
 
 LittlerootTown_EventScript_BrendansHouseSign:: @ 81E8163
 	lockall
 	checkplayergender
-	changeframe 17
 	compare VAR_RESULT, MALE
 	call_if_eq LittlerootTown_EventScript_PlayersHouseSignMale
 	compare VAR_RESULT, FEMALE
 	call_if_eq LittlerootTown_EventScript_BirchsHouseSignFemale
-	changeframe 1
 	releaseall
 	end
 
 LittlerootTown_EventScript_PlayersHouseSignMale:: @ 81E817D
-	changeframe 17
-	msgbox LittlerootTown_Text_PlayersHouse, MSGBOX_DEFAULT
-	changeframe 1
+	msgbox LittlerootTown_Text_PlayersHouse, MSGBOX_SIGN, MSGBOX_SUB_DEFAULT
 	return
 
 LittlerootTown_EventScript_BirchsHouseSignFemale:: @ 81E8186
-	changeframe 17
-	msgbox LittlerootTown_Text_ProfBirchsHouse, MSGBOX_DEFAULT
-	changeframe 1
+	msgbox LittlerootTown_Text_ProfBirchsHouse, MSGBOX_SIGN, MSGBOX_SUB_DEFAULT
 	return
 
 LittlerootTown_EventScript_MaysHouseSign:: @ 81E818F
@@ -447,11 +437,11 @@ LittlerootTown_EventScript_MaysHouseSign:: @ 81E818F
 	end
 
 LittlerootTown_EventScript_BirchsHouseSignMale:: @ 81E81A9
-	msgbox LittlerootTown_Text_ProfBirchsHouse, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_ProfBirchsHouse, MSGBOX_SIGN, MSGBOX_SUB_DEFAULT
 	return
 
 LittlerootTown_EventScript_PlayersHouseSignFemale:: @ 81E81B2
-	msgbox LittlerootTown_Text_PlayersHouse, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_PlayersHouse, MSGBOX_SIGN, MSGBOX_SUB_DEFAULT
 	return
 
 LittlerootTown_EventScript_GiveRunningShoesTrigger0:: @ 81E81BB
@@ -965,6 +955,20 @@ LittlerootTown_EventScript_GiveRunningShoes:: @ 81E8693
 	delay 30
 	return
 
+LittlerootTown_SignGordo::
+	msgbox LittlerootTown_Text_GordoHouse, MSGBOX_SIGN, MSGBOX_SUB_DEFAULT
+	end
+LittlerootTown_SignNina::
+	msgbox LittlerootTown_Text_NinaHouse, MSGBOX_SIGN, MSGBOX_SUB_DEFAULT
+	end
+LittlerootTown_SignVacia::
+	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
+	goto_if_ge LittlerootTown_SignTabithasHouse
+	msgbox LittlerootTown_Text_EmptyHouse, MSGBOX_SIGN, MSGBOX_SUB_DEFAULT
+	end
+LittlerootTown_SignTabithasHouse::
+	msgbox LittlerootTown_Text_TabithaHouse, MSGBOX_SIGN, MSGBOX_SUB_DEFAULT
+	end
 LittlerootTown_Text_OurNewHomeLetsGoInside: @ 81E86BC
 	.string "Mamá: ¡{PLAYER}, llegamos, cariño!\p"
 	.string "Debió ser incómodo viajar en camión…\n"
@@ -975,8 +979,6 @@ LittlerootTown_Text_OurNewHomeLetsGoInside: @ 81E86BC
 	.string "Sin dudas es aburrido, pero se siente\n"
 	.string "la tranquilidad rural, ¿No crees?\p"
 	.string "¡Hasta tienes cuarto, {PLAYER}!\p"
-	.string "¡Qué envidia, yo duermo en la mesa y\n"
-	.string "tu padre en el gimnasio, ja ja ja!\p"
 	.string "Bueno, ya, entremos.$"
 
 LittlerootTown_Text_WaitPlayer: @ 81E87E1
@@ -984,29 +986,27 @@ LittlerootTown_Text_WaitPlayer: @ 81E87E1
 
 LittlerootTown_Text_WearTheseRunningShoes: @ 81E87F0
 	.string "MOM: ¡{PLAYER}! ¿Ya te\n"
-	.string "presentaste al Profesor BIRCH?\p"
-	.string "¡Oh! ¡Que POKéMON más lindo!\n"
+	.string "presentaste al Profesor Birch?\p"
+	.string "¡Oh! ¡Que Pokémon más lindo!\n"
 	.string "Seguro te lo dio el Profe Birch.\p"
 	.string "¡Eres igual a tu padre!\n"
-	.string "¡Ambos son adorables con los POKéMON!\p"
-	.string "¡! ¡Hablando de eso!\n"
+	.string "¡Ambos son adorables con los Pokémon!\p"
+	.string "¡Oh! ¡Hablando de eso!\n"
 	.string "Aquí tengo algo muy especial para\l"
 	.string "ti, de parte de tu padre!$"
-
-
 
 LittlerootTown_Text_ExplainRunningShoes: @ 81E894F
 	.string "Mamá: ¡Es un Huevo Misterioso!$"
 
 LittlerootTown_Text_ComeHomeIfAnythingHappens: @ 81E8A03
-	.string "¡Te ves igual que tu\n"
-	.string "padre, elegiste el mismo\l"
-	.string "ínicial que él cuando viajó a Hoenn!\p"
+	.string "¡Te ves igual que tu padre\n"
+	.string "y elegiste el mismo ínicial\l"
+	.string "que él cuando viajó a Hoenn!\p"
 	.string "¡Seguro viven grandes aventuras\n"
 	.string "juntos, justo como él!\p"
 	.string "… … … … … … … …\n"
 	.string "… … … … … … … …\p"
-	.string "Pensar que ahora tienes un POKéMON…\n"
+	.string "Pensar que ahora tienes un Pokémon…\n"
 	.string "Wow…\l"
 	.string "Seguro tu padre estaría orgulloso.\p"
 	.string "…Pero, en serio, sé cuidadoso.\p"
@@ -1015,12 +1015,11 @@ LittlerootTown_Text_ComeHomeIfAnythingHappens: @ 81E8A03
 
 LittlerootTown_Text_CanUsePCToStoreItems: @ 81E8ACF
 	.string "La PC permite guardar toda clase de\n"
-	.string "cosas. ¡Hasta POKéMON!\p"
-	.string "¡El maltra- que diga, la tecnología\n"
-	.string "es increíble!$"
+	.string "cosas. ¡Hasta Pokémon!\p"
+	.string "¡La tecnología es increíble!$"
 
 LittlerootTown_Text_BirchSpendsDaysInLab: @ 81E8B25
-	.string "El Profesor BIRCH pasa días estudiando\n"
+	.string "El Profesor Birch pasa días estudiando\n"
 	.string "en el Laboratorio, después, sale a hacer\l"
 	.string "investigaciones de campo…\p"
 	.string "¿Y ese gordo cuándo pasa tiempo con\n"
@@ -1028,8 +1027,8 @@ LittlerootTown_Text_BirchSpendsDaysInLab: @ 81E8B25
 
 LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut: @ 81E8BB8
 	.string "¡Um, um, um!\p"
-	.string "Si vas ahora sin POKéMON, te van a\n"
-	.string "atacar peligrosos perritos nivel 2!$"
+	.string "Si vas ahora sin Pokémon, te van a\n"
+	.string "atacar despiadados Pokémon salvajes!$"
 
 LittlerootTown_Text_DangerousIfYouDontHavePokemon: @ 81E8C07
 	.string "Es peligroso ir solo.\n"
@@ -1037,9 +1036,9 @@ LittlerootTown_Text_DangerousIfYouDontHavePokemon: @ 81E8C07
 
 LittlerootTown_Text_CanYouGoSeeWhatsHappening: @ 81E8C3A
 	.string "¡Ey, hola!\p"
-	.string "¡Allá fuera hay POKéMON horribles!\n"
+	.string "¡Allá fuera hay Pokémon horribles!\n"
 	.string "¡Escucho sus Alaridos!\p"
-	.string "Quisiera ir… Pero no tengo POKéMON.\n"
+	.string "Quisiera ir… Pero no tengo Pokémon.\n"
 	.string "Tu vida parece no tener valor…\p"
 	.string "¿Podrías ir a ver qué pasa por\n"
 	.string "mí, y arriesgar tu vida?$"
@@ -1049,28 +1048,31 @@ LittlerootTown_Text_YouSavedBirch: @ 81E8CE3
 	.string "¡Y no moriste!$"
 
 LittlerootTown_Text_GoodLuckCatchingPokemon: @ 81E8D07
-	.string "¿Quires atrapar POKéMON?\n"
+	.string "¿Quires atrapar Pokémon?\n"
 	.string "¡Buena suerte!$"
 
 LittlerootTown_Text_TownSign: @ 81E8D32
-	.string "PUEBLO LITTLEROOT\n"
+	.string "Pueblo littleroot\n"
 	.string "“Un pueblo con matices hermosos.”$"
 
 LittlerootTown_Text_ProfBirchsLab: @ 81E8D69
-	.string "LABORATORIO DEL PROFE BIRCH\n"
-	.string "supongo que al Profe BIRCH le\l"
-	.string "gustan las letras mayúsculas…$"
+	.string "Laboratorio del Profe Birch$"
 
 LittlerootTown_Text_PlayersHouse: @ 81E8D83
-	.string "Casa de Norman$"
+	.string "Familia Senri$"
 
 LittlerootTown_Text_ProfBirchsHouse: @ 81E8D8E
-	.string "Casa del Profe BIRCH\n"
-	.string "donde tampoco es que pase\l"
-	.string "tanto tiempo que digamos…$"
-
+	.string "Familia Birch$"
+LittlerootTown_Text_GordoHouse:
+	.string "Familia Bragg-McFadden$"
+LittlerootTown_Text_NinaHouse:
+	.string "Familia Jewel$"
+LittlerootTown_Text_EmptyHouse:
+	.string "----------$"
+LittlerootTown_Text_TabithaHouse:
+	.string "Casa de Tabitha$"
 LittlerootTown_Text_BirchSomethingToShowYouAtLab: @ 81E8DA2
-	.string "PROFE BIRCH: ¡Bueno, bueno {PLAYER}{KUN}!\n"
+	.string "PROFE Birch: ¡Bueno, bueno {PLAYER}{KUN}!\n"
 	.string "¡Eso fue fantástico, eres lo más!\p"
 	.string "Sabía que podía esperar mucho del hijo\n"
 	.string "de un Líder del Gimnasio, pero nunca\l"
@@ -1079,4 +1081,3 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab: @ 81E8DA2
 	.string "Por cierto, tráela al laboratorio,\p"
 	.string "junto con el resto de ti, tengo un regalo\n"
 	.string "que hacerte.$"
-

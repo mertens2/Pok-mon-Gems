@@ -5,6 +5,23 @@
 #include "palette.h"
 #include "bg.h"
 #include "graphics.h"
+#include "field_message_box.h"
+
+//Add any new message box types and subtypes here
+#define MSGBOX_NPC             2
+#define MSGBOX_SIGN            3
+#define MSGBOX_DEFAULT         4
+#define MSGBOX_YESNO           5
+#define MSGBOX_AUTOCLOSE       6
+#define MSGBOX_GETPOINTS       9
+#define MSGBOX_SUB_DEFAULT     0
+
+//Msgbox type control variables
+static EWRAM_DATA u8 sMsgBoxType = MSGBOX_DEFAULT;
+static EWRAM_DATA u8 sMsgBoxSubType = MSGBOX_SUB_DEFAULT;
+
+void LoadMsgBox(const u32 **graphic, const u16 **palette);
+
 
 // const rom data
 const u8 gTextWindowFrame1_Gfx[] = INCBIN_U8("graphics/text_window/1.4bpp");
@@ -49,9 +66,10 @@ static const u16 sTextWindowFrame18_Pal[] = INCBIN_U16("graphics/text_window/18.
 static const u16 sTextWindowFrame19_Pal[] = INCBIN_U16("graphics/text_window/19.gbapal");
 static const u16 sTextWindowFrame20_Pal[] = INCBIN_U16("graphics/text_window/20.gbapal");
 
-static const u16 sUnknown_0851017C[][16] =
+static const u16 sMessageBoxPals[][16] =
 {
     INCBIN_U16("graphics/text_window/message_box.gbapal"),
+	INCBIN_U16("graphics/text_window/sign_message_box.gbapal"),
     INCBIN_U16("graphics/text_window/text_pal1.gbapal"),
     INCBIN_U16("graphics/text_window/text_pal2.gbapal"),
     INCBIN_U16("graphics/text_window/text_pal3.gbapal"),
@@ -93,8 +111,12 @@ const struct TilesPal *GetWindowFrameTilesPal(u8 id)
 
 void LoadMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
-    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gMessageBox_Gfx, 0x1C0, destOffset);
-    LoadPalette(GetOverworldTextboxPalettePtr(), palOffset, 0x20);
+    const u32 *currentMessageBox_Gfx;
+    const u16 *currentMessageBox_Pal;
+    LoadMsgBox(&currentMessageBox_Gfx, &currentMessageBox_Pal);
+
+    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), currentMessageBox_Gfx, 0x1C0, destOffset);
+    LoadPalette(currentMessageBox_Pal, palOffset, 0x20);
 }
 
 void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset)
@@ -182,7 +204,7 @@ const u16 *stdpal_get(u8 id)
         break;
     }
 
-    return (const u16 *)(sUnknown_0851017C) + id;
+    return (const u16 *)(sMessageBoxPals) + id;
 }
 
 const u16 *GetOverworldTextboxPalettePtr(void)
@@ -194,4 +216,38 @@ void sub_8098C6C(u8 bg, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(bg, sWindowFrames[gSaveBlock2Ptr->optionsWindowFrameType].tiles, 0x120, destOffset);
     LoadPalette(GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->pal, palOffset, 0x20);
+}
+
+
+//Set the current type and subtype of t-box
+void SetMsgBox(u8 type, u8 subtype)
+{
+    sMsgBoxType = type;
+    sMsgBoxSubType = subtype;
+}
+
+//Load t-box graphics depending on type and subtype (thanks Egg)
+void LoadMsgBox(const u32 **graphic, const u16 **palette)
+{
+    switch(sMsgBoxType)
+    {
+   //Sample of what new cases should look like
+    case MSGBOX_SIGN:
+        if(sMsgBoxSubType == MSGBOX_SUB_DEFAULT){
+            *graphic = gSignMessageBox_Gfx;
+            *palette = gSignMessageBox_Pal;
+        }
+        else{
+            *graphic = gMessageBox_Gfx;
+            *palette = gMessageBox_Pal;
+        }
+        SetHideMessageBox(1);
+        break;
+    default:
+        *graphic = gMessageBox_Gfx;
+        *palette = gMessageBox_Pal;
+        SetHideMessageBox(0);
+        break;
+    }
+    SetMsgBox(MSGBOX_DEFAULT, MSGBOX_SUB_DEFAULT);
 }

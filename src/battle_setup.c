@@ -946,24 +946,24 @@ static void CB2_GiveStarter(void)
 	if (rand == 10)
 	{
 		FlagSet(FLAG_SHINY);
-		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		ScriptGiveMon(starterMon, 5, ITEM_NONE, 0, 0, 0);
 		FlagClear(FLAG_SHINY);
 	}
 	else if (rand <= 9)
 	{
-		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		ScriptGiveMon(starterMon, 5, ITEM_NONE, 0, 0, 0);
 		SetMonData(&gPlayerParty[0], MON_DATA_ABILITY_NUM, &hidab);
 	}
 	else if (rand == 11)
 	{
 		FlagSet(FLAG_SHINY);
-		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		ScriptGiveMon(starterMon, 5, ITEM_NONE, 0, 0, 0);
 		SetMonData(&gPlayerParty[0], MON_DATA_ABILITY_NUM, &hidab);
 		FlagClear(FLAG_SHINY);
 	}
 	else if ((rand <= 22) && (rand >= 12))
 	{
-		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		ScriptGiveMon(starterMon, 5, ITEM_NONE, 0, 0, 0);
 		SetMonData(&gPlayerParty[0], MON_DATA_HP_IV, &ivs);
 		SetMonData(&gPlayerParty[0], MON_DATA_ATK_IV, &ivs);
 		SetMonData(&gPlayerParty[0], MON_DATA_DEF_IV, &ivs);
@@ -971,10 +971,10 @@ static void CB2_GiveStarter(void)
 		SetMonData(&gPlayerParty[0], MON_DATA_SPATK_IV, &ivs);
 		SetMonData(&gPlayerParty[0], MON_DATA_SPDEF_IV, &ivs);
 	}
-	else if (rand == 23)
+	else if (rand == 25)
 	{
 		FlagSet(FLAG_SHINY);
-		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		ScriptGiveMon(starterMon, 5, ITEM_NONE, 0, 0, 0);
 		SetMonData(&gPlayerParty[0], MON_DATA_HP_IV, &ivs);
 		SetMonData(&gPlayerParty[0], MON_DATA_ATK_IV, &ivs);
 		SetMonData(&gPlayerParty[0], MON_DATA_DEF_IV, &ivs);
@@ -986,7 +986,7 @@ static void CB2_GiveStarter(void)
 	else if (rand == 24)
 	{
 		FlagSet(FLAG_SHINY);
-		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		ScriptGiveMon(starterMon, 5, ITEM_NONE, 0, 0, 0);
 		SetMonData(&gPlayerParty[0], MON_DATA_HP_IV, &ivs);
 		SetMonData(&gPlayerParty[0], MON_DATA_ATK_IV, &ivs);
 		SetMonData(&gPlayerParty[0], MON_DATA_DEF_IV, &ivs);
@@ -998,7 +998,7 @@ static void CB2_GiveStarter(void)
 	}
 	else if ((rand >= 25) && (rand <=30))
 	{
-		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		ScriptGiveMon(starterMon, 5, ITEM_NONE, 0, 0, 0);
 		SetMonData(&gPlayerParty[0], MON_DATA_HP_IV, &ivs);
 		SetMonData(&gPlayerParty[0], MON_DATA_ATK_IV, &ivs);
 		SetMonData(&gPlayerParty[0], MON_DATA_DEF_IV, &ivs);
@@ -1009,7 +1009,7 @@ static void CB2_GiveStarter(void)
 	}
 	else
 	{
-		ScriptGiveMon(starterMon, 3, ITEM_NONE, 0, 0, 0);
+		ScriptGiveMon(starterMon, 5, ITEM_NONE, 0, 0, 0);
 	}
     ResetTasks();
     PlayBattleBGM();

@@ -1459,6 +1459,8 @@ static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
             player_step(inputStruct.dpadDirection, newKeys, heldKeys);
         }
     }
+	if(inputStruct.heldDirection == 1 && inputStruct.dpadDirection != GetPlayerFacingDirection())
+        TryHideMessageBox();
 }
 
 void CB1_Overworld(void)
@@ -1571,6 +1573,8 @@ void CB2_WhiteOut(void)
         SetFieldVBlankCallback();
         SetMainCallback1(CB1_Overworld);
         SetMainCallback2(CB2_Overworld);
+		VarSet(VAR_CHAIN,0);
+		VarSet(VAR_SPECIESCHAINED,0);
     }
 }
 

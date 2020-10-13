@@ -1,8 +1,8 @@
 #include "global.h"
 #include "heal_location.h"
 #include "constants/maps.h"
-
 #include "data/heal_locations.h"
+#include "constants/heal_locations.h"
 
 u32 GetHealLocationIndexByMap(u16 mapGroup, u16 mapNum)
 {

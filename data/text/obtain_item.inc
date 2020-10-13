@@ -1,9 +1,6 @@
 gText_ObtainedTheItem:: @ 8272A78
 	.string "¡Has obtenido {STR_VAR_2}!$"
 	
-gText_ObtainedTheItems::
-    .string "¡Obtuviste {STR_VAR_1} {STR_VAR_2}!$"
-	
 gText_TheBagIsFull:: @ 8272A89
 	.string "La mochila está llena…$"
 

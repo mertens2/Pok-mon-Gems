@@ -1595,6 +1595,9 @@ const u16 gTradeMenuMonBox_Tilemap[] = INCBIN_U16("graphics/trade/menu_mon_box.b
 const u16 gMessageBox_Pal[] = INCBIN_U16("graphics/text_window/message_box.gbapal");
 const u8 gMessageBox_Gfx[] = INCBIN_U8("graphics/text_window/message_box.4bpp");
 
+const u16 gSignMessageBox_Pal[] = INCBIN_U16("graphics/text_window/sign_message_box.gbapal");
+const u8 gSignMessageBox_Gfx[] = INCBIN_U8("graphics/text_window/sign_message_box.4bpp");
+
 const u32 gWallpaperIcon_Cross[] = INCBIN_U32("graphics/pokemon_storage/cross_icon.4bpp.lz");
 const u32 gWallpaperIcon_Bolt[] = INCBIN_U32("graphics/pokemon_storage/bolt_icon.4bpp.lz");
 const u32 gWallpaperIcon_Plusle[] = INCBIN_U32("graphics/pokemon_storage/plusle_icon.4bpp.lz");

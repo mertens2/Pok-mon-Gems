@@ -731,21 +731,23 @@ PetalburgCity_Text_ThisIsGymSign: @ 81DC93E
 	.string "estos carteles.$"
 
 PetalburgCity_Text_WaterReflection: @ 81DC985
-	.string "Reflejada es.\p"
+	.string "“Reflejada es.\p"
 	.string "¿Cara esperanzada,\p"
-	.string "O frío silencio?\n"
-	.string "Me gusta hacer Haikus… Pero esta vez\n"
-	.string "yo mismo me he cautivado, ¿Será que\l"
-	.string "mi cara refleja esperanza o miedo\p"
-	.string "de seguir con la hiriente vida?\p"
+	.string "O frío silencio?”\n"
+	.string "Me gusta hacer Haikus…\l"
+	.string "pero esta vez yo mismo\p"
+	.string "me he cautivado.\p"
+	.string "“¿Será acaso\n"
+	.string "que lo que refleja mi\l"
+	.string "cara es miedo?”\p"
 	.string "¿Qué crees que refleja tu cara?$"
 
 PetalburgCity_Text_FullPartyExplanation: @ 81DCA30
 	.string "Digamos que tienes 6 Pokémon.\n"
 	.string "Al atrapar otro, se irá directo al PC…\p"
-	.string "Más yo pregunto,\n"
+	.string "“Más yo pregunto,\n"
 	.string "¿Es todo esto justo,\l"
-	.string "o es maltrato?\p"
+	.string "o es maltrato?”\p"
 	.string "¡ARGH! ¡El chico de allá me pegó\n"
 	.string "los Haikus existenciales!\p"
 	.string "Como sea, los trabajadores de Devon\n"
@@ -754,13 +756,14 @@ PetalburgCity_Text_FullPartyExplanation: @ 81DCA30
 	.string "Pero no le dan el derecho a todos…$"
 
 PetalburgCity_Text_GymSign: @ 81DCAAA
-	.string "PETALBURG CITY POKéMON GYM\n"
-	.string "LEADER: NORMAN\l"
-	.string "“A man in pursuit of power!”$"
+	.string "Gimnasio Pokémon Petalburg\n"
+	.string "Líder: Norman\l"
+	.string "“¡Un hombre que busca poder!”$"
 
 PetalburgCity_Text_CitySign: @ 81DCAF1
-	.string "PETALBURG CITY\n"
-	.string "“Where people mingle with nature.”$"
+	.string "Ciudad Petalburg\p"
+	.string "“Donde las personas viven en\n"
+	.string "armonía con la naturaleza.”$"
 
 PetalburgCity_Text_WallyHouseSign: @ 81DCB23
 	.string "WALLY'S HOUSE$"

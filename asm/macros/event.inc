@@ -1412,8 +1412,8 @@
 	.byte 0xc9
 	.endm
 
-	@ After using this command, all standard message boxes will use the signpost frame.
-	.macro signmsg
+	@ Set the type and subtype of a messagebox
+	.macro setmessagebox type:req, subtype:req
 	.byte 0xca
 	.endm
 
@@ -1728,12 +1728,16 @@
 	MSGBOX_YESNO = 5
 	MSGBOX_AUTOCLOSE = 6
 	MSGBOX_GETPOINTS = 9
+	@ Message box subtypes
+	MSGBOX_SUB_DEFAULT = 0
 
 	YES = 1
 	NO  = 0
 
-	.macro msgbox text:req, type=MSGBOX_DEFAULT
+	.macro msgbox text:req, type=MSGBOX_DEFAULT, subtype=MSGBOX_SUB_DEFAULT
 	loadword 0, \text
+	loadbyte 1, \type
+	loadbyte 2, \subtype
 	callstd \type
 	.endm
 

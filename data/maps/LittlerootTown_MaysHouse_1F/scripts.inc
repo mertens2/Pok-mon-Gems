@@ -329,8 +329,8 @@ LittlerootTown_MaysHouse_1F_Movement_MayGoUpstairs2: @ 81F8BBF
 	walk_up
 	step_end
 RivalsHouse_1F_Text_OhYoureTheNewNeighbor: @ 81F8BC5
-	.string "¡Hola, {PLAYER}{KUN}!, ¡Al fin no\n"
-	.string "vivimos solos en este pueblo fantasma!\p"
+	.string "¡Hola, {PLAYER}{KUN}!, ¡Al fin\n"
+	.string "vuelve Norman a su pueblito!\p"
 	.string "Nuestro retoño debe tener tu misma\n"
 	.string "edad, poco más, poco menos.\p"
 	.string "Parecía que no le importaba si tenía\n"
@@ -339,7 +339,7 @@ RivalsHouse_1F_Text_OhYoureTheNewNeighbor: @ 81F8BC5
 
 RivalsHouse_1F_Text_LikeChildLikeFather: @ 81F8CA5
 	.string "De tal palo, tal astilla.\p"
-	.string "Mi esposo está en busca de POKéMON\n"
+	.string "Mi esposo está en busca de Pokémon\n"
 	.string "salvajes para nuestro retoño.\p"
 	.string "Si no está en el Laboratorio, estará\n"
 	.string "buscando info seguro, ja ja ja.$"
@@ -347,32 +347,32 @@ RivalsHouse_1F_Text_LikeChildLikeFather: @ 81F8CA5
 RivalsHouse_1F_Text_TooBusyToNoticeVisit: @ 81F8D37
 	.string "¡{RIVAL} es todo un caso!\p"
 	.string "Creo que está con la mente muy\n"
-	.string "ocupada pensando en POKéMON como\l"
+	.string "ocupada pensando en Pokémon como\l"
 	.string "para saber que viniste, {PLAYER}{KUN}.$"
 
 RivalsHouse_1F_Text_WentOutToRoute103: @ 81F8D93
-	.string "Ah sí, {RIVAL} fue a la RUTA 103\n"
+	.string "Ah sí, {RIVAL} fue a la Ruta 103\n"
 	.string "Hace poco. Creo que está investigando.\p"
 	.string "De tal palo, tal astilla.\n"
 	.string "{RIVAL} no puede quedarse en casa.$"
-
+	
 RivalsHouse_1F_Text_ShouldGoHomeEverySoOften: @ 81F8E01
 	.string "Creo que es fantástico para las\n"
-	.string "personas viajar con los POKéMON.\p"
+	.string "personas viajar con los Pokémon.\p"
 	.string "Pero deberías volver a tu casa de\n"
 	.string "vez en cuando, no seas como tu padre.\p"
 	.string "Quizá no lo diga, pero tu madre se\n"
 	.string "preocupa por ti, {PLAYER}{KUN}.$"
 
 RivalsHouse_1F_Text_MayWhoAreYou: @ 81F8EC6
-	.string "¿Eh?\n"
-	.string "¡¿QUIÉN ERES Y QUÉ HACES EN\n"
-	.string "MI CUARTO?!\n"
+	.string "¿Eh?\p"
+	.string "¡¿QUIÉN ERES Y QUÉ HACÍAS EN\n"
+	.string "MI CUARTO?!\l"
 	.string "¡…! … … ¿…? … … … …\p"
 	.string "Oh, eres {PLAYER}{KUN}.\n"
 	.string "Eh… Perdón por el golpe…\p"
 	.string "Soy MAY. Te diré DESQUICIADO\n"
-	.string "Encantada de conocerte, supongo\p"
+	.string "Encantada de conocerte, supongo…\p"
 	.string "Yo… Quiero ayudar a mi padre\n"
 	.string "con su investigación, para\l"
 	.string "que pase más tiempo en casa…\p"
@@ -383,15 +383,15 @@ RivalsHouse_1F_Text_MayWhoAreYou: @ 81F8EC6
 	.string "distracción en mi investigación.\p"
 	.string "Además, apenas te conozco.\p"
 	.string "Ah, si. Adiós. Debo irme.\p"
-	.string "Atraparé algunos POKéMON raros\n"
-	.string "para ayudar a papá. Si consigues\n"
-	.string "POKéMON, ¡Te destrozaré en combate!\p"
-	.string "¡Desquiciado, vete de mi cuarto!$"
+	.string "Atraparé algunos Pokémon raros\n"
+	.string "para ayudar a papá. Si consigues\l"
+	.string "Pokémon, ¡Te destrozaré en combate!\p"
+	.string "¡Desquiciado, vete de mi casa!$"
 
 RivalsHouse_1F_Text_BrendanWhoAreYou: @ 81F90B4
 	.string "¡Hey!\n"
 	.string "Tú…\p"
-	.string "¡¿QUÉ HACES EN MI CUARTO, LOCA?!\p"
+	.string "¡¿QUÉ HACÍAS EN MI CUARTO, LOCA?!\p"
 	.string "Ah, eres {PLAYER}… Igual, loca.\n"
 	.string "¿Te mudaste desde Johto, y lo\l"
 	.string "primero que se te ocurre es esto?\p"
@@ -405,10 +405,10 @@ RivalsHouse_1F_Text_BrendanWhoAreYou: @ 81F90B4
 	.string "más tiempo con nosotros…\p"
 	.string "Hablando del tema…\p"
 	.string "Debo ir a recolectar información\n"
-	.string "sobre POKéMON salvajes.\p"
+	.string "sobre Pokémon salvajes.\p"
 	.string "¡Hasta luego, loca!$"
 
 RivalsHouse_1F_Text_DoYouHavePokemon: @ 81F9262
 	.string "¡Hola, {PLAYER}!\p"
 	.string "¿Ya no eres inútil y ya\n"
-	.string "conseguiste un POKéMON?$"
+	.string "conseguiste un Pokémon?$"

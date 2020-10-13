@@ -4,6 +4,8 @@
 // overworld
 extern const u32 gMessageBox_Gfx[];
 extern const u16 gMessageBox_Pal[];
+extern const u32 gSignMessageBox_Gfx[];
+extern const u16 gSignMessageBox_Pal[];
 
 // interface pokeballs
 extern const u32 gInterfaceGfx_PokeBall[];
@@ -7766,5 +7768,6 @@ extern const u32 gPokenavMessageBox_Tilemap[];
 extern const u16 gPokenavMessageBox_Pal[];
 extern const u32 gPokenavOptions_Gfx[];
 extern const u16 gPokenavOptions_Pal[];
+
 
 #endif //GUARD_GRAPHICS_H

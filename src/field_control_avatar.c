@@ -85,6 +85,20 @@ void FieldClearPlayerInput(struct FieldInput *input)
     input->input_field_1_2 = FALSE;
     input->input_field_1_3 = FALSE;
     input->dpadDirection = 0;
+    input->dpadNewDirection = 0;
+}
+
+static void FieldGetPlayerInputDirection(u8 *direction, u16 keys)
+{
+	
+    if (keys & DPAD_UP && !FlagGet(FLAG_BLOCKED_UP))
+        (*direction) = DIR_NORTH;
+    else if (keys & DPAD_DOWN && !FlagGet(FLAG_BLOCKED_DOWN))
+        (*direction) = DIR_SOUTH;
+    else if (keys & DPAD_LEFT && !FlagGet(FLAG_BLOCKED_LEFT))
+        (*direction) = DIR_WEST;
+    else if (keys & DPAD_RIGHT && !FlagGet(FLAG_BLOCKED_RIGHT))
+        (*direction) = DIR_EAST;
 }
 
 void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
@@ -125,28 +139,9 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
         if (forcedMove == FALSE && tileTransitionState == T_TILE_CENTER)
             input->checkStandardWildEncounter = TRUE;
     }
+    FieldGetPlayerInputDirection(&(input->dpadDirection), heldKeys);
+    FieldGetPlayerInputDirection(&(input->dpadNewDirection), newKeys);
 
-	if (heldKeys & DPAD_UP && !FlagGet(FLAG_BLOCKED_UP)){
-		if(FlagGet(FLAG_INVERTED_MOVEMENT))
-			input->dpadDirection = DIR_SOUTH;
-		else
-			input->dpadDirection = DIR_NORTH;
-	} else if (heldKeys & DPAD_DOWN && !FlagGet(FLAG_BLOCKED_DOWN)){
-		if(FlagGet(FLAG_INVERTED_MOVEMENT))
-			input->dpadDirection = DIR_NORTH;
-		else
-			input->dpadDirection = DIR_SOUTH;
-	} else if (heldKeys & DPAD_LEFT && !FlagGet(FLAG_BLOCKED_LEFT)){
-		if(FlagGet(FLAG_INVERTED_MOVEMENT))
-			input->dpadDirection = DIR_EAST;
-		else
-			input->dpadDirection = DIR_WEST;
-	} else if (heldKeys & DPAD_RIGHT && !FlagGet(FLAG_BLOCKED_RIGHT)){
-		if(FlagGet(FLAG_INVERTED_MOVEMENT))
-			input->dpadDirection = DIR_WEST;
-		else
-			input->dpadDirection = DIR_EAST;
-	}
 }
 
 int ProcessPlayerFieldInput(struct FieldInput *input)
@@ -162,6 +157,11 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     GetPlayerPosition(&position);
     metatileBehavior = MapGridGetMetatileBehaviorAt(position.x, position.y);
 
+    //Autotrigger condition, WIP
+    if(((playerDirection == input->dpadDirection && input->tookStep == TRUE) || playerDirection == input->dpadNewDirection)
+    && MetatileBehavior_IsAutoMsgBox(metatileBehavior)
+    && TryStartInteractionScript(&position, metatileBehavior, playerDirection) == TRUE)
+        return TRUE;
     if (CheckForTrainersWantingBattle() == TRUE)
         return TRUE;
 

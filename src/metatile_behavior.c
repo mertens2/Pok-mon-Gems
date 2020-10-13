@@ -14,7 +14,7 @@ static const u8 sTileBitAttributes[] =
     [MB_SECRET_BASE_WALL] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_TALL_GRASS] = TILE_ATTRIBUTES(TRUE, FALSE, TRUE),
     [MB_LONG_GRASS] = TILE_ATTRIBUTES(TRUE, FALSE, TRUE),
-    [MB_UNUSED_04] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
+    [MB_AUTO_MSGBOX] = TILE_ATTRIBUTES(FALSE, FALSE, FALSE),
     [MB_UNUSED_05] = TILE_ATTRIBUTES(FALSE, FALSE, TRUE),
     [MB_DEEP_SAND] = TILE_ATTRIBUTES(TRUE, FALSE, TRUE),
     [MB_SHORT_GRASS] = TILE_ATTRIBUTES(TRUE, FALSE, FALSE),
@@ -368,9 +368,9 @@ bool8 MetatileBehavior_IsEscalator(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 Unref_MetatileBehavior_IsUnused04(u8 metatileBehavior)
+bool8 MetatileBehavior_IsAutoMsgBox(u8 metatileBehavior)
 {
-    if (metatileBehavior == MB_UNUSED_04)
+    if (metatileBehavior == MB_AUTO_MSGBOX)
         return TRUE;
     else
         return FALSE;

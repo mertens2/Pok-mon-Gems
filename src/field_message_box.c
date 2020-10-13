@@ -5,8 +5,11 @@
 #include "task.h"
 #include "text.h"
 #include "match_call.h"
+#include "text_window.h"
 
 static EWRAM_DATA u8 sFieldMessageBoxMode = 0;
+//Walkaway-able control
+static EWRAM_DATA u8 sHideMsgBox = 0;
 
 static void textbox_fdecode_auto_and_task_add(u8*, bool32);
 static void textbox_auto_and_task_add(void);
@@ -152,4 +155,27 @@ void sub_8098374(void)
 {
     task_del_textbox();
     sFieldMessageBoxMode = 0;
+}
+
+//Use carefully! These methods are intended for simple scripts like signs
+//They don't stop the script itself, they just close the messagebox
+void SetHideMessageBox(u8 walkaway)
+{
+    sHideMsgBox = walkaway;
+}
+
+u8 GetHidingMessageBox(void)
+{
+    return sHideMsgBox;
+}
+
+void TryHideMessageBox(void)
+{
+    //If the message boc is set to walkaway-able
+    if (sHideMsgBox == 1 && sFieldMessageBoxMode != 0)
+    {
+        HideFieldMessageBox();
+        //Set the hiding to override WaitForAorBPress in "scrcmd.c"
+        sHideMsgBox = 2;
+    }
 }

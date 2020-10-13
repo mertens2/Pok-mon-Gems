@@ -1030,3 +1030,7 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/scripts/chain.inc"
 
 	.include "data/maps/IslaRetoSPlaya/scripts.inc"
+
+	.include "data/maps/CasaBraggMcFadden/scripts.inc"
+
+	.include "data/maps/CasaJewel/scripts.inc"

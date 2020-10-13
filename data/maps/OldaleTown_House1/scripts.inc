@@ -3,12 +3,12 @@ OldaleTown_House1_MapScripts:: @ 81FBE85
 
 OldaleTown_House1_EventScript_Woman:: @ 81FBE86
 	checkitemspace ITEM_FOCUS_SASH, 2
-	compare VAR_RESULT, 1
+	compare VAR_RESULT, 0
 	goto_if_eq OldaleTown_House1_Noespacio
 	checkitem ITEM_FOCUS_SASH, 1
 	goto_if_eq OldaleTown_House1_EventScript_Woman2
 	msgbox OldaleTown_House1_Text_LeftPokemonGoesOutFirst, MSGBOX_NPC
-	giveitem ITEM_FOCUS_SASH, 2
+	giveitem ITEM_FOCUS_SASH, 2 
 	closemessage
 	end
 OldaleTown_House1_EventScript_Woman2::

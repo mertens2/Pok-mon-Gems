@@ -238,13 +238,6 @@ LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCEast: @ 81F8604
 	walk_in_place_fastest_up
 	step_end
 
-@ Unused, the player is already facing this direction so its unneeded
-LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanEast: @ 81F8609
-	delay_16
-	delay_16
-	walk_in_place_fastest_left
-	step_end
-
 LittlerootTown_BrendansHouse_2F_EventScript_PC:: @ 81F860D
 	lockall
 	checkplayergender
@@ -305,8 +298,7 @@ PlayersHouse_2F_Text_ClockIsStopped: @ 81F8668
 
 PlayersHouse_2F_Text_HowDoYouLikeYourRoom: @ 81F869A
 	.string "Mamá: ¿{PLAYER}, te gusta tu nuevo\n"
-	.string "cuarto? Mantenlo limpio, que lo usaré\p"
-	.string "cuando te vayas para dormir bien.\p"
+	.string "cuarto? Mantenlo limpio.\p"
 	.string "Ya terminaron de mover todo en la\n"
 	.string "planta baja.\p"
 	.string "¡POKéMON MOVERS es tan eficiente!\p"
@@ -315,20 +307,19 @@ PlayersHouse_2F_Text_HowDoYouLikeYourRoom: @ 81F869A
 
 PlayersHouse_2F_Text_Notebook: @ 81F877F
 	.string "{PLAYER} abrió el cuaderno.\p"
-	.string "REGLA AVENTURERA NO. 1\n"
+	.string "REGLA AVENTURERA NO. 1\p"
 	.string "Atrapa siempre a los POKéMON\n"
 	.string "de otro color. Son especiales\p"
-	.string "REGLA AVENTURERA NO. 2\n"
-	.string "Siempre carga contigo Pokéball\p"
-	.string "de todo tipo. Nunca sabes si te\n"
-	.string "aparecerá un Pokémon capaz de escapar…\p"
+	.string "REGLA AVENTURERA NO. 2\p"
+	.string "Siempre carga contigo Pokéball\n"
+	.string "de todo tipo. Nunca sabes si\l"
+	.string "aparecerá un Pokémon raro…\p"
 	.string "Las otras hojas dicen cosas obvias…$"
 
 Common_Text_LookCloserAtMap: @ 81F8820
-	.string "¡WOW! ¡Lo que dicen los memes es verdad!\n"
-	.string "En serio hay mucha agua.$"
+	.string "¡WOW! ¡Mamá me compró un\n"
+	.string "mapa de pared!$"
 
 PlayersHouse_2F_Text_ItsAGameCube: @ 81F884F
-	.string "Es una Nintendo Switch.\p"
-	.string "Nah, para que mentir, es una GameCube\n"
+	.string "Es una GameCube\n"
 	.string "con un control de GBA.$"
